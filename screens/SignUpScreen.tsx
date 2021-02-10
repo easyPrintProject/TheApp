@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     color: 'white',
     borderRadius: 15,
     fontSize: 18,
-    fontWeight: '350',
+    fontWeight: '300',
   },
   container: {
     flex: 1,
