@@ -17,7 +17,7 @@ export default function AppStartScreen() {
                     backgroundColor:"#00716F",
                     paddingVertical:10,
                     borderRadius:23, 
-                    margin: 7
+                    margin: 8
                 }}>
       <Button
   onPress={()=> alert("Login page")}
