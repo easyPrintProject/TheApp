@@ -1,7 +1,16 @@
 export type RootStackParamList = {
+  Start: undefined;
   Root: undefined;
   NotFound: undefined;
 };
+export type StartParamList = {
+  AppStart:undefined;
+  Home: undefined;
+  Signup: undefined;
+  Login: undefined;
+ 
+};
+
 
 export type BottomTabParamList = {
   Account: undefined;

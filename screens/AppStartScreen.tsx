@@ -1,68 +1,103 @@
-import * as React from 'react';
-import { StyleSheet, Button } from 'react-native';
+
+import React, { useState } from "react";
+import { Alert, Modal, StyleSheet, Text, Pressable, View ,TextInput} from "react-native";
+import { StackScreenProps } from '@react-navigation/stack';
+import { StartParamList} from '../types';
 import Logo from '../components/Logo'
-import { Text, View } from '../components/Themed';
-
-export default function AppStartScreen() {
+const AppStartScreen = ({navigation }: StackScreenProps<StartParamList> ) => {
+  
+  const GoToHome = () => {
+    navigation.navigate("Home");
+  };
+  const [modalVisible, setModalVisible] = useState(false);
   return (
-    <View style={styles.container}>
-      <View style={styles.container}>
-      <Logo/></View>
+    <View style={styles.centeredView}>
       <Text>مرحبا في ايزي برينت</Text>
-      <View style={{
-                    marginHorizontal:55,
-                    alignItems:"center",
-                    justifyContent:"center",
-                    marginTop:30,
-                    backgroundColor:"#00716F",
-                    paddingVertical:10,
-                    borderRadius:23, 
-                    margin: 8
-                }}>
-      <Button
-  onPress={()=> alert("Login page")}
-  title="تسجيل الدخول"
-  color="#841584"
-/></View>
-<View style={{
-                    marginHorizontal:55,
-                    alignItems:"center",
-                    justifyContent:"center",
-                    marginTop:30,
-                    backgroundColor:"#00716F",
-                    paddingVertical:10,
-                    borderRadius:23
-                }}>
-<Button
-  onPress={()=> alert("SignUp Page")}
-  title="انشاء حساب جديد"
-  color="#841584"
-/></View>
-
-<Button
-  onPress={()=> alert("Home Page")}
-  title="المتابعة كزائر"
-  color="#841584"
-/>
-
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}>
+      <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>تسجيل الدخول</Text>
+              <View>
+                  <View ><TextInput style={{paddingHorizontal:10, height:50, width:200, borderColor:'gray', borderWidth:0.5, marginBottom: 5} }/></View> 
+                  <View ><TextInput style={{paddingHorizontal:10, height:50, width:200, borderColor:'gray', borderWidth:0.5, marginBottom:5}}/></View>  
+              </View>
+              <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}>
+                 <Text style={styles.textStyle}>تسجيل الدخول </Text>
+              </Pressable>
+       </View>
+    </View>
+   </Modal>
+      <Pressable
+        style={[styles.button, styles.buttonOpen]}
+        onPress={() => setModalVisible(true)}>
+        <Text style={styles.textStyle}>  تسجيل الدخول  </Text>
+      </Pressable>
+      <Pressable
+        style={[styles.button, styles.buttonOpen]}
+        onPress={() => setModalVisible(true)}>
+        <Text style={styles.textStyle}>انشاء حساب جديد</Text>
+      </Pressable>
+      <Pressable
+        style={[styles.button, styles.buttonOpen]}
+        onPress={() => GoToHome()} >
+        <Text style={styles.textStyle}>    المتابعة كزائر    </Text>
+      </Pressable>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
+  centeredView: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
   },
-  title: {
-    fontSize: 40,
-    color: 'red' , 
-    fontWeight: 'bold',
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  button: {
+    marginBottom:5,
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
   },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  }
 });
+
+export default AppStartScreen;
