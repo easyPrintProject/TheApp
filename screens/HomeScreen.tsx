@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Image, Button } from 'react-native';
 import { Text, View } from '../components/Themed';
-
-
-
-
-
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
@@ -113,10 +108,7 @@ export default function HomeScreen() {
                      color="#17202A"
                     />
        </View>
-     </View>
- 
-
-
+      </View>
     </View>
   );
 }
@@ -133,7 +125,7 @@ const styles = StyleSheet.create({
 padding:20,
     color: '#17202A' , 
     fontWeight: 'bold',
-    textAlign:'right'
+    textAlign:'right',
   },
   separator: {
     marginVertical: 30,
@@ -143,3 +135,4 @@ padding:20,
 
 }
 );
+
