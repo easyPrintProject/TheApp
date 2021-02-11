@@ -2,14 +2,12 @@ import * as React from 'react';
 import { View, Button, TextInput, StyleSheet } from 'react-native';
 
 export default class SignUp extends React.Component {
-  state = {
-    username: '', password: '', email: '', phoneNumber: ''
-  }
+  state = { ID: '', pass: '', email: '', phoneNumber: ''}
   onChangeText = (key: any, val: any) => {
     this.setState({ [key]: val })
   }
   signUp = async () => {
-    const { username, password, email, phoneNumber } = this.state
+    const { ID, pass, email, phoneNumber } = this.state
     try {
       console.log('تم التسجيل بنجاح ')
     } catch (error) {
@@ -25,7 +23,7 @@ export default class SignUp extends React.Component {
           placeholder='اسم المستخدم'
           textAlign= 'right'
           placeholderTextColor='white'
-          onChangeText={val => this.onChangeText('username', val)}
+          onChangeText={val => this.onChangeText('ID', val)}
         />
         <TextInput
           style={styles.input}
@@ -33,7 +31,7 @@ export default class SignUp extends React.Component {
           textAlign= 'right'
           secureTextEntry={true}
           placeholderTextColor='white'
-          onChangeText={val => this.onChangeText('password', val)}
+          onChangeText={val => this.onChangeText('pass', val)}
         />
         <TextInput
           style={styles.input}
@@ -73,7 +71,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'center', // vertical
+    alignItems: 'center' // horizontal 
   }
 })
