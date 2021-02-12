@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { StyleSheet, Image, Button } from 'react-native';
+import { StyleSheet, Image, Button, SafeAreaView } from 'react-native';
 import { Text, View } from '../components/Themed';
 export default function HomeScreen() {
   return (
+    <SafeAreaView>
     <View style={styles.container}>
       
     <View  style={{backgroundColor:"#FFF" ,height:"100%"}}>
@@ -110,12 +111,12 @@ export default function HomeScreen() {
        </View>
       </View>
     </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
