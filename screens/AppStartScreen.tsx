@@ -9,6 +9,9 @@ const AppStartScreen = ({navigation }: StackScreenProps<StartParamList> ) => {
   const GoToHome = () => {
     navigation.navigate("Home");
   };
+  const GoToSignUp = () => {
+    navigation.navigate("Signup");
+  };
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.centeredView}>
@@ -43,7 +46,7 @@ const AppStartScreen = ({navigation }: StackScreenProps<StartParamList> ) => {
       </Pressable>
       <Pressable
         style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}>
+        onPress={() => GoToSignUp()}>
         <Text style={styles.textStyle}>انشاء حساب جديد</Text>
       </Pressable>
       <Pressable
