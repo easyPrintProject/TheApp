@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Text, View, Button, TouchableOpacity, TextInput} from 'react-native';
-import PurchasePage from './PurchaseScreen';
-
 
 class Option extends Component<any, any>  {
   constructor(props: any) {
@@ -23,7 +21,7 @@ class Option extends Component<any, any>  {
           justifyContent: 'center',
           flexDirection: 'row',
           flexWrap: 'wrap',
-          marginTop:12
+          marginTop:50
         }}
       >
         {this.props.options.map((option: React.ReactNode) => (
@@ -51,8 +49,7 @@ class Option extends Component<any, any>  {
                 color: 'black',
               }}
             >
-            
-
+          
               {option}
             </Text>
           </TouchableOpacity>
@@ -65,56 +62,46 @@ class Option extends Component<any, any>  {
 export default class PrintingOption extends Component {
   render() {
     return (
-            <View> 
-                    <View> <Text> حجم الورق </Text>
-      < Option
+            <View>
+            <View><Text style={{ marginTop:50, marginBottom:-30, textAlign: 'right' }}>حجم الورق</Text>
+      < Option 
         options={['A5', 'A4', 'A3', 'A2', 'A1', 'A0']}
         onChange={(option: any) => {
           console.log(option);
-        }}/>             </View>,
+        }}/></View>
 
-            <View> <Text> نوع الورق </Text>
+            <View><Text style={{ marginTop:120, marginBottom:-30, textAlign: 'right' }}> نوع الورق </Text>
         < Option
         options={['عادي', 'مقوى', 'لماع', 'معاد استخدامه']}
         onChange={(option: any) => {
           console.log(option);
-        }}/>             </View>,
+        }}/></View>
 
-
-            <View>  <Text> لون الطباعة </Text>
+            <View><Text style={{ marginTop:90, marginBottom:-30, textAlign: 'right' }}>لون الطباعة</Text>
         < Option
-        options={['أسود وأبيض', 'ملون', ]}
+        options={['أسود وأبيض', 'ملون' ]}
         onChange={(option: any) => {
           console.log(option);
-        }}/>             </View>,
+        }}/></View>
 
-            <View>  <Text> نوع الطباعة </Text>
+            <View><Text style={  { marginTop:50, marginBottom:-30,  textAlign: 'right' }}>نوع الطباعة</Text>
 
 < Option
-        options={['وجه', 'وجهين', ]}
+        options={['وجه', 'وجهين' ]}
         onChange={(option: any) => {
           console.log(option);
-        }}/>             </View>
-
-<View >
-<Text>  تحديد الصفحات</Text>
+        }}/></View>
+<View><Text style={  { marginTop:60, marginBottom:-30, textAlign: 'right' }}>تحديد الصفحات</Text>
 <View style= {{  flexDirection: 'row', justifyContent: 'center'
 }}>
-  <TextInput style={{ height:45, width:45, borderColor:'#8098db', borderWidth:0.5,  borderRadius: 5,  margin:3, 
- } }/>,
+  <TextInput style={{ height:45, width:45, borderColor:'#8098db', borderWidth:0.5,  borderRadius: 5,  margin:3,marginTop: 30, 
+ } }/>
 
-  <TextInput style={{ height:45, width:45, borderColor:'#8098db', borderWidth:0.5 , borderRadius: 5, margin: 3, marginBottom: 9
- }}/> 
-
+  <TextInput style={{ height:45, width:45, borderColor:'#8098db', borderWidth:0.5 , borderRadius: 5, margin: 3, marginBottom: 9, marginTop: 30, 
+ }}/></View>
 </View>
  </View>
-
-
-            </View>
-            // button to go to the purchase page 
-
+   // button goes here to deliver time page *********
     );
   }
-}
-
-
+}             
