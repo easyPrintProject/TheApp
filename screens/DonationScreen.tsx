@@ -1,5 +1,9 @@
 import * as React from 'react';
+<<<<<<< Updated upstream
 import { StyleSheet,Image,Button, Alert } from 'react-native';
+=======
+import { StyleSheet,Image,Button } from 'react-native';
+>>>>>>> Stashed changes
 
 import { Text, View } from '../components/Themed';
 
@@ -22,7 +26,12 @@ export default function DonationScreen() {
 <Text style={styles.Texttwo}>
 
 
+<<<<<<< Updated upstream
   (( ورق قديم-ورق مستعمل نظيف-ملازم مستعملة)
+=======
+
+(( ورق قديم-ورق مستعمل نظيف-ملازم مستعملة)
+>>>>>>> Stashed changes
 للحفاظ على بيئتك تبرعك بالورق يمنع حرقه في
  المخلفات او دفنه, تبرعك بالورق يساعد على تقليل
  استيراد الورق ويدعم صناعة الورق الوطنية باعادة تصنيع
@@ -52,6 +61,10 @@ export default function DonationScreen() {
                 
 
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                 }}>
                     <Button
                      onPress={() => alert('Home page')}
@@ -67,6 +80,10 @@ export default function DonationScreen() {
  
 
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
   
   );
 }
@@ -110,5 +127,8 @@ marginRight:190,
   }
 
 });
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
