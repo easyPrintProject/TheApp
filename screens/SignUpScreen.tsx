@@ -9,6 +9,22 @@ export default class SignUp extends React.Component {
   signUp = async () => {
     const { ID, pass, email, phoneNumber } = this.state
     try {
+      fetch('https://apieasyprint20210215153907.azurewebsites.net/api/signin', {
+       method: 'POST',
+       headers: {
+       Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+       body: JSON.stringify({
+        Email:email,
+        UserName: ID,
+        PasswordHash: pass,
+        PhoneNumber: phoneNumber
+      })
+     }).catch((error) => {
+      console.error(error);
+    });
+
       console.log('تم التسجيل بنجاح ')
     } catch (error) {
       console.log('حدث خطأ! ', error)
