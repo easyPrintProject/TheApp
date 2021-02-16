@@ -81,13 +81,20 @@ const styles = StyleSheet.create({
     elevation: 5
   },
   button: {
-    marginBottom:5,
+    marginBottom:-19,
     borderRadius: 20,
     padding: 10,
-    elevation: 2
+    elevation: 2,
+    marginTop:50,
+    paddingBottom:20,
+    marginLeft:"5%",
+    backgroundColor: "steelblue",
+   width:"60%"
+
   },
   buttonOpen: {
     backgroundColor: "#F194FF",
+     flexDirection: 'column',
   },
   buttonClose: {
     backgroundColor: "#2196F3",
