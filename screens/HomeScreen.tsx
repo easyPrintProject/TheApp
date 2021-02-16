@@ -7,16 +7,20 @@ export default function HomeScreen() {
     <View style={styles.container}>
       
     <View  style={{backgroundColor:"#FFF" ,height:"100%"}}>
-    <View style={{flexDirection:"row" , justifyContent:"space-evenly",alignItems:"flex-start", backgroundColor:"#728FCE",height:"10%"}}>
+    <View style={{flexDirection:"row" , justifyContent:"space-evenly",alignItems:"flex-start", backgroundColor:"#5799E3",height:"10%"}}>
+   
+   
     <View style={{
                     marginHorizontal:55,
                     alignItems:"center",
                     justifyContent:"center",
-                    marginTop:10,
+                    marginTop:5,
                     backgroundColor:"#BCC6CC",
-                    paddingVertical:10,
-                    borderRadius:23,
-                    width:40,
+                    borderRadius:100,
+                    width:130,
+                    height:60,
+
+                    
                 
 
 
@@ -30,14 +34,14 @@ export default function HomeScreen() {
 
                     />
        </View><View style={{
-                    marginHorizontal:55,
-                    alignItems:"center",
-                    justifyContent:"center",
-                    marginTop:10,
-                    backgroundColor:"#BCC6CC",
-                    paddingVertical:10,
-                    borderRadius:23,
-                    width:60,
+                   marginHorizontal:55,
+                   alignItems:"center",
+                   justifyContent:"center",
+                   marginTop:5,
+                   backgroundColor:"#BCC6CC",
+                   borderRadius:100,
+                   width:130,
+                   height:60,
                 
 
 
@@ -121,7 +125,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 15,
+    fontSize: 8,
     marginTop:70,
 padding:20,
     color: '#17202A' , 
