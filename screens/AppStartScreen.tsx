@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View ,TextInput} from "react-native";
+import { Alert, Modal, StyleSheet, Text, Pressable, View ,TextInput,Image, ImageBackground} from "react-native";
 import { StackScreenProps } from '@react-navigation/stack';
 import { StartParamList} from '../types';
 import Logo from '../components/Logo'
@@ -15,7 +15,13 @@ const AppStartScreen = ({navigation }: StackScreenProps<StartParamList> ) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.centeredView}>
-      <Text>مرحبا في ايزي برينت</Text>
+   <ImageBackground
+        
+        source={require('../assets/images/Appstaer.jpg')} style={{ height:300,
+          width:500,justifyContent:'center' ,alignItems:'center'
+        }}
+      />
+      <Text style={styles.text}>مرحبا في ايزي برينت</Text>
       <Modal
         animationType="slide"
         transparent={true}
@@ -25,11 +31,12 @@ const AppStartScreen = ({navigation }: StackScreenProps<StartParamList> ) => {
           setModalVisible(!modalVisible);
         }}>
       <View style={styles.centeredView}>
+        
           <View style={styles.modalView}>
             <Text style={styles.modalText}>تسجيل الدخول</Text>
               <View>
-                  <View ><TextInput style={{paddingHorizontal:10, height:50, width:200, borderColor:'gray', borderWidth:0.5, marginBottom: 5} }/></View> 
-                  <View ><TextInput style={{paddingHorizontal:10, height:50, width:200, borderColor:'gray', borderWidth:0.5, marginBottom:5}}/></View>  
+                  <View ><TextInput style={{paddingHorizontal:10, height:50, width:200, borderColor:'gray', borderWidth:0.5, marginBottom: 8,backgroundColor:'#e8e8e8',borderRadius:8} }/></View> 
+                  <View ><TextInput style={{paddingHorizontal:10, height:50, width:200, borderColor:'gray', borderWidth:0.5, marginBottom:5,backgroundColor:'#e8e8e8',borderRadius:8}}/></View>  
               </View>
               <Pressable
               style={[styles.button, styles.buttonClose]}
@@ -63,7 +70,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22
+    marginTop: 22,
+  },
+  text:{
+    fontSize: 18,
+    color: "#151617",
+    fontWeight: "bold",
+    alignSelf: "center",
+    textTransform: "uppercase"
   },
   modalView: {
     margin: 20,
@@ -82,22 +96,24 @@ const styles = StyleSheet.create({
   },
   button: {
     marginBottom:-19,
-    borderRadius: 20,
     padding: 10,
-    elevation: 2,
     marginTop:50,
     paddingBottom:20,
     marginLeft:"5%",
-    backgroundColor: "steelblue",
+    elevation: 8,
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
    width:"60%"
 
   },
   buttonOpen: {
-    backgroundColor: "#F194FF",
+    backgroundColor: "#5799E3",
      flexDirection: 'column',
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "#5799E3",
+    
   },
   textStyle: {
     color: "white",
