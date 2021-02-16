@@ -62,7 +62,9 @@ export default function HomeScreen() {
         }}
       />
 
-    <Text  style={styles.title}>اهلا بكم بمنصة الطباعة الاللللكترونية </Text>
+
+    <Text  style={styles.title}>اهلا بكم بمنصة الطباعة الالكترونية </Text>
+
 </View>
 
      <View style={{
