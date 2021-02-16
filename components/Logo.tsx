@@ -7,7 +7,7 @@ export default function Logo() {
         <View style={styles.container}>
          <Image
         source={
-          require("../assets/images/Logo.png")
+          require("../assets/images/icon.png")
         }
         resizeMode="contain"
         style={styles.Header__logo}

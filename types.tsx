@@ -1,17 +1,42 @@
 export type RootStackParamList = {
+  Start: undefined;
   Root: undefined;
   NotFound: undefined;
 };
+export type StartParamList = {
+  AppStart:undefined;
+  Home: undefined;
+  Signup: undefined;
+  Login: undefined;
+ 
+};
+
 
 export type BottomTabParamList = {
-  TabOne: undefined;
-  TabTwo: undefined;
+  Account: undefined;
+  Home: undefined;
+  PrintersList: undefined;
+  Basket: undefined;
+  Order: undefined;
 };
 
-export type TabOneParamList = {
-  TabOneScreen: undefined;
+export type HomeParamList = {
+  HomeScreen: undefined;
 };
 
-export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+export type AccountParamList = {
+  AccountScreen: undefined;
+};
+
+
+export type OrderParamList = {
+  OrderScreen: undefined;
+};
+
+export type PrintersListParamList = {
+  PrintersListScreen: undefined;
+};
+
+export type BasketParamList = {
+  BasketScreen: undefined;
 };

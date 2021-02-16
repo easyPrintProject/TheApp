@@ -4,16 +4,20 @@ export default {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
-      Root: {
-        screens: {
-          TabOne: {
+      Start: {
+        screens:{
+          AppStart: {
             screens: {
-              TabOneScreen: 'one',
+              AppStartScreen: 'one',
             },
           },
-          TabTwo: {
+        }
+      },
+      Root: {
+        screens: {
+          Home: {
             screens: {
-              TabTwoScreen: 'two',
+              HomeScreen: 'one',
             },
           },
         },

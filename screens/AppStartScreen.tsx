@@ -1,68 +1,129 @@
-import * as React from 'react';
-import { StyleSheet, Button } from 'react-native';
+
+import React, { useState } from "react";
+import { Alert, Modal, StyleSheet, Text, Pressable, View ,TextInput,Image, ImageBackground} from "react-native";
+import { StackScreenProps } from '@react-navigation/stack';
+import { StartParamList} from '../types';
 import Logo from '../components/Logo'
-import { Text, View } from '../components/Themed';
-
-export default function AppStartScreen() {
+const AppStartScreen = ({navigation }: StackScreenProps<StartParamList> ) => {
+  
+  const GoToHome = () => {
+    navigation.navigate("Home");
+  };
+  const GoToSignUp = () => {
+    navigation.navigate("Signup");
+  };
+  const [modalVisible, setModalVisible] = useState(false);
   return (
-    <View style={styles.container}>
-      <View style={styles.container}>
-      <Logo/></View>
-      <Text>مرحبا في ايزي برينت</Text>
-      <View style={{
-                    marginHorizontal:55,
-                    alignItems:"center",
-                    justifyContent:"center",
-                    marginTop:30,
-                    backgroundColor:"#00716F",
-                    paddingVertical:10,
-                    borderRadius:23, 
-                    margin: 7
-                }}>
-      <Button
-  onPress={()=> alert("Login page")}
-  title="تسجيل الدخول"
-  color="#841584"
-/></View>
-<View style={{
-                    marginHorizontal:55,
-                    alignItems:"center",
-                    justifyContent:"center",
-                    marginTop:30,
-                    backgroundColor:"#00716F",
-                    paddingVertical:10,
-                    borderRadius:23
-                }}>
-<Button
-  onPress={()=> alert("SignUp Page")}
-  title="انشاء حساب جديد"
-  color="#841584"
-/></View>
-
-<Button
-  onPress={()=> alert("Home Page")}
-  title="المتابعة كزائر"
-  color="#841584"
-/>
-
+    <View style={styles.centeredView}>
+   <ImageBackground
+        
+        source={require('../assets/images/Appstaer.jpg')} style={{ height:300,
+          width:500,justifyContent:'center' ,alignItems:'center'
+        }}
+      />
+      <Text style={styles.text}>مرحبا في ايزي برينت</Text>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}>
+      <View style={styles.centeredView}>
+        
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>تسجيل الدخول</Text>
+              <View>
+                  <View ><TextInput style={{paddingHorizontal:10, height:50, width:200, borderColor:'gray', borderWidth:0.5, marginBottom: 8,backgroundColor:'#e8e8e8',borderRadius:8} }/></View> 
+                  <View ><TextInput style={{paddingHorizontal:10, height:50, width:200, borderColor:'gray', borderWidth:0.5, marginBottom:5,backgroundColor:'#e8e8e8',borderRadius:8}}/></View>  
+              </View>
+              <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}>
+                 <Text style={styles.textStyle}>تسجيل الدخول </Text>
+              </Pressable>
+       </View>
+    </View>
+   </Modal>
+      <Pressable
+        style={[styles.button, styles.buttonOpen]}
+        onPress={() => setModalVisible(true)}>
+        <Text style={styles.textStyle}>  تسجيل الدخول  </Text>
+      </Pressable>
+      <Pressable
+        style={[styles.button, styles.buttonOpen]}
+        onPress={() => GoToSignUp()}>
+        <Text style={styles.textStyle}>انشاء حساب جديد</Text>
+      </Pressable>
+      <Pressable
+        style={[styles.button, styles.buttonOpen]}
+        onPress={() => GoToHome()} >
+        <Text style={styles.textStyle}>    المتابعة كزائر    </Text>
+      </Pressable>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
+  centeredView: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
   },
-  title: {
-    fontSize: 40,
-    color: 'red' , 
-    fontWeight: 'bold',
+  text:{
+    fontSize: 18,
+    color: "#151617",
+    fontWeight: "bold",
+    alignSelf: "center",
+    textTransform: "uppercase"
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
   },
+  button: {
+    marginBottom:-19,
+    padding: 10,
+    marginTop:50,
+    paddingBottom:20,
+    marginLeft:"5%",
+    elevation: 8,
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+   width:"60%"
+
+  },
+  buttonOpen: {
+    backgroundColor: "#5799E3",
+     flexDirection: 'column',
+  },
+  buttonClose: {
+    backgroundColor: "#5799E3",
+    
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  }
 });
+
+export default AppStartScreen;
