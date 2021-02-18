@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { View, Button, TextInput, StyleSheet } from 'react-native';
+import { View, Button, TextInput, StyleSheet, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
+
 
 export default class SignUp extends React.Component {
+  
   state = { ID: '', pass: '', email: '', phoneNumber: ''}
   onChangeText = (key: any, val: any) => {
     this.setState({ [key]: val })
@@ -30,45 +33,50 @@ export default class SignUp extends React.Component {
       console.log('حدث خطأ! ', error)
     }
   }
- 
+
   render() {
     return (
       <View style={styles.container}>
-        <TextInput
+      <Text style={styles.titleText}>الانضمام إلى ايزي برنت</Text> 
+        <TextInput 
           style={styles.input}
           placeholder='اسم المستخدم'
           textAlign= 'right'
-          placeholderTextColor='white'
+          placeholderTextColor='black'
           onChangeText={val => this.onChangeText('ID', val)}
-        />
+        /><View>
+        </View>
         <TextInput
           style={styles.input}
           placeholder='كلمة السر'
           textAlign= 'right'
           secureTextEntry={true}
-          placeholderTextColor='white'
+          placeholderTextColor='black'
           onChangeText={val => this.onChangeText('pass', val)}
         />
         <TextInput
           style={styles.input}
           placeholder='الإيميل الإلكتروني'
           textAlign= 'right'
-          placeholderTextColor='white'
+          placeholderTextColor='black'
           onChangeText={val => this.onChangeText('email', val)}
         />
         <TextInput
           style={styles.input}
           placeholder='رقم الجوال'
           textAlign= 'right'
-          placeholderTextColor='white'
+          placeholderTextColor='black'
           onChangeText={val => this.onChangeText('phoneNumber', val)}
         />
-        <Button 
-          title='التسجيل'
-          color='#8098db'
+     <View>
+</View>
+       <View style={styles.buttonStyle}><Button 
+          title='إنشاء حساب'
+          color='black'
           onPress={this.signUp}
-        />
-      </View>
+          
+        /></View>
+        </View>
     )
   }
 }
@@ -77,17 +85,24 @@ const styles = StyleSheet.create({
   input: {
     width: 350,
     height: 55,
-    backgroundColor: '#8098db',
+    backgroundColor: 'white',
     margin: 10,
     padding: 8,
-    color: 'white',
-    borderRadius: 15,
-    fontSize: 18,
-    fontWeight: '300',
+    color: 'black',
+    borderRadius: 10,
+    fontSize: 15,
   },
   container: {
     flex: 1,
     justifyContent: 'center', // vertical
     alignItems: 'center' // horizontal 
-  }
+  },
+  titleText: {
+    fontSize: 30,
+    paddingBottom: 80,
+  },
+  buttonStyle: {
+    paddingTop: 50,
+  },
+
 })
