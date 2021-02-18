@@ -4,7 +4,12 @@ import { Text, View } from '../components/Themed';
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as Animatable from 'react-native-animatable'
 import { ScrollView } from 'react-native-gesture-handler';
-const listItems =['العبيكان','امسيان','المعالي'];
+// const listItems =['العبيكان','امسيان','المعالي'];
+
+
+
+
+
 
 export default function OrderScreen(this: any) {
     const state ={searchBarFocused : false}
@@ -14,11 +19,11 @@ export default function OrderScreen(this: any) {
       
       <SafeAreaView>
    <View  style={{backgroundColor:"#FFF" ,height:"100%"}}>
-    <View style={{flexDirection:"row" , justifyContent:"space-evenly",alignItems:"flex-start", backgroundColor:"#96C493",height:60}}>
+    <View style={{flexDirection:"row" , justifyContent:"space-evenly",alignItems:"flex-start", backgroundColor:"#F8E73D",height:60}}>
    
       <Text style={styles.title}>قائمة المكتبات  </Text>
     </View>
-    <View style={{flexDirection:"row" ,width:"220%", justifyContent:"space-evenly",alignItems:"flex-start",backgroundColor:"#96C493",height:40,marginTop:5}}>
+    <View style={{flexDirection:"row" ,width:"220%", justifyContent:"space-evenly",alignItems:"flex-start",backgroundColor:"#CECECE",height:40,marginTop:5}}>
     <Animatable.View animation="slideInRight" duration={500} style={{ height: 50, backgroundColor: 'white', flexDirection: 'row', padding: 5, alignItems: 'center' }}>
     <TextInput placeholder="Search" style={{fontSize:24,marginLeft:-320}}/>
 
@@ -26,33 +31,73 @@ export default function OrderScreen(this: any) {
     </Animatable.View>
 
     </View>
-  
-      </View>
- 
-<ScrollView
-scrollEventThrottle={16}
->
-<Text style={{flex:1,backgroundColor:'white',paddingTop:20}}>
-    المعالي
-</Text>
+    {/* <FlatList
+    data={listItems}
+    renderItem={({ item }) => <Text style={{padding:20,fontSize:20}}>{item}</Text>}
+   keyExtractor={(item,index) => index.toString()}
+   
+   /> */}
+
+<ScrollView scrollEventThrottle={16}>
+
 <View style={{height:130,marginTop:20}}>
-    <ScrollView>
-        <View style={{height:130}}>
-            <View style={{flex:2}}>
-            <Image
-        
-        source={require('../assets/images/printerIcon.jpg')}style={{    height:50,
-          width:50 
-        }}
-      />
+    
+        <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
+            
+            <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
+            <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}>مطبعة المعالي
+</Text>
             </View>
         </View>
-    </ScrollView>
+ 
+<View style={{paddingTop:6}}></View>
 
-</View>
+
+
+   
+        <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
+            
+            <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
+            <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}> مكتبة امسيان 
+</Text>
+            </View>
+    
+            <View style={{paddingTop:6}}></View>
+
+
+
+   
+<View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
+    
+    <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
+    <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}> مكتبة الخندق 
+</Text>
+    </View>
+    <View style={{paddingTop:6}}></View>
+
+
+
+   
+        <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
+            
+            <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
+            <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}>قرطاسية المطار 
+</Text>
+            </View>
+            <View style={{paddingTop:6}}></View>
+
+
+
+   
+        <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
+            
+            <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
+            <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}>طباعة نقية 
+</Text>
+            </View>
 
 </ScrollView>
-  
+    </View>
     </SafeAreaView>
   );
 }
