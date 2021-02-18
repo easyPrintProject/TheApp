@@ -1,143 +1,77 @@
 import * as React from 'react';
-import { StyleSheet, Image, Button, SafeAreaView } from 'react-native';
+import { StyleSheet , SafeAreaView} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text, View } from '../components/Themed';
-export default function HomeScreen() {
+
+export default function OrderScreen() {
   return (
-    <SafeAreaView>
-    <View style={styles.container}>
-      
-    <View  style={{backgroundColor:"#FFF" ,height:"100%"}}>
-    <View style={{flexDirection:"row" , justifyContent:"space-evenly",alignItems:"flex-start", backgroundColor:"#5799E3",height:"10%"}}>
+      <SafeAreaView style={styles.contener}>
+   <View> 
+     <View style={styles.header}>
+        <Text style={styles.title}> EASY PRINT </Text>
+    
+    <View style={{flexDirection:"row", width:25,height:5, justifyContent:"space-between",alignItems:"flex-end",backgroundColor:"#4BBFF4",marginTop:10,marginRight:100}}>  
    
-   
-    <View style={{
-                    marginHorizontal:55,
-                    alignItems:"center",
-                    justifyContent:"center",
-                    marginTop:5,
-                    backgroundColor:"#BCC6CC",
-                    borderRadius:100,
-                    width:130,
-                    height:60,
+    
+      <TouchableOpacity style={{borderWidth:0.5,borderRadius:20,height:30,width:77,alignItems:"center",backgroundColor:"#8C8787"}}>
 
-                    
-                
+<Text style={{color:"#FFFFFF"}}>تسجيل</Text>
+</TouchableOpacity>
 
+<TouchableOpacity style={{borderWidth:0.5,borderRadius:20,height:30,width:77,paddingHorizontal:"5%",justifyContent:"center",alignItems:"center",backgroundColor:"#8C8787"}}>
+<Text style={{color:"#FFFFFF"}}>أنشاء حساب</Text>
+</TouchableOpacity></View>
+    
 
-
-                }}>
-                    <Button
-                     onPress={() => alert('Button with adjusted color pressed')}
-                     title="تسجيل الدخول"
-                     color="#17202A"
-                     
-
-                    />
-       </View><View style={{
-                   marginHorizontal:55,
-                   alignItems:"center",
-                   justifyContent:"center",
-                   marginTop:5,
-                   backgroundColor:"#BCC6CC",
-                   borderRadius:100,
-                   width:130,
-                   height:60,
-                
-
-
-
-                }}>
-                    <Button
-                     onPress={() => alert('Button with adjusted color pressed')}
-                     title="أنشاء حساب "
-                     color="#17202A"
-                     
-
-                    />
-       </View>
-    <Image
-        
-        source={require('../assets/images/logo.png')}style={{    height:50,
-          width:50 
-        }}
-      />
-
-    <Text  style={styles.title}>اهلا بكم بمنصة الطباعة الالكترونية </Text>
-</View>
-
-     <View style={{
-                    marginHorizontal:55,
-                    alignItems:"center",
-                    justifyContent:"center",
-                    marginTop:60,
-                    backgroundColor:"#BCC6CC",
-                    paddingVertical:10,
-                    borderRadius:23,
-                    width:300
-
-                }}>
-                    <Button
-                     onPress={() => alert('Button with adjusted color pressed')}
-                     title="مطبوعاتي"
-                     color="#17202A"
-                     
-                    />
-       </View>
-       <View style={{
-                    marginHorizontal:55,
-                    alignItems:"center",
-                    justifyContent:"center",
-                    marginTop:50,
-                    backgroundColor:"#BCC6CC",
-                    paddingVertical:10,
-                    borderRadius:23
-                }}>
-                    <Button
-                     onPress={() => alert('Button with adjusted color pressed')}
-                     title="ملزمات"
-                     color="#17202A"
-                    />
-       </View>
-       <View style={{
-                    marginHorizontal:55,
-                    alignItems:"center",
-                    justifyContent:"center",
-                    marginTop:50,
-                    backgroundColor:"#BCC6CC",
-                    paddingVertical:10,
-                    borderRadius:23
-                }}>
-                    <Button
-                     onPress={() => alert('Button with adjusted color pressed')}
-                     title="تبرع"
-                     color="#17202A"
-                    />
-       </View>
-      </View>
+    
     </View>
+  <View style={styles.view}>
+  <TouchableOpacity style={{padding:6, width:500,height:120, justifyContent:"center",alignItems:"center",backgroundColor:"#4BBFF4",marginTop:90,paddingRight:100}}>
+<Text style={{ marginHorizontal:20
+,fontWeight: "bold", alignSelf: "center", textTransform: "uppercase",color:"#FFFFFF",alignItems:"center",justifyContent:"center",fontSize:25}}>طلب طباعة</Text>
+</TouchableOpacity>
+  </View>
+  <View style={styles.view}>
+  <TouchableOpacity style={{padding:6, width:500,height:120, justifyContent:"center",alignItems:"center",backgroundColor:"#8C8787",marginTop:10,paddingRight:100}}>
+<Text style={{ marginHorizontal:20
+,fontWeight: "bold", alignSelf: "center", textTransform: "uppercase",color:"#FFFFFF",alignItems:"center",justifyContent:"center",fontSize:25}}>ملزماتي </Text>
+</TouchableOpacity>
+  </View><View  style={styles.view}>
+  <TouchableOpacity style={{padding:6, width:500,height:120, justifyContent:"center",alignItems:"center",backgroundColor:"#F8E73D",marginTop:10,paddingRight:120}}>
+<Text style={{ marginHorizontal:20
+,fontWeight: "bold", alignSelf: "center", textTransform: "uppercase",color:"#FFFFFF",alignItems:"center",justifyContent:"center",fontSize:25}}>تبرع </Text>
+</TouchableOpacity>
+  </View></View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+
   title: {
-    fontSize: 8,
-    marginTop:70,
-padding:20,
-    color: '#17202A' , 
+    color:"black",
+    fontSize: 15,
     fontWeight: 'bold',
-    textAlign:'right',
+    alignItems:"flex-start",
+    marginRight:99
+    
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '1%',
+  header:{
+    flexDirection:"row",
+    padding:6, 
+    width:"100%",
+    height:"10%",
+     justifyContent:"center",
+     alignItems:"center",
+     backgroundColor:"#ED4BAC",
+     marginTop:"2%",
+     alignSelf:"auto"
+
   },
-
-}
-);
-
+  contener:{
+    backgroundColor:"white"
+  },
+  view:{
+    flexDirection:"column"
+  }
+});
