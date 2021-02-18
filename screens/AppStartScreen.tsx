@@ -17,11 +17,11 @@ const AppStartScreen = ({navigation }: StackScreenProps<StartParamList> ) => {
     <View style={styles.centeredView}>
    <ImageBackground
         
-        source={require('../assets/images/Appstaer.jpg')} style={{ height:300,
-          width:500,justifyContent:'center' ,alignItems:'center'
-        }}
+        source={require('../assets/images/logo.png')} style={{ height:400,width:"100%" }}
+          resizeMode="contain"
       />
-      <Text style={styles.text}>مرحبا في ايزي برينت</Text>
+      <Text style={styles.text1}>مرحباً بك في منصة الطباعة</Text>
+      <Text style={styles.text2}>منصة ايزي برنت حلول الطباعة الالكترونية لجميع اوراقك بأفضل جودة وتوصیل سریع لمكانك وین ماكنت</Text>
       <Modal
         animationType="slide"
         transparent={true}
@@ -70,14 +70,24 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
+    paddingHorizontal:10,
+    backgroundColor: "white",
   },
-  text:{
-    fontSize: 18,
+  text1:{
+    fontSize: 30,
     color: "#151617",
     fontWeight: "bold",
     alignSelf: "center",
     textTransform: "uppercase"
+  }, 
+   text2:{
+    fontSize: 15,
+    color: "gray",
+ textAlign:"center",
+ marginHorizontal:20
+    
+  
+    
   },
   modalView: {
     margin: 20,
@@ -95,21 +105,21 @@ const styles = StyleSheet.create({
     elevation: 5
   },
   button: {
-    marginBottom:-19,
-    padding: 10,
-    marginTop:50,
-    paddingBottom:20,
-    marginLeft:"5%",
-    elevation: 8,
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-   width:"60%"
+    padding: 20,
+    margin:20,
+    borderRadius: 30,
+   width:150,  
+   flexDirection: 'column',
+   paddingHorizontal:20,
+
 
   },
   buttonOpen: {
-    backgroundColor: "#5799E3",
-     flexDirection: 'column',
+   padding:10,
+   width:150,
+   borderRadius:30,
+    backgroundColor: "#4BBFF4",
+   
   },
   buttonClose: {
     backgroundColor: "#5799E3",
@@ -118,7 +128,8 @@ const styles = StyleSheet.create({
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
+    
   },
   modalText: {
     marginBottom: 15,
