@@ -1,61 +1,117 @@
 import * as React from 'react';
+import  { useContext, useState, useEffect } from 'react';
 import { StyleSheet, Image, TextInput, Button } from 'react-native';
 import { Text, View } from '../components/Themed';
+import { AppContext } from '../components/StateProvider';
+import { Types, UserType } from '../components/Reduser';
 
 export default function LoginScreen() {
+  
+  const { state, dispatch } = useContext(AppContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+        
+    if (user == null || user == ""  ) {
+      dispatch({
+        type: 'Login_User',
+        payload: {
+          id: email,
+          name: email
+        }
+    })
+    } else {
+      dispatch({
+        type: 'Login_User',
+        payload: {
+          id: email,
+          name: email
+        }
+    })
+    }
+
+
+}, [user])
+
+
+  const Login = () => {
+
+    setUser({email, password});
+  //   if (user == null || user == ""  ) {
+  //     dispatch({
+  //         type: 'Login_User',
+  //         payload: {
+  //           id: email,
+  //           name: email
+  //         }
+  //     })
+  // } else {
+  //   dispatch({
+  //     type: 'Login_User',
+  //     payload: {
+  //       id: email,
+  //       name: email
+  //     }
+  // })
+  }
   return (
     <View style={styles.container}>
+    <Text style={styles.titleText}>تسجيل الدخول</Text> 
+      <TextInput 
+        style={styles.input}
+        placeholder='اسم المستخدم'
+        textAlign= 'right'
+        placeholderTextColor='black'
+        onChangeText={(e) => setEmail(e.toString())}
+        // onChangeText={val => this.onChangeText('ID', val)}
+      /><View>
+      </View>
+      <TextInput
+        style={styles.input}
+        placeholder='كلمة السر'
+        textAlign= 'right'
+        secureTextEntry={true}
+        placeholderTextColor='black'
+        onChangeText={(e) => setPassword(e.toString())}
+        // onChangeText={val => this.onChangeText('pass', val)}
+      />
+   <View>
+</View>
+    <Text>{email} and {password}</Text>
+     <View style={styles.buttonStyle}><Button 
+        title='تسجيل الدخول'
+        color='black'
+        onPress={() => Login()}
+      /></View>
       
-    <View  style={{backgroundColor:"#FFF" ,height:"100%"}}>
-
-
-    <Text  style={styles.title}>تسجيل الدخول </Text>
-
-
-     <View ><TextInput style={{paddingHorizontal:10, height:50, width:300, borderColor:'red', borderWidth:0.5, marginBottom: 5} }/>
-     </View>  
-     <View ><TextInput style={{paddingHorizontal:10, height:50, width:300, borderColor:'red', borderWidth:0.5, margin : 8}}/>
-     </View>  
-
-
-
-     <View style={{
-                    marginHorizontal:55,
-                    alignItems:"center",
-                    justifyContent:"center",
-                    marginTop:30,
-                    backgroundColor:"#00716F",
-                    paddingVertical:10,
-                    borderRadius:23
-                }}>
-                    <Button
-                     onPress={() => alert('Button with adjusted color pressed')}
-                     title="تسجيل الدخول"
-                     color="#841584"
-                    />
-       </View>
-     </View>
- 
-
-
-    </View>
+      <Text>{state.User.pop()?.name}</Text>
+      </View>
   );
 }
 
 const styles = StyleSheet.create({
+  input: {
+    width: 350,
+    height: 55,
+    backgroundColor: 'white',
+    margin: 10,
+    padding: 8,
+    color: 'black',
+    borderRadius: 10,
+    fontSize: 15,
+  },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center', // vertical
+    alignItems: 'center' // horizontal 
   },
-  title: {
-    fontSize: 40,
-    color: 'red' , 
-    fontWeight: 'bold',
+  titleText: {
+    fontSize: 30,
+    paddingBottom: 80,
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  buttonStyle: {
+    paddingTop: 50,
   },
 });

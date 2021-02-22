@@ -22,6 +22,11 @@ export type BottomTabParamList = {
 
 export type HomeParamList = {
   HomeScreen: undefined;
+  OrderScreen: undefined;
+  DonationScreen: undefined;
+  PrinterListScreen: undefined;
+  SigninScreen:undefined;
+  LoginScreen:undefined;
 };
 
 export type AccountParamList = {

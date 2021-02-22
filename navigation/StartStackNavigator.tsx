@@ -9,7 +9,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StartParamList} from '../types';
 
-const stack = createStackNavigator<StartParamList>();
+const stack = createStackNavigator<StartParamList>(
+  
+);
 
 export default function screens() {
   return (

@@ -1,16 +1,46 @@
 import * as React from 'react';
+import  { useContext, useState, useEffect } from 'react';
 import { View, Button, TextInput, StyleSheet, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import { AppContext } from '../components/StateProvider';
+import { Types, UserType } from '../components/Reduser';
+import { StackScreenProps } from '@react-navigation/stack';
+import { StartParamList} from '../types';
 
-
-export default class SignUp extends React.Component {
+export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
   
-  state = { ID: '', pass: '', email: '', phoneNumber: ''}
-  onChangeText = (key: any, val: any) => {
-    this.setState({ [key]: val })
-  }
-  signUp = async () => {
-    const { ID, pass, email, phoneNumber } = this.state
+  const { state, dispatch } = useContext(AppContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [userName, setUserName] = useState("");
+  const [user, setUser] = useState({name:"test",id:"test",email:"test"});
+
+
+  useEffect(() => {
+        
+    if (user == null || user.email == ""  ) {
+      dispatch({
+        type: 'Login_User',
+        payload: {
+          id: " ",
+          name: " "
+        }
+    })
+    } else {
+      dispatch({
+        type: 'Login_User',
+        payload: {
+          id: user.id,
+          name: user.email
+        }
+    })
+    }
+
+
+}, [user])
+
+  const signUp = async () => {
     try {
       fetch('https://apieasyprint20210215153907.azurewebsites.net/api/signin', {
        method: 'POST',
@@ -20,21 +50,25 @@ export default class SignUp extends React.Component {
       },
        body: JSON.stringify({
         Email:email,
-        UserName: ID,
-        PasswordHash: pass,
+        UserName: userName,
+        PasswordHash: password,
         PhoneNumber: phoneNumber
       })
-     }).catch((error) => {
+     }).then((response) => response.json())
+     .then((response) => {
+     setUser({name:response.data.customer.userName, 
+              id:response.data.customer.id,
+              email: response.data.customer.email});
+     })
+     .catch((error) => {
       console.error(error);
     });
-
-      console.log('تم التسجيل بنجاح ')
+     
     } catch (error) {
       console.log('حدث خطأ! ', error)
     }
+    navigation.push("Home");
   }
-
-  render() {
     return (
       <View style={styles.container}>
       <Text style={styles.titleText}>الانضمام إلى ايزي برنت</Text> 
@@ -43,7 +77,7 @@ export default class SignUp extends React.Component {
           placeholder='اسم المستخدم'
           textAlign= 'right'
           placeholderTextColor='black'
-          onChangeText={val => this.onChangeText('ID', val)}
+          onChangeText={(e) => setUserName(e.toString())}
         /><View>
         </View>
         <TextInput
@@ -52,33 +86,34 @@ export default class SignUp extends React.Component {
           textAlign= 'right'
           secureTextEntry={true}
           placeholderTextColor='black'
-          onChangeText={val => this.onChangeText('pass', val)}
+          onChangeText={(e) => setPassword(e.toString())}
         />
         <TextInput
           style={styles.input}
           placeholder='الإيميل الإلكتروني'
           textAlign= 'right'
           placeholderTextColor='black'
-          onChangeText={val => this.onChangeText('email', val)}
+          onChangeText={(e) => setEmail(e.toString())}
         />
         <TextInput
           style={styles.input}
           placeholder='رقم الجوال'
           textAlign= 'right'
           placeholderTextColor='black'
-          onChangeText={val => this.onChangeText('phoneNumber', val)}
+          onChangeText={(e) => setPhoneNumber(e.toString())}
         />
      <View>
-</View>
-       <View style={styles.buttonStyle}><Button 
+  </View>
+  <Text>{state.User.pop()?.name}{user.id}</Text>
+       <View style={styles.buttonStyle}>
+         <Button 
           title='إنشاء حساب'
           color='black'
-          onPress={this.signUp}
-          
-        /></View>
-        </View>
-    )
-  }
+          onPress={() => signUp()}/>
+       </View>
+      
+</View>
+    );
 }
 
 const styles = StyleSheet.create({
