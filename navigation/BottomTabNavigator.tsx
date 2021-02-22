@@ -8,6 +8,10 @@ import Home from '../screens/HomeScreen';
 import Account from '../screens/AccountScreen';
 import PrintersList from '../screens/PrinterListScreen';
 import Basket from '../screens/BasketScreen';
+import Login from "../screens/LoginScreen"
+import Signin from "../screens/SignUpScreen"
+import Printers from "../screens/PrinterListScreen"
+import Donation from "../screens/DonationScreen"
 import Order from '../screens/OrderScreen';
 import { BottomTabParamList, HomeParamList, BasketParamList, PrintersListParamList, OrderParamList, AccountParamList } from '../types';
 
@@ -79,11 +83,13 @@ function HomeNavigator() {
       }
     }
     >
-      <HomeStack.Screen
-        name="HomeScreen"
-        component={Home}
-        options={{ }}
-      />
+        <HomeStack.Screen name="HomeScreen" component={Home} />
+        <HomeStack.Screen name="SigninScreen" component={Signin} />
+        <HomeStack.Screen name="LoginScreen" component={Login} />
+        <HomeStack.Screen name="OrderScreen" component={Order} />
+        <HomeStack.Screen name="DonationScreen" component={Donation} />
+        <HomeStack.Screen name="PrinterListScreen" component={Printers} />
+
     </HomeStack.Navigator>
   );
 }

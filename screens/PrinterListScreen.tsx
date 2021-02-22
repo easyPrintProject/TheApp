@@ -6,15 +6,8 @@ import * as Animatable from 'react-native-animatable'
 import { ScrollView } from 'react-native-gesture-handler';
 // const listItems =['العبيكان','امسيان','المعالي'];
 
-
-
-
-
-
 export default function OrderScreen(this: any) {
     const state ={searchBarFocused : false}
-    
- 
   return (
       
       <SafeAreaView>
