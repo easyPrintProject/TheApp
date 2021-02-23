@@ -13,6 +13,11 @@ import Signin from "../screens/SignUpScreen"
 import Printers from "../screens/PrinterListScreen"
 import Donation from "../screens/DonationScreen"
 import Order from '../screens/OrderScreen';
+import InstantCalculator from "../screens/InstantCalculator"
+import UploadFiles from "../screens/UploadFiles"
+import MaterialsDetailsScreen from "../screens/MaterialsDetailsScreen"
+import DocumentListScreen from "../screens/DocumentListScreen"
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { BottomTabParamList, HomeParamList, BasketParamList, PrintersListParamList, OrderParamList, AccountParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -94,22 +99,31 @@ function HomeNavigator() {
   );
 }
 
-const AccountStack = createStackNavigator<AccountParamList>();
+const AccountDrawer = createDrawerNavigator<AccountParamList>();
 
 function AccountNavigator() {
   return (
-    <AccountStack.Navigator
+    <AccountDrawer.Navigator
+    drawerPosition="right"
     screenOptions={
       {
         headerShown: false
       }
+      
     }>
-      <AccountStack.Screen
+      <AccountDrawer.Screen
         name="AccountScreen"
         component={Account}
-        
       />
-    </AccountStack.Navigator>
+      <AccountDrawer.Screen
+        name="InstantCalculator"
+        component={InstantCalculator}
+      />
+      <AccountDrawer.Screen
+        name="UploadFiles"
+        component={UploadFiles}
+      />
+    </AccountDrawer.Navigator>
   );
 }
 
@@ -166,6 +180,15 @@ function PrintersListNavigator() {
         name="PrintersListScreen"
         component={PrintersList}
         
+      />
+      <PrintersListStack.Screen
+        name="DocumentListScreen"
+        component={DocumentListScreen}
+        
+      />
+      <PrintersListStack.Screen
+        name='MaterialsDetailsScreen'
+        component={MaterialsDetailsScreen}
       />
     </PrintersListStack.Navigator>
   );

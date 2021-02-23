@@ -31,6 +31,8 @@ export type HomeParamList = {
 
 export type AccountParamList = {
   AccountScreen: undefined;
+  InstantCalculator:undefined;
+  UploadFiles:undefined;
 };
 
 
@@ -40,6 +42,9 @@ export type OrderParamList = {
 
 export type PrintersListParamList = {
   PrintersListScreen: undefined;
+  DocumentListScreen: undefined;
+  MaterialsDetailsScreen:undefined
+
 };
 
 export type BasketParamList = {
