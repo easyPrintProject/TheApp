@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Button, TouchableOpacity, TextInput} from 'react-native';
+import { Text, View, Button, TouchableOpacity, TextInput, ScrollView} from 'react-native';
 
 class Option extends Component<any, any>  {
   constructor(props: any) {
@@ -62,8 +62,8 @@ class Option extends Component<any, any>  {
 export default class PrintingOption extends Component {
   render() {
     return (
-            <View>
-            <View><Text style={{ marginTop:50, marginBottom:-30, textAlign: 'right' }}>حجم الورق</Text>
+           <ScrollView><View>
+            <View><Text style={{ marginTop:50, marginBottom:-10, textAlign: 'right' }}>حجم الورق</Text>
       < Option 
         options={['A5', 'A4', 'A3', 'A2', 'A1', 'A0']}
         onChange={(option: any) => {
@@ -100,7 +100,7 @@ export default class PrintingOption extends Component {
   <TextInput style={{ height:45, width:45, borderColor:'#8098db', borderWidth:0.5 , borderRadius: 5, margin: 3, marginBottom: 9, marginTop: 30, 
  }}/></View>
 </View>
- </View>
+ </View></ScrollView>
    // button goes here to deliver time page *********
     );
   }
