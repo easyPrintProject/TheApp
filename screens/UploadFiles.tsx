@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View,  Button } from 'react-native';
-import { DocumentPicker, ImagePicker } from 'expo';
+import * as DocumentPicker from 'expo-document-picker';
 
 export default class UploadFiles extends React.Component {
     state = {
     };
 DocPick = async () => {
-	    let DocPrint = await DocumentPicker.getDocument({});
-		  alert(DocPrint.uri);
+	    let DocPrint = await DocumentPicker.getDocumentAsync({});
+		  alert(DocPrint.type);
       console.log(DocPrint);
 	}
 

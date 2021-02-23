@@ -1,13 +1,21 @@
 import * as React from 'react';
-import { StyleSheet , SafeAreaView,TextInput,FlatList,Keyboard,Image} from 'react-native';
+import { StyleSheet , SafeAreaView,TextInput,FlatList,Keyboard,Image, TouchableOpacity} from 'react-native';
 import { Text, View } from '../components/Themed';
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as Animatable from 'react-native-animatable'
 import { ScrollView } from 'react-native-gesture-handler';
+import { StackScreenProps } from '@react-navigation/stack';
+import { PrintersListParamList} from '../types';
+
 // const listItems =['العبيكان','امسيان','المعالي'];
 
-export default function OrderScreen(this: any) {
+export default function OrderScreen({navigation}: StackScreenProps<PrintersListParamList>) {
     const state ={searchBarFocused : false}
+    const GoToDocumentList = () => {
+      navigation.navigate("DocumentListScreen");
+    };
+
+
   return (
       
       <SafeAreaView>
@@ -31,69 +39,47 @@ export default function OrderScreen(this: any) {
    
    /> */}
 
-<ScrollView scrollEventThrottle={16}>
-
-<View style={{height:130,marginTop:20}}>
-    
+    <ScrollView scrollEventThrottle={16}>
+      <View style={{height:130,marginTop:20}}>
+      <TouchableOpacity onPress={() => GoToDocumentList()}>
         <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
-            
             <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
-            <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}>مطبعة المعالي
-</Text>
-            </View>
+            <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}>مطبعة المعالي</Text>
         </View>
- 
-<View style={{paddingTop:6}}></View>
-
-
-
-   
-        <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
-            
-            <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
-            <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}> مكتبة امسيان 
-</Text>
-            </View>
-    
-            <View style={{paddingTop:6}}></View>
-
-
-
-   
-<View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
-    
-    <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
-    <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}> مكتبة الخندق 
-</Text>
+        </TouchableOpacity>
+     </View>
+     <View style={{paddingTop:6}}></View>
+     <TouchableOpacity onPress={() => GoToDocumentList()}>
+     <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
+        <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
+        <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}> مكتبة امسيان </Text>
+     </View>
+     </TouchableOpacity>
+     <View style={{paddingTop:6}}></View>
+     <TouchableOpacity onPress={() => GoToDocumentList()}>
+     <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
+        <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
+        <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}> مكتبة الخندق </Text>
     </View>
+    </TouchableOpacity>
     <View style={{paddingTop:6}}></View>
-
-
-
-   
-        <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
-            
-            <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
-            <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}>قرطاسية المطار 
-</Text>
-            </View>
-            <View style={{paddingTop:6}}></View>
-
-
-
-   
-        <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
-            
-            <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
-            <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}>طباعة نقية 
-</Text>
-            </View>
-
-</ScrollView>
+    <TouchableOpacity onPress={() => GoToDocumentList()}>
+    <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
+       <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
+       <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}>قرطاسية المطار </Text>
     </View>
-    </SafeAreaView>
-  );
-}
+    </TouchableOpacity>
+    <View style={{paddingTop:6}}></View>
+    <TouchableOpacity onPress={() => GoToDocumentList()}>
+    <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
+       <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
+       <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}>طباعة نقية </Text>
+    </View>
+    </TouchableOpacity>
+  </ScrollView>
+</View>
+</SafeAreaView>
+  );}
 
 const styles = StyleSheet.create({
   container: {

@@ -2,10 +2,14 @@ import * as React from 'react';
 import { View, Button, TextInput, StyleSheet, Text, Image } from 'react-native';
 import { Card } from 'react-native-elements';
 import { useState } from 'react';
+import { StackScreenProps } from '@react-navigation/stack';
+import { PrintersListParamList} from '../types';
 
-
-export default function MaterialsInfo() {
+export default function MaterialsDetailsScreen({navigation}: StackScreenProps<PrintersListParamList>) {
     const [modalVisible, setModalVisible] = useState(false);
+    const GoToDocumentList = () => {
+      navigation.goBack();
+    };
 
   return (
     <View>
