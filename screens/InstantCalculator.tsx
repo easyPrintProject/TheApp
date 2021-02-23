@@ -80,18 +80,18 @@ const data3 = [
 ];
 const data4 = [
 
-        {
-            "id": "13",
-            "name": "وجه",
-            "price": "2"
-        },
-        {
-            "id": "14",
-            "name": "وجهين",
-            "price": "1"
-        }
+    {
+        "id": "13",
+        "name": "وجه",
+        "price": "2"
+    },
+    {
+        "id": "14",
+        "name": "وجهين",
+        "price": "1"
+    }
 
-    ]
+]
 
 
 
@@ -101,137 +101,137 @@ function InstantCalculator() {
     const { price, checked } = state;
     console.log(state);
     return (
-      <ScrollView>
-        <SafeAreaView><Text> حجم الورق:</Text>
+        <ScrollView><View style={styles.pageStyle}>
+            <SafeAreaView><Text> حجم الورق:</Text>
 
-            <FlatList
-                data={data}
-                keyExtractor={val => `invoice_${val.id}`}
-                renderItem={({ item }) => (
-                    <TouchableOpacity
-                        style={styles.buttonStyle}
-                        onPress={() => {
-                            console.log(state);
-                            if (checked.findIndex(id => item.id === id) >= 0) {
-                                setState({
-                                    price: price - parseInt(item.price),
-                                    checked: checked.filter(id => id !== item.id),
-                                });
-                            } else {
-                                setState({
-                                    price: price + parseInt(item.price),
-                                    checked: [...checked, item.id] as any,
-                                });
-                            }
-                        }}
-                    >
-                        <View
-                            style={checked.findIndex(id => item.id === id) >= 0
-                                ? styles.checked
-                                : styles.unchecked} />
-                        <Text style={styles.text}>{item.name}</Text>
-                    </TouchableOpacity>
-                )}
-                extraData={checked} />
-
-
-            <Text> نوع الورق:</Text>
-            <FlatList data={data2}
-                keyExtractor={val => `invoice_${val.id}`}
-                renderItem={({ item }) => (
-                    <TouchableOpacity
-                        style={styles.buttonStyle}
-                        onPress={() => {
-                            console.log(state);
-                            if (checked.findIndex(id => item.id === id) >= 0) {
-                                setState({
-                                    price: price - parseInt(item.price),
-                                    checked: checked.filter(id => id !== item.id),
-                                });
-                            } else {
-                                setState({
-                                    price: price + parseInt(item.price),
-                                    checked: [...checked, item.id] as any,
-                                });
-                            }
-                        }}
-                    >
-                        <View
-                            style={checked.findIndex(id => item.id === id) >= 0
-                                ? styles.checked
-                                : styles.unchecked} />
-                        <Text style={styles.text}>{item.name}</Text>
-                    </TouchableOpacity>
-                )}
-                extraData={checked} />
-
-            <Text> لون الطباعة:</Text>
-            <FlatList data={data3}
-                keyExtractor={val => `invoice_${val.id}`}
-                renderItem={({ item }) => (
-                    <TouchableOpacity
-                        style={styles.buttonStyle}
-                        onPress={() => {
-                            console.log(state);
-                            if (checked.findIndex(id => item.id === id) >= 0) {
-                                setState({
-                                    price: price - parseInt(item.price),
-                                    checked: checked.filter(id => id !== item.id),
-                                });
-                            } else {
-                                setState({
-                                    price: price + parseInt(item.price),
-                                    checked: [...checked, item.id] as any,
-                                });
-                            }
-                        }}
-                    >
-                        <View
-                            style={checked.findIndex(id => item.id === id) >= 0
-                                ? styles.checked
-                                : styles.unchecked} />
-                        <Text style={styles.text}>{item.name}</Text>
-                    </TouchableOpacity>
-                )}
-                extraData={checked} />
+                <FlatList
+                    data={data}
+                    keyExtractor={val => `invoice_${val.id}`}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity
+                            style={styles.buttonStyle}
+                            onPress={() => {
+                                console.log(state);
+                                if (checked.findIndex(id => item.id === id) >= 0) {
+                                    setState({
+                                        price: price - parseInt(item.price),
+                                        checked: checked.filter(id => id !== item.id),
+                                    });
+                                } else {
+                                    setState({
+                                        price: price + parseInt(item.price),
+                                        checked: [...checked, item.id] as any,
+                                    });
+                                }
+                            }}
+                        >
+                            <View
+                                style={checked.findIndex(id => item.id === id) >= 0
+                                    ? styles.checked
+                                    : styles.unchecked} />
+                            <Text style={styles.text}>{item.name}</Text>
+                        </TouchableOpacity>
+                    )}
+                    extraData={checked} />
 
 
-            <Text> نوع الطباعة:</Text>
-            <FlatList data={data4}
-                keyExtractor={val => `invoice_${val.id}`}
-                renderItem={({ item }) => (
-                    <TouchableOpacity
-                        style={styles.buttonStyle}
-                        onPress={() => {
-                            console.log(state);
-                            if (checked.findIndex(id => item.id === id) >= 0) {
-                                setState({
-                                    price: price - parseInt(item.price),
-                                    checked: checked.filter(id => id !== item.id),
-                                });
-                            } else {
-                                setState({
-                                    price: price + parseInt(item.price),
-                                    checked: [...checked, item.id] as any,
-                                });
-                            }
-                        }}
-                    >
-                        <View
-                            style={checked.findIndex(id => item.id === id) >= 0
-                                ? styles.checked
-                                : styles.unchecked} />
-                        <Text style={styles.text}>{item.name}</Text>
-                    </TouchableOpacity>
-                )}
-                extraData={checked} />
+                <Text> نوع الورق:</Text>
+                <FlatList data={data2}
+                    keyExtractor={val => `invoice_${val.id}`}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity
+                            style={styles.buttonStyle}
+                            onPress={() => {
+                                console.log(state);
+                                if (checked.findIndex(id => item.id === id) >= 0) {
+                                    setState({
+                                        price: price - parseInt(item.price),
+                                        checked: checked.filter(id => id !== item.id),
+                                    });
+                                } else {
+                                    setState({
+                                        price: price + parseInt(item.price),
+                                        checked: [...checked, item.id] as any,
+                                    });
+                                }
+                            }}
+                        >
+                            <View
+                                style={checked.findIndex(id => item.id === id) >= 0
+                                    ? styles.checked
+                                    : styles.unchecked} />
+                            <Text style={styles.text}>{item.name}</Text>
+                        </TouchableOpacity>
+                    )}
+                    extraData={checked} />
+
+                <Text> لون الطباعة:</Text>
+                <FlatList data={data3}
+                    keyExtractor={val => `invoice_${val.id}`}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity
+                            style={styles.buttonStyle}
+                            onPress={() => {
+                                console.log(state);
+                                if (checked.findIndex(id => item.id === id) >= 0) {
+                                    setState({
+                                        price: price - parseInt(item.price),
+                                        checked: checked.filter(id => id !== item.id),
+                                    });
+                                } else {
+                                    setState({
+                                        price: price + parseInt(item.price),
+                                        checked: [...checked, item.id] as any,
+                                    });
+                                }
+                            }}
+                        >
+                            <View
+                                style={checked.findIndex(id => item.id === id) >= 0
+                                    ? styles.checked
+                                    : styles.unchecked} />
+                            <Text style={styles.text}>{item.name}</Text>
+                        </TouchableOpacity>
+                    )}
+                    extraData={checked} />
 
 
+                <Text> نوع الطباعة:</Text>
+                <FlatList data={data4}
+                    keyExtractor={val => `invoice_${val.id}`}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity
+                            style={styles.buttonStyle}
+                            onPress={() => {
+                                console.log(state);
+                                if (checked.findIndex(id => item.id === id) >= 0) {
+                                    setState({
+                                        price: price - parseInt(item.price),
+                                        checked: checked.filter(id => id !== item.id),
+                                    });
+                                } else {
+                                    setState({
+                                        price: price + parseInt(item.price),
+                                        checked: [...checked, item.id] as any,
+                                    });
+                                }
+                            }}
+                        >
+                            <View
+                                style={checked.findIndex(id => item.id === id) >= 0
+                                    ? styles.checked
+                                    : styles.unchecked} />
+                            <Text style={styles.text}>{item.name}</Text>
+                        </TouchableOpacity>
+                    )}
+                    extraData={checked} />
 
 
 
-            <Text>السعر: {price}SR</Text>
-        </SafeAreaView></ScrollView>
+
+
+                <Text>السعر: {price}SR</Text>
+            </SafeAreaView></View></ScrollView>
 
 
     );
@@ -241,8 +241,6 @@ const styles = StyleSheet.create({
     buttonStyle: {
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "flex-start",
-        paddingVertical: 16
     },
     checked: {
         width: 20,
@@ -251,7 +249,6 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderColor: "#ECECEC",
         backgroundColor: "#CCC",
-        marginHorizontal: 10,
     },
     unchecked: {
         width: 20,
@@ -260,12 +257,15 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderColor: "#ECECEC",
         backgroundColor: "#FFF",
-        marginHorizontal: 10,
     },
     text: {
         flex: 1,
-        textAlign: 'center',
+        textAlign: 'left',
     },
+    pageStyle: {
+        paddingTop: 100,
+
+    }
 
 
 });
