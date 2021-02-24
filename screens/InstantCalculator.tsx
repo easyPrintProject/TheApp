@@ -101,8 +101,10 @@ function InstantCalculator() {
     const { price, checked } = state;
     console.log(state);
     return (
-        <ScrollView><View style={styles.pageStyle}>
-            <SafeAreaView><Text> حجم الورق:</Text>
+        <ScrollView>
+        <View style={styles.pageStyle}>
+        <Text style={styles.Title}>حاسبة الأسعار الفورية</Text>
+            <SafeAreaView><Text style={styles.OptionTitle}> حجم الورق:</Text>
 
                 <FlatList
                     data={data}
@@ -135,7 +137,7 @@ function InstantCalculator() {
                     extraData={checked} />
 
 
-                <Text> نوع الورق:</Text>
+                <Text style={styles.OptionTitle}> نوع الورق:</Text>
                 <FlatList data={data2}
                     keyExtractor={val => `invoice_${val.id}`}
                     renderItem={({ item }) => (
@@ -165,7 +167,7 @@ function InstantCalculator() {
                     )}
                     extraData={checked} />
 
-                <Text> لون الطباعة:</Text>
+                <Text style={styles.OptionTitle}> لون الطباعة:</Text>
                 <FlatList data={data3}
                     keyExtractor={val => `invoice_${val.id}`}
                     renderItem={({ item }) => (
@@ -196,7 +198,7 @@ function InstantCalculator() {
                     extraData={checked} />
 
 
-                <Text> نوع الطباعة:</Text>
+                <Text style={styles.OptionTitle}> نوع الطباعة:</Text>
                 <FlatList data={data4}
                     keyExtractor={val => `invoice_${val.id}`}
                     renderItem={({ item }) => (
@@ -227,10 +229,7 @@ function InstantCalculator() {
                     extraData={checked} />
 
 
-
-
-
-                <Text>السعر: {price}SR</Text>
+                <Text style={styles.OptionTitle}>السعر: {price}SR</Text>
             </SafeAreaView></View></ScrollView>
 
 
@@ -239,8 +238,8 @@ function InstantCalculator() {
 
 const styles = StyleSheet.create({
     buttonStyle: {
-        flexDirection: "row",
-        alignItems: "center",
+    flexDirection: "row",
+    
     },
     checked: {
         width: 20,
@@ -249,9 +248,10 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderColor: "#ECECEC",
         backgroundColor: "#CCC",
+        
     },
     unchecked: {
-        width: 20,
+       width: 20,
         height: 20,
         borderRadius: 10,
         borderWidth: 3,
@@ -259,11 +259,31 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFF",
     },
     text: {
-        flex: 1,
-        textAlign: 'left',
+        
+        fontSize: 20,
+        paddingTop: 10,
+        paddingBottom: 20,
+        
+
+
     },
     pageStyle: {
-        paddingTop: 100,
+        paddingTop: 120,
+        alignItems: 'stretch'
+        
+
+    },
+    OptionTitle: {
+        fontSize: 20,
+        paddingBottom: 30,
+        paddingTop: 20,
+        fontWeight: 'bold',
+        textAlign: 'center'
+
+    },
+    Title:{
+        fontSize: 30,
+        textAlign: 'center',
 
     }
 
