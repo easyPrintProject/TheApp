@@ -7,7 +7,7 @@ export default class UploadFiles extends React.Component {
     };
 DocPick = async () => {
 	    let DocPrint = await DocumentPicker.getDocumentAsync({});
-		  alert(DocPrint.type);
+		  alert("تم تحميل الملف بنجاح");
       console.log(DocPrint);
 	}
 
