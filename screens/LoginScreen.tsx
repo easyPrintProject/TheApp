@@ -58,8 +58,7 @@ export default function LoginScreen() {
   }
   return (
     <View style={styles.container}>
-    <Text style={styles.titleText}>تسجيل الدخول</Text> 
-      <TextInput 
+     <TextInput 
         style={styles.input}
         placeholder='اسم المستخدم'
         textAlign= 'right'
@@ -80,7 +79,7 @@ export default function LoginScreen() {
    <View>
 </View>
     <Text>{email} and {password}</Text>
-     <View style={styles.buttonStyle}><Button 
+     <View style={styles.buttonStyle}>c<Button 
         title='تسجيل الدخول'
         color='black'
         onPress={() => Login()}
