@@ -19,6 +19,7 @@ import MaterialsDetailsScreen from "../screens/MaterialsDetailsScreen"
 import DocumentListScreen from "../screens/DocumentListScreen"
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { BottomTabParamList, HomeParamList, BasketParamList, PrintersListParamList, OrderParamList, AccountParamList } from '../types';
+import { Title } from 'react-native-paper';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -105,23 +106,36 @@ function AccountNavigator() {
   return (
     <AccountDrawer.Navigator
     drawerPosition="right"
+    overlayColor="transparent"
+    drawerContentOptions={{
+      // activeTintColor:"",
+      itemStyle:{marginVertical: 10,flex:1}
+    }}
+    drawerStyle={{
+      backgroundColor: '#c6cbef',
+      width: 240,
+      alignItems:"stretch"  
+    
+    }}
     screenOptions={
       {
         headerShown: false
       }
-      
     }>
       <AccountDrawer.Screen
         name="AccountScreen"
         component={Account}
+        options={{ drawerLabel: '         حساب المستخدم         .   '  }}
       />
       <AccountDrawer.Screen
         name="InstantCalculator"
         component={InstantCalculator}
+        options={{ drawerLabel:  '         الحاسبة الفورية            .   '  }}
       />
       <AccountDrawer.Screen
         name="UploadFiles"
         component={UploadFiles}
+        options={{ drawerLabel:  '           ملفاتي                    .   ' }}
       />
     </AccountDrawer.Navigator>
   );
@@ -171,14 +185,18 @@ const PrintersListStack = createStackNavigator<PrintersListParamList>();
 function PrintersListNavigator() {
   return (
     <PrintersListStack.Navigator
+ 
     screenOptions={
       {
         headerShown: false
+      
       }
     }>
       <PrintersListStack.Screen
+        
         name="PrintersListScreen"
         component={PrintersList}
+
         
       />
       <PrintersListStack.Screen
