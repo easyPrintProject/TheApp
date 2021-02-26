@@ -7,8 +7,8 @@ export default function profileScreen() {
       <SafeAreaView style={{   flex:1,backgroundColor:'#fff'}}>
     <ScrollView style={(styles.container)} contentContainerStyle={{justifyContent:'center',alignItems:'center'}}
     showsVerticalScrollIndicator={false} >
-      <Image style={styles.userImg} 
-      source={require('../assets/images/userimge.jpg')}/>
+      {/* <Image style={styles.userImg} 
+      source={require('../assets/images/userimge.jpg')}/> */}
     <Text style={styles.username}>محمد</Text> 
     <Text style={styles.username}>150R</Text>
     <Text style={styles.Textin}>
