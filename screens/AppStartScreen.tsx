@@ -4,7 +4,9 @@ import { Alert, Modal, StyleSheet, Text, Pressable, View ,TextInput,Image, Image
 import { StackScreenProps } from '@react-navigation/stack';
 import { StartParamList} from '../types';
 import Logo from '../components/Logo'
-const AppStartScreen = ({navigation }: StackScreenProps<StartParamList> ) => {
+
+
+export default function AppStartScreen  ({navigation }: StackScreenProps<StartParamList> )  {
   
   const GoToHome = () => {
     navigation.navigate("Home");
@@ -12,6 +14,10 @@ const AppStartScreen = ({navigation }: StackScreenProps<StartParamList> ) => {
   const GoToSignUp = () => {
     navigation.navigate("Signup");
   };
+  const GoToDriverLogin = () => {
+    navigation.navigate("DriverLogin");
+  };
+  
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View >
@@ -50,6 +56,11 @@ const AppStartScreen = ({navigation }: StackScreenProps<StartParamList> ) => {
         style={[styles.button, styles.buttonOpen]}
         onPress={() => GoToHome()} >
         <Text style={styles.textStyle}>    المتابعة كزائر    </Text>
+      </Pressable>
+      <Pressable
+        style={[styles.button, styles.buttonOpen]}
+        onPress={() => GoToDriverLogin()} >
+        <Text style={styles.textStyle}>   المتابعة كسائق    </Text>
       </Pressable>
       </View>
       </ScrollView>
@@ -129,4 +140,3 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AppStartScreen;
