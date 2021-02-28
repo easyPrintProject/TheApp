@@ -8,8 +8,36 @@ export type StartParamList = {
   Home: undefined;
   Signup: undefined;
   Login: undefined;
- 
+  DriverLogin :undefined;
 };
+
+export type driverStack = {
+  Login : undefined;
+  HomeDriver:undefined;
+}
+
+
+//لزيادة انواع صفحة الأوردر للدرايفر
+export type ViewOrderDriverParamList = {
+  ViewOrderScreen:undefined;
+
+};
+
+
+//لزيادة انواع صفحة البروفايل للدرايفر
+export type ProfileParamList = {
+ ProfileScreen:undefined;
+  EditScreen:undefined;
+};
+
+
+//لزيادة انواع للبوتم تاب  للدرايفر
+export type BottomTabPDriverList = {
+  profileScreen: undefined;
+  ViewOrderScreen: undefined;
+
+};
+
 
 
 export type BottomTabParamList = {
