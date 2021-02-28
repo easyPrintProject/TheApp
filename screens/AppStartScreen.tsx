@@ -1,9 +1,8 @@
 
 import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View ,TextInput,Image, ImageBackground, ScrollView} from "react-native";
+import { Alert, Modal, StyleSheet, Text, Pressable, View ,TextInput, ImageBackground, ScrollView} from "react-native";
 import { StackScreenProps } from '@react-navigation/stack';
 import { StartParamList} from '../types';
-import Logo from '../components/Logo'
 
 
 export default function AppStartScreen  ({navigation }: StackScreenProps<StartParamList> )  {
