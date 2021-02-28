@@ -14,6 +14,7 @@ export default function AccountScreen() {
 
 const styles = StyleSheet.create({
   container: {
+    padding: 50,
     alignItems: 'center',
     justifyContent: 'center',
   },
