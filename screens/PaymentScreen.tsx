@@ -10,7 +10,7 @@ export default function PaymentScreen() {
   const [paymentStatus, setPaymentStatus] = useState('');
 
   const basketInfo = { //from the basketScreen
-    description: 'Lab5 sheat.doc', //for example
+    description: 'Lab5 sheet.doc', //for example
     amount: 1,
   };
 
