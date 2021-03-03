@@ -5,20 +5,21 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { StackScreenProps } from '@react-navigation/stack';
 import {HomeParamList} from '../types';
 import { Text, View } from '../components/Themed';
-import { AppContext } from '../components/StateProvider';
+ import { useGlobalState, GlobalStateInterface } from '../components/StateProvider';
 import { Types, UserType } from '../components/Reduser';
 export default function HomeScreen({navigation }: StackScreenProps<HomeParamList>) {
 
-
-  const { state, dispatch } = useContext(AppContext);
+  // const myContext = useContext(NewContext);
+  const {state ,setState } = useGlobalState();
+  // const { state, dispatch } = useContext(AppContext);
 
   useEffect(() => {
-     }, [state])
+     }, [])
 
 
 
   const CheckUser = () => {
-    if ( state.User.pop()?.name==null) {
+    if ( state.firstname==null) {
       return(<View  style={{flexDirection:"row", width:25,height:5, justifyContent:"space-between",alignItems:"flex-end",backgroundColor:"#4BBFF4",marginTop:10,marginRight:100}}><TouchableOpacity  onPress={() => GoToLogin()} style={{borderWidth:0.5,borderRadius:20,height:30,width:77,alignItems:"center",backgroundColor:"#8C8787"}}>
          <Text style={{color:"#FFFFFF"}}>تسجيل</Text>
         </TouchableOpacity>
@@ -26,9 +27,9 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
         <Text style={{color:"#FFFFFF"}}>حساب جديد</Text>
        </TouchableOpacity></View>);           
     } else {
-      return(<View  style={{flexDirection:"row", width:25,height:5, justifyContent:"space-between",alignItems:"flex-end",backgroundColor:"#4BBFF4",marginTop:10,marginRight:100}}>
-       <TouchableOpacity  style={{borderWidth:0.5,borderRadius:20,height:30,width:77,paddingHorizontal:"5%",justifyContent:"center",alignItems:"center",backgroundColor:"#8C8787"}}>
-        <Text style={{color:"#FFFFFF"}}>{state.User.pop()?.name.toString()}</Text>
+      return(<View  style={{flexDirection:"row", justifyContent:"space-between",alignItems:"flex-end",backgroundColor:"#ED4BAC"}}>
+       <TouchableOpacity  style={{borderWidth:0.5,borderRadius:20,height:30,width:"auto",paddingHorizontal:"5%",justifyContent:"center",alignItems:"center",backgroundColor:"#8C8787"}}>
+        <Text style={{color:"#FFFFFF"}}>{state.firstname} مرحبا </Text>
        </TouchableOpacity></View>); 
     }  
   }
@@ -58,6 +59,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
                  <Text style={{ marginHorizontal:20,fontWeight: "bold", alignSelf: "center", textTransform: "uppercase",color:"#FFFFFF",alignItems:"center",justifyContent:"center",fontSize:25}}>ملزماتي </Text>
                </TouchableOpacity>
              </View>
+             <Text></Text>
              <View  style={styles.view}>
               <TouchableOpacity style={{padding:6, width:500,height:120, justifyContent:"center",alignItems:"center",backgroundColor:"#F8E73D",marginTop:10,paddingRight:120}}>
                <Text style={{ marginHorizontal:20,fontWeight: "bold", alignSelf: "center", textTransform: "uppercase",color:"#FFFFFF",alignItems:"center",justifyContent:"center",fontSize:25}}>تبرع </Text>

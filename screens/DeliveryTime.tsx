@@ -85,13 +85,10 @@ export default class DeliveryTime extends Component {
             }}
           />
         </View>
-        <Pressable
-             
-             onPress={() =>} >
+        <Pressable>
              <Text>المتابعة للدفع</Text>
            </Pressable>
-      </View>
-            
+      </View> 
              //button goes to purches ************
 
     );
