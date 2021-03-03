@@ -1,15 +1,12 @@
 import * as React from 'react';
 import  { useContext, useState, useEffect } from 'react';
 import { View, Button, TextInput, StyleSheet, Text } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
-import { AppContext } from '../components/StateProvider';
-import { Types, UserType } from '../components/Reduser';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StartParamList} from '../types';
 
 export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
   
-  const { state, dispatch } = useContext(AppContext);
+  // const { state, dispatch } = useContext(AppContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -17,28 +14,28 @@ export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
   const [user, setUser] = useState({name:"test",id:"test",email:"test"});
 
 
-  useEffect(() => {
+//   useEffect(() => {
         
-    if (user == null || user.email == ""  ) {
-      dispatch({
-        type: 'Login_User',
-        payload: {
-          id: " ",
-          name: " "
-        }
-    })
-    } else {
-      dispatch({
-        type: 'Login_User',
-        payload: {
-          id: user.id,
-          name: user.email
-        }
-    })
-    }
+//     if (user == null || user.email == ""  ) {
+//       dispatch({
+//         type: 'Login_User',
+//         payload: {
+//           id: " ",
+//           name: " "
+//         }
+//     })
+//     } else {
+//       dispatch({
+//         type: 'Login_User',
+//         payload: {
+//           id: user.id,
+//           name: user.email
+//         }
+//     })
+//     }
 
 
-}, [user])
+// }, [user])
 
   const signUp = async () => {
     try {
@@ -104,7 +101,7 @@ export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
         />
      <View>
   </View>
-  <Text>{state.User.pop()?.name}{user.id}</Text>
+  <Text>test</Text>
        <View style={styles.buttonStyle}>
          <Button 
           title='إنشاء حساب'

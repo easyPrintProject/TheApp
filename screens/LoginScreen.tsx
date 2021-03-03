@@ -2,70 +2,45 @@ import * as React from 'react';
 import  { useContext, useState, useEffect } from 'react';
 import { StyleSheet, Image, TextInput, Button } from 'react-native';
 import { Text, View } from '../components/Themed';
-import { AppContext } from '../components/StateProvider';
-import { Types, UserType } from '../components/Reduser';
+import { useGlobalState, GlobalStateInterface } from '../components/StateProvider';
+import { StackScreenProps } from '@react-navigation/stack';
+import { StartParamList} from '../types';
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}: StackScreenProps<StartParamList>) {
   
-  const { state, dispatch } = useContext(AppContext);
+  // const { state, dispatch } = useContext(AppContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({Useremail:"", Username:""});
+  const [errorMassage, setErrorMassage] = useState("");
+  const {state ,setState } = useGlobalState();
 
   useEffect(() => {
         
-    if (user == null || user == ""  ) {
-      dispatch({
-        type: 'Login_User',
-        payload: {
-          id: email,
-          name: email
-        }
-    })
+    if (user == null || user.Useremail == ""  ) {
+      setErrorMassage("الرجاء المحاولة مجدداً")
     } else {
-      dispatch({
-        type: 'Login_User',
-        payload: {
-          id: email,
-          name: email
-        }
-    })
+      //empty the error message
+      setErrorMassage(" ");
+      setState({firstname:email,lastname:email,age:email})
+      navigation.push("Home")
     }
-
-
 }, [user])
 
-
   const Login = () => {
+    setUser({Useremail:email, Username:email});
+ 
 
-    setUser({email, password});
-  //   if (user == null || user == ""  ) {
-  //     dispatch({
-  //         type: 'Login_User',
-  //         payload: {
-  //           id: email,
-  //           name: email
-  //         }
-  //     })
-  // } else {
-  //   dispatch({
-  //     type: 'Login_User',
-  //     payload: {
-  //       id: email,
-  //       name: email
-  //     }
-  // })
   }
+
   return (
     <View style={styles.container}>
-     <TextInput 
+     <TextInput
         style={styles.input}
         placeholder='اسم المستخدم'
         textAlign= 'right'
         placeholderTextColor='black'
-        onChangeText={(e) => setEmail(e.toString())}
-        // onChangeText={val => this.onChangeText('ID', val)}
-      /><View>
+        onChangeText={(e) => setEmail(e.toString())}/><View>
       </View>
       <TextInput
         style={styles.input}
@@ -73,23 +48,18 @@ export default function LoginScreen() {
         textAlign= 'right'
         secureTextEntry={true}
         placeholderTextColor='black'
-        onChangeText={(e) => setPassword(e.toString())}
-        // onChangeText={val => this.onChangeText('pass', val)}
-      />
+        onChangeText={(e) => setPassword(e.toString())}/>
    <View>
 </View>
-    <Text>{email} and {password}</Text>
-     <View style={styles.buttonStyle}>c<Button 
+     <View style={styles.buttonStyle}><Button 
         title='تسجيل الدخول'
         color='black'
         onPress={() => Login()}
       /></View>
-      
-      <Text>{state.User.pop()?.name}</Text>
+      <Text>{state.firstname}</Text>
       </View>
   );
 }
-
 const styles = StyleSheet.create({
   input: {
     width: 350,
