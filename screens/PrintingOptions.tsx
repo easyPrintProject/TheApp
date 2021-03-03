@@ -59,8 +59,7 @@ class Option extends Component<any, any>  {
   }
 }
 
-export default class PrintingOption extends Component {
-  render() {
+export default function PrintingOption() {
     return (
       <ScrollView><View>
         <View><Text style={{ marginTop: 50, marginBottom: -10, textAlign: 'right' }}>حجم الورق</Text>
@@ -107,4 +106,4 @@ export default class PrintingOption extends Component {
       // button goes here to deliver time page *********
     );
   }
-}             
+
