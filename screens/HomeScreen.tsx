@@ -19,7 +19,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
 
 
   const CheckUser = () => {
-    if ( state.firstname==null) {
+    if ( state.Email==null) {
       return(<View  style={{flexDirection:"row", width:25,height:5, justifyContent:"space-between",alignItems:"flex-end",backgroundColor:"#4BBFF4",marginTop:10,marginRight:100}}><TouchableOpacity  onPress={() => GoToLogin()} style={{borderWidth:0.5,borderRadius:20,height:30,width:77,alignItems:"center",backgroundColor:"#8C8787"}}>
          <Text style={{color:"#FFFFFF"}}>تسجيل</Text>
         </TouchableOpacity>
@@ -29,7 +29,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
     } else {
       return(<View  style={{flexDirection:"row", justifyContent:"space-between",alignItems:"flex-end",backgroundColor:"#ED4BAC"}}>
        <TouchableOpacity  style={{borderWidth:0.5,borderRadius:20,height:30,width:"auto",paddingHorizontal:"5%",justifyContent:"center",alignItems:"center",backgroundColor:"#8C8787"}}>
-        <Text style={{color:"#FFFFFF"}}>{state.firstname} مرحبا </Text>
+        <Text style={{color:"#FFFFFF"}}>{state.UserName} مرحبا </Text>
        </TouchableOpacity></View>); 
     }  
   }

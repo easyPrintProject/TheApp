@@ -3,6 +3,8 @@ import  { useContext, useState, useEffect } from 'react';
 import { View, Button, TextInput, StyleSheet, Text } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StartParamList} from '../types';
+import { useGlobalState } from '../components/StateProvider';
+
 
 export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
   
@@ -11,31 +13,36 @@ export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [userName, setUserName] = useState("");
-  const [user, setUser] = useState({name:"test",id:"test",email:"test"});
+  const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
+  const {state ,setState } = useGlobalState();
+  const [errorMassage, setErrorMassage] = useState("");
 
 
-//   useEffect(() => {
+  useEffect(() => {
         
-//     if (user == null || user.email == ""  ) {
-//       dispatch({
-//         type: 'Login_User',
-//         payload: {
-//           id: " ",
-//           name: " "
-//         }
-//     })
-//     } else {
-//       dispatch({
-//         type: 'Login_User',
-//         payload: {
-//           id: user.id,
-//           name: user.email
-//         }
-//     })
-//     }
+    if (user == null || user.Id == "" || user.Id==null) {
+      setErrorMassage(user.errorMassage);
+      if(user.errorMassage==null || user.errorMassage==""){
+        setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
+      }
+    } else {
+      //empty the error message
+      setErrorMassage("");
+      setState({
+        Email:user.Email,
+        UserName:user.UserName,
+        PhoneNumber:user.PhoneNumber,
+        Id:user.Id,
+      })
+        goHome()
+    }
+}, [user]);
 
 
-// }, [user])
+const goHome = ()=>{
+  navigation.push("Home");
+}
+
 
   const signUp = async () => {
     try {
@@ -53,14 +60,19 @@ export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
       })
      }).then((response) => response.json())
      .then((response) => {
-     setUser({name:response.data.customer.userName, 
-              id:response.data.customer.id,
-              email: response.data.customer.email});
+     setUser({
+       Email: response.data.email,
+      PhoneNumber: response.data.phoneNumber,
+      UserName:response.data.userName, 
+      EmailConf:response.data.emailConfiremd,
+      errorMassage:response.data.errorMessage,
+      Id:response.data.id,
+      Token:response.data.token,
+    });
      })
      .catch((error) => {
       console.error(error);
     });
-     
     } catch (error) {
       console.log('حدث خطأ! ', error)
     }
@@ -108,7 +120,7 @@ export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
           color='black'
           onPress={() => signUp()}/>
        </View>
-      
+       <Text style={{color:"red"}}>{user.errorMassage}</Text>
 </View>
     );
 }

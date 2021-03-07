@@ -2,36 +2,74 @@ import * as React from 'react';
 import  { useContext, useState, useEffect } from 'react';
 import { StyleSheet, Image, TextInput, Button } from 'react-native';
 import { Text, View } from '../components/Themed';
-import { useGlobalState, GlobalStateInterface } from '../components/StateProvider';
+import { useGlobalState } from '../components/StateProvider';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StartParamList} from '../types';
+import { color } from 'react-native-reanimated';
 
 export default function LoginScreen({navigation}: StackScreenProps<StartParamList>) {
   
-  // const { state, dispatch } = useContext(AppContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState({Useremail:"", Username:""});
+  const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
   const [errorMassage, setErrorMassage] = useState("");
   const {state ,setState } = useGlobalState();
 
   useEffect(() => {
         
-    if (user == null || user.Useremail == ""  ) {
-      setErrorMassage("الرجاء المحاولة مجدداً")
+    if (user == null || user.Id == "" || user.Id==null) {
+      setErrorMassage(user.errorMassage);
+      if(user.errorMassage==null || user.errorMassage==""){
+        setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
+      }
     } else {
       //empty the error message
-      setErrorMassage(" ");
-      setState({firstname:email,lastname:email,age:email})
-      navigation.push("Home")
+      setErrorMassage("");
+      setState({
+        Email:user.Email,
+        UserName:user.UserName,
+        PhoneNumber:user.PhoneNumber})
+        goHome()
     }
-}, [user])
+}, [user]);
 
-  const Login = () => {
-    setUser({Useremail:email, Username:email});
- 
 
+const goHome = ()=>{
+    navigation.push("Home");
+}
+
+const Login = async () => {
+  try {
+    fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Login', {
+     method: 'POST',
+     headers: {
+     Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+     body: JSON.stringify({
+      Email:email,
+      PasswordHash: password
+      })
+   }).then((response) => response.json())
+   .then((response) => {
+   setUser({
+            Email: response.data.email,
+            PhoneNumber: response.data.phoneNumber,
+            UserName:response.data.userName, 
+            EmailConf:response.data.emailConfiremd,
+            errorMassage:response.data.errorMessage,
+            Id:response.data.id,
+            Token:response.data.token,
+            });
+   })
+   .catch((error) => {
+    console.error(error);
+  });
+   
+  } catch (error) {
+    console.log('حدث خطأ! ', error)
   }
+}
 
   return (
     <View style={styles.container}>
@@ -56,7 +94,7 @@ export default function LoginScreen({navigation}: StackScreenProps<StartParamLis
         color='black'
         onPress={() => Login()}
       /></View>
-      <Text>{state.firstname}</Text>
+      <Text style={{color:"red"}}>{user.errorMassage}</Text>
       </View>
   );
 }
