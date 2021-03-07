@@ -5,11 +5,12 @@ import { useState } from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
 import { PrintersListParamList} from '../types';
 
-export default function MaterialsDetailsScreen({navigation}: StackScreenProps<PrintersListParamList>) {
+export default function MaterialsDetailsScreen({navigation}: StackScreenProps<PrintersListParamList>, ) {
     const [modalVisible, setModalVisible] = useState(false);
     const GoToDocumentList = () => {
       navigation.goBack();
     };
+    
 
   return (
     <View>

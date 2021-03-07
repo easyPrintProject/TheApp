@@ -2,70 +2,83 @@ import * as React from 'react';
 import  { useContext, useState, useEffect } from 'react';
 import { StyleSheet, Image, TextInput, Button } from 'react-native';
 import { Text, View } from '../components/Themed';
-import { AppContext } from '../components/StateProvider';
-import { Types, UserType } from '../components/Reduser';
+import { useGlobalState } from '../components/StateProvider';
+import { StackScreenProps } from '@react-navigation/stack';
+import { StartParamList} from '../types';
+import { color } from 'react-native-reanimated';
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}: StackScreenProps<StartParamList>) {
   
-  const { state, dispatch } = useContext(AppContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
+  const [errorMassage, setErrorMassage] = useState("");
+  const {state ,setState } = useGlobalState();
 
   useEffect(() => {
         
-    if (user == null || user == ""  ) {
-      dispatch({
-        type: 'Login_User',
-        payload: {
-          id: email,
-          name: email
-        }
-    })
+    if (user == null || user.Id == "" || user.Id==null) {
+      setErrorMassage(user.errorMassage);
+      if(user.errorMassage==null || user.errorMassage==""){
+        setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
+      }
     } else {
-      dispatch({
-        type: 'Login_User',
-        payload: {
-          id: email,
-          name: email
-        }
-    })
+      //empty the error message
+      setErrorMassage("");
+      setState({
+        Email:user.Email,
+        UserName:user.UserName,
+        PhoneNumber:user.PhoneNumber})
+        goHome()
     }
+}, [user]);
 
 
-}, [user])
+const goHome = ()=>{
+    navigation.push("Home");
+}
 
-
-  const Login = () => {
-
-    setUser({email, password});
-  //   if (user == null || user == ""  ) {
-  //     dispatch({
-  //         type: 'Login_User',
-  //         payload: {
-  //           id: email,
-  //           name: email
-  //         }
-  //     })
-  // } else {
-  //   dispatch({
-  //     type: 'Login_User',
-  //     payload: {
-  //       id: email,
-  //       name: email
-  //     }
-  // })
+const Login = async () => {
+  try {
+    fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Login', {
+     method: 'POST',
+     headers: {
+     Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+     body: JSON.stringify({
+      Email:email,
+      PasswordHash: password
+      })
+   }).then((response) => response.json())
+   .then((response) => {
+   setUser({
+            Email: response.data.email,
+            PhoneNumber: response.data.phoneNumber,
+            UserName:response.data.userName, 
+            EmailConf:response.data.emailConfiremd,
+            errorMassage:response.data.errorMessage,
+            Id:response.data.id,
+            Token:response.data.token,
+            });
+   })
+   .catch((error) => {
+    console.error(error);
+  });
+   
+  } catch (error) {
+    console.log('حدث خطأ! ', error)
   }
+}
+
   return (
     <View style={styles.container}>
-     <TextInput 
+     <TextInput
         style={styles.input}
         placeholder='اسم المستخدم'
         textAlign= 'right'
         placeholderTextColor='black'
-        onChangeText={(e) => setEmail(e.toString())}
-        // onChangeText={val => this.onChangeText('ID', val)}
-      /><View>
+        onChangeText={(e) => setEmail(e.toString())}/><View>
       </View>
       <TextInput
         style={styles.input}
@@ -73,23 +86,18 @@ export default function LoginScreen() {
         textAlign= 'right'
         secureTextEntry={true}
         placeholderTextColor='black'
-        onChangeText={(e) => setPassword(e.toString())}
-        // onChangeText={val => this.onChangeText('pass', val)}
-      />
+        onChangeText={(e) => setPassword(e.toString())}/>
    <View>
 </View>
-    <Text>{email} and {password}</Text>
-     <View style={styles.buttonStyle}>c<Button 
+     <View style={styles.buttonStyle}><Button 
         title='تسجيل الدخول'
         color='black'
         onPress={() => Login()}
       /></View>
-      
-      <Text>{state.User.pop()?.name}</Text>
+      <Text style={{color:"red"}}>{user.errorMassage}</Text>
       </View>
   );
 }
-
 const styles = StyleSheet.create({
   input: {
     width: 350,

@@ -1,40 +1,47 @@
-import React, { createContext, useReducer, Dispatch } from 'react';
-import { UserReducer, UserActions } from './Reduser';
 
-type UserType = {
-  id: string;
-  name: string;
+
+import React, { createContext, useState, useContext, Dispatch, SetStateAction } from "react";
+
+export interface GlobalStateInterface {
+  Token: string;
+  Id: string;
+  Email: string;
+  UserName: string;
+  PhoneNumber: string;
+  ErrorMessage: string;
+  EmailConfeirmd: boolean;
 }
 
-type InitialStateType = {
-  User: UserType[];
-}
+const GlobalStateContext = createContext({
+  state: {} as Partial<GlobalStateInterface>,
+  setState: {} as Dispatch<SetStateAction<Partial<GlobalStateInterface>>>,
+});
 
-const initialState = {
-  User: [],
-}
+const GlobalStateProvider = ({
+  children,
+  value = {} as GlobalStateInterface,
+}: {
+  children: React.ReactNode;
+  value?: Partial<GlobalStateInterface>;
+}) => {
+  const [state, setState] = useState(value);
+  return (
+    <GlobalStateContext.Provider value={{ state, setState }}>
+      {children}
+    </GlobalStateContext.Provider>
+  );
+};
+
+const useGlobalState = () => {
+  const context = useContext(GlobalStateContext);
+  if (!context) {
+    throw new Error("useGlobalState must be used within a GlobalStateContext");
+  }
+  return context;
+};
+
+export { GlobalStateProvider, useGlobalState };
 
 
-const AppContext = createContext<{
-    state: InitialStateType;
-    dispatch: React.Dispatch<any>;
-  }>({
-    state: initialState,
-    dispatch: () => null
-  });
-  
-  const mainReducer = ({ User }: InitialStateType, action: UserActions ) => ({
-    User: UserReducer(User, action)  });
-  
-  
-    const AppProvider: React.FC = ({ children }) => {
-        const [state, dispatch] = useReducer(mainReducer, initialState);
-      
-        return (
-          <AppContext.Provider value={{state, dispatch}}>
-            {children}
-          </AppContext.Provider>
-        )
-      }
-      
-      export { AppProvider, AppContext };
+
+

@@ -6,79 +6,76 @@ import * as Animatable from 'react-native-animatable'
 import { ScrollView } from 'react-native-gesture-handler';
 import { StackScreenProps } from '@react-navigation/stack';
 import { PrintersListParamList} from '../types';
-
+import {Card} from "../components/listItem"
 // const listItems =['العبيكان','امسيان','المعالي'];
 
 export default function OrderScreen({navigation}: StackScreenProps<PrintersListParamList>) {
     const state ={searchBarFocused : false}
-    const GoToDocumentList = () => {
-      navigation.navigate("DocumentListScreen");
+    const GoToDocumentList = ( Printerid:string) => {
+      navigation.navigate("DocumentListScreen", {id:Printerid});
     };
+    type printer = {
+      prentingShopId: string,
+      prenterName: string,
+      isCourseMaterial: boolean,
+      isService: boolean,
+      ownerId: string
+    }
+    const [printers , setPrinters ] = React.useState(
+      [{
+        prentingShopId: "",
+        prenterName: "",
+        isCourseMaterial: true,
+        isService: true,
+        ownerId: ""
+      }]
+    );
+    React.useEffect(() => {
 
-
-  return (
-      
+      try {
+        fetch('https://apieasyprint20210215153907.azurewebsites.net/api/printingshop', {
+         method: 'GET',
+         headers: {
+         Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+       }).then((response) => response.json())
+       .then((response) => {
+         response.forEach( (p:printer) => {
+           setPrinters( printers =>
+             [...printers, {prentingShopId:p.prentingShopId, prenterName:p.prenterName,isCourseMaterial:p.isCourseMaterial,isService:p.isService,ownerId:p.ownerId}])
+         });
+       })
+       .catch((error) => {
+        console.error(error);
+      });
+      } catch (error) {
+        console.log('حدث خطأ! ', error)
+      }
+      }, []);
+    return (
       <SafeAreaView>
-   <View  style={{backgroundColor:"#FFF" ,height:"100%"}}>
-    <View style={{flexDirection:"row" , justifyContent:"space-evenly",alignItems:"flex-start", backgroundColor:"#F8E73D",height:60}}>
-   
-      <Text style={styles.title}>قائمة المكتبات  </Text>
-    </View>
-    <View style={{flexDirection:"row" ,width:"220%", justifyContent:"space-evenly",alignItems:"flex-start",backgroundColor:"#CECECE",height:40,marginTop:5}}>
-    <Animatable.View animation="slideInRight" duration={500} style={{ height: 50, backgroundColor: 'white', flexDirection: 'row', padding: 5, alignItems: 'center' }}>
-    <TextInput placeholder="Search" style={{fontSize:24,marginLeft:-320}}/>
-
-     <Icon name="ios-search" style={{fontSize:24,marginLeft:-199,paddingStart:22}}/>
-    </Animatable.View>
-
-    </View>
-    {/* <FlatList
-    data={listItems}
-    renderItem={({ item }) => <Text style={{padding:20,fontSize:20}}>{item}</Text>}
-   keyExtractor={(item,index) => index.toString()}
-   
-   /> */}
-
-    <ScrollView scrollEventThrottle={16}>
-      <View style={{height:130,marginTop:20}}>
-      <TouchableOpacity onPress={() => GoToDocumentList()}>
-        <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
-            <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
-            <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}>مطبعة المعالي</Text>
-        </View>
-        </TouchableOpacity>
-     </View>
-     <View style={{paddingTop:6}}></View>
-     <TouchableOpacity onPress={() => GoToDocumentList()}>
-     <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
-        <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
-        <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}> مكتبة امسيان </Text>
-     </View>
-     </TouchableOpacity>
-     <View style={{paddingTop:6}}></View>
-     <TouchableOpacity onPress={() => GoToDocumentList()}>
-     <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
-        <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
-        <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}> مكتبة الخندق </Text>
-    </View>
-    </TouchableOpacity>
-    <View style={{paddingTop:6}}></View>
-    <TouchableOpacity onPress={() => GoToDocumentList()}>
-    <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
-       <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
-       <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}>قرطاسية المطار </Text>
-    </View>
-    </TouchableOpacity>
-    <View style={{paddingTop:6}}></View>
-    <TouchableOpacity onPress={() => GoToDocumentList()}>
-    <View style={{height:130,borderStyle:'solid',borderWidth:0.5,margin:9}}>
-       <Image  source={require('../assets/images/printerIcon.jpg')}style={{height:90, width:90 ,borderRadius:40,borderWidth:2,marginTop:"5%",marginHorizontal:6}}/>
-       <Text style={{flex:1,backgroundColor:'white',paddingTop:-100,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:115,fontSize:20,marginTop:-60}}>طباعة نقية </Text>
-    </View>
-    </TouchableOpacity>
-  </ScrollView>
-</View>
-</SafeAreaView>
+        <View  style={{backgroundColor:"#FFF" ,height:"100%"}}>
+          <View style={{flexDirection:"row" , justifyContent:"space-evenly",alignItems:"flex-start", backgroundColor:"#F8E73D",height:60}}>
+            <Text style={styles.title}>قائمة المكتبات </Text>
+         </View>
+         <View style={{flexDirection:"row" ,width:"220%", justifyContent:"space-evenly",alignItems:"flex-start",backgroundColor:"#CECECE",height:40,marginTop:5}}>
+           <Animatable.View animation="slideInRight" duration={500} style={{ height: 50, backgroundColor: 'white', flexDirection: 'row', padding: 5, alignItems: 'center' }}>
+             <TextInput placeholder="Search" style={{fontSize:24,marginLeft:-320}}/>
+             <Icon name="ios-search" style={{fontSize:24,marginLeft:-199,paddingStart:22}}/>
+           </Animatable.View>
+         </View>
+         <ScrollView scrollEventThrottle={16}>
+           <View >
+              {printers.slice(1).map(e => 
+               <TouchableOpacity onPress={() => GoToDocumentList(e.prentingShopId)}>
+                  <Card title={e.prenterName}/>
+               </TouchableOpacity>
+             )}
+           </View>
+         </ScrollView>
+       </View>
+     </SafeAreaView>
   );}
 
 const styles = StyleSheet.create({
@@ -90,8 +87,5 @@ const styles = StyleSheet.create({
       marginTop:15,
     color:"#484E50",
     fontSize: 20,
-    fontWeight: 'bold',
- 
-
-  }
+    fontWeight: 'bold',}
 });
