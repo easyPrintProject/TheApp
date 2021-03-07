@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FunctionComponent } from 'react'; // importing FunctionComponent
 import { StyleSheet , SafeAreaView,TextInput,FlatList,Keyboard,Image, Button} from 'react-native';
 import { Text, View } from '../components/Themed';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -7,17 +7,55 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { StackScreenProps } from '@react-navigation/stack';
 import { PrintersListParamList} from '../types';
 // const listItems =['العبيكان','امسيان','المعالي'];
+type PrenterInfo  = {
+  id: string,
+}
 
 
-
-
-
-
-export default function DocumentListScreen({navigation}: StackScreenProps<PrintersListParamList>) {
-    const state ={searchBarFocused : false}
+export default function DocumentListScreen({navigation}: StackScreenProps<PrintersListParamList> , id: string) {
+    const state ={searchBarFocused : false} 
     const GoToMaterialsDetailes = () => {
       navigation.navigate("MaterialsDetailsScreen");
     };
+    type printer = {
+      prentingShopId: string,
+      prenterName: string,
+      isCourseMaterial: boolean,
+      isService: boolean,
+      ownerId: string
+    }
+    const [printers , setPrinters ] = React.useState(
+      [{
+        prentingShopId: "",
+        prenterName: "",
+        isCourseMaterial: true,
+        isService: true,
+        ownerId: ""
+      }]
+    );
+    React.useEffect(() => {
+
+      try {
+        fetch('https://apieasyprint20210215153907.azurewebsites.net/api/printingshop', {
+         method: 'GET',
+         headers: {
+         Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+       }).then((response) => response.json())
+       .then((response) => {
+         response.forEach( (p:printer) => {
+           setPrinters( printers =>
+             [...printers, {prentingShopId:p.prentingShopId, prenterName:p.prenterName,isCourseMaterial:p.isCourseMaterial,isService:p.isService,ownerId:p.ownerId}])
+         });
+       })
+       .catch((error) => {
+        console.error(error);
+      });
+      } catch (error) {
+        console.log('حدث خطأ! ', error)
+      }
+      }, []);
 
   return (
  <SafeAreaView>

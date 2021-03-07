@@ -11,8 +11,8 @@ import {Card} from "../components/listItem"
 
 export default function OrderScreen({navigation}: StackScreenProps<PrintersListParamList>) {
     const state ={searchBarFocused : false}
-    const GoToDocumentList = () => {
-      navigation.navigate("DocumentListScreen");
+    const GoToDocumentList = ( Printerid:string) => {
+      navigation.navigate("DocumentListScreen", {id:Printerid});
     };
     type printer = {
       prentingShopId: string,
@@ -68,7 +68,7 @@ export default function OrderScreen({navigation}: StackScreenProps<PrintersListP
          <ScrollView scrollEventThrottle={16}>
            <View >
               {printers.slice(1).map(e => 
-               <TouchableOpacity onPress={() => GoToDocumentList()}>
+               <TouchableOpacity onPress={() => GoToDocumentList(e.prentingShopId)}>
                   <Card title={e.prenterName}/>
                </TouchableOpacity>
              )}

@@ -25,9 +25,10 @@ export type ViewOrderDriverParamList = {
 
 
 //لزيادة انواع صفحة البروفايل للدرايفر
-export type ProfileParamList = {
+export type DriverProfileParamList = {
  ProfileScreen:undefined;
   EditScreen:undefined;
+  //اضيفي نوع اللوق اوت 
 };
 
 
@@ -70,7 +71,7 @@ export type OrderParamList = {
 
 export type PrintersListParamList = {
   PrintersListScreen: undefined;
-  DocumentListScreen: undefined;
+  DocumentListScreen: { id: string; };
   MaterialsDetailsScreen:undefined
 
 };
