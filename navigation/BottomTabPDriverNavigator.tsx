@@ -8,7 +8,7 @@ import editScreen from "../screens/Driver/editScreen";
 import profileScreen from "../screens/Driver/profileScreen";
 import viewOrderScreen from "../screens/Driver/viewOrderScreen";
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { BottomTabPDriverList, ProfileParamList, ViewOrderDriverParamList} from '../types';
+import { BottomTabPDriverList, DriverProfileParamList, ViewOrderDriverParamList} from '../types';
 import { Title } from 'react-native-paper';
 
 const BottomTab = createBottomTabNavigator<BottomTabPDriverList>();
@@ -67,24 +67,29 @@ function ViewOrderNavigator() {
 }
 
 
-const ProfileStack = createStackNavigator<ProfileParamList>();
+const ProfileStack = createStackNavigator<DriverProfileParamList>();
 
 function ProfileNavigator() {
   return (
+
     <ProfileStack.Navigator
     screenOptions={
       {
         headerShown: false
       }
     }>
-      <ProfileStack.Screen
-        name="ProfileScreen"
-        component={editScreen}
-      />
        <ProfileStack.Screen
-        name="EditScreen"
+        name="ProfileScreen"
         component={profileScreen}
       />
+      <ProfileStack.Screen
+        name="EditScreen"
+        component={editScreen}
+      />
+       {/* اضيفي سكرين هنا  */}
+      
+      
     </ProfileStack.Navigator>
+
   );
 }

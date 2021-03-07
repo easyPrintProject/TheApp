@@ -2,7 +2,24 @@ import * as React from 'react';
 import { StyleSheet, SafeAreaView, Image,Text, Button,View} from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function profileScreen() {
+//متغير حسب الصفحة 
+import {DriverProfileParamList} from "../../types"
+
+//ثابت في كل الصفحات 
+import { StackScreenProps } from '@react-navigation/stack';
+
+
+export default function profileScreen({navigation}: StackScreenProps<DriverProfileParamList> ) {
+
+
+  // ميثود للذهاب الى صفحة التعديل 
+  const  GoToEditScreen  = () => {
+
+    navigation.navigate("EditScreen");
+  }
+
+
+  
   return (
       <SafeAreaView style={{   flex:1,backgroundColor:'#fff'}}>
     <ScrollView style={(styles.container)} contentContainerStyle={{justifyContent:'center',alignItems:'center'}}
@@ -23,8 +40,7 @@ mohomed@gmail.com    </Text>
       <View style={styles.userBtnWrapper}>
         <TouchableOpacity
                 style={styles.userBtn}
-              
-                >
+                onPress={() => GoToEditScreen()}>
                 <Text style={styles.userBtnTxt}>تعديل</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.userBtn} >
