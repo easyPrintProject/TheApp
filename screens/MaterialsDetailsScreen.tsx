@@ -13,16 +13,16 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
 
   return (
     <View>
-        <Image source={require('../assets/images/1.jpg')}style={{height:200, width:200 ,borderWidth:2,marginTop:"5%",marginHorizontal:90}}/>
+        <Image source={require('../assets/images/1.jpg')}style={{height:200, width:200 ,borderWidth:2,marginTop:"15%",marginHorizontal:90}}/>
       <View style={styles.cardStyle}>
       <Card>
-          <View>
-          <Text>اسم الملزمة:</Text>
-            <Text>نوع الملزمة:</Text>
-            <Text>عدد الصفحات:</Text>
-            <Text>نوع الطباعة:</Text>
-            <Text>الكاتب:</Text>
-            <Text>السعر:</Text>
+          <View style={(styles.text)}>
+          <Text style={{ margin:5}}>اسم الملزمة:</Text>
+            <Text style={{ margin:5}}>نوع الملزمة:</Text>
+            <Text style={{ margin:5}}>عدد الصفحات:</Text>
+            <Text style={{ margin:5}}>نوع الطباعة:</Text>
+            <Text style={{ margin:5}}>الكاتب:</Text>
+            <Text style={{ margin:5}}>السعر:</Text>
           </View>
           <View style={styles.buttonStyle}> 
           <Button title="الاضافة إلى السلة" color='black' onPress={() => setModalVisible(true)}/></View>
@@ -40,6 +40,13 @@ marginTop: 50,
 
     buttonStyle:{
 paddingTop: 20,
+    },
+    text:{
+      textAlign:'right',
+      justifyContent:'flex-start',
+      paddingLeft:232,
+      marginTop:22
+      
     }
 
 }

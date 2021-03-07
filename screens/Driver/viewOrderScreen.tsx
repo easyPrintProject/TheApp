@@ -24,7 +24,7 @@ export default function OrderScreen({navigation}: StackScreenProps<ViewOrderDriv
             <Text style={{marginTop:-49,marginLeft:22,padding:3}} > وقت التوصيل </Text>
             <Text style={{marginTop:4,marginLeft:45,paddingTop:1}} > 6-5 </Text>
  <Ionicons name="pin" size={24} color="red"
- style={{marginLeft:330,marginTop:25}} /><Text style={{marginLeft:265 ,marginTop:-20}}>  حي البدراني </Text> 
+ style={{marginLeft:330,marginTop:25}} /><Text style={{marginLeft:265,marginTop:-20}}>  حي البدراني </Text> 
  <MaterialCommunityIcons name="truck-delivery" size={24} color="black" style={{marginLeft:210,marginTop:-23}}/>
  <Ionicons name="pin" size={24} color="green"
  style={{marginLeft:170,marginTop:-23}} />
@@ -106,9 +106,6 @@ const styles = StyleSheet.create({
       textAlign:'center',
       marginVertical:"1%"
     },
-     buttonStyle: {
-      
-      
-    },
+  
 });
 

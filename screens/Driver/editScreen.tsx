@@ -1,7 +1,7 @@
 import { Feather, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import FontAwesome from '@expo/vector-icons/build/FontAwesome';
 import * as React from 'react';
-import { StyleSheet, SafeAreaView, Image,Text,View, Animated} from 'react-native';
+import { StyleSheet, SafeAreaView, Image,Text,View, Animated, ImageBackground} from 'react-native';
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function editScreen() {
@@ -12,10 +12,11 @@ export default function editScreen() {
       {/* <Image style={styles.userImg} 
       source={require('../assets/images/userimge.jpg')}/> */}
   
-    
+
     
              <View style={styles.action}>
           <FontAwesome name="user-o" color="#333333" size={20} />
+
           <TextInput
             placeholder=" الاسم الاول"
             placeholderTextColor="#666666"
