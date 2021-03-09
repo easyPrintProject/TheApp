@@ -24,8 +24,8 @@ export default function profileScreen({navigation}: StackScreenProps<DriverProfi
       <SafeAreaView style={{   flex:1,backgroundColor:'#fff'}}>
     <ScrollView style={(styles.container)} contentContainerStyle={{justifyContent:'center',alignItems:'center'}}
     showsVerticalScrollIndicator={false} >
-      {/* <Image style={styles.userImg} 
-      source={require('../assets/images/userimge.jpg')}/> */}
+      <Image style={styles.userImg} 
+      source={require('../../assets/images/userimge.jpg')}/>
     <Text style={styles.username}>محمد</Text> 
     <Text style={styles.username}>150R</Text>
     <Text style={styles.Textin}>
@@ -66,12 +66,13 @@ const styles = StyleSheet.create({
   userImg:{
     height:150,
     width:150,
-    borderRadius:75,
+    borderRadius:7,
   },
   username:{
+    margin:1,
 fontSize:18,
 fontWeight:'bold',
-marginTop:10,
+marginTop:"10%",
   },
   Textin:{
     fontSize:25,
@@ -82,6 +83,7 @@ marginTop:10,
    width:250,
    alignItems:'center',
    justifyContent:'center',
+   borderRadius:10,
 
    textAlign:'center',
    
@@ -90,7 +92,7 @@ marginTop:10,
   userBtn: {
     borderColor: '#2e64e5',
     borderWidth: 2,
-    borderRadius: 3,
+    borderRadius: 10,
     paddingVertical: 8,
     paddingHorizontal: 12,
     marginHorizontal: 5,
