@@ -4,10 +4,22 @@ import FontAwesome from '@expo/vector-icons/build/FontAwesome';
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { View } from '../components/Themed';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {AccountParamList} from '../types'
+
+//ثابت في كل الصفحات 
+import { StackScreenProps } from '@react-navigation/stack';
 
 
+export default function AccountScreen({navigation}: StackScreenProps<AccountParamList> ) {
 
-export default function AccountScreen() {
+
+  // ميثود للذهاب الى صفحة التعديل 
+  const  GoToEditScreen  = () => {
+
+    navigation.navigate('EditAccountScreen');
+  }
+
+
   return (
     <SafeAreaView>
     <View style={styles.container}>
@@ -61,7 +73,7 @@ export default function AccountScreen() {
 
 
   );
-}
+    }
 
 const styles = StyleSheet.create({
   container: {
