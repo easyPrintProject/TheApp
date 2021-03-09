@@ -1,42 +1,79 @@
 import React from 'react'
-import { StyleSheet, View, TextInput, Text, TouchableOpacity, ScrollView, StatusBar, Button, KeyboardAvoidingView } from 'react-native';
-import { Assets, StackScreenProps } from '@react-navigation/stack';
+import { StyleSheet, View, TextInput, Text,  ScrollView, StatusBar, Button, KeyboardAvoidingView } from 'react-native';
+import {  StackScreenProps } from '@react-navigation/stack';
 import { driverStack} from '../../types';
 import * as Animatable from 'react-native-animatable';
 import { Feather } from '@expo/vector-icons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { LinearGradient } from 'expo';
-
+import  {  useState, useEffect } from 'react';
+import { useGlobalState } from '../../components/StateProvider';
 export default function LoginDriver({navigation }: StackScreenProps<driverStack>) {
     const GoToHome = () => {
         navigation.navigate("HomeDriver");
       };
       
-   
-      const [data, setData] = React.useState({
-        username: '',
-        password: '',
-        confirm_password: '',
-        check_textInputChange: false,
-        secureTextEntry: true,
-        confirm_secureTextEntry: true,
-    });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
+  const [errorMassage, setErrorMassage] = useState("");
+  const {state ,setState } = useGlobalState();
 
-    const textInputChange = () => {
-      if( length !== 0 ) {
-          setData({
-              ...data,
-              username: '',
-              check_textInputChange: true
-          });
-      } else {
-          setData({
-              ...data,
-              username: '',
-              check_textInputChange: false
-          });
+  useEffect(() => {
+        
+    if (user == null || user.Id == "" || user.Id==null) {
+      setErrorMassage(user.errorMassage);
+      if(user.errorMassage==null || user.errorMassage==""){
+        setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
       }
+    } else {
+      //empty the error message
+      setErrorMassage("");
+      setState({
+        Email:user.Email,
+        UserName:user.UserName,
+        PhoneNumber:user.PhoneNumber})
+        GoToHome()
+    }
+}, [user]);
+
+
+
+
+const Login = async () => {
+  try {
+    fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Login', {
+     method: 'POST',
+     headers: {
+     Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+     body: JSON.stringify({
+      Email:email,
+      PasswordHash: password
+      })
+   }).then((response) => response.json())
+   .then((response) => {
+   setUser({
+            Email: response.data.email,
+            PhoneNumber: response.data.phoneNumber,
+            UserName:response.data.userName, 
+            EmailConf:response.data.emailConfiremd,
+            errorMassage:response.data.errorMessage,
+            Id:response.data.id,
+            Token:response.data.token,
+            });
+   })
+   .catch((error) => {
+    console.error(error);
+  });
+   
+  } catch (error) {
+    console.log('حدث خطأ! ', error)
   }
+}
+
+   
+ 
     return (
       <View style={styles.container}>
       <StatusBar backgroundColor='#009387' barStyle="light-content"/>
@@ -88,19 +125,7 @@ export default function LoginDriver({navigation }: StackScreenProps<driverStack>
                 autoCapitalize="none"
             />
     
-                    {data.secureTextEntry ? 
-                    <Feather 
-                        name="eye-off"
-                        color="grey"
-                        size={20}
-                    />
-                    :
-                    <Feather 
-                        name="eye"
-                        color="grey"
-                        size={20}
-                    />
-                    }
+                   
         </View>
 
         

@@ -1,11 +1,13 @@
 import * as React from 'react';
-import  { useContext, useState, useEffect } from 'react';
-import { StyleSheet, Image, TextInput, Button } from 'react-native';
+import  {  useState, useEffect } from 'react';
+import { StyleSheet, TextInput, Button, StatusBar, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { Text, View } from '../components/Themed';
 import { useGlobalState } from '../components/StateProvider';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StartParamList} from '../types';
-import { color } from 'react-native-reanimated';
+import * as Animatable from 'react-native-animatable';
+import { Feather, FontAwesome } from '@expo/vector-icons';
+
 
 export default function LoginScreen({navigation}: StackScreenProps<StartParamList>) {
   
@@ -37,7 +39,6 @@ export default function LoginScreen({navigation}: StackScreenProps<StartParamLis
 const goHome = ()=>{
     navigation.push("Home");
 }
-
 const Login = async () => {
   try {
     fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Login', {
@@ -73,52 +74,142 @@ const Login = async () => {
 
   return (
     <View style={styles.container}>
-     <TextInput
-        style={styles.input}
-        placeholder='اسم المستخدم'
-        textAlign= 'right'
-        placeholderTextColor='black'
-        onChangeText={(e) => setEmail(e.toString())}/><View>
-      </View>
+    <StatusBar backgroundColor='#009387' barStyle="light-content"/>
+  <View style={styles.header}>
+      <Text style={styles.text_header}> تسجيل الدخول</Text>
+  </View>
+  <KeyboardAvoidingView behavior="position">
+  <Animatable.View 
+      animation="fadeInUpBig"
+      style={styles.footer}
+  >
+      <ScrollView>
+              <Text style={styles.text_footer} >اسم المستخدم</Text>
+        <View style={styles.action}>
+            <FontAwesome 
+                name="user-o"
+                color="#05375a"
+                size={20}
+                
+            />
+ 
+    <TextInput 
+                placeholder="Your Username"
+                style={styles.textInput}
+                autoCapitalize="none"
+                onChangeText={(e) => setEmail(e.toString())}/>
+
+            
+            <Animatable.View
+                animation="bounceIn"
+            >
+                <Feather 
+                    name="check-circle"
+                    color="green"
+                    size={20}
+                />
+            </Animatable.View>
+    </View>
+      <Text style={[styles.text_footer, {
+            marginTop: 35
+        }]}>كلمة المرور</Text>
+        <View style={styles.action}>
+            <Feather 
+                name="lock"
+                color="#05375a"
+                size={20}
+            />
       <TextInput
-        style={styles.input}
-        placeholder='كلمة السر'
-        textAlign= 'right'
-        secureTextEntry={true}
-        placeholderTextColor='black'
+       placeholder="Your Password"
+       secureTextEntry={true}
+       style={styles.textInput}
+       autoCapitalize="none"
         onChangeText={(e) => setPassword(e.toString())}/>
-   <View>
 </View>
-     <View style={styles.buttonStyle}><Button 
+  
+  <View style={styles.button}>
+            <Button 
         title='تسجيل الدخول'
-        color='black'
+        color='#01ab9d' 
         onPress={() => Login()}
-      /></View>
+      />
       <Text style={{color:"red"}}>{user.errorMassage}</Text>
-      </View>
-  );
-}
+     </View>
+     
+
+       </ScrollView>      
+
+        </Animatable.View>
+        </KeyboardAvoidingView>
+        </View>
+    );
+};
+  
 const styles = StyleSheet.create({
-  input: {
-    width: 350,
-    height: 55,
-    backgroundColor: 'white',
-    margin: 10,
-    padding: 8,
-    color: 'black',
-    borderRadius: 10,
-    fontSize: 15,
-  },
   container: {
-    flex: 1,
-    justifyContent: 'center', // vertical
-    alignItems: 'center' // horizontal 
+    flex: 1, 
+    backgroundColor: '#009387'
   },
-  titleText: {
-    fontSize: 30,
-    paddingBottom: 80,
+  header: {
+      flex: 1,
+      justifyContent: 'flex-end',
+      paddingHorizontal: 20,
+      paddingBottom: 50
   },
-  buttonStyle: {
-    paddingTop: 50,
+  footer: {
+      backgroundColor: '#fff',
+      borderTopLeftRadius: 30,
+      borderTopRightRadius: 30,
+      paddingHorizontal: 20,
+      paddingVertical: 30
   },
-});
+  text_header: {
+      color: '#fff',
+      fontWeight: 'bold',
+      fontSize: 30,
+},
+  text_footer: {
+      color: '#05375a',
+      fontSize: 18,
+alignItems: 'flex-end'
+ },
+  action: {
+      flexDirection: 'row',
+      marginTop: 10,
+      borderBottomWidth: 1,
+      borderBottomColor: '#f2f2f2',
+      paddingBottom: 5
+  },
+  textInput: {
+      flex: 1,
+      paddingLeft: 10,
+      color: '#05375a',
+  },
+  button: {
+      alignItems: 'center',
+      borderColor: '#009387',
+      borderWidth: 1,
+      marginTop: 15,
+      borderRadius:17,
+  },
+  signIn: {
+      width: '100%',
+      height: 50,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 10
+
+  },
+  textSign: {
+      fontSize: 18,
+      fontWeight: 'bold'
+  },
+  textPrivate: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      marginTop: 20
+  },
+  color_textPrivate: {
+      color: 'grey'
+  }
+})
