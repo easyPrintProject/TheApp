@@ -1,27 +1,95 @@
 import { Feather, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import FontAwesome from '@expo/vector-icons/build/FontAwesome';
 import * as React from 'react';
-import { StyleSheet, SafeAreaView, Image,Text,View, Animated} from 'react-native';
+import { StyleSheet, SafeAreaView, Image,Text,View, Animated, ImageBackground, KeyboardAvoidingView} from 'react-native';
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import  { useContext, useState, useEffect } from 'react';
+import { useGlobalState } from '../../components/StateProvider';
 
 export default function editScreen() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [userName, setUserName] = useState("");
+  const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
+  const {state ,setState } = useGlobalState();
+  const [errorMassage, setErrorMassage] = useState("");
+
+
+  useEffect(() => {
+        
+    if (user == null || user.Id == "" || user.Id==null) {
+      setErrorMassage(user.errorMassage);
+      if(user.errorMassage==null || user.errorMassage==""){
+        setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
+      }
+    } else {
+      //empty the error message
+      setErrorMassage("");
+      setState({
+        Email:user.Email,
+        UserName:user.UserName,
+        PhoneNumber:user.PhoneNumber,
+        Id:user.Id,
+      })
+        goHome()
+    }
+}, [user]);
+
+
+const goHome = ()=>{
+}
+
+
+  const signUp = async () => {
+    try {
+      fetch('https://apieasyprint20210215153907.azurewebsites.net/api/signin', {
+       method: 'POST',
+       headers: {
+       Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+       body: JSON.stringify({
+        Email:email,
+        UserName: userName,
+        PasswordHash: password,
+        PhoneNumber: phoneNumber
+      })
+     }).then((response) => response.json())
+     .then((response) => {
+     setUser({
+       Email: response.data.email,
+      PhoneNumber: response.data.phoneNumber,
+      UserName:response.data.userName, 
+      EmailConf:response.data.emailConfiremd,
+      errorMassage:response.data.errorMessage,
+      Id:response.data.id,
+      Token:response.data.token,
+    });
+     })
+     .catch((error) => {
+      console.error(error);
+    });
+    } catch (error) {
+      console.log('حدث خطأ! ', error)
+    }
+  }
   return (
       <SafeAreaView style={{   flex:1,backgroundColor:'#fff'}}>
     <ScrollView style={(styles.container)} contentContainerStyle={{justifyContent:'center',alignItems:'center'}}
     showsVerticalScrollIndicator={false} >
-      {/* <Image style={styles.userImg} 
-      source={require('../assets/images/userimge.jpg')}/> */}
+      
   
-    
-    
+<KeyboardAvoidingView behavior='position'>
+<Image style={styles.userImg} 
+      source={require('../../assets/images/userimge.jpg')}/> 
              <View style={styles.action}>
           <FontAwesome name="user-o" color="#333333" size={20} />
+
           <TextInput
             placeholder=" الاسم الاول"
             placeholderTextColor="#666666"
             autoCorrect={false}
-           //* value={userData ? userData.fname : ''}
-           //* onChangeText={(txt) => setUserData({...userData, fname: txt})}
             style={styles.textInput}
           />
           
@@ -92,8 +160,8 @@ export default function editScreen() {
         </View>
     
                 <Text style={styles.userBtnTxt}>تحديث</Text>
-              
-             </ScrollView>   
+           </KeyboardAvoidingView>
+             </ScrollView>    
               </SafeAreaView>
   );
 }
@@ -102,21 +170,22 @@ const styles = StyleSheet.create({
   container: {
    flex:1,
    backgroundColor:'#fff',
-   padding:20
+   padding:10
   },
   textInput: {
     flex: 1,
-    //*marginTop: Platform.OS === 'ios' ? 0 : -12,
-    paddingLeft: 10,
+    paddingLeft: 65,
     color: '#333333',
+    justifyContent:"center",
+    alignItems:'center'
   },
   action: {
     flexDirection: 'row',
-    marginTop: 10,
+    marginTop: 30,
     marginBottom: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#f2f2f2',
-    paddingBottom: 5,
+    paddingBottom: 1,
   },
   title: {
     color:"red",
@@ -127,7 +196,8 @@ const styles = StyleSheet.create({
     height:150,
     width:150,
     borderRadius:75,
-    marginTop:90
+    marginTop:"25%",
+    marginLeft:"20%"
   },
  
   input: {
@@ -152,14 +222,17 @@ const styles = StyleSheet.create({
   userBtnTxt: {
     color: '#2e64e5',
     flexDirection: 'row',
-
+    alignItems:'center',
+    justifyContent:'center',
+   marginLeft:"40%",
+    marginTop: 15,
   },
   userBtnWrapper: {
     flexDirection: 'row',
     justifyContent: 'center',
     width: '100%',
-    marginBottom: 10,
-    marginTop:30
+    marginBottom: "10%",
+    marginTop:"10%"
   },
  
 });
