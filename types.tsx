@@ -62,6 +62,7 @@ export type AccountParamList = {
   AccountScreen: undefined;
   InstantCalculator:undefined;
   UploadFiles:undefined;
+  EditAccountScreen:undefined;
 };
 
 
