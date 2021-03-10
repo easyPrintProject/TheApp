@@ -20,6 +20,7 @@ import DocumentListScreen from "../screens/DocumentListScreen"
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { BottomTabParamList, HomeParamList, BasketParamList, PrintersListParamList, OrderParamList, AccountParamList } from '../types';
 import { Title } from 'react-native-paper';
+import EditAccountScreen from '../screens/EditAccountScreen';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -127,6 +128,13 @@ function AccountNavigator() {
         component={Account}
         options={{ drawerLabel: '         حساب المستخدم         .   '  }}
       />
+
+<AccountDrawer.Screen
+        name="EditAccountScreen"
+        component={EditAccountScreen}
+        options={{ drawerLabel: '         تعديل حساب المستخدم         .   '  }}
+      />
+
       <AccountDrawer.Screen
         name="InstantCalculator"
         component={InstantCalculator}
