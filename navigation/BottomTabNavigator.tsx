@@ -17,7 +17,6 @@ import PrintingOptions from '../screens/PrintingOptionsScreen';
 import DeliveryTimeScreen from '../screens/DeliveryTimeScreen';
 import PaymentScreen from '../screens/PaymentScreen'
 import InstantCalculator from "../screens/InstantCalculator"
-import UploadFiles from "../screens/UploadFiles"
 import MaterialsDetailsScreen from "../screens/MaterialsDetailsScreen"
 import DocumentListScreen from "../screens/DocumentListScreen"
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -144,8 +143,8 @@ function AccountNavigator() {
         options={{ drawerLabel:  '         الحاسبة الفورية            .   '  }}
       />
       <AccountDrawer.Screen
-        name="UploadFiles"
-        component={UploadFiles}
+        name="OrderScreen"
+        component={Order}
         options={{ drawerLabel:  '           ملفاتي                    .   ' }}
       />
     </AccountDrawer.Navigator>
