@@ -61,7 +61,7 @@ export type HomeParamList = {
 export type AccountParamList = {
   AccountScreen: undefined;
   InstantCalculator:undefined;
-  UploadFiles:undefined;
+  OrderScreen:undefined;
   EditAccountScreen:undefined;
 };
 
