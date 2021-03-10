@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, Button, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { Text, View,StyleSheet, Pressable, TouchableOpacity, TextInput, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
+import { OrderParamList } from '../types';
 
 class Option extends Component<any, any>  {
   constructor(props: any) {
@@ -59,51 +61,77 @@ class Option extends Component<any, any>  {
   }
 }
 
-export default function PrintingOption() {
-    return (
+export default function PrintingOptions({ navigation }: StackScreenProps<OrderParamList>,) {
+  const GoToTimeDelivery = () => {
+    navigation.navigate("DeliveryTimeScreen");
+  };
+  return (
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+
+    >
       <ScrollView><View>
-        <View><Text style={{ marginTop: 50, marginBottom: -10, textAlign: 'right' }}>حجم الورق</Text>
+        <View><Text style={{ paddingRight: 20, marginTop: 50, marginBottom: -10, textAlign: 'right' }}>حجم الورق</Text>
           < Option
             options={['A5', 'A4', 'A3', 'A2', 'A1', 'A0']}
             onChange={(option: any) => {
               console.log(option);
             }} /></View>
 
-        <View><Text style={{ marginTop: 120, marginBottom: -30, textAlign: 'right' }}> نوع الورق </Text>
+        <View><Text style={{ paddingRight: 20, marginTop: 20, marginBottom: -30, textAlign: 'right' }}> نوع الورق </Text>
           < Option
             options={['عادي', 'مقوى', 'لماع', 'معاد استخدامه']}
             onChange={(option: any) => {
               console.log(option);
             }} /></View>
 
-        <View><Text style={{ marginTop: 90, marginBottom: -30, textAlign: 'right' }}>لون الطباعة</Text>
+        <View><Text style={{ paddingRight: 20, marginTop: 50, marginBottom: -30, textAlign: 'right' }}>لون الطباعة</Text>
           < Option
             options={['أسود وأبيض', 'ملون']}
             onChange={(option: any) => {
               console.log(option);
             }} /></View>
 
-        <View><Text style={{ marginTop: 50, marginBottom: -30, textAlign: 'right' }}>نوع الطباعة</Text>
+        <View><Text style={{ paddingRight: 20, marginTop: 50, marginBottom: -30, textAlign: 'right' }}>نوع الطباعة</Text>
 
           < Option
             options={['وجه', 'وجهين']}
             onChange={(option: any) => {
               console.log(option);
             }} /></View>
-        <View><Text style={{ marginTop: 60, marginBottom: -30, textAlign: 'right' }}>تحديد الصفحات</Text>
+        <View><Text style={{ paddingRight: 20, marginTop: 60, marginBottom: -30, textAlign: 'right' }}>تحديد الصفحات</Text>
           <View style={{
             flexDirection: 'row', justifyContent: 'center'
           }}>
-            <TextInput style={{
-              height: 45, width: 45, borderColor: '#8098db', borderWidth: 0.5, borderRadius: 5, margin: 3, marginTop: 30,
-            }} />
+          <TextInput style={styles.textInput} />
 
-            <TextInput style={{
-              height: 45, width: 45, borderColor: '#8098db', borderWidth: 0.5, borderRadius: 5, margin: 3, marginBottom: 9, marginTop: 30,
-            }} /></View>
+          <TextInput style={styles.textInput} />
+          </View>
         </View>
-      </View></ScrollView>
-      // button goes here to deliver time page *********
-    );
-  }
+      </View> 
+        <View><Pressable style={{ alignItems: 'center', marginTop: 20 }}
+          onPress={() => GoToTimeDelivery()}>
+          <Text>تحديد وقت التوصيل</Text>
+        </Pressable>
+        </View>
+      </ScrollView></KeyboardAvoidingView>
 
+  );
+}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  textInput: {
+    borderColor: "black",
+    borderBottomWidth: 1,
+    marginBottom: 36,
+    height: 45, 
+    width: 45, 
+    borderWidth: 0.5,
+    borderRadius: 5, 
+    margin: 3,  
+    marginTop: 30,
+  },
+});
