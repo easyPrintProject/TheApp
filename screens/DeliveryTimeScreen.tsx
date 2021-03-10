@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  Button,
-  TouchableOpacity,
-  Pressable,
-} from 'react-native';
-
-
+import { Text, View, Button, TouchableOpacity, Pressable } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
+import { OrderParamList } from '../types';
 
 
 class Option extends Component<any, any>  {
@@ -63,34 +57,35 @@ class Option extends Component<any, any>  {
   }
 }
 
-export default class DeliveryTime extends Component {
-  render() {
-    return (
+export default function DeliveryTimeScreen({ navigation }: StackScreenProps<OrderParamList>,) {
+  const GoToPayment = () => {
+    navigation.navigate("PaymentScreen");
+  };
+  return (
+    <View>
       <View>
-        <View>
-          <Text
-            style={{ marginTop: 50, marginBottom: -10, textAlign: 'center' }}>
-            اختيار وقت التوصيل
+        <Text
+          style={{ marginTop: 200, marginBottom: -10, textAlign: 'center' }}>
+          اختيار وقت التوصيل
           </Text>
-          <Option
-            options={[
-              '1-11 مساءاً',
-              '10-8 صباحاً',
-              '7-5 مساءاً',
-              '4-2 مساءاً',
-              '10-8 مساءاً',
-            ]}
-            onChange={(option: any) => {
-              console.log(option);
-            }}
-          />
-        </View>
-        <Pressable>
-             <Text>المتابعة للدفع</Text>
-           </Pressable>
-      </View> 
-             //button goes to purches ************
+        <Option
+          options={[
+            '1-11 مساءاً',
+            '10-8 صباحاً',
+            '7-5 مساءاً',
+            '4-2 مساءاً',
+            '10-8 مساءاً',
+          ]}
+          onChange={(option: any) => {
+            console.log(option);
+          }}
+        />
+      </View>
+      <Pressable  style= {{alignItems: 'center', marginTop: 150}} 
+        onPress={() => GoToPayment()}>
+        <Text>المتابعة للدفع</Text>
+      </Pressable>
+    </View>
 
-    );
-  }
+  );
 }

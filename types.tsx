@@ -68,6 +68,9 @@ export type AccountParamList = {
 
 export type OrderParamList = {
   OrderScreen: undefined;
+  PrintingOptionsScreen: undefined;
+  DeliveryTimeScreen: undefined;
+  PaymentScreen: undefined;
 };
 
 export type PrintersListParamList = {

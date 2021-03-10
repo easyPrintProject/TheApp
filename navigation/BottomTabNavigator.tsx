@@ -13,6 +13,9 @@ import Signin from "../screens/SignUpScreen"
 import Printers from "../screens/PrinterListScreen"
 import Donation from "../screens/DonationScreen"
 import Order from '../screens/OrderScreen';
+import PrintingOptions from '../screens/PrintingOptionsScreen';
+import DeliveryTimeScreen from '../screens/DeliveryTimeScreen';
+import PaymentScreen from '../screens/PaymentScreen'
 import InstantCalculator from "../screens/InstantCalculator"
 import UploadFiles from "../screens/UploadFiles"
 import MaterialsDetailsScreen from "../screens/MaterialsDetailsScreen"
@@ -164,6 +167,27 @@ function OrderNavigator() {
         component={Order}
         
       />
+
+<OrderStack.Screen
+        name="PrintingOptionsScreen"
+        component={PrintingOptions}
+        
+      />
+
+
+<OrderStack.Screen
+        name="DeliveryTimeScreen"
+        component={DeliveryTimeScreen}
+        
+      />
+
+
+<OrderStack.Screen
+        name="PaymentScreen"
+        component={PaymentScreen}
+        
+      />
+
     </OrderStack.Navigator>
   );
 }
