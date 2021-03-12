@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Button, TextInput, StyleSheet, Text, Image, Modal, Alert, Pressable } from 'react-native';
+import { View, Button, TextInput, StyleSheet, Text, Image, Modal, Alert, Pressable, SafeAreaView } from 'react-native';
 import { Card } from 'react-native-elements';
 import { useState } from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -138,13 +138,16 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
     };
 
   return (
+
+    <SafeAreaView>
     <View>
 
-      <View style={styles.cardStyle}>
+      <View style = {{flexDirection:"row",backgroundColor:"#96C493", justifyContent:"space-between", paddingBottom: 10}} >
          <Pressable onPress={()=>GoToDocumentList() }>  
             <AntDesign name="leftcircleo" size={30} style={{ marginTop:15, marginLeft:5, color:"white" }}  />
          </Pressable>
-      <AntDesign name="leftcircleo" size={30} style={{ marginTop:15, marginLeft:5, color:"white" }}  />
+         <Text style={{ marginTop:15, marginRight:5, color:"white", fontSize:20 }}>{state.courceMaterialTitle}</Text>
+
       </View>
        <Modal animationType="slide"  transparent={true}   visible={modalVisible} onRequestClose={() => {  Alert.alert("Modal has been closed."); setModalVisible(!modalVisible); }}>
               <View style={styles.centeredView}>
@@ -165,7 +168,7 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
            </View>
          </Modal>
         <Image source={require('../assets/images/5.jpg')}style={{height:200, width:200 ,borderWidth:2,marginTop:"5%",marginHorizontal:90}}/>
-      <View style={styles.cardStyle}>
+      <View >
 
       <Card>
 
@@ -182,17 +185,14 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
         </Card>
       </View>
     </View>
-  
+    </SafeAreaView>
   )
   
   }
 const styles = StyleSheet.create({
-    cardStyle:{
-      marginTop: 50,
-    },
+   
 
     buttonStyle:{
-
       paddingTop: 20,
     },
     centeredView: {
@@ -267,10 +267,6 @@ const styles = StyleSheet.create({
     text:{
       textAlign:'right',
       justifyContent:'flex-start',
-      paddingLeft:232,
-      marginTop:22
-      
-
     }
 
 }
