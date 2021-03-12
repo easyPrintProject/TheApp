@@ -113,7 +113,6 @@ const goHome = ()=>{
         />
      <View>
   </View>
-  <Text>test</Text>
        <View style={styles.buttonStyle}>
          <Button 
           title='إنشاء حساب'

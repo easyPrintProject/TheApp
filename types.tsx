@@ -65,12 +65,16 @@ export type AccountParamList = {
   AccountScreen: undefined;
   InstantCalculator:undefined;
   UploadFiles:undefined;
-  
+  OrderScreen:undefined;
+  EditAccountScreen:undefined;
 };
 
 
 export type OrderParamList = {
   OrderScreen: undefined;
+  PrintingOptionsScreen: undefined;
+  DeliveryTimeScreen: undefined;
+  PaymentScreen: undefined;
 };
 
 

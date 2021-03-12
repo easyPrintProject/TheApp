@@ -5,39 +5,27 @@ import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-ha
 import { View } from '../components/Themed';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {AccountParamList} from '../types'
-import { useGlobalState, GlobalStateInterface } from '../components/StateProvider';
-import { Types, UserType } from '../components/Reduser';
+
+//ثابت في كل الصفحات 
 import { StackScreenProps } from '@react-navigation/stack';
 
 
-export default function AccountScreen({navigation}: StackScreenProps<AccountParamList> ) {
-// ميثود للذهاب الى صفحة التعديل 
-const   GoToEditAccountScreen  = () => {
-
-  navigation.navigate('EditAccountScreen');
-}
-
-  const {state ,setState } = useGlobalState();
-  // const { state, dispatch } = useContext(AppContext);
-
-  React.useEffect(() => {
-     }, [])
-
+export default function EditAccountScreen( {navigation}: StackScreenProps<AccountParamList> ) {
 
   return (
     <SafeAreaView>
     <View style={styles.container}>
-      <Text style={styles.title}>بيانات الحساب</Text>
+      <Text style={styles.title}>تعدييييل بيانات الحساب</Text>
       </View>
 
       <View style={[styles.userInfoSection ,styles.cont ]}>
-      <Image source={require('../assets/images/av2.png')} style={styles.avatar}/>
+      <Image source={require('../assets/images/av1.png')} style={styles.avatar}/>
 
       <View>
 
-      <Text style={styles.tt}>{state.UserName}</Text>
+      <Text style={styles.tt}>User Full Name</Text>
 
-      <Text style={styles.caption}>{state.Email}</Text>
+      <Text style={styles.caption}>user Email</Text>
       
       </View> 
      </View>
@@ -51,7 +39,7 @@ const   GoToEditAccountScreen  = () => {
 
         <View style={styles.row}>
           <Icon name="phone" color="#80CBC4 " size={20}/>
-          <Text style={styles.tt2}>{state.PhoneNumber}</Text>
+          <Text style={styles.tt2}>Phone number</Text>
         </View>
 
     </View>
@@ -70,10 +58,7 @@ const   GoToEditAccountScreen  = () => {
             <Text style={styles.menuItemText}>Your Favorites</Text>
           </TouchableOpacity>
      </View>
-     <TouchableOpacity
-     onPress={() => GoToEditAccountScreen()}>
-     <Text>عدل بياناتي</Text>
-     </TouchableOpacity>
+
          
           
 </SafeAreaView>

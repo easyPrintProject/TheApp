@@ -139,7 +139,8 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
 
   return (
     <View>
-      <View style={{height:"10%", width:"100%", backgroundColor:"#96C493"}}>
+
+      <View style={styles.cardStyle}>
          <Pressable onPress={()=>GoToDocumentList() }>  
             <AntDesign name="leftcircleo" size={30} style={{ marginTop:15, marginLeft:5, color:"white" }}  />
          </Pressable>
@@ -167,12 +168,14 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
       <View style={styles.cardStyle}>
 
       <Card>
-          <View>
-          <Text>اسم الملزمة: {state.courceMaterialTitle}</Text>
-            <Text>عدد الصفحات:200</Text>
-            <Text>نوع الطباعة: ابيض و اسود</Text>
-            <Text>الوصف : {state.courceMaterialDescreption}</Text>
-            <Text>السعر:{state.courceMaterialPrice} ريال</Text>
+
+          <View style={(styles.text)}>
+          <Text style={{ margin:5}}>اسم الملزمة: {state.courceMaterialTitle}</Text>
+            <Text style={{ margin:5}}>عدد الصفحات:200</Text>
+            <Text style={{ margin:5}}>نوع الطباعة: ابيض و اسود</Text>
+            <Text style={{ margin:5}}>الوصف : {state.courceMaterialDescreption}</Text>
+            <Text style={{ margin:5}}>السعر:{state.courceMaterialPrice} ريال</Text>
+
           </View>
           <View style={styles.buttonStyle}> 
           <Button title="الاضافة إلى السلة" color='black' onPress={() => AddToBasketHandeler()}/></View>
@@ -189,6 +192,7 @@ const styles = StyleSheet.create({
     },
 
     buttonStyle:{
+
       paddingTop: 20,
     },
     centeredView: {
@@ -257,7 +261,16 @@ const styles = StyleSheet.create({
     },
     modalText: {
       marginBottom: 15,
-      textAlign: "center"
+      textAlign: "center", 
+      paddingTop: 20,
+    },
+    text:{
+      textAlign:'right',
+      justifyContent:'flex-start',
+      paddingLeft:232,
+      marginTop:22
+      
+
     }
 
 }

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native'; //
 //import { PaymentView } from '../components/PaymentView';
 import axios from 'axios';
+import { StackScreenProps } from '@react-navigation/stack';
+import { OrderParamList} from '../types';
 
 
-export default function PaymentScreen() {
 
-  
+export default function PaymentScreen({ navigation }: StackScreenProps<OrderParamList>,) {
   const [response, setResponse] = useState();
   const [makePayment, setMakePayment] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState('');
