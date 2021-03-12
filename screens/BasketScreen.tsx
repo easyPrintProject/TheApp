@@ -5,6 +5,7 @@ import { Card } from 'react-native-elements';
 export default function BasketScreen() {
     return (
         <View>
+
                 <Text style={(styles.headertext)}> طلبات التوصيل</Text>
 
         <Image source={require('../assets/images/1.jpg')}style={{height:200, width:200 ,borderWidth:2,marginTop:"15%",marginHorizontal:90}}/>

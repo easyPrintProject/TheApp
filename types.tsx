@@ -26,8 +26,10 @@ export type ViewOrderDriverParamList = {
 
 //لزيادة انواع صفحة البروفايل للدرايفر
 export type DriverProfileParamList = {
- ProfileScreen:undefined;
+
+  ProfileScreen:undefined;
   EditScreen:undefined;
+
   //اضيفي نوع اللوق اوت 
 };
 
@@ -58,9 +60,11 @@ export type HomeParamList = {
   LoginScreen:undefined;
 };
 
+//رنا هنا
 export type AccountParamList = {
   AccountScreen: undefined;
   InstantCalculator:undefined;
+  UploadFiles:undefined;
   OrderScreen:undefined;
   EditAccountScreen:undefined;
 };
@@ -73,11 +77,16 @@ export type OrderParamList = {
   PaymentScreen: undefined;
 };
 
+
+
+export type DocProp = {
+  id :string;
+  PrinterName : string
+}
 export type PrintersListParamList = {
   PrintersListScreen: undefined;
-  DocumentListScreen: { id: string; };
-  MaterialsDetailsScreen:undefined
-
+  DocumentListScreen: undefined;
+  MaterialsDetailsScreen:undefined;
 };
 
 export type BasketParamList = {

@@ -87,8 +87,6 @@ function ProfileNavigator() {
         component={editScreen}
       />
        {/* اضيفي سكرين هنا  */}
-      
-      
     </ProfileStack.Navigator>
 
   );

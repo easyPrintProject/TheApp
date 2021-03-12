@@ -1,19 +1,35 @@
 import * as React from 'react';
-import { StyleSheet , SafeAreaView,TextInput,FlatList,Keyboard,Image, TouchableOpacity} from 'react-native';
+import { StyleSheet , SafeAreaView,TextInput, TouchableOpacity} from 'react-native';
 import { Text, View } from '../components/Themed';
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as Animatable from 'react-native-animatable'
 import { ScrollView } from 'react-native-gesture-handler';
 import { StackScreenProps } from '@react-navigation/stack';
 import { PrintersListParamList} from '../types';
-import {Card} from "../components/listItem"
-// const listItems =['العبيكان','امسيان','المعالي'];
+import { useGlobalState } from '../components/StateProvider';
 
-export default function OrderScreen({navigation}: StackScreenProps<PrintersListParamList>) {
-    const state ={searchBarFocused : false}
-    const GoToDocumentList = ( Printerid:string) => {
-      navigation.navigate("DocumentListScreen", {id:Printerid});
+import {Card} from "../components/listItem"
+
+export default function PrinterListScreen({navigation}: StackScreenProps<PrintersListParamList>) {
+    const states ={searchBarFocused : false}
+    //global state
+    const {state ,setState } = useGlobalState();
+   
+    const GoToDocumentList = ( Printerid:string, Name:string) => {
+      setState({Token: state.Token,
+                Id: state.Id,
+                Email: state.Email,
+                UserName: state.UserName,
+                PhoneNumber: state.PhoneNumber,
+                ErrorMessage: state.ErrorMessage,
+                EmailConfeirmd:  state.EmailConfeirmd,
+                printerId:  Printerid,
+                printerName: Name
+              })
+      navigation.navigate("DocumentListScreen");
     };
+
+    //Type for printers
     type printer = {
       prentingShopId: string,
       prenterName: string,
@@ -21,6 +37,8 @@ export default function OrderScreen({navigation}: StackScreenProps<PrintersListP
       isService: boolean,
       ownerId: string
     }
+
+    //printer opject to store data from API
     const [printers , setPrinters ] = React.useState(
       [{
         prentingShopId: "",
@@ -30,8 +48,10 @@ export default function OrderScreen({navigation}: StackScreenProps<PrintersListP
         ownerId: ""
       }]
     );
-    React.useEffect(() => {
 
+
+    
+    React.useEffect(() => {
       try {
         fetch('https://apieasyprint20210215153907.azurewebsites.net/api/printingshop', {
          method: 'GET',
@@ -53,6 +73,9 @@ export default function OrderScreen({navigation}: StackScreenProps<PrintersListP
         console.log('حدث خطأ! ', error)
       }
       }, []);
+
+
+
     return (
       <SafeAreaView>
         <View  style={{backgroundColor:"#FFF" ,height:"100%"}}>
@@ -68,7 +91,7 @@ export default function OrderScreen({navigation}: StackScreenProps<PrintersListP
          <ScrollView scrollEventThrottle={16}>
            <View >
               {printers.slice(1).map(e => 
-               <TouchableOpacity onPress={() => GoToDocumentList(e.prentingShopId)}>
+               <TouchableOpacity onPress={() => GoToDocumentList(e.prentingShopId, e.prenterName)}>
                   <Card title={e.prenterName}/>
                </TouchableOpacity>
              )}
