@@ -10,6 +10,14 @@ export interface GlobalStateInterface {
   PhoneNumber: string;
   ErrorMessage: string;
   EmailConfeirmd: boolean;
+  printerId: string;
+  printerName: string;
+  MaterialId: string;
+  courceMaterialTitle: string,
+  courceMaterialDescreption: string
+  courceMaterialPrice: number,
+  isAvailable: boolean,
+  subjectId: string
 }
 
 const GlobalStateContext = createContext({

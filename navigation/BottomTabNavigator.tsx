@@ -18,8 +18,7 @@ import UploadFiles from "../screens/UploadFiles"
 import MaterialsDetailsScreen from "../screens/MaterialsDetailsScreen"
 import DocumentListScreen from "../screens/DocumentListScreen"
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { BottomTabParamList, HomeParamList, BasketParamList, PrintersListParamList, OrderParamList, AccountParamList } from '../types';
-import { Title } from 'react-native-paper';
+import { BottomTabParamList, HomeParamList, BasketParamList, PrintersListParamList, OrderParamList, AccountParamList, DocProp } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -95,7 +94,6 @@ function HomeNavigator() {
         <HomeStack.Screen name="OrderScreen" component={Order} />
         <HomeStack.Screen name="DonationScreen" component={Donation} />
         <HomeStack.Screen name="PrinterListScreen" component={Printers} />
-
     </HomeStack.Navigator>
   );
 }
@@ -115,7 +113,6 @@ function AccountNavigator() {
       backgroundColor: '#c6cbef',
       width: 240,
       alignItems:"stretch"  
-    
     }}
     screenOptions={
       {
@@ -193,17 +190,13 @@ function PrintersListNavigator() {
       }
     }>
       <PrintersListStack.Screen
-        
         name="PrintersListScreen"
         component={PrintersList}
-
-        
       />
       <PrintersListStack.Screen
         name="DocumentListScreen"
-        component={DocumentListScreen}
-        
-      />
+        component={DocumentListScreen} 
+        />
       <PrintersListStack.Screen
         name='MaterialsDetailsScreen'
         component={MaterialsDetailsScreen}

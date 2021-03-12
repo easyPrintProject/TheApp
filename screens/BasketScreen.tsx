@@ -4,7 +4,8 @@ import { StyleSheet, Text, View } from 'react-native'
 export default function BasketScreen() {
     return (
         <View>
-            <Text></Text>
+            <Text> السلة فارغة</Text>
+            
         </View>
     )
 }
