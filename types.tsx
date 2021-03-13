@@ -87,6 +87,7 @@ export type PrintersListParamList = {
   PrintersListScreen: undefined;
   DocumentListScreen: undefined;
   MaterialsDetailsScreen:undefined;
+  BasketScreen: undefined;
 };
 
 export type BasketParamList = {

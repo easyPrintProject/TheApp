@@ -6,7 +6,6 @@ import { StackScreenProps } from '@react-navigation/stack';
 import {HomeParamList} from '../types';
 import { Text, View } from '../components/Themed';
  import { useGlobalState, GlobalStateInterface } from '../components/StateProvider';
-import { Types, UserType } from '../components/Reduser';
 export default function HomeScreen({navigation }: StackScreenProps<HomeParamList>) {
 
   // const myContext = useContext(NewContext);

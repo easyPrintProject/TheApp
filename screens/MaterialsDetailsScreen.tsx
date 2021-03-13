@@ -1,77 +1,111 @@
 import * as React from 'react';
-import { View, Button, TextInput, StyleSheet, Text, Image, Modal, Alert, Pressable, SafeAreaView } from 'react-native';
+import { View, Button, TextInput, StyleSheet, Text, Image, Modal, Alert, Pressable, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Card } from 'react-native-elements';
 import { useState } from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
 import { PrintersListParamList} from '../types';
-import { useGlobalState } from '../components/StateProvider';
+import { useGlobalState, item } from '../components/StateProvider';
 import { AntDesign } from '@expo/vector-icons';
 
 
 export default function MaterialsDetailsScreen({navigation}: StackScreenProps<PrintersListParamList> ) {
+      //our glopal state
+      const {state ,setState } = useGlobalState();
+
+   // useEffect create a new order as soon as the page load 
+   React.useEffect(() => {
+
+    if(state.orderId==null || state.orderId==""){
+    try {
+      fetch('https://apieasyprint20210215153907.azurewebsites.net/api/order', {
+       method: 'POST',
+       headers: {
+       Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+       body: JSON.stringify({
+        orderId:"",
+        isCourceMaterial: true,
+        isPrintingOrder: false,
+        totalPriceOfTheItem:0.0,
+        courseId:state.MaterialId,
+        docId:"00000000-0000-0000-0000-000000000000", //defulte for the matireals orders
+        printingShopId:state.printerId,
+        customerId:state.Id
+        })
+     }).then((response) => response.json())
+     .then((response: resulte) => {
+     setOrder({
+      orderId:response.orderId,
+      isCourceMaterial:true,
+      isPrintingOrder:false,
+      totalPriceOfTheItem:0.0,
+      courseId:state.MaterialId || "",
+      docId:"00000000-0000-0000-0000-000000000000", //defulte for the matireals orders
+      printingShopId:state.printerId || "",
+      customerId:state.Id || ""
+      });
+      setState({
+        ...state,
+        //order and basket items data
+        orderId :response.orderId,
+        orderSatus:"حقيبة التسوق فارغة",
+        allIems: [...(state.allIems ?? []), {
+          itemId: "",
+         itemName : "",
+       //info about the material 
+        MaterialId: "",
+        courceMaterialTitle: "",
+        courceMaterialPrice: 0,
+  
+        //info about the printer
+         printerId: "",
+        printerName: "",
+  
+        //info about the order
+          orderId: "",
+          orderStatus:""} ],
+        orderTotal: 0
+      });
+     })
+     .catch((error) => {
+      console.error(error);
+    });
+    } catch (error) {
+      console.log('حدث خطأ! ', error)
+    }
+  }
+   }, [state])
+
+
+
     // for showing or hidding the popup
     const [modalVisible, setModalVisible] = useState(false);
 
-    //our glopal state
-    const {state ,setState } = useGlobalState();
+
     
     //object will be send and recived from the API
-    const [order, setOrder] = useState({orderId:"", isCourceMaterial:false, isPrintingOrder:false,  totalPriceOfTheItem:0.0, courseId:"", docId:"", printingShopId:"", customerId:""});
+    const [order, setOrder] = useState({orderId:"",
+     isCourceMaterial:false,
+      isPrintingOrder:false,
+        totalPriceOfTheItem:0.0,
+         courseId:"",
+          docId:"",
+           printingShopId:"",
+            customerId:""});
      
     // type for the order opject 
     type resulte = {
-      items: [
-        {
-            itemId: string,
-            itemPrice: number,
-            printingShopID: string
-        }
-           ]
-    orderId: string,
-    errorMassage: string
+      orderId: string,
+      errorMassage: string,
+      itemId: string,
+      itemPrice:number,
+      printingShopID: string
+   
      }
 
-
-    // fuction that create new order and oreder item, and set the model visible.
+    // fuction that reate new oreder item, and set the model visible.
     const AddToBasketHandeler = () => {
-       // first call the order APi to create an order
-      try {
-        fetch('https://apieasyprint20210215153907.azurewebsites.net/api/order', {
-         method: 'POST',
-         headers: {
-         Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-         body: JSON.stringify({
-          orderId:"",
-          isCourceMaterial: true,
-          isPrintingOrder: false,
-          totalPriceOfTheItem:0.0,
-          courseId:state.MaterialId,
-          docId:"00000000-0000-0000-0000-000000000000", //defulte for the matireals orders
-          printingShopId:state.printerId,
-          customerId:state.Id
-          })
-       }).then((response) => response.json())
-       .then((response: resulte) => {
-       setOrder({
-        orderId:response.orderId,
-        isCourceMaterial:true,
-        isPrintingOrder:false,
-        totalPriceOfTheItem:0.0,
-        courseId:state.MaterialId || "",
-        docId:"00000000-0000-0000-0000-000000000000", //defulte for the matireals orders
-        printingShopId:state.printerId || "",
-        customerId:state.Id || ""
-        });
-       })
-       .catch((error) => {
-        console.error(error);
-      });
-      } catch (error) {
-        console.log('حدث خطأ! ', error)
-      }
-
       //then call the API to create an Item 
 
       try {
@@ -82,7 +116,7 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
           'Content-Type': 'application/json'
         },
          body: JSON.stringify({
-          orderId:order.orderId,
+          orderId:state.orderId,
           isCourceMaterial: true,
           isPrintingOrder: false,
           totalPriceOfTheItem:state.courceMaterialPrice,
@@ -92,16 +126,31 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
           customerId:state.Id
           })
        }).then((response) => response.json())
-       .then((response) => {
-       setOrder({
-        orderId:response.data.orderId,
-        isCourceMaterial:true,
-        isPrintingOrder:false,
-        totalPriceOfTheItem:state.courceMaterialPrice || 0,
-        courseId:state.MaterialId || "",
-        docId:"00000000-0000-0000-0000-000000000000", //defulte for the matireals orders
-        printingShopId:state.printerId || "",
-        customerId:state.Id || ""
+       .then((response:resulte) => {
+        //update the state
+        setState({
+          ...state,
+         //order and basket items data
+        orderId :response.orderId,
+        orderSatus:" لم يتم تاكيد الطلب بعد",
+
+        allIems: [...(state.allIems ?? []), {
+          itemId: response.itemId,
+          itemName : state.courceMaterialTitle || "",
+
+         //info about the material 
+          MaterialId: state.MaterialId || "",
+          courceMaterialTitle: state.courceMaterialTitle ||  "",
+          courceMaterialPrice: response.itemPrice,
+  
+        //info about the printer
+          printerId: response.printingShopID,
+          printerName: state.printerName || "",
+  
+        //info about the order
+          orderId: response.orderId,
+          orderStatus:""} ],
+        orderTotal: (state.orderTotal || 0 )+ response.itemPrice
         });
        })
        .catch((error) => {
@@ -117,31 +166,50 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
 
     // delete doc Info from globale state and go back to doc list
     const GoToDocumentList = () => {
+      setModalVisible(!modalVisible);
       setState({
-        Token: state.Token,
-        Id: state.Id,
-        Email: state.Email,
-        UserName: state.UserName,
-        PhoneNumber: state.PhoneNumber,
-        ErrorMessage: state.ErrorMessage,
-        EmailConfeirmd:  state.EmailConfeirmd,
-        printerId: state.printerId,
-        printerName: state.printerName,
+        ...state,
         MaterialId:"",
         courceMaterialTitle:"",
         courceMaterialDescreption:"",
         courceMaterialPrice:0,
         isAvailable:false,
         subjectId:""
-      })
-      navigation.goBack();
+      });
+      navigation.push("DocumentListScreen");
     };
+        // delete doc Info from globale state and go to basket
+        const GoToBAsketList = () => {
+          setModalVisible(!modalVisible);
+          setState({
+            ...state,
+            printerId:"",
+            printerName:"",
+            MaterialId:"",
+            courceMaterialTitle:"",
+            courceMaterialDescreption:"",
+            courceMaterialPrice:0,
+            isAvailable:false,
+            subjectId:""
+          });
+          navigation.push("BasketScreen");
+        };
+
+        const CheckUser = () => {
+          if ( state.Email==null) {
+            return(<View>
+              <Text style = {{ color:"red"}}> لايمكنك الاضافة للسلة بدون تسجيل الدخول </Text>
+             </View>);           
+          } else {
+            return(<View style={styles.buttonStyle}> 
+              <Button title="الاضافة إلى السلة" color='black' onPress={() => AddToBasketHandeler()}/></View>); 
+          }  
+        }
 
   return (
 
     <SafeAreaView>
     <View>
-
       <View style = {{flexDirection:"row",backgroundColor:"#96C493", justifyContent:"space-between", paddingBottom: 10}} >
          <Pressable onPress={()=>GoToDocumentList() }>  
             <AntDesign name="leftcircleo" size={30} style={{ marginTop:15, marginLeft:5, color:"white" }}  />
@@ -156,12 +224,12 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
 
               <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}>
+              onPress={() => GoToDocumentList()}>
                  <Text style={styles.textStyle}>متابعة التسوق </Text>
               </Pressable>
               <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}>
+              onPress={() => GoToBAsketList()}>
                  <Text style={styles.textStyle}>الذهاب للسلة</Text>
               </Pressable>
              </View>
@@ -180,8 +248,7 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
             <Text style={{ margin:5}}>السعر:{state.courceMaterialPrice} ريال</Text>
 
           </View>
-          <View style={styles.buttonStyle}> 
-          <Button title="الاضافة إلى السلة" color='black' onPress={() => AddToBasketHandeler()}/></View>
+          {CheckUser()}
         </Card>
       </View>
     </View>
