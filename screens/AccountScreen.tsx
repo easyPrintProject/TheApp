@@ -5,19 +5,23 @@ import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-ha
 import { View } from '../components/Themed';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {AccountParamList} from '../types'
-
-//ثابت في كل الصفحات 
+import { useGlobalState, GlobalStateInterface } from '../components/StateProvider';
+import { Types, UserType } from '../components/Reduser';
 import { StackScreenProps } from '@react-navigation/stack';
 
 
 export default function AccountScreen({navigation}: StackScreenProps<AccountParamList> ) {
+// ميثود للذهاب الى صفحة التعديل 
+const   GoToEditAccountScreen  = () => {
 
+  navigation.navigate('EditAccountScreen');
+}
 
-  // ميثود للذهاب الى صفحة التعديل 
-  const  GoToEditScreen  = () => {
+  const {state ,setState } = useGlobalState();
+  // const { state, dispatch } = useContext(AppContext);
 
-    navigation.navigate('EditAccountScreen');
-  }
+  React.useEffect(() => {
+     }, [])
 
 
   return (
@@ -31,9 +35,9 @@ export default function AccountScreen({navigation}: StackScreenProps<AccountPara
 
       <View>
 
-      <Text style={styles.tt}>User Full Name</Text>
+      <Text style={styles.tt}>{state.UserName}</Text>
 
-      <Text style={styles.caption}>user Email</Text>
+      <Text style={styles.caption}>{state.Email}</Text>
       
       </View> 
      </View>
@@ -47,7 +51,7 @@ export default function AccountScreen({navigation}: StackScreenProps<AccountPara
 
         <View style={styles.row}>
           <Icon name="phone" color="#80CBC4 " size={20}/>
-          <Text style={styles.tt2}>Phone number</Text>
+          <Text style={styles.tt2}>{state.PhoneNumber}</Text>
         </View>
 
     </View>
@@ -66,7 +70,10 @@ export default function AccountScreen({navigation}: StackScreenProps<AccountPara
             <Text style={styles.menuItemText}>Your Favorites</Text>
           </TouchableOpacity>
      </View>
-
+     <TouchableOpacity
+     onPress={() => GoToEditAccountScreen()}>
+     <Text>عدل بياناتي</Text>
+     </TouchableOpacity>
          
           
 </SafeAreaView>

@@ -6,7 +6,6 @@ import { StackScreenProps } from '@react-navigation/stack';
 import {HomeParamList} from '../types';
 import { Text, View } from '../components/Themed';
  import { useGlobalState, GlobalStateInterface } from '../components/StateProvider';
-import { Types, UserType } from '../components/Reduser';
 export default function HomeScreen({navigation }: StackScreenProps<HomeParamList>) {
 
   // const myContext = useContext(NewContext);
@@ -14,21 +13,23 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
   // const { state, dispatch } = useContext(AppContext);
 
   useEffect(() => {
+
      }, [])
 
 
 
   const CheckUser = () => {
     if ( state.Email==null) {
-      return(<View  style={{flexDirection:"row", width:25,height:5, justifyContent:"space-between",alignItems:"flex-end",backgroundColor:"#4BBFF4",marginTop:10,marginRight:100}}><TouchableOpacity  onPress={() => GoToLogin()} style={{borderWidth:0.5,borderRadius:20,height:30,width:77,alignItems:"center",backgroundColor:"#8C8787"}}>
-         <Text style={{color:"#FFFFFF"}}>تسجيل</Text>
+      return(<View  style={{flexDirection:"row", width:"auto",height:5, backgroundColor:"#ED4BAC"}}>
+        <TouchableOpacity  onPress={() => GoToLogin()} style={{borderRadius:20,height:20,width:"auto",backgroundColor:"#8C8787", padding:2, marginLeft:2, marginRight:2}}>
+         <Text style={{color:"#FFFFFF"}}>تسجيل الدخول</Text>
         </TouchableOpacity>
-       <TouchableOpacity onPress={() => GoToSignUp()} style={{borderWidth:0.5,borderRadius:20,height:30,width:77,paddingHorizontal:"5%",justifyContent:"center",alignItems:"center",backgroundColor:"#8C8787"}}>
+       <TouchableOpacity onPress={() => GoToSignUp()} style={{borderRadius:20,height:20,width:"auto",backgroundColor:"#8C8787", padding:3, marginLeft:2, marginRight:2}}>
         <Text style={{color:"#FFFFFF"}}>حساب جديد</Text>
        </TouchableOpacity></View>);           
     } else {
-      return(<View  style={{flexDirection:"row", justifyContent:"space-between",alignItems:"flex-end",backgroundColor:"#ED4BAC"}}>
-       <TouchableOpacity  style={{borderWidth:0.5,borderRadius:20,height:30,width:"auto",paddingHorizontal:"5%",justifyContent:"center",alignItems:"center",backgroundColor:"#8C8787"}}>
+      return(<View  style={{flexDirection:"row",backgroundColor:"#ED4BAC", alignItems:"flex-end"  }}>
+       <TouchableOpacity  style={{borderRadius:20,height:20,width:"auto", alignItems:"flex-end"}}>
         <Text style={{color:"#FFFFFF"}}>{state.UserName} مرحبا </Text>
        </TouchableOpacity></View>); 
     }  
@@ -50,18 +51,18 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
                  </View>
                </View>
               <View style={styles.view}>
-               <TouchableOpacity style={{padding:6, width:500,height:120, justifyContent:"center",alignItems:"center",backgroundColor:"#4BBFF4",marginTop:90,paddingRight:100}}>
+               <TouchableOpacity style={{ width:"100%",height:100, justifyContent:"center",alignItems:"center",backgroundColor:"#4BBFF4",marginTop:90}}>
                 <Text style={{ marginHorizontal:20,fontWeight: "bold", alignSelf: "center", textTransform: "uppercase",color:"#FFFFFF",alignItems:"center",justifyContent:"center",fontSize:25}}>طلب طباعة</Text>
                </TouchableOpacity>
               </View>
               <View style={styles.view}>
-                <TouchableOpacity style={{padding:6, width:500,height:120, justifyContent:"center",alignItems:"center",backgroundColor:"#8C8787",marginTop:10,paddingRight:100}}>
+                <TouchableOpacity style={{ width:"100%",height:100, justifyContent:"center",alignItems:"center",backgroundColor:"#8C8787",marginTop:10,}}>
                  <Text style={{ marginHorizontal:20,fontWeight: "bold", alignSelf: "center", textTransform: "uppercase",color:"#FFFFFF",alignItems:"center",justifyContent:"center",fontSize:25}}>ملزماتي </Text>
                </TouchableOpacity>
              </View>
              <Text></Text>
              <View  style={styles.view}>
-              <TouchableOpacity style={{padding:6, width:500,height:120, justifyContent:"center",alignItems:"center",backgroundColor:"#F8E73D",marginTop:10,paddingRight:120}}>
+              <TouchableOpacity style={{ width:"100%",height:100, justifyContent:"center",alignItems:"center",backgroundColor:"#F8E73D",marginTop:10}}>
                <Text style={{ marginHorizontal:20,fontWeight: "bold", alignSelf: "center", textTransform: "uppercase",color:"#FFFFFF",alignItems:"center",justifyContent:"center",fontSize:25}}>تبرع </Text>
              </TouchableOpacity>
            </View>
@@ -73,24 +74,20 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
 const styles = StyleSheet.create({
 
   title: {
-    color:"black",
+    color:"white",
     fontSize: 15,
     fontWeight: 'bold',
-    alignItems:"flex-start",
-    marginRight:99
+    alignItems:"flex-end",
     
   },
   header:{
     flexDirection:"row",
     padding:6, 
     width:"100%",
-    height:"10%",
-     justifyContent:"center",
-     alignItems:"center",
+    height:"10%",  
+    alignItems:"center",
      backgroundColor:"#ED4BAC",
-     marginTop:"2%",
-     alignSelf:"auto"
-
+     justifyContent:"space-between"
   },
   contener:{
     flex:1,

@@ -28,13 +28,17 @@ export default function LoginScreen({navigation}: StackScreenProps<StartParamLis
       //empty the error message
       setErrorMassage("");
       setState({
-        Email:user.Email,
-        UserName:user.UserName,
-        PhoneNumber:user.PhoneNumber})
+                Token: user.Token,
+                Id: user.Id,
+                Email: user.Email,
+                UserName: user.UserName,
+                PhoneNumber: user.PhoneNumber,
+                ErrorMessage: user.errorMassage,
+                EmailConfeirmd:  user.EmailConf,
+               })
         goHome()
     }
 }, [user]);
-
 
 const goHome = ()=>{
     navigation.push("Home");
@@ -61,6 +65,7 @@ const Login = async () => {
             errorMassage:response.data.errorMessage,
             Id:response.data.id,
             Token:response.data.token,
+            
             });
    })
    .catch((error) => {
