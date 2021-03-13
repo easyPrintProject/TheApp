@@ -186,6 +186,7 @@ function OrderNavigator() {
         component={PaymentScreen}
         
       />
+      
 
     </OrderStack.Navigator>
   );
@@ -234,6 +235,10 @@ function PrintersListNavigator() {
       <PrintersListStack.Screen
         name='MaterialsDetailsScreen'
         component={MaterialsDetailsScreen}
+      />
+        <PrintersListStack.Screen
+        name="BasketScreen"
+        component={BasketNavigator}
       />
     </PrintersListStack.Navigator>
   );
