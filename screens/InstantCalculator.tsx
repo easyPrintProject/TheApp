@@ -300,7 +300,7 @@ data={data2}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'plum',
+    backgroundColor: '#5799E3',
   },
   header: {
     flex: 1,
@@ -360,9 +360,9 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#fffff',
+    borderColor: '#fff',
     alignItems: 'center',
-    backgroundColor: 'plum',
+    backgroundColor: '#5799E3',
   },
   unchecked: {
     width: 20,
