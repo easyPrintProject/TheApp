@@ -16,13 +16,7 @@ export default function PrinterListScreen({navigation}: StackScreenProps<Printer
     const {state ,setState } = useGlobalState();
    
     const GoToDocumentList = ( Printerid:string, Name:string) => {
-      setState({Token: state.Token,
-                Id: state.Id,
-                Email: state.Email,
-                UserName: state.UserName,
-                PhoneNumber: state.PhoneNumber,
-                ErrorMessage: state.ErrorMessage,
-                EmailConfeirmd:  state.EmailConfeirmd,
+      setState({...state,
                 printerId:  Printerid,
                 printerName: Name
               })
@@ -49,8 +43,6 @@ export default function PrinterListScreen({navigation}: StackScreenProps<Printer
       }]
     );
 
-
-    
     React.useEffect(() => {
       try {
         fetch('https://apieasyprint20210215153907.azurewebsites.net/api/printingshop', {
