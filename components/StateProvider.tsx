@@ -2,26 +2,7 @@
 
 import React, { createContext, useState, useContext, Dispatch, SetStateAction } from "react";
 
-//the item type
-export interface  item {
-  //info about the itemitself
-  itemId: string;
-  itemName : string;
 
-   //info about the material 
-  MaterialId: string;
-  courceMaterialTitle: string;
-  courceMaterialPrice: number;
-
-  //info about the printer
-  printerId: string;
-  printerName: string;
-
-  //info about the order
-  orderId: string;
-  orderStatus:string;
-
-}
 
 export interface GlobalStateInterface {
   //static user data 
@@ -46,10 +27,9 @@ export interface GlobalStateInterface {
   //order and basket items data
   orderId :string;
   orderSatus:string; 
-  allIems: item[];
   orderTotal: number;
+  numberOfItems : number;
 
-  
 }
 
 //creating the glbal State context
