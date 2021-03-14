@@ -300,7 +300,7 @@ data={data2}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#5799E3',
+    backgroundColor: '#4BBFF4',
   },
   header: {
     flex: 1,

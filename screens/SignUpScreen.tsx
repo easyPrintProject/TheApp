@@ -170,7 +170,7 @@ const goHome = ()=>{
         <View style={styles.button}>
             <Button 
         title=' انشاء حساب'
-        color='#01ab9d' 
+        color='#4BBFF4' 
           onPress={() => signUp()}
       />         
             </View>
@@ -186,7 +186,7 @@ const goHome = ()=>{
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    backgroundColor: '#009387'
+    backgroundColor: '#4BBFF4'
   },
   header: {
       flex: 1,
@@ -230,7 +230,7 @@ textAlign: 'right'
   },
   button: {
       alignItems: 'center',
-      borderColor: '#009387',
+      borderColor: '#4BBFF4',
       borderWidth: 1,
       marginTop: 25,
       borderRadius:17,
