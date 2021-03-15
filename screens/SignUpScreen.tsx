@@ -1,16 +1,12 @@
-
 import React from 'react'
 import { StyleSheet, View, TextInput, Text,  ScrollView, StatusBar, Button, KeyboardAvoidingView } from 'react-native';
 import {  StackScreenProps } from '@react-navigation/stack';
+import { StartParamList} from '../types';
 import * as Animatable from 'react-native-animatable';
 import { Feather } from '@expo/vector-icons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import  {  useState, useEffect } from 'react';
-import { StartParamList} from '../types';
 import { useGlobalState } from '../components/StateProvider';
-
-
-
 
 export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
   
@@ -22,13 +18,6 @@ export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
   const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
   const {state ,setState } = useGlobalState();
   const [errorMassage, setErrorMassage] = useState("");
-
-
-
-  
-    
-  
-  
 
   useEffect(() => {
         
@@ -50,11 +39,9 @@ export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
     }
 }, [user]);
 
-
 const goHome = ()=>{
   navigation.push("Home");
 }
-
 
   const signUp = async () => {
     try {
@@ -91,6 +78,7 @@ const goHome = ()=>{
     navigation.push("Home");
   }
     return (
+      
       <View style={styles.container}>
       <StatusBar backgroundColor='#009387' barStyle="light-content"/>
     <View style={styles.header}>
@@ -111,13 +99,14 @@ const goHome = ()=>{
             />
             <TextInput 
                 style={styles.textInput}
+                autoCapitalize="none"
+                textAlign= 'right'
                 onChangeText={(e) => setUserName(e.toString())}
-                
+
             />
             <Animatable.View
                 animation="bounceIn"
             >
-                
             </Animatable.View>
         </View>
 
@@ -131,12 +120,16 @@ const goHome = ()=>{
                 size={20}
             />
             <TextInput 
+                textAlign= 'right'
                 secureTextEntry={true}
                 style={styles.textInput}
                 onChangeText={(e) => setPassword(e.toString())}
+
             />     
+             
         </View>
-<Text style={[styles.text_footer, {
+        
+        <Text style={[styles.text_footer, {
             marginTop: 35
         }]}>الإيميل الإلكتروني</Text>
         <View style={styles.action}>
@@ -145,14 +138,16 @@ const goHome = ()=>{
                 color="#05375a"
                 size={20}
             />
-            <TextInput  
-              style={styles.textInput}
-              onChangeText={(e) => setEmail(e.toString())}
+            <TextInput 
+                textAlign= 'right'
+                style={styles.textInput}
+                autoCapitalize="none"
+                onChangeText={(e) => setEmail(e.toString())}
 
-              />     
-        </View>
-
-        <Text style={[styles.text_footer, {
+            />  
+        
+</View>
+<Text style={[styles.text_footer, {
             marginTop: 35
         }]}>رقم الجوال </Text>
         <View style={styles.action}>
@@ -162,17 +157,30 @@ const goHome = ()=>{
                 size={20}
             />
             <TextInput 
+                textAlign= 'right'
                 style={styles.textInput}
+                autoCapitalize="none"
                 onChangeText={(e) => setPhoneNumber(e.toString())}
-            />     
-        </View>
+
+            />  
+        
+</View>
+
+
+
+
+
        
         <View style={styles.button}>
             <Button 
-        title=' انشاء حساب' 
-        color='#4BBFF4' 
-          onPress={() => signUp()}
-      />         
+        title='انشاء حساب '
+        color='cornflowerblue' 
+              onPress={() => signUp()}
+      />
+
+            
+
+         
             </View>
             </ScrollView>
         </Animatable.View>
@@ -186,7 +194,7 @@ const goHome = ()=>{
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    backgroundColor: '#4BBFF4'
+    backgroundColor: 'cornflowerblue'
   },
   header: {
       flex: 1,
@@ -205,16 +213,12 @@ const styles = StyleSheet.create({
       color: '#fff',
       fontWeight: 'bold',
       fontSize: 30,
-      textAlign: 'right'
-
+      textAlign: 'center'
 },
   text_footer: {
       color: '#05375a',
       fontSize: 18,
-alignItems: 'flex-end',
-textAlign: 'right'
-
- },
+textAlign:'right' },
   action: {
       flexDirection: 'row',
       marginTop: 10,
@@ -226,14 +230,33 @@ textAlign: 'right'
       flex: 1,
       paddingLeft: 10,
       color: '#05375a',
-      textAlign: 'right'
   },
   button: {
       alignItems: 'center',
-      borderColor: '#4BBFF4',
+      borderColor: 'cornflowerblue',
       borderWidth: 1,
-      marginTop: 25,
+      marginTop: 15,
       borderRadius:17,
   },
- 
+  signIn: {
+      width: '100%',
+      height: 50,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 10
+
+  },
+  textSign: {
+      fontSize: 18,
+      fontWeight: 'bold'
+  },
+  textPrivate: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      marginTop: 20
+  },
+  color_textPrivate: {
+      color: 'grey'
+  }
 })
+

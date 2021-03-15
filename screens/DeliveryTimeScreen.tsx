@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Button, TouchableOpacity, Pressable } from 'react-native';
+import { Text, View, Button, TouchableOpacity, Pressable, StyleSheet } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { OrderParamList } from '../types';
 
@@ -31,11 +31,12 @@ class Option extends Component<any, any>  {
             style={{
               height: 30,
               margin: 3,
-              borderRadius: 5,
-              backgroundColor:
-                this.state.activeOption === option ? 'grey' : 'white',
+              alignContent: 'center',
+              alignItems: 'center',
+              borderRadius: 15,
+              backgroundColor: this.state.activeOption === option ? '#cccccc' : '#fff',
               borderWidth: 1,
-              borderColor: this.state.activeOption === option ? 'grey' : 'grey',
+              borderColor: this.state.activeOption === option ? '#3b5763' : '#3b5763',
             }}
             onPress={() => {
               this.props.onChange(option);
@@ -62,12 +63,11 @@ export default function DeliveryTimeScreen({ navigation }: StackScreenProps<Orde
     navigation.navigate("PaymentScreen");
   };
   return (
-    <View>
+    <View style={styles.container}>
+
       <View>
-        <Text
-          style={{ marginTop: 200, marginBottom: -10, textAlign: 'center' }}>
-          اختيار وقت التوصيل
-          </Text>
+        <Text style={styles.text_header}> وقت التوصيل </Text>
+
         <Option
           options={[
             '1-11 مساءاً',
@@ -81,7 +81,7 @@ export default function DeliveryTimeScreen({ navigation }: StackScreenProps<Orde
           }}
         />
       </View>
-      <Pressable  style= {{alignItems: 'center', marginTop: 150}} 
+      <Pressable style={{ alignItems: 'center', marginTop: 130 }}
         onPress={() => GoToPayment()}>
         <Text>المتابعة للدفع</Text>
       </Pressable>
@@ -89,3 +89,19 @@ export default function DeliveryTimeScreen({ navigation }: StackScreenProps<Orde
 
   );
 }
+
+const styles = StyleSheet.create({
+
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  text_header: {
+    color: '#05375a',
+    fontWeight: 'bold',
+    fontSize: 30,
+    textAlign: 'center',
+    paddingTop: 100,
+
+  }
+});

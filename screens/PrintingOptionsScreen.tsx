@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
-import { Text, View,StyleSheet, Pressable, TouchableOpacity, TextInput, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+
+import {
+    StyleSheet,
+    View,
+    TextInput,
+    Text,
+    ScrollView,
+    StatusBar,
+    Button,
+    KeyboardAvoidingView,
+    Pressable
+} from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
-import { OrderParamList } from '../types';
+import {  TouchableOpacity, SafeAreaView } from 'react-native';
+import { OrderParamList} from '../types';
 
 class Option extends Component<any, any>  {
   constructor(props: any) {
@@ -23,7 +35,9 @@ class Option extends Component<any, any>  {
           justifyContent: 'center',
           flexDirection: 'row',
           flexWrap: 'wrap',
-          marginTop: 50
+          marginTop: 20,
+          alignContent: 'center',
+          alignItems: 'center',
         }}
       >
         {this.props.options.map((option: React.ReactNode) => (
@@ -31,10 +45,11 @@ class Option extends Component<any, any>  {
             style={{
               height: 30,
               margin: 3,
-              borderRadius: 5,
-              backgroundColor: this.state.activeOption === option ? 'grey' : 'white',
+              borderRadius: 15,
+
+              backgroundColor: this.state.activeOption === option ? '#cccccc' : '#fff',
               borderWidth: 1,
-              borderColor: this.state.activeOption === option ? 'grey' : '#grey',
+              borderColor: this.state.activeOption === option ? '#3b5763' : '#3b5763',
             }}
 
             onPress={() => {
@@ -48,7 +63,10 @@ class Option extends Component<any, any>  {
                 textAlign: 'center',
                 width: 150,
                 height: 50,
-                color: 'black',
+                color: '#05375a',
+                alignContent: 'center',
+                alignItems: 'center',
+                justifyContent: 'center'
               }}
             >
 
@@ -61,77 +79,171 @@ class Option extends Component<any, any>  {
   }
 }
 
+
+
 export default function PrintingOptions({ navigation }: StackScreenProps<OrderParamList>,) {
   const GoToTimeDelivery = () => {
     navigation.navigate("DeliveryTimeScreen");
   };
-  return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
 
-    >
-      <ScrollView><View>
-        <View><Text style={{ paddingRight: 20, marginTop: 50, marginBottom: -10, textAlign: 'right' }}>حجم الورق</Text>
-          < Option
+    return (
+      
+        <View style={styles.container}>
+            <StatusBar backgroundColor="#009387" barStyle="dark-content" />
+            <KeyboardAvoidingView behavior="position">
+            <ScrollView>
+
+            <Text style={styles.text_header}>خصائص الطباعة </Text>
+
+                        <Text style={styles.text_footer}>حجم الورق:</Text>
+                        <View style={styles.action}>
+                        </View>
+
+                       < Option
             options={['A5', 'A4', 'A3', 'A2', 'A1', 'A0']}
             onChange={(option: any) => {
               console.log(option);
-            }} /></View>
+            }} />
 
-        <View><Text style={{ paddingRight: 20, marginTop: 20, marginBottom: -30, textAlign: 'right' }}> نوع الورق </Text>
-          < Option
+
+                        <Text
+                            style={[
+                                styles.text_footer,
+                                {
+                                    marginTop: 35,
+                                },
+                            ]}>
+                            نوع الورق:            </Text>
+                        <View style={styles.action}>
+                        </View>
+                       < Option
             options={['عادي', 'مقوى', 'لماع', 'معاد استخدامه']}
             onChange={(option: any) => {
               console.log(option);
-            }} /></View>
+            }} />
 
-        <View><Text style={{ paddingRight: 20, marginTop: 50, marginBottom: -30, textAlign: 'right' }}>لون الطباعة</Text>
-          < Option
+
+
+
+                        <Text
+                            style={[
+                                styles.text_footer,
+                                {
+                                    marginTop: 35,
+                                },
+                            ]}>
+                            لون الطباعة:            </Text>
+                        <View style={styles.action}>
+                        </View>
+                        < Option
             options={['أسود وأبيض', 'ملون']}
             onChange={(option: any) => {
               console.log(option);
-            }} /></View>
+            }} />
 
-        <View><Text style={{ paddingRight: 20, marginTop: 50, marginBottom: -30, textAlign: 'right' }}>نوع الطباعة</Text>
 
-          < Option
+                        <Text
+                            style={[
+                                styles.text_footer,
+                                {
+                                    marginTop: 35,
+                                },
+                            ]}>
+                            نوع الطباعة:
+            </Text>
+                        <View style={styles.action}>
+                        </View>
+                       < Option
             options={['وجه', 'وجهين']}
             onChange={(option: any) => {
               console.log(option);
-            }} /></View>
-        <View><Text style={{ paddingRight: 20, marginTop: 60, marginBottom: -30, textAlign: 'right' }}>تحديد الصفحات</Text>
+            }} />
+
+ <Text
+                            style={[
+                                styles.text_footer,
+                                {
+                                    marginTop: 35,
+                                },
+                            ]}>
+                           تحديد الصفحات:
+            </Text>
+                        <View style={styles.action}>
+                        </View>
+
           <View style={{
             flexDirection: 'row', justifyContent: 'center'
           }}>
-          <TextInput style={styles.textInput} />
+            <TextInput style={styles.textInput} />
 
-          <TextInput style={styles.textInput} />
+            <TextInput style={styles.textInput} />
           </View>
-        </View>
-      </View> 
-        <View><Pressable style={{ alignItems: 'center', marginTop: 20 }}
+          <View><Pressable style={{ alignItems: 'center', marginTop: -20 }}
           onPress={() => GoToTimeDelivery()}>
           <Text>تحديد وقت التوصيل</Text>
         </Pressable>
+        
         </View>
-      </ScrollView></KeyboardAvoidingView>
-
-  );
+                    </ScrollView>
+            </KeyboardAvoidingView>
+        </View>
+    );
 }
+
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  textInput: {
-    borderColor: "black",
+    container: {
+        flex: 1,
+        backgroundColor: 'white',
+    },
+    header: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        paddingHorizontal: 20,
+        paddingBottom: 50,
+    },
+    
+    text_header: {
+        color: '#05375a',
+        fontWeight: 'bold',
+        fontSize: 30,
+        textAlign: 'center',
+        paddingTop: 100,
+       
+    },
+    text_footer: {
+        color: '#05375a',
+        fontSize: 16,
+        fontWeight: 'bold',
+        alignItems: 'flex-end',
+        textAlign: 'right',
+    },
+    action: {
+        flexDirection: 'row',
+        marginTop: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#f2f2f2',
+        paddingBottom: 5,
+    },
+
+    
+    textInput: {
+    borderColor: "#05375a",
     borderBottomWidth: 1,
     marginBottom: 36,
-    height: 45, 
-    width: 45, 
+    height: 40,
+    width: 50,
     borderWidth: 0.5,
-    borderRadius: 5, 
-    margin: 3,  
-    marginTop: 30,
+    borderRadius: 5,
+    margin: 3,
+    marginTop: 20,
   },
+  
+  button: {
+    alignItems: 'center',
+    borderColor: '#4BBFF4',
+    borderWidth: 1,
+    marginTop: 15,
+    borderRadius:17,
+},
 });
