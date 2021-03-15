@@ -8,7 +8,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import  {  useState, useEffect } from 'react';
 import { useGlobalState } from '../components/StateProvider';
 
-
 export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
   
   // const { state, dispatch } = useContext(AppContext);
@@ -19,7 +18,6 @@ export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
   const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
   const {state ,setState } = useGlobalState();
   const [errorMassage, setErrorMassage] = useState("");
-
 
   useEffect(() => {
         
@@ -41,11 +39,9 @@ export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
     }
 }, [user]);
 
-
 const goHome = ()=>{
   navigation.push("Home");
 }
-
 
   const signUp = async () => {
     try {
@@ -174,12 +170,11 @@ const goHome = ()=>{
 
 
 
-
        
         <View style={styles.button}>
             <Button 
         title='انشاء حساب '
-        color='#4BBFF4' 
+        color='cornflowerblue' 
               onPress={() => signUp()}
       />
 
@@ -199,7 +194,7 @@ const goHome = ()=>{
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    backgroundColor: '#4BBFF4'
+    backgroundColor: 'cornflowerblue'
   },
   header: {
       flex: 1,
@@ -238,7 +233,7 @@ textAlign:'right' },
   },
   button: {
       alignItems: 'center',
-      borderColor: '#4BBFF4',
+      borderColor: 'cornflowerblue',
       borderWidth: 1,
       marginTop: 15,
       borderRadius:17,
@@ -264,3 +259,4 @@ textAlign:'right' },
       color: 'grey'
   }
 })
+
