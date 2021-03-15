@@ -4,7 +4,7 @@ import { Card } from 'react-native-elements';
 import { useState } from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
 import { PrintersListParamList} from '../types';
-import { useGlobalState, item } from '../components/StateProvider';
+import { useGlobalState } from '../components/StateProvider';
 import { AntDesign } from '@expo/vector-icons';
 
 
@@ -35,36 +35,11 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
         })
      }).then((response) => response.json())
      .then((response: resulte) => {
-     setOrder({
-      orderId:response.orderId,
-      isCourceMaterial:true,
-      isPrintingOrder:false,
-      totalPriceOfTheItem:0.0,
-      courseId:state.MaterialId || "",
-      docId:"00000000-0000-0000-0000-000000000000", //defulte for the matireals orders
-      printingShopId:state.printerId || "",
-      customerId:state.Id || ""
-      });
       setState({
         ...state,
         //order and basket items data
         orderId :response.orderId,
         orderSatus:"حقيبة التسوق فارغة",
-        allIems: [...(state.allIems ?? []), {
-          itemId: "",
-         itemName : "",
-       //info about the material 
-        MaterialId: "",
-        courceMaterialTitle: "",
-        courceMaterialPrice: 0,
-  
-        //info about the printer
-         printerId: "",
-        printerName: "",
-  
-        //info about the order
-          orderId: "",
-          orderStatus:""} ],
         orderTotal: 0
       });
      })
@@ -81,18 +56,6 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
 
     // for showing or hidding the popup
     const [modalVisible, setModalVisible] = useState(false);
-
-
-    
-    //object will be send and recived from the API
-    const [order, setOrder] = useState({orderId:"",
-     isCourceMaterial:false,
-      isPrintingOrder:false,
-        totalPriceOfTheItem:0.0,
-         courseId:"",
-          docId:"",
-           printingShopId:"",
-            customerId:""});
      
     // type for the order opject 
     type resulte = {
@@ -101,7 +64,6 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
       itemId: string,
       itemPrice:number,
       printingShopID: string
-   
      }
 
     // fuction that reate new oreder item, and set the model visible.
@@ -127,31 +89,12 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
           })
        }).then((response) => response.json())
        .then((response:resulte) => {
-        //update the state
         setState({
           ...state,
          //order and basket items data
-        orderId :response.orderId,
         orderSatus:" لم يتم تاكيد الطلب بعد",
-
-        allIems: [...(state.allIems ?? []), {
-          itemId: response.itemId,
-          itemName : state.courceMaterialTitle || "",
-
-         //info about the material 
-          MaterialId: state.MaterialId || "",
-          courceMaterialTitle: state.courceMaterialTitle ||  "",
-          courceMaterialPrice: response.itemPrice,
-  
-        //info about the printer
-          printerId: response.printingShopID,
-          printerName: state.printerName || "",
-  
-        //info about the order
-          orderId: response.orderId,
-          orderStatus:""} ],
         orderTotal: (state.orderTotal || 0 )+ response.itemPrice
-        });
+        })
        })
        .catch((error) => {
         console.error(error);
@@ -163,6 +106,7 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
       //set the model visible 
       setModalVisible(true);
     }
+
 
     // delete doc Info from globale state and go back to doc list
     const GoToDocumentList = () => {
@@ -178,13 +122,13 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
       });
       navigation.push("DocumentListScreen");
     };
+
+
         // delete doc Info from globale state and go to basket
         const GoToBAsketList = () => {
           setModalVisible(!modalVisible);
           setState({
             ...state,
-            printerId:"",
-            printerName:"",
             MaterialId:"",
             courceMaterialTitle:"",
             courceMaterialDescreption:"",
@@ -205,10 +149,9 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
               <Button title="الاضافة إلى السلة" color='black' onPress={() => AddToBasketHandeler()}/></View>); 
           }  
         }
-
   return (
 
-    <SafeAreaView>
+  <SafeAreaView>
     <View>
       <View style = {{flexDirection:"row",backgroundColor:"#96C493", justifyContent:"space-between", paddingBottom: 10}} >
          <Pressable onPress={()=>GoToDocumentList() }>  
@@ -217,42 +160,34 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
          <Text style={{ marginTop:15, marginRight:5, color:"white", fontSize:20 }}>{state.courceMaterialTitle}</Text>
 
       </View>
-       <Modal animationType="slide"  transparent={true}   visible={modalVisible} onRequestClose={() => {  Alert.alert("Modal has been closed."); setModalVisible(!modalVisible); }}>
+       <Modal animationType="slide"  transparent={true}   visible={modalVisible} onRequestClose={() => { setModalVisible(!modalVisible); }}>
               <View style={styles.centeredView}>
                 <View style={styles.modalView}>
-                <Text style={styles.modalText }>تمت اضافة المنتج بنجاح  {order.orderId} </Text>
-
-              <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => GoToDocumentList()}>
-                 <Text style={styles.textStyle}>متابعة التسوق </Text>
-              </Pressable>
-              <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => GoToBAsketList()}>
-                 <Text style={styles.textStyle}>الذهاب للسلة</Text>
-              </Pressable>
+                  <Text style={styles.modalText }>تمت اضافة المنتج بنجاح  {state.orderId} </Text>
+                   <Pressable style={[styles.button, styles.buttonClose]} onPress={() => GoToDocumentList()}>
+                      <Text style={styles.textStyle}>متابعة التسوق </Text>
+                   </Pressable>
+                   <Pressable style={[styles.button, styles.buttonClose]} onPress={() => GoToBAsketList()}>
+                      <Text style={styles.textStyle}>الذهاب للسلة</Text>
+                   </Pressable>
+               </View>
              </View>
-           </View>
-         </Modal>
-        <Image source={require('../assets/images/5.jpg')}style={{height:200, width:200 ,borderWidth:2,marginTop:"5%",marginHorizontal:90}}/>
+       </Modal>
+      <Image source={require('../assets/images/5.jpg')}style={{height:200, width:200 ,borderWidth:2,marginTop:"5%",marginHorizontal:90}}/>
       <View >
-
-      <Card>
-
-          <View style={(styles.text)}>
-          <Text style={{ margin:5}}>اسم الملزمة: {state.courceMaterialTitle}</Text>
-            <Text style={{ margin:5}}>عدد الصفحات:200</Text>
-            <Text style={{ margin:5}}>نوع الطباعة: ابيض و اسود</Text>
-            <Text style={{ margin:5}}>الوصف : {state.courceMaterialDescreption}</Text>
-            <Text style={{ margin:5}}>السعر:{state.courceMaterialPrice} ريال</Text>
-
-          </View>
-          {CheckUser()}
-        </Card>
-      </View>
-    </View>
-    </SafeAreaView>
+         <Card>
+            <View style={(styles.text)}>
+               <Text style={{ margin:5}}>اسم الملزمة: {state.courceMaterialTitle}</Text>
+               <Text style={{ margin:5}}>عدد الصفحات:200</Text>
+               <Text style={{ margin:5}}>نوع الطباعة: ابيض و اسود</Text>
+               <Text style={{ margin:5}}>الوصف : {state.courceMaterialDescreption}</Text>
+               <Text style={{ margin:5}}>السعر:{state.courceMaterialPrice} ريال</Text>
+            </View>
+            {CheckUser()}
+         </Card>
+       </View>
+     </View>
+  </SafeAreaView>
   )
   
   }
@@ -279,14 +214,10 @@ const styles = StyleSheet.create({
      text2:{
       fontSize: 15,
       color: "gray",
-   textAlign:"center",
-   marginHorizontal:20
-      
-    
-      
+      textAlign:"center",
+      marginHorizontal:20
     },
     modalView: {
-      
       margin: 20,
       backgroundColor: "white",
       borderRadius: 20,

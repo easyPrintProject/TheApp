@@ -14,6 +14,9 @@ type PrenterInfo  = {
 export default function DocumentListScreen({navigation}: StackScreenProps<PrintersListParamList>) {
   // if fatema did not fix the search delete this 
     const stateS ={searchBarFocused : false} 
+    
+    // our glopal state :)
+    const {state ,setState } = useGlobalState();
 
     // type for the doc loop 
     type cource = {
@@ -42,15 +45,7 @@ export default function DocumentListScreen({navigation}: StackScreenProps<Printe
     //fuction for the loop 
     const GoToMaterialsDetailes = (e:cource) => {
       setState({
-        Token: state.Token,
-        Id: state.Id,
-        Email: state.Email,
-        UserName: state.UserName,
-        PhoneNumber: state.PhoneNumber,
-        ErrorMessage: state.ErrorMessage,
-        EmailConfeirmd:  state.EmailConfeirmd,
-        printerId:  state.printerId,
-        printerName: state.printerName,
+        ...state,
         MaterialId:e.courceMaterialId,
         courceMaterialTitle:e.courceMaterialTitle,
         courceMaterialDescreption:e.courceMaterialDescreption,
@@ -61,19 +56,11 @@ export default function DocumentListScreen({navigation}: StackScreenProps<Printe
       navigation.navigate("MaterialsDetailsScreen");
     };
 
-    // our glopal state :)
-    const {state ,setState } = useGlobalState();
 
     //fuction that delete info from the glopal state and return back to the previos paje 
     const GoToPrintersList = () => {
       setState({
-        Token: state.Token,
-        Id: state.Id,
-        Email: state.Email,
-        UserName: state.UserName,
-        PhoneNumber: state.PhoneNumber,
-        ErrorMessage: state.ErrorMessage,
-        EmailConfeirmd:  state.EmailConfeirmd,
+        ...state,
         printerId: "",
         printerName: "",
         MaterialId:"",
