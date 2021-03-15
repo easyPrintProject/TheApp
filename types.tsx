@@ -67,6 +67,7 @@ export type AccountParamList = {
   UploadFiles:undefined;
   OrderScreen:undefined;
   EditAccountScreen:undefined;
+  CouponsScreen:undefined;
 };
 
 

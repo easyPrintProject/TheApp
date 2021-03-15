@@ -1,15 +1,12 @@
 import React from 'react'
-import { Button, StyleSheet, Text, View,Image } from 'react-native'
-import { Card } from 'react-native-elements';
+import { StyleSheet, Text, View } from 'react-native'
 
 export default function BasketScreen() {
     return (
         <View>
-               
+            <Text></Text>
         </View>
-    )}
-const styles = StyleSheet.create({
-   
-
+    )
 }
-)
+
+const styles = StyleSheet.create({})
