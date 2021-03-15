@@ -169,7 +169,7 @@ const goHome = ()=>{
        
         <View style={styles.button}>
             <Button 
-        title=' انشاء حساب'
+        title=' انشاء حساب' 
         color='#4BBFF4' 
           onPress={() => signUp()}
       />         
