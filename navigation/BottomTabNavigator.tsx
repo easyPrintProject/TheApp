@@ -8,8 +8,23 @@ import Home from '../screens/HomeScreen';
 import Account from '../screens/AccountScreen';
 import PrintersList from '../screens/PrinterListScreen';
 import Basket from '../screens/BasketScreen';
+import Login from "../screens/LoginScreen"
+import Signin from "../screens/SignUpScreen"
+import Printers from "../screens/PrinterListScreen"
+import Donation from "../screens/DonationScreen"
 import Order from '../screens/OrderScreen';
-import { BottomTabParamList, HomeParamList, BasketParamList, PrintersListParamList, OrderParamList, AccountParamList } from '../types';
+import PrintingOptions from '../screens/PrintingOptionsScreen';
+import DeliveryTimeScreen from '../screens/DeliveryTimeScreen';
+import PaymentScreen from '../screens/PaymentScreen'
+import InstantCalculator from "../screens/InstantCalculator"
+import MaterialsDetailsScreen from "../screens/MaterialsDetailsScreen"
+import DocumentListScreen from "../screens/DocumentListScreen"
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import CouponsScreen from '../screens/CouponsScreen';
+import { BottomTabParamList, HomeParamList, BasketParamList, PrintersListParamList, OrderParamList, AccountParamList , DocProp } from '../types';
+import { Title } from 'react-native-paper';
+import EditAccountScreen from '../screens/EditAccountScreen';
+
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -55,7 +70,7 @@ export default function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="person-outline" color={color} />,
         }}
       />
-      
+     
     </BottomTab.Navigator>
   );
 }
@@ -79,31 +94,66 @@ function HomeNavigator() {
       }
     }
     >
-      <HomeStack.Screen
-        name="HomeScreen"
-        component={Home}
-        options={{ }}
-      />
+        <HomeStack.Screen name="HomeScreen" component={Home} />
+        <HomeStack.Screen name="SigninScreen" component={Signin} />
+        <HomeStack.Screen name="LoginScreen" component={Login} />
+        <HomeStack.Screen name="OrderScreen" component={Order} />
+        <HomeStack.Screen name="DonationScreen" component={Donation} />
+        <HomeStack.Screen name="PrinterListScreen" component={Printers} />
     </HomeStack.Navigator>
   );
 }
 
-const AccountStack = createStackNavigator<AccountParamList>();
+const AccountDrawer = createDrawerNavigator<AccountParamList>();
 
 function AccountNavigator() {
   return (
-    <AccountStack.Navigator
+    <AccountDrawer.Navigator
+    drawerPosition="right"
+    overlayColor="transparent"
+    drawerContentOptions={{
+      // activeTintColor:"",
+      itemStyle:{marginVertical: 10,flex:1}
+    }}
+    drawerStyle={{
+      backgroundColor: '#c6cbef',
+      width: 240,
+      alignItems:"stretch"  
+    }}
     screenOptions={
       {
         headerShown: false
       }
     }>
-      <AccountStack.Screen
+      <AccountDrawer.Screen
         name="AccountScreen"
         component={Account}
-        
+        options={{ drawerLabel: '         حساب المستخدم         .   '  }}
       />
-    </AccountStack.Navigator>
+
+<AccountDrawer.Screen
+        name="EditAccountScreen"
+        component={EditAccountScreen}
+        options={{ drawerLabel: '         تعديل حساب المستخدم         .   '  }}
+      />
+
+      <AccountDrawer.Screen
+        name="InstantCalculator"
+        component={InstantCalculator}
+        options={{ drawerLabel:  '         الحاسبة الفورية            .   '  }}
+      />
+      <AccountDrawer.Screen
+        name="OrderScreen"
+        component={Order}
+        options={{ drawerLabel:  '           ملفاتي                    .   ' }}
+      />
+       <AccountDrawer.Screen
+        name='CouponsScreen'
+        component={CouponsScreen}
+        options={{ drawerLabel:  '           كوبوناتي                    .   ' }}
+      />
+  
+    </AccountDrawer.Navigator>
   );
 }
 
@@ -122,6 +172,28 @@ function OrderNavigator() {
         component={Order}
         
       />
+
+<OrderStack.Screen
+        name="PrintingOptionsScreen"
+        component={PrintingOptions}
+        
+      />
+
+
+<OrderStack.Screen
+        name="DeliveryTimeScreen"
+        component={DeliveryTimeScreen}
+        
+      />
+
+
+<OrderStack.Screen
+        name="PaymentScreen"
+        component={PaymentScreen}
+        
+      />
+      
+
     </OrderStack.Navigator>
   );
 }
@@ -151,15 +223,28 @@ const PrintersListStack = createStackNavigator<PrintersListParamList>();
 function PrintersListNavigator() {
   return (
     <PrintersListStack.Navigator
+ 
     screenOptions={
       {
         headerShown: false
+      
       }
     }>
       <PrintersListStack.Screen
         name="PrintersListScreen"
         component={PrintersList}
-        
+      />
+      <PrintersListStack.Screen
+        name="DocumentListScreen"
+        component={DocumentListScreen} 
+        />
+      <PrintersListStack.Screen
+        name='MaterialsDetailsScreen'
+        component={MaterialsDetailsScreen}
+      />
+        <PrintersListStack.Screen
+        name="BasketScreen"
+        component={BasketNavigator}
       />
     </PrintersListStack.Navigator>
   );

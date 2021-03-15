@@ -9,11 +9,11 @@ import { Text, View } from '../components/Themed';
 export default function DonationScreen() {
   return (
     <View style={styles.container}>
- <Image
+ {/* <Image
   style={styles.ImgePageDonation}
      
         source={require('../assets/images/PrinterIcon.jpg')}
-/>
+/> */}
 
 <View>
 
