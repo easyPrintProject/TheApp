@@ -17,7 +17,7 @@ import { useState, useEffect } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView, FlatList, TouchableOpacity } from 'react-native';
 
-const data = [
+var data = [
     {
         id: '1',
         name: 'A0',
@@ -49,7 +49,7 @@ const data = [
         price: '2',
     },
 ];
-const data2 = [
+var data2 = [
     {
         id: '7',
         name: 'عادي',
@@ -71,7 +71,7 @@ const data2 = [
         price: '1',
     },
 ];
-const data3 = [
+var data3 = [
     {
         id: '11',
         name: 'أبيض & أسود',
@@ -83,7 +83,7 @@ const data3 = [
         price: '2,5',
     },
 ];
-const data4 = [
+var data4 = [
     {
         id: '13',
         name: 'وجه',
