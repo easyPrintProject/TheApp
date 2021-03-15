@@ -145,7 +145,15 @@ const styles = StyleSheet.create({
     paddingBottom: 80,
   },
   buttonStyle: {
-    paddingTop: 50,
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize:16,
+    backgroundColor: "#5799E3",
+borderWidth:0.5,
+borderRadius:10,
+height:"5%",
+width:"50%",
+marginTop:"10%"
   },
 
 })

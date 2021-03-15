@@ -6,7 +6,6 @@ import { View } from '../components/Themed';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {AccountParamList} from '../types'
 import { useGlobalState, GlobalStateInterface } from '../components/StateProvider';
-import { Types, UserType } from '../components/Reduser';
 import { StackScreenProps } from '@react-navigation/stack';
 
 
