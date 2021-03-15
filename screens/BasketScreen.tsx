@@ -65,7 +65,7 @@ export default function BasketScreen() {
               console.error(error);
             });
             } catch (error) {
-              console.log('حدث خطأ! ', error)
+              console.log('حد! ', error)
             }  
           }
           

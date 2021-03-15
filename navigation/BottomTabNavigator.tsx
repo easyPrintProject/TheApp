@@ -20,7 +20,7 @@ import InstantCalculator from "../screens/InstantCalculator"
 import MaterialsDetailsScreen from "../screens/MaterialsDetailsScreen"
 import DocumentListScreen from "../screens/DocumentListScreen"
 import { createDrawerNavigator } from '@react-navigation/drawer';
-
+import CouponsScreen from '../screens/CouponsScreen';
 import { BottomTabParamList, HomeParamList, BasketParamList, PrintersListParamList, OrderParamList, AccountParamList , DocProp } from '../types';
 import { Title } from 'react-native-paper';
 import EditAccountScreen from '../screens/EditAccountScreen';
@@ -70,7 +70,7 @@ export default function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="person-outline" color={color} />,
         }}
       />
-      
+     
     </BottomTab.Navigator>
   );
 }
@@ -147,6 +147,12 @@ function AccountNavigator() {
         component={Order}
         options={{ drawerLabel:  '           ملفاتي                    .   ' }}
       />
+       <AccountDrawer.Screen
+        name='CouponsScreen'
+        component={CouponsScreen}
+        options={{ drawerLabel:  '           كوبوناتي                    .   ' }}
+      />
+  
     </AccountDrawer.Navigator>
   );
 }

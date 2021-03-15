@@ -94,10 +94,7 @@ export default function PrinterListScreen({navigation}: StackScreenProps<Printer
   );}
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+
   title: {
       marginTop:15,
     color:"#484E50",
