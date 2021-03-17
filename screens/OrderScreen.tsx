@@ -1,6 +1,6 @@
   
 import React from 'react';
-import { StyleSheet, Text, View,  Button, Pressable, } from 'react-native';
+import { StyleSheet, Text, View,  Button, Pressable,StatusBar } from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
 import { StackScreenProps } from '@react-navigation/stack';
 import { OrderParamList} from '../types';
@@ -20,15 +20,17 @@ export default function OrderScreen({navigation}: StackScreenProps<OrderParamLis
   }
 
   return (
-    
+   
+
     <View style={styles.container}>
+       <View><StatusBar backgroundColor='#009387' barStyle="dark-content"/>
+    </View>
       <View style={styles.buttonStyle}><Feather.Button name="upload" backgroundColor="cornflowerblue" onPress={DocPick}>
         حدد ملف </Feather.Button></View>
       <Pressable   style={{marginTop: 10,  }}
         onPress={() => GoToPrintOption()}>
         <Text>خيارات الطباعة</Text>
       </Pressable>
-
     </View>
 
   );
