@@ -217,6 +217,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         alignItems: 'flex-end',
         textAlign: 'right',
+        paddingRight: 20,
+        paddingTop: 20
     },
     action: {
         flexDirection: 'row',
