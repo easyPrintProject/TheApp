@@ -50,6 +50,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
                    {CheckUser()}
                  </View>
                </View>
+
               <View style={styles.view}>
                <TouchableOpacity style={{ width:"100%",height:100, justifyContent:"center",alignItems:"center",backgroundColor:"#4BBFF4",marginTop:90}}>
                 <Text style={{ marginHorizontal:20,fontWeight: "bold", alignSelf: "center", textTransform: "uppercase",color:"#FFFFFF",alignItems:"center",justifyContent:"center",fontSize:25}}>طلب طباعة</Text>
@@ -82,10 +83,10 @@ const styles = StyleSheet.create({
   },
   header:{
     flexDirection:"row",
-    padding:6, 
+    padding:"4%", 
     width:"100%",
-    height:"10%",  
-    alignItems:"center",
+    height:"13%",  
+  
      backgroundColor:"#ED4BAC",
      justifyContent:"space-between"
   },
@@ -94,6 +95,5 @@ const styles = StyleSheet.create({
     backgroundColor:"white"
   },
   view:{
-    flexDirection:"column"
   }
 });
