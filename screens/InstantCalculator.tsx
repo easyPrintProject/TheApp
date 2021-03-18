@@ -299,7 +299,7 @@ function InstantCalculator() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'cornflowerblue',
+        backgroundColor: '#49c3c6',
     },
     header: {
         flex: 1,
@@ -315,7 +315,7 @@ const styles = StyleSheet.create({
         paddingVertical: 30,
     },
     text_header: {
-        color: '#fff',
+        color: 'white',
         fontWeight: 'bold',
         fontSize: 30,
         textAlign: 'center',

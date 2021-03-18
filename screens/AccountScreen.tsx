@@ -26,7 +26,7 @@ const   GoToEditAccountScreen  = () => {
   return (
     <SafeAreaView>
     <View style={styles.container}>
-      <Text style={styles.title}>بيانات الحساب</Text>
+      <Text style={styles.title}>اعدادات الحساب</Text>
       </View>
 
       <View style={[styles.userInfoSection ,styles.cont ]}>
@@ -97,6 +97,8 @@ const styles = StyleSheet.create({
     marginTop: '10%',
     marginRight:'10%',
     fontSize: 20,
+    textAlign: 'center',
+    alignItems: 'center',
     fontWeight: 'bold',
   },
 
