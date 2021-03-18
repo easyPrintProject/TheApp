@@ -49,9 +49,9 @@ export default function AppStartScreen({ navigation }: StackScreenProps<StartPar
             <Text style={styles.textStyle}>   المتابعة كسائق    </Text>
           </Pressable>
           <Pressable
-            style={[styles.button, styles.buttonOpen]}
+            style={[styles.button2, styles.buttonOpen2]}
             onPress={() => GoToHome()} >
-            <Text style={styles.textStyle}>    المتابعة كزائر    </Text>
+            <Text style={styles.textStyle2}>    المتابعة كزائر    </Text>
           </Pressable>
         </View>
       </ScrollView>
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   button: {
     padding: 100,
     margin: 20,
-    borderRadius: 30,
+    borderRadius: 10,
     width: 150,
     flexDirection: 'column',
     paddingHorizontal: 20,
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   buttonOpen: {
     padding: 10,
     width: 250,
-    borderRadius: 20,
+    borderRadius: 10,
     backgroundColor: "#49c3c6",
   },
   buttonClose: {
@@ -155,6 +155,25 @@ const styles = StyleSheet.create({
     fontSize: 16,
 
   },
+  button2: {
+    //alignItems: 'center',
+    borderColor: '#49c3c6',
+    borderWidth: 1,
+    marginTop: 15,
+    borderRadius:17,
+},
+buttonOpen2: {
+  padding: 10,
+  width: 250,
+  borderRadius: 10,
+  //backgroundColor: "",
+},
+textStyle2: {
+  color: "#49c3c6",
+  fontWeight: "bold",
+  textAlign: "center",
+  fontSize: 16,
 
+},
 });
 
