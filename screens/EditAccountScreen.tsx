@@ -15,7 +15,7 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
   return (
     <SafeAreaView>
     <View style={styles.container}>
-      <Text style={styles.title}>تعدييييل بيانات الحساب</Text>
+      <Text style={styles.title}>تعديل بيانات الحساب</Text>
       </View>
 
       <View style={[styles.userInfoSection ,styles.cont ]}>

@@ -25,7 +25,7 @@ export default function OrderScreen({navigation}: StackScreenProps<OrderParamLis
     <View style={styles.container}>
        <View><StatusBar backgroundColor='#009387' barStyle="dark-content"/>
     </View>
-      <View style={styles.buttonStyle}><Feather.Button name="upload" backgroundColor="cornflowerblue" onPress={DocPick}>
+      <View style={styles.buttonStyle}><Feather.Button name="upload" backgroundColor="#49c3c6" onPress={DocPick}>
         حدد ملف </Feather.Button></View>
       <Pressable   style={{marginTop: 10,  }}
         onPress={() => GoToPrintOption()}>
@@ -46,10 +46,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonStyle: {
-    backgroundColor: 'cornflowerblue',
+    backgroundColor: '#49c3c6',
     borderWidth: 1,
     borderRadius: 25,
-    borderColor: 'cornflowerblue',
+    borderColor: '#49c3c6',
     width: 200,
     justifyContent: "center",
     alignItems: 'center',
