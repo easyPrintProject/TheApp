@@ -235,7 +235,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
               </View>
             </TouchableOpacity>
 
-
+{/* ll */}
 
 
 
