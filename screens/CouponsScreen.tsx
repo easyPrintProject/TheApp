@@ -11,6 +11,8 @@ export default function CouponsScreen( {navigation}: StackScreenProps<AccountPar
 
         navigation.navigate("AccountScreen");
       }
+
+      
     return (
             <SafeAreaView style={{    backgroundColor: '#FFFFFF',flex:1}}>
       
