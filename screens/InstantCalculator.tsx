@@ -18,6 +18,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView, FlatList, TouchableOpacity } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { AccountParamList } from '../types';
+import { DrawerActions } from '@react-navigation/native';
+import { red } from '@material-ui/core/colors';
+
 const data = [
     {
         id: '1',
@@ -97,11 +100,11 @@ var data4 = [
     },
 ];
 
-function InstantCalculator( {navigation}: StackScreenProps<AccountParamList> ) {
-    const  GoToAccount = () => {
+function InstantCalculator({ navigation }: StackScreenProps<AccountParamList>) {
+    const GoToAccount = () => {
         navigation.navigate("AccountScreen");
     }
-    const  GoToMenu = () => {
+    const GoToMenu = () => {
         navigation.navigate("AccountScreen");
     }
 
@@ -113,15 +116,15 @@ function InstantCalculator( {navigation}: StackScreenProps<AccountParamList> ) {
     return (
         // سوي نفيقشن المنيو
         <View style={styles.container}>
-                <View style={styles.icon}>
-        <Ionicons  name="chevron-back" size={24} color="white" onPress={() => GoToAccount()}/>
-        </View>
-        <View style={styles.icon2}>
-        <Ionicons  name="menu-outline" size={25} color="white" onPress={() => GoToMenu()}/> 
-        </View> 
-            <StatusBar backgroundColor="#009387" barStyle="light-content" /> 
+            <View style={styles.icon}>
+                <Ionicons name="chevron-back" size={24} color="white" onPress={() => GoToAccount()} />
+            </View>
+            <View style={styles.icon2}>
+                <Ionicons name="menu-outline" size={24} color= 'white'  onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
+
+            <StatusBar backgroundColor="#009387" barStyle="light-content" />
             <View style={styles.header}>
-                <Text style={styles.text_header}> حاسبة الأسعار </Text>
+                <Text style={styles.text_header}>حاسبة الأسعارs</Text>
             </View>
             <KeyboardAvoidingView behavior="position">
                 <Animatable.View animation="fadeInUpBig" style={styles.footer}>
@@ -397,17 +400,17 @@ const styles = StyleSheet.create({
         color: '#05375a',
 
     },
-    icon:{
-        marginRight:"90%",
+    icon: {
+        marginRight: "90%",
         paddingLeft: 25,
-        marginTop:60,
+        marginTop: 60,
     },
-    icon2:{
-        marginLeft:"90%",
+    icon2: {
+        marginLeft: "90%",
         paddingRight: 25,
-        marginTop:-20,
-    }
-  
+        marginTop: -24,
+  }
+
 });
 
 export default InstantCalculator;
