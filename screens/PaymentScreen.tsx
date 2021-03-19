@@ -76,8 +76,29 @@ export default function PaymentScreen({ navigation }: StackScreenProps<OrderPara
             onPress={() => {
               setMakePayment(true);
             }}>
-            <Text style={{ color: '#FFF', fontSize: 16 }}> الدفع بالبطاقة الائتمانية</Text>
+            <Text style={{ color: '#FFF', fontSize: 20 }}> Pay Pal</Text>
           </TouchableOpacity>
+          
+
+
+          <TouchableOpacity
+            style={{
+              height: 60,
+              width: 300,
+              backgroundColor: '#FF5733',//
+              borderRadius: 30,
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: 10,
+            }}
+            onPress={() => {
+              setMakePayment(true);
+            }}>
+            <Text style={{ color: '#FFF', fontSize: 20 }}> الدفع عن الاستلام</Text>
+          </TouchableOpacity>
+
+
+
 
           <TouchableOpacity
             style={{
@@ -96,22 +117,7 @@ export default function PaymentScreen({ navigation }: StackScreenProps<OrderPara
             <Text style={{ color: '#FFF', fontSize: 20 }}>Apple Pay</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={{
-              height: 60,
-              width: 300,
-              backgroundColor: '#FF5733',
-              borderRadius: 30,
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginBottom: 10,
-
-            }}
-            onPress={() => {
-              setMakePayment(true);
-            }}>
-            <Text style={{ color: '#FFF', fontSize: 20 }}>Google Pay</Text>
-          </TouchableOpacity>
+         
         </View></ScrollView>
 
       );
@@ -140,6 +146,11 @@ export default function PaymentScreen({ navigation }: StackScreenProps<OrderPara
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: 200 },
+  container: { 
+    flex: 1,
+    backgroundColor: 'white',
+    paddingTop: 200,
+  
+  },
   
 });

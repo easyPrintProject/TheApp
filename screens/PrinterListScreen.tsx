@@ -99,5 +99,6 @@ const styles = StyleSheet.create({
       marginTop:15,
     color:"#484E50",
     fontSize: 20,
+    paddingTop: 5,
     fontWeight: 'bold',}
 });

@@ -19,6 +19,7 @@ export default function screens() {
         <stack.Screen name="AppStart" component={AppStart} />
         <stack.Screen name="Home" component={BottomTabNavigator} />
         <stack.Screen name="Signup" component={SignUp} />
+        <stack.Screen name="Login" component={Login} />
         <stack.Screen name="DriverLogin" component={DriverLogin} />
       </stack.Navigator>
   );

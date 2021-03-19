@@ -1,12 +1,12 @@
-import * as React from 'react';
-import  {  useState, useEffect } from 'react';
-import { StyleSheet, TextInput, Button, StatusBar, KeyboardAvoidingView, ScrollView } from 'react-native';
-import { Text, View } from '../components/Themed';
-import { useGlobalState } from '../components/StateProvider';
-import { StackScreenProps } from '@react-navigation/stack';
+import React from 'react'
+import { StyleSheet, View, TextInput, Text,  ScrollView, StatusBar, Button, KeyboardAvoidingView } from 'react-native';
+import {  StackScreenProps } from '@react-navigation/stack';
 import { StartParamList} from '../types';
 import * as Animatable from 'react-native-animatable';
-import { Feather, FontAwesome } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import  {  useState, useEffect } from 'react';
+import { useGlobalState } from '../components/StateProvider';
 
 
 export default function LoginScreen({navigation}: StackScreenProps<StartParamList>) {
@@ -78,44 +78,36 @@ const Login = async () => {
 }
 
   return (
-    <View style={styles.container}>
-    <StatusBar backgroundColor='#009387' barStyle="light-content"/>
-  <View style={styles.header}>
-      <Text style={styles.text_header}> تسجيل الدخول</Text>
-  </View>
-  <KeyboardAvoidingView behavior="position">
-  <Animatable.View 
-      animation="fadeInUpBig"
-      style={styles.footer}
-  >
-      <ScrollView>
-              <Text style={styles.text_footer} >اسم المستخدم</Text>
+      <View style={styles.container}>
+      <StatusBar backgroundColor='#009387' barStyle="light-content"/>
+    <View style={styles.header}>
+        <Text style={styles.text_header}> تسجيل الدخول</Text>
+    </View>
+    <KeyboardAvoidingView behavior="position">
+    <Animatable.View 
+        animation="fadeInUpBig"
+        style={styles.footer}
+    >
+        <ScrollView>
+        <Text style={styles.text_footer}>اسم المستخدم</Text>
         <View style={styles.action}>
             <FontAwesome 
                 name="user-o"
                 color="#05375a"
                 size={20}
-                
             />
- 
-    <TextInput 
-                placeholder="Your Username"
+            <TextInput 
                 style={styles.textInput}
                 autoCapitalize="none"
-                onChangeText={(e) => setEmail(e.toString())}/>
-
-            
+            />
             <Animatable.View
                 animation="bounceIn"
             >
-                <Feather 
-                    name="check-circle"
-                    color="green"
-                    size={20}
-                />
+               
             </Animatable.View>
-    </View>
-      <Text style={[styles.text_footer, {
+        </View>
+
+        <Text style={[styles.text_footer, {
             marginTop: 35
         }]}>كلمة المرور</Text>
         <View style={styles.action}>
@@ -124,32 +116,37 @@ const Login = async () => {
                 color="#05375a"
                 size={20}
             />
-      <TextInput
-       placeholder="Your Password"
-       secureTextEntry={true}
-       style={styles.textInput}
-       autoCapitalize="none"
-        onChangeText={(e) => setPassword(e.toString())}/>
-</View>
-  
-  <View style={styles.button}>
+            <TextInput 
+                secureTextEntry={true}
+                style={styles.textInput}
+                autoCapitalize="none"
+            />
+    
+                   
+        </View>
+
+        
+       
+        <View style={styles.button}>
             <Button 
         title='تسجيل الدخول'
         color='#01ab9d' 
-        onPress={() => Login()}
+              onPress={() => goHome()}
       />
-      <Text style={{color:"red"}}>{user.errorMassage}</Text>
-     </View>
-     
 
-       </ScrollView>      
+            
 
+         
+            </View>
+            </ScrollView>
         </Animatable.View>
         </KeyboardAvoidingView>
-        </View>
+      </View>
     );
 };
   
+     
+ 
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
@@ -172,10 +169,12 @@ const styles = StyleSheet.create({
       color: '#fff',
       fontWeight: 'bold',
       fontSize: 30,
+      textAlign: 'center',
 },
   text_footer: {
       color: '#05375a',
       fontSize: 18,
+      textAlign: 'right',
 alignItems: 'flex-end'
  },
   action: {
@@ -189,6 +188,7 @@ alignItems: 'flex-end'
       flex: 1,
       paddingLeft: 10,
       color: '#05375a',
+      textAlign: 'right', 
   },
   button: {
       alignItems: 'center',

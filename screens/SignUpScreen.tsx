@@ -174,7 +174,7 @@ const goHome = ()=>{
         <View style={styles.button}>
             <Button 
         title='انشاء حساب '
-        color='cornflowerblue' 
+        color='#009387' 
               onPress={() => signUp()}
       />
 
@@ -194,7 +194,7 @@ const goHome = ()=>{
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    backgroundColor: 'cornflowerblue'
+    backgroundColor: '#009387'
   },
   header: {
       flex: 1,
@@ -233,7 +233,7 @@ textAlign:'right' },
   },
   button: {
       alignItems: 'center',
-      borderColor: 'cornflowerblue',
+      borderColor: '#009387',
       borderWidth: 1,
       marginTop: 15,
       borderRadius:17,

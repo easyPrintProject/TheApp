@@ -94,18 +94,13 @@ const Login = async () => {
                 size={20}
             />
             <TextInput 
-                placeholder="Your Username"
                 style={styles.textInput}
                 autoCapitalize="none"
             />
             <Animatable.View
                 animation="bounceIn"
             >
-                <Feather 
-                    name="check-circle"
-                    color="green"
-                    size={20}
-                />
+
             </Animatable.View>
         </View>
 
@@ -119,7 +114,6 @@ const Login = async () => {
                 size={20}
             />
             <TextInput 
-                placeholder="Your Password"
                 secureTextEntry={true}
                 style={styles.textInput}
                 autoCapitalize="none"
@@ -172,10 +166,12 @@ const styles = StyleSheet.create({
       color: '#fff',
       fontWeight: 'bold',
       fontSize: 30,
+      textAlign: 'center',
 },
   text_footer: {
       color: '#05375a',
       fontSize: 18,
+      textAlign: 'right',
 alignItems: 'flex-end'
  },
   action: {
@@ -189,6 +185,7 @@ alignItems: 'flex-end'
       flex: 1,
       paddingLeft: 10,
       color: '#05375a',
+      textAlign: 'right', 
   },
   button: {
       alignItems: 'center',
