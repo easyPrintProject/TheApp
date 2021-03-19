@@ -224,7 +224,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
                <Text
                     style={{
                       fontFamily: "RobotoRegular",
-                      fontSize: 20,
+                      fontSize: 21,
                       color: "black",
                     }}
                   >
