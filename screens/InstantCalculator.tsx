@@ -124,7 +124,7 @@ function InstantCalculator({ navigation }: StackScreenProps<AccountParamList>) {
 
             <StatusBar backgroundColor="#009387" barStyle="light-content" />
             <View style={styles.header}>
-                <Text style={styles.text_header}> حاسبة الأسعار </Text>
+                <Text style={styles.text_header}>حاسبة الأسعار</Text>
             </View>
             <KeyboardAvoidingView behavior="position">
                 <Animatable.View animation="fadeInUpBig" style={styles.footer}>
