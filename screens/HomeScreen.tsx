@@ -48,11 +48,11 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
     }  
   }
   const GoOrderScreen = () => {
-    navigation.push("OrderScreen");
+    navigation.push('OrderScreen');
   }; 
   
   const GoPrinterListScreen = () => {
-    navigation.push("PrinterListScreen");
+    navigation.push('PrinterListScreen');
   };
   
   const GoDonation = () => {
@@ -60,10 +60,10 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
   };
   
   const GoToLogin = () => {
-    navigation.navigate('LoginScreen');
+    navigation.push('LoginScreen');
   };
   const GoToSignUp = () => {
-    navigation.navigate('SigninScreen');
+    navigation.push('SigninScreen');
   };
   
   return (
@@ -104,8 +104,9 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
               paddingVertical: 10,
              marginLeft:"30%",
               lineHeight: 22,
-              fontFamily: "RobotoRegular",
+              fontFamily:'blod',
               color: "#5facdb",
+            
             }}
           >
          
@@ -145,7 +146,9 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
          
             style={{ marginLeft:1,marginRight:100, marginTop: 100 }}
           >
-            <TouchableOpacity        onPress={() => (GoOrderScreen)}
+            <View>
+            <TouchableOpacity  onPress={() => GoOrderScreen()}>
+            <View      
               style={{
                 backgroundColor: "#FEFEFE",
                 height: 330,
@@ -183,8 +186,8 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
                   </Text>
                 </View>
         
-              </View>
-            </TouchableOpacity>
+              </View></View>
+            </TouchableOpacity></View>
 
 
 
@@ -202,7 +205,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
                 borderRadius: 15,
                 padding: 1,
               }}
-              onPress={() => (GoPrinterListScreen)}
+              onPress={() => GoPrinterListScreen()}
             >
               <Image
                 source={require("../assets/images/document.jpg")}
@@ -254,7 +257,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
                 borderRadius: 15,
                 padding: 1,
               }}
-              onPress={() => (GoDonation)}  
+              onPress={() => GoDonation()}  
             >
               <Image
                 source={require("../assets/images/donation.jpg")}
