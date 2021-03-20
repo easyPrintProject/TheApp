@@ -104,9 +104,7 @@ function InstantCalculator({ navigation }: StackScreenProps<AccountParamList>) {
     const GoToAccount = () => {
         navigation.navigate("AccountScreen");
     }
-    const GoToMenu = () => {
-        navigation.navigate("AccountScreen");
-    }
+
 
     const [state, setState] = useState({ price: 0, checked: [] });
     const { price, checked } = state;
@@ -124,7 +122,7 @@ function InstantCalculator({ navigation }: StackScreenProps<AccountParamList>) {
 
             <StatusBar backgroundColor="#009387" barStyle="light-content" />
             <View style={styles.header}>
-                <Text style={styles.text_header}>حاسبة الأسعارs</Text>
+                <Text style={styles.text_header}>حاسبة الأسعار</Text>
             </View>
             <KeyboardAvoidingView behavior="position">
                 <Animatable.View animation="fadeInUpBig" style={styles.footer}>
