@@ -110,7 +110,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
             }}
           >
          
-           اصبحت الطباعة سهلة معنا
+           اصبحت الطباعة سهلة مع تطبيقنا
           </Text>
 
           <View
@@ -238,7 +238,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
               </View>
             </TouchableOpacity>
 
-{/* lll;;;;; */}
+
 
 
 
