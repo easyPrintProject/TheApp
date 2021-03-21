@@ -1,12 +1,14 @@
 
 import React, { useState } from "react";
-import { Alert, Modal, StatusBar,StyleSheet, Text, Pressable, View, TextInput, ImageBackground, ScrollView, SafeAreaView } from "react-native";
+import { Alert, Modal,StyleSheet, Text, Pressable, View, TextInput, ImageBackground, ScrollView, SafeAreaView } from "react-native";
 import { StackScreenProps } from '@react-navigation/stack';
 import { StartParamList } from '../types';
 import { FontAwesome } from "@expo/vector-icons";
-
+import { StatusBar } from "expo-status-bar";
+import { Font } from "expo";
 
 export default function AppStartScreen({ navigation }: StackScreenProps<StartParamList>) {
+ 
 
   const GoToHome = () => {
     navigation.navigate("Home");
@@ -22,15 +24,17 @@ export default function AppStartScreen({ navigation }: StackScreenProps<StartPar
   };
 
   const [modalVisible, setModalVisible] = useState(false);
+  
   return (
     
     <View >
       <ScrollView style={{ backgroundColor: "white", height: 900}}> 
         <View style={styles.centeredView}>
-          <ImageBackground source={require('../assets/images/test.png')} 
-          style={{ height: 350, width: "100%", marginTop: 20, marginBottom: -90 }} resizeMode="contain" />
+        <View><StatusBar style="dark" /></View>
+          <ImageBackground source={require('../assets/images/logo.jpeg')} 
+          style={{ height: 350, width: 250, marginTop: 30, marginBottom: -70, alignItems: 'center' }} resizeMode="contain" />
           <Text style={styles.text1}>مرحباً بك في منصة ايزي برنت</Text>
-          <Text style={styles.text2}>منصة ايزي برنت للطباعة الإلكترونية لجميع أوراقك بأفضل جودة وتوصیل سریع لمكانك وین ماكنت</Text>
+          <Text style={styles.text2}>منصة ايزي برنت للطباعة الإلكترونية لجميع أوراقك بأفضل جودة وتوصيل سريع لمكانك وين ماكنت</Text>
            
           <Pressable
             style={[styles.button, styles.buttonOpen]}
@@ -143,6 +147,7 @@ const styles = StyleSheet.create({
     width: 250,
     borderRadius: 10,
     backgroundColor: "#49c3c6",
+
   },
   buttonClose: {
     backgroundColor: "#5799E3",
@@ -153,7 +158,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     fontSize: 16,
-
   },
   button2: {
     //alignItems: 'center',
@@ -173,6 +177,7 @@ textStyle2: {
   fontWeight: "bold",
   textAlign: "center",
   fontSize: 16,
+
 
 },
 });

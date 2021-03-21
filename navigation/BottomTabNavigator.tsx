@@ -131,7 +131,7 @@ function AccountNavigator() {
       <AccountDrawer.Screen
         name="AccountScreen"
         component={Account}
-        options={{ drawerLabel: ' الملف الشخصي '  }}
+        options={{ drawerLabel: ' الحساب الشخصي '  }}
       />
 
 <AccountDrawer.Screen

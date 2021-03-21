@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Button, TouchableOpacity, Pressable, StyleSheet } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { OrderParamList } from '../types';
+import { StatusBar } from 'expo-status-bar';
 
 
 class Option extends Component<any, any>  {
@@ -64,6 +65,7 @@ export default function DeliveryTimeScreen({ navigation }: StackScreenProps<Orde
   };
   return (
     <View style={styles.container}>
+    <View><StatusBar style="dark" /></View>
 
       <View>
         <Text style={styles.text_header}> وقت التوصيل </Text>
