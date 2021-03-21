@@ -1,9 +1,10 @@
 import React from 'react'
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native'
-import { AntDesign } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons'; 
 
 import { StackScreenProps } from '@react-navigation/stack';
 import { AccountParamList } from '../types';
+import { DrawerActions } from '@react-navigation/native';
 
 
 export default function CouponsScreen( {navigation}: StackScreenProps<AccountParamList> ) {
@@ -25,9 +26,11 @@ export default function CouponsScreen( {navigation}: StackScreenProps<AccountPar
     borderBottomColor: '#FFF',
 }}>
     <View style={styles.icon}>
-    <AntDesign name="leftcircleo" size={24} color="black" onPress={() => GoToAccount()}/>
-
-    </View>
+                <Ionicons name="chevron-back" size={24} color="black" onPress={() => GoToAccount()} />
+            </View>
+            <View style={styles.icon2}>
+                <Ionicons name="menu-outline" size={24} color= 'black' 
+  onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
             <Text style={styles.title}>كوبوناتي  </Text>
            
            
@@ -83,6 +86,13 @@ export default function CouponsScreen( {navigation}: StackScreenProps<AccountPar
       icon:{
           marginRight:"90%",
           marginTop:"5%"
+      },
+      icon2: {
+        marginLeft: "90%",
+        paddingRight: 25,
+        marginTop: -25,
+       // backgroundColor:'#49c3c6'
+      
       }
     
     });

@@ -10,6 +10,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { DrawerActions } from '@react-navigation/native';
 import { Button } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 export default function AccountScreen({navigation}: StackScreenProps<AccountParamList> ) {
 // ميثود للذهاب الى صفحة التعديل 
@@ -17,6 +18,8 @@ const   GoToEditAccountScreen  = () => {
 
   navigation.navigate('EditAccountScreen');
 }
+
+
 
   const {state ,setState } = useGlobalState();
   // const { state, dispatch } = useContext(AppContext);
@@ -28,10 +31,11 @@ const   GoToEditAccountScreen  = () => {
   return (
     <SafeAreaView>
     <View style={styles.container}>
+    <View><StatusBar style="dark" backgroundColor="#49c3c6"/></View>
     <View style={styles.icon2}>
                 <Ionicons name="menu-outline" size={24} color= 'white' 
   onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
-      <Text style={styles.title}>اعدادات الحساب</Text>
+      <Text style={styles.title}> الحساب الشخصي</Text>
       </View>
 
       <View style={[styles.userInfoSection ,styles.cont ]}>
@@ -97,11 +101,11 @@ const styles = StyleSheet.create({
 
   title: {
   
-    marginTop: -10,
+    marginTop: -16,
     marginRight:'33%',
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'white'
+    color: 'white',
   },
 
   // button: {
