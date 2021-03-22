@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
@@ -39,35 +39,35 @@ export default function BottomTabNavigator() {
         name="Home"
         component={HomeNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="home-outline" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
       />
        <BottomTab.Screen
         name="Basket"
         component={BasketNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="basket-outline" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="shopping-cart" color={color} />,
         }}
       />
        <BottomTab.Screen
         name="Order"
         component={OrderNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="add-outline" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="plus" color={color} />,
         }}
       />
       <BottomTab.Screen
         name="PrintersList"
         component={PrintersListNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="list-outline" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
         }}
       />
       <BottomTab.Screen
         name="Account"
         component={AccountNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="person-outline" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
         }}
       />
      
@@ -77,8 +77,8 @@ export default function BottomTabNavigator() {
 
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
-function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+function TabBarIcon(props: { name: React.ComponentProps<typeof Feather>['name']; color: string }) {
+  return <Feather size={25} style={{ marginBottom: -3 }} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -112,13 +112,16 @@ function AccountNavigator() {
     drawerPosition="right"
     overlayColor="transparent"
     drawerContentOptions={{
-      // activeTintColor:"",
+      activeTintColor:"#49c3c6",
+      labelStyle: {textAlign: 'right'},
       itemStyle:{marginVertical: 10,flex:1}
     }}
     drawerStyle={{
-      backgroundColor: '#c6cbef',
-      width: 240,
-      alignItems:"stretch"  
+      backgroundColor: 'white',
+      width: 290,
+      marginTop: 44,
+      alignItems:'stretch',
+      
     }}
     screenOptions={
       {
@@ -128,29 +131,29 @@ function AccountNavigator() {
       <AccountDrawer.Screen
         name="AccountScreen"
         component={Account}
-        options={{ drawerLabel: '         حساب المستخدم         .   '  }}
+        options={{ drawerLabel: ' الحساب الشخصي '  }}
       />
 
 <AccountDrawer.Screen
         name="EditAccountScreen"
         component={EditAccountScreen}
-        options={{ drawerLabel: '         تعديل حساب المستخدم         .   '  }}
+        options={{ drawerLabel: ' تعديل الملف الشخصي '  }}
       />
 
       <AccountDrawer.Screen
         name="InstantCalculator"
         component={InstantCalculator}
-        options={{ drawerLabel:  '         الحاسبة الفورية            .   '  }}
+        options={{ drawerLabel:  'حاسبة الأسعار '  }}
       />
       <AccountDrawer.Screen
         name="OrderScreen"
         component={Order}
-        options={{ drawerLabel:  '           ملفاتي                    .   ' }}
+        options={{ drawerLabel:  'ملفاتي' }}
       />
        <AccountDrawer.Screen
         name='CouponsScreen'
         component={CouponsScreen}
-        options={{ drawerLabel:  '           كوبوناتي                    .   ' }}
+        options={{ drawerLabel:  'كوبوناتي' }}
       />
   
     </AccountDrawer.Navigator>

@@ -1,13 +1,15 @@
 
 import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View ,TextInput, ImageBackground, ScrollView} from "react-native";
+import { Alert, Modal,StyleSheet, Text, Pressable, View, TextInput, ImageBackground, ScrollView, SafeAreaView } from "react-native";
 import { StackScreenProps } from '@react-navigation/stack';
-import { StartParamList} from '../types';
+import { StartParamList } from '../types';
 import { FontAwesome } from "@expo/vector-icons";
+import { StatusBar } from "expo-status-bar";
+import { Font } from "expo";
 
+export default function AppStartScreen({ navigation }: StackScreenProps<StartParamList>) {
+ 
 
-export default function AppStartScreen  ({navigation }: StackScreenProps<StartParamList> )  {
-  
   const GoToHome = () => {
     navigation.navigate("Home");
   };
@@ -17,73 +19,45 @@ export default function AppStartScreen  ({navigation }: StackScreenProps<StartPa
   const GoToDriverLogin = () => {
     navigation.navigate("DriverLogin");
   };
-  
-  const [modalVisible, setModalVisible] = useState(false);
-  return (
-    <View >
-      <ScrollView >
-        <View style={styles.centeredView}>
-           <ImageBackground source={require('../assets/images/logo.png')} style={{ height:350,width:"100%" }}resizeMode="contain" />
-           <Text style={styles.text1}>مرحباً بك في منصة الطباعة</Text>
-           <Text style={styles.text2}>منصة ايزي برنت حلول الطباعة الالكترونية لجميع اوراقك بأفضل جودة وتوصیل سریع لمكانك وین ماكنت</Text>
-           <Modal animationType="slide"  transparent={true}   visible={modalVisible} onRequestClose={() => {  Alert.alert("Modal has been closed."); setModalVisible(!modalVisible); }}>
-              <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                <Text style={styles.modalText}>تسجيل الدخول</Text>
-                 <View>
-                 <Text style={styles.text_footer}>اسم المستخدم</Text>
-        <View style={styles.action}>
-         
-            <TextInput 
-                placeholder="Your Username"
-                style={styles.textInput}
-                autoCapitalize="none"
-            />
-         
-        </View>
+  const GoToLogin = () => {
+    navigation.navigate("Login");
+  };
 
-        <Text style={[styles.text_footer, {
-            marginTop: 35
-        }]}>كلمة المرور</Text>
-     
-            <TextInput 
-                placeholder="Your Password"
-                secureTextEntry={true}
-                style={styles.textInput}
-                autoCapitalize="none"
-            />
+  const [modalVisible, setModalVisible] = useState(false);
+  
+  return (
     
-                   
+    <View >
+      <ScrollView style={{ backgroundColor: "white", height: 900}}> 
+        <View style={styles.centeredView}>
+        <View><StatusBar style="dark" /></View>
+          <ImageBackground source={require('../assets/images/logo.jpeg')} 
+          style={{ height: 350, width: 250, marginTop: 30, marginBottom: -70, alignItems: 'center' }} resizeMode="contain" />
+          <Text style={styles.text1}>مرحباً بك في منصة ايزي برنت</Text>
+          <Text style={styles.text2}>منصة ايزي برنت للطباعة الإلكترونية لجميع أوراقك بأفضل جودة وتوصيل سريع لمكانك وين ماكنت</Text>
+           
+          <Pressable
+            style={[styles.button, styles.buttonOpen]}
+            onPress={() => GoToLogin()}>
+            <Text style={styles.textStyle}>  تسجيل الدخول  </Text>
+          </Pressable>
+          <Pressable
+            style={[styles.button, styles.buttonOpen]}
+            onPress={() => GoToSignUp()}>
+            <Text style={styles.textStyle}>انشاء حساب جديد</Text>
+          </Pressable>
+          
+          <Pressable
+            style={[styles.button, styles.buttonOpen]}
+            onPress={() => GoToDriverLogin()} >
+            <Text style={styles.textStyle}>   المتابعة كسائق    </Text>
+          </Pressable>
+          <Pressable
+            style={[styles.button2, styles.buttonOpen2]}
+            onPress={() => GoToHome()} >
+            <Text style={styles.textStyle2}>    المتابعة كزائر    </Text>
+          </Pressable>
         </View>
-              <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}>
-                 <Text style={styles.textStyle}>تسجيل الدخول </Text>
-              </Pressable>
-             </View>
-           </View>
-         </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}>
-        <Text style={styles.textStyle}>  تسجيل الدخول  </Text>
-      </Pressable>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => GoToSignUp()}>
-        <Text style={styles.textStyle}>انشاء حساب جديد</Text>
-      </Pressable>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => GoToHome()} >
-        <Text style={styles.textStyle}>    المتابعة كزائر    </Text>
-      </Pressable>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => GoToDriverLogin()} >
-        <Text style={styles.textStyle}>   المتابعة كسائق    </Text>
-      </Pressable>
-      </View>
       </ScrollView>
     </View>
   );
@@ -94,7 +68,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal:10,
+    paddingHorizontal: 10,
     backgroundColor: "white",
   },
   action: {
@@ -103,46 +77,48 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#f2f2f2',
     paddingBottom: 5
-},
+  },
   textInput: {
- paddingHorizontal:10,
-  height:50,
-   width:200, 
-   borderColor:'gray',
-    borderWidth:0.5,
-     marginBottom: "1%",
-     backgroundColor:'#e8e8e8',
-     borderRadius:8,
-     margin:"5%",
-     marginHorizontal:"10%",
-     paddingLeft:"5%",
+    paddingHorizontal: 10,
+    height: 50,
+    width: 200,
+    borderColor: 'gray',
+    borderWidth: 0.5,
+    marginBottom: "1%",
+    backgroundColor: '#e8e8e8',
+    borderRadius: 8,
+    margin: "5%",
+    marginHorizontal: "10%",
+    paddingLeft: "5%",
 
-},
-text_footer: {
-  color: '#05375a',
-  fontSize: 18,
-alignItems: 'flex-start',
-marginHorizontal:70,
-margin:"1%"
-},
-  text1:{
+  },
+  text_footer: {
+    color: '#05375a',
+    fontSize: 18,
+    alignItems: 'flex-start',
+    marginHorizontal: 70,
+    margin: "1%"
+  },
+  text1: {
     fontSize: 30,
     color: "#151617",
     fontWeight: "bold",
     alignSelf: "center",
-    textTransform: "uppercase"
-  }, 
-   text2:{
+    textTransform: "uppercase",
+    marginTop: 40,
+  },
+  text2: {
     fontSize: 15,
     color: "gray",
- textAlign:"center",
- marginHorizontal:20
-    
-  
-    
+    textAlign: "center",
+    marginHorizontal: 20,
+    marginTop: 2,
+
+
+
   },
   modalView: {
-    
+
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
@@ -158,41 +134,51 @@ margin:"1%"
     elevation: 5
   },
   button: {
-    padding: 20,
-    margin:20,
-    borderRadius: 30,
-   width:150,  
-   flexDirection: 'column',
-   paddingHorizontal:20,
-   
-
+    padding: 100,
+    margin: 20,
+    borderRadius: 10,
+    width: 150,
+    flexDirection: 'column',
+    paddingHorizontal: 20,
 
   },
   buttonOpen: {
-   padding:10,
-   width:200,
-   borderRadius:8,
-  backgroundColor: "#4BBFF4",
-  
-    
-   
+    padding: 10,
+    width: 250,
+    borderRadius: 10,
+    backgroundColor: "#49c3c6",
+
   },
   buttonClose: {
     backgroundColor: "#5799E3",
-    
+
   },
   textStyle: {
     color: "white",
     fontWeight: "bold",
     textAlign: "center",
-    fontSize:16,
-    
+    fontSize: 16,
   },
-  modalText: {
-    marginBottom: "10%",
-    textAlign: "center",
-    fontSize:18,
-    fontWeight: 'bold',
-  }
+  button2: {
+    //alignItems: 'center',
+    borderColor: '#49c3c6',
+    borderWidth: 1,
+    marginTop: 15,
+    borderRadius:17,
+},
+buttonOpen2: {
+  padding: 10,
+  width: 250,
+  borderRadius: 10,
+  //backgroundColor: "",
+},
+textStyle2: {
+  color: "#49c3c6",
+  fontWeight: "bold",
+  textAlign: "center",
+  fontSize: 16,
+
+
+},
 });
 

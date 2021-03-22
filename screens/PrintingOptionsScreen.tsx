@@ -6,7 +6,6 @@ import {
     TextInput,
     Text,
     ScrollView,
-    StatusBar,
     Button,
     KeyboardAvoidingView,
     Pressable
@@ -14,6 +13,7 @@ import {
 import { StackScreenProps } from '@react-navigation/stack';
 import {  TouchableOpacity, SafeAreaView } from 'react-native';
 import { OrderParamList} from '../types';
+import { StatusBar } from 'expo-status-bar';
 
 class Option extends Component<any, any>  {
   constructor(props: any) {
@@ -89,7 +89,8 @@ export default function PrintingOptions({ navigation }: StackScreenProps<OrderPa
     return (
       
         <View style={styles.container}>
-            <StatusBar backgroundColor="#009387" barStyle="dark-content" />
+
+    <View><StatusBar style="dark"/></View>
             <KeyboardAvoidingView behavior="position">
             <ScrollView>
 
@@ -217,6 +218,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         alignItems: 'flex-end',
         textAlign: 'right',
+        paddingRight: 20,
+        paddingTop: 20
     },
     action: {
         flexDirection: 'row',

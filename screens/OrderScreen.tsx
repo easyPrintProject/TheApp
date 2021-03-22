@@ -5,6 +5,7 @@ import * as DocumentPicker from 'expo-document-picker';
 import { StackScreenProps } from '@react-navigation/stack';
 import { OrderParamList} from '../types';
 import { Feather } from '@expo/vector-icons';
+import { StatusBar } from 'expo-status-bar';
 
 
 export default function OrderScreen({navigation}: StackScreenProps<OrderParamList>,) {
@@ -20,15 +21,16 @@ export default function OrderScreen({navigation}: StackScreenProps<OrderParamLis
   }
 
   return (
-    
+   
+
     <View style={styles.container}>
-      <View style={styles.buttonStyle}><Feather.Button name="upload" backgroundColor="cornflowerblue" onPress={DocPick}>
+    <View><StatusBar style="dark" /></View>
+      <View style={styles.buttonStyle}><Feather.Button name="upload" backgroundColor="#49c3c6" onPress={DocPick}>
         حدد ملف </Feather.Button></View>
       <Pressable   style={{marginTop: 10,  }}
         onPress={() => GoToPrintOption()}>
         <Text>خيارات الطباعة</Text>
       </Pressable>
-
     </View>
 
   );
@@ -44,10 +46,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonStyle: {
-    backgroundColor: 'cornflowerblue',
+    backgroundColor: '#49c3c6',
     borderWidth: 1,
     borderRadius: 25,
-    borderColor: 'cornflowerblue',
+    borderColor: '#49c3c6',
     width: 200,
     justifyContent: "center",
     alignItems: 'center',

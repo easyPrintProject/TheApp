@@ -9,15 +9,19 @@ import {
     Button,
     KeyboardAvoidingView,
 } from 'react-native';
-import { StackScreenProps } from '@react-navigation/stack';
 import * as Animatable from 'react-native-animatable';
 import { Feather } from '@expo/vector-icons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useState, useEffect } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView, FlatList, TouchableOpacity } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
+import { AccountParamList } from '../types';
+import { DrawerActions } from '@react-navigation/native';
+import { red } from '@material-ui/core/colors';
 
-var data = [
+const data = [
     {
         id: '1',
         name: 'A0',
@@ -96,17 +100,29 @@ var data4 = [
     },
 ];
 
-function InstantCalculator() {
+function InstantCalculator({ navigation }: StackScreenProps<AccountParamList>) {
+    const GoToAccount = () => {
+        navigation.navigate("AccountScreen");
+    }
+
+
     const [state, setState] = useState({ price: 0, checked: [] });
     const { price, checked } = state;
     console.log(state);
     //   <ScrollView>
 
     return (
+        // سوي نفيقشن المنيو
         <View style={styles.container}>
+            <View style={styles.icon}>
+                <Ionicons name="chevron-back" size={24} color="white" onPress={() => GoToAccount()} />
+            </View>
+            <View style={styles.icon2}>
+                <Ionicons name="menu-outline" size={24} color= 'white'  onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
+
             <StatusBar backgroundColor="#009387" barStyle="light-content" />
             <View style={styles.header}>
-                <Text style={styles.text_header}> حاسبة الأسعار </Text>
+                <Text style={styles.text_header}>حاسبة الأسعار</Text>
             </View>
             <KeyboardAvoidingView behavior="position">
                 <Animatable.View animation="fadeInUpBig" style={styles.footer}>
@@ -299,7 +315,7 @@ function InstantCalculator() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'cornflowerblue',
+        backgroundColor: '#49c3c6',
     },
     header: {
         flex: 1,
@@ -315,10 +331,11 @@ const styles = StyleSheet.create({
         paddingVertical: 30,
     },
     text_header: {
-        color: '#fff',
+        color: 'white',
         fontWeight: 'bold',
-        fontSize: 30,
+        fontSize: 25,
         textAlign: 'center',
+        marginBottom: -10
     },
     text_footer: {
         color: '#05375a',
@@ -361,7 +378,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#fff',
         alignItems: 'center',
-        backgroundColor: '#5799E3',
+        backgroundColor: '#49c3c6',
     },
     unchecked: {
         width: 20,
@@ -381,6 +398,17 @@ const styles = StyleSheet.create({
         color: '#05375a',
 
     },
+    icon: {
+        marginRight: "90%",
+        paddingLeft: 25,
+        marginTop: 60,
+    },
+    icon2: {
+        marginLeft: "90%",
+        paddingRight: 25,
+        marginTop: -24,
+  }
+
 });
 
 export default InstantCalculator;

@@ -123,7 +123,7 @@ export default function BasketScreen() {
 
     return (
         
-     <SafeAreaView style={{backgroundColor:" #E3E3E3", borderWidth:20, borderColor:"white", flex:1, flexDirection:"column",justifyContent:"center",alignContent:"center"}}>
+     <SafeAreaView style={{backgroundColor:" #E3E3E3", borderWidth:20, marginTop: 50, borderColor:"white", flex:1, flexDirection:"column",justifyContent:"center",alignContent:"center"}}>
             <ScrollView contentContainerStyle={{flex:1, backgroundColor:"#E3E3E3", alignItems:"stretch", justifyContent:"flex-start",width:"100%"}} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRef} />}>
              {CheckBasket()}
              <View style ={{borderTopColor:"gray",borderTopWidth:3, width:"100%"}}>

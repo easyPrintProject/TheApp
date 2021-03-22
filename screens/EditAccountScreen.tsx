@@ -5,17 +5,28 @@ import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-ha
 import { View } from '../components/Themed';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {AccountParamList} from '../types'
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { DrawerActions } from '@react-navigation/native';
 //ثابت في كل الصفحات 
 import { StackScreenProps } from '@react-navigation/stack';
 
 
 export default function EditAccountScreen( {navigation}: StackScreenProps<AccountParamList> ) {
-
+  const GoToAccount = () => {
+    navigation.navigate("AccountScreen");
+}
   return (
+    
     <SafeAreaView>
+      <View style= {styles.pageStyle}></View>
     <View style={styles.container}>
-      <Text style={styles.title}>تعدييييل بيانات الحساب</Text>
+    <View style={styles.icon}>
+                <Ionicons name="chevron-back" size={24} color="white" onPress={() => GoToAccount()} />
+            </View>
+    <View style={styles.icon2}>
+                <Ionicons name="menu-outline" size={24} color= 'white' 
+  onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
+      <Text style={styles.title}>تعديل بيانات الحساب</Text>
       </View>
 
       <View style={[styles.userInfoSection ,styles.cont ]}>
@@ -23,9 +34,9 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
 
       <View>
 
-      <Text style={styles.tt}>User Full Name</Text>
+      <Text style={styles.tt}>User Name</Text>
 
-      <Text style={styles.caption}>user Email</Text>
+      <Text style={styles.caption}>Email</Text>
       
       </View> 
      </View>
@@ -34,12 +45,12 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
         <View style={styles.row}>
           <Icon name="map-marker-radius" color="#80CBC4 " size={20}/>
 
-          <Text style={styles.tt2} >SA</Text>
+          <TextInput style={styles.tt2} placeholder='اسم المدينة'/>
     </View>
 
         <View style={styles.row}>
           <Icon name="phone" color="#80CBC4 " size={20}/>
-          <Text style={styles.tt2}>Phone number</Text>
+          <TextInput style={styles.tt2} placeholder='رقم الجوال' /> 
         </View>
 
     </View>
@@ -70,20 +81,27 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height:'20%',
+    height:'22%',
     alignItems: 'flex-end',
     justifyContent: 'center',
-    backgroundColor:'#EF9A9A',
+    backgroundColor:'#49c3c6',
     //opacity: 0.5
     
   },
 
+  pageStyle:{
+backgroundColor: 'white'
+
+  },
+
   title: {
   
-    marginTop: '10%',
-    marginRight:'10%',
+    marginTop: -10,
+    marginRight:'27%',
     fontSize: 20,
     fontWeight: 'bold',
+    color: 'white'
+
   },
 
   // button: {
@@ -189,6 +207,21 @@ const styles = StyleSheet.create({
     marginRight: '5%',
     fontSize:14,
     
-  }
+  },
+
+icon: {
+  marginRight: "90%",
+  paddingLeft: 25,
+  marginTop: 20,
+  backgroundColor:'#49c3c6'
+
+},
+icon2: {
+  marginLeft: "90%",
+  paddingRight: 25,
+  marginTop: -25,
+  backgroundColor:'#49c3c6'
+
+}
    
 });
