@@ -59,7 +59,10 @@ export type HomeParamList = {
   SigninScreen:undefined;
   LoginScreen:undefined;
 };
+export type AccountScreenParamList ={
+  UpdateAdress:undefined;
 
+}
 //رنا هنا
 export type AccountParamList = {
   AccountScreen: undefined;
@@ -68,6 +71,8 @@ export type AccountParamList = {
   OrderScreen:undefined;
   EditAccountScreen:undefined;
   CouponsScreen:undefined;
+  Address:undefined;
+  UpdateAdress:undefined;
 };
 
 
