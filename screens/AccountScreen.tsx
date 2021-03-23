@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, SafeAreaView, Image, Text ,Alert, Modal, Pressable, ImageBackground} from 'react-native';
+import { StyleSheet, SafeAreaView, Image, Text ,Alert, Modal, Pressable, ImageBackground, } from 'react-native';
 import FontAwesome from '@expo/vector-icons/build/FontAwesome';
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { View } from '../components/Themed';
@@ -7,7 +7,10 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {AccountParamList} from '../types'
 import { useGlobalState, GlobalStateInterface } from '../components/StateProvider';
 import { StackScreenProps } from '@react-navigation/stack';
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { DrawerActions } from '@react-navigation/native';
+import { Button } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 export default function AccountScreen({navigation}: StackScreenProps<AccountParamList> ) {
 // ميثود للذهاب الى صفحة التعديل 
@@ -15,6 +18,8 @@ const   GoToEditAccountScreen  = () => {
 
   navigation.navigate('EditAccountScreen');
 }
+
+
 
   const {state ,setState } = useGlobalState();
   // const { state, dispatch } = useContext(AppContext);
@@ -26,7 +31,11 @@ const   GoToEditAccountScreen  = () => {
   return (
     <SafeAreaView>
     <View style={styles.container}>
-      <Text style={styles.title}>اعدادات الحساب</Text>
+    <View><StatusBar style="dark" backgroundColor="#49c3c6"/></View>
+    <View style={styles.icon2}>
+                <Ionicons name="menu-outline" size={24} color= 'white' 
+  onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
+      <Text style={styles.title}> الحساب الشخصي</Text>
       </View>
 
       <View style={[styles.userInfoSection ,styles.cont ]}>
@@ -69,10 +78,8 @@ const   GoToEditAccountScreen  = () => {
             <Text style={styles.menuItemText}>Your Favorites</Text>
           </TouchableOpacity>
      </View>
-     <TouchableOpacity
-     onPress={() => GoToEditAccountScreen()}>
-     <Text>عدل بياناتي</Text>
-     </TouchableOpacity>
+<View style={styles.button}><Button title=' تعديل البيانات' onPress={() => GoToEditAccountScreen()} color= 'white' /></View>
+    
          
           
 </SafeAreaView>
@@ -87,19 +94,18 @@ const styles = StyleSheet.create({
     height:'20%',
     alignItems: 'flex-end',
     justifyContent: 'center',
-    backgroundColor:'#EF9A9A',
+    backgroundColor:'#49c3c6',
     //opacity: 0.5
     
   },
 
   title: {
   
-    marginTop: '10%',
-    marginRight:'10%',
+    marginTop: -16,
+    marginRight:'33%',
     fontSize: 20,
-    textAlign: 'center',
-    alignItems: 'center',
     fontWeight: 'bold',
+    color: 'white',
   },
 
   // button: {
@@ -113,10 +119,10 @@ const styles = StyleSheet.create({
   userInfoSection: {
     
     alignItems: 'flex-end',
-    
     paddingHorizontal: '5%',
     marginBottom: '3%',
     padding:'1%',
+    
     
   },
   
@@ -205,6 +211,24 @@ const styles = StyleSheet.create({
     marginRight: '5%',
     fontSize:14,
     
-  }
+  },
+  icon2: {
+    marginLeft: "90%",
+    paddingRight: 25,
+    marginTop: 24,
+    backgroundColor:'#49c3c6',
+    
+},
+button: {
+  alignItems: 'center',
+  alignContent: 'center',
+  textAlign: 'center',
+  borderColor: '#49c3c6',
+  borderWidth: 1,
+  marginTop: 15,
+  borderRadius:30,
+  width: 150,
+  backgroundColor: '#49c3c6'
+},
    
 });

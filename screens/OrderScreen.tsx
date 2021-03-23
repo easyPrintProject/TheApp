@@ -1,10 +1,11 @@
   
 import React from 'react';
-import { StyleSheet, Text, View,  Button, Pressable,StatusBar } from 'react-native';
+import { StyleSheet, Text, View,  Button, Pressable, } from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
 import { StackScreenProps } from '@react-navigation/stack';
 import { OrderParamList} from '../types';
 import { Feather } from '@expo/vector-icons';
+import { StatusBar } from 'expo-status-bar';
 
 
 export default function OrderScreen({navigation}: StackScreenProps<OrderParamList>,) {
@@ -23,8 +24,7 @@ export default function OrderScreen({navigation}: StackScreenProps<OrderParamLis
    
 
     <View style={styles.container}>
-       <View><StatusBar backgroundColor='#009387' barStyle="dark-content"/>
-    </View>
+    <View><StatusBar style="dark" /></View>
       <View style={styles.buttonStyle}><Feather.Button name="upload" backgroundColor="#49c3c6" onPress={DocPick}>
         حدد ملف </Feather.Button></View>
       <Pressable   style={{marginTop: 10,  }}

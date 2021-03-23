@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-nati
 import axios from 'axios';
 import { StackScreenProps } from '@react-navigation/stack';
 import { OrderParamList} from '../types';
+import { StatusBar } from 'expo-status-bar';
 
 
 
@@ -48,6 +49,8 @@ export default function PaymentScreen({ navigation }: StackScreenProps<OrderPara
     if (!makePayment) {
       return (
         <ScrollView>
+              <View><StatusBar style="dark"/></View>
+
         <View
           style={{
             display: 'flex',
