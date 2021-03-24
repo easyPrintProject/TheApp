@@ -24,7 +24,8 @@ import CouponsScreen from '../screens/CouponsScreen';
 import { BottomTabParamList, HomeParamList, BasketParamList, PrintersListParamList, OrderParamList, AccountParamList , DocProp } from '../types';
 import { Title } from 'react-native-paper';
 import EditAccountScreen from '../screens/EditAccountScreen';
-
+import Addresso from '../screens/Address';
+import UpdateAdress from '../screens/UpdateAdress'
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -155,6 +156,12 @@ function AccountNavigator() {
         component={CouponsScreen}
         options={{ drawerLabel:  'كوبوناتي' }}
       />
+     <AccountDrawer.Screen
+        name='Address'
+        component={Addresso}
+        options={{ drawerLabel:  'سجل العناوين' }}
+      />
+      
   
     </AccountDrawer.Navigator>
   );
