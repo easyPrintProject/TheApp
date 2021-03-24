@@ -19,12 +19,11 @@ const   GoToEditAccountScreen  = () => {
   navigation.navigate('EditAccountScreen');
 }
 
-
-
   const {state ,setState } = useGlobalState();
-  // const { state, dispatch } = useContext(AppContext);
+ 
 
   React.useEffect(() => {
+    
      }, [])
 
 
