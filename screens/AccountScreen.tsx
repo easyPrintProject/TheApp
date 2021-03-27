@@ -32,10 +32,11 @@ const   GoToEditAccountScreen  = () => {
     <View style={styles.container}>
     <View><StatusBar style="dark" backgroundColor="#49c3c6"/></View>
     <View style={styles.icon2}>
-                <Ionicons name="menu-outline" size={24} color= 'white' 
+    <Ionicons name="menu-outline" size={24} color= 'white' 
   onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
       <Text style={styles.title}> الحساب الشخصي</Text>
       </View>
+
 
       <View style={[styles.userInfoSection ,styles.cont ]}>
       <Image source={require('../assets/images/av2.png')} style={styles.avatar}/>
@@ -77,9 +78,18 @@ const   GoToEditAccountScreen  = () => {
             <Text style={styles.menuItemText}>Your Favorites</Text>
           </TouchableOpacity>
      </View>
-<View style={styles.button}><Button title=' تعديل البيانات' onPress={() => GoToEditAccountScreen()} color= 'white' /></View>
-    
-         
+     <View style={styles.menuWrapper}>
+        <TouchableOpacity style={styles.menuItem}>
+            <Icon name="basket-outline" color="#FFF176" size={25}/>
+            <Text style={styles.menuItemText}>سلة مشترياتي</Text>
+          </TouchableOpacity>
+     </View>
+
+<View style={styles.contant}>
+<TouchableOpacity  onPress={() => GoToEditAccountScreen()}>
+<Text style={styles.button}> تعديل البيانات</Text>
+</TouchableOpacity>
+</View>
           
 </SafeAreaView>
 
@@ -107,14 +117,11 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 
-  // button: {
-  //   padding: 20,
-  //   margin:20,
-  //   borderRadius: 30,
-  //  width:150,  
-  //  flexDirection: 'column',
-  //  paddingHorizontal:20}, 
-
+  contant:{
+   
+   alignItems: 'center',
+   alignContent: 'center',
+  },
   userInfoSection: {
     
     alignItems: 'flex-end',

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import  { useContext, useState, useEffect } from 'react';
 import { StyleSheet, SafeAreaView, Image, Text ,Alert, Modal, Pressable, ImageBackground} from 'react-native';
 import FontAwesome from '@expo/vector-icons/build/FontAwesome';
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
@@ -6,63 +7,132 @@ import { View } from '../components/Themed';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {AccountParamList} from '../types'
 import { DrawerActions } from '@react-navigation/native';
-//ثابت في كل الصفحات 
 import { StackScreenProps } from '@react-navigation/stack';
 import { Feather, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useGlobalState, GlobalStateInterface } from '../components/StateProvider';
+
 
 
 export default function EditAccountScreen( {navigation}: StackScreenProps<AccountParamList> ) {
   const GoToAccount = () => {
     navigation.navigate("AccountScreen");
-}
+  }
+  const {state ,setState } = useGlobalState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [userName, setUserName] = useState("");
+  const [user, setUser] = useState({ Id:"",EmailConf:true, Email:"",  PhoneNumber:"",  UserName:"", errorMassage:"",});
+  const [errorMassage, setErrorMassage] = useState("");
+
+  
+    useEffect(() => {
+          
+      if (user == null || user.Id == "" || user.Id==null) {
+        setErrorMassage(user.errorMassage);
+        if(user.errorMassage==null || user.errorMassage==""){
+          setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
+        }
+      } else {
+       
+        setErrorMassage("");
+        setState({
+          Id:user.Id,
+          Email:user.Email,
+          PhoneNumber:user.PhoneNumber,
+          UserName:user.UserName,
+         
+          
+        })
+          updateInfo()
+      }
+
+  }, [user]);
+  
+  
+  const updateInfo = ()=>{
+  
+  
+    const update = async () => {
+      try {
+        fetch('https://apieasyprint20210215153907.azurewebsites.net/api/UpdateCustomer', {
+         method: 'POST',
+         headers: {
+         Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+         body: JSON.stringify({
+          Email:email,
+          UserName: userName,
+          PhoneNumber: phoneNumber
+        })
+
+       })
+       .then((response) => response.json())
+       /*.then((response) => {
+       setUser({
+         Email: response.data.email,
+        PhoneNumber: response.data.phoneNumber,
+        UserName:response.data.userName, 
+        EmailConf:response.data.emailConfiremd,
+        errorMassage:response.data.errorMessage,
+        Id:response.data.id,
+      });*/
+
+      // })
+
+       .catch((error) => {
+        console.error(error);
+      });
+      } catch (error) {
+        console.log('حدث خطأ! ', error)
+      }
+      Alert.alert(
+        "تم التحديث"
+      )
+
+    }
+  }
+
+
   return (
     
     <SafeAreaView>
 
   
-    <View>
+    <View style={styles.header}> 
+<View style={styles.icon}>
+    <Ionicons  name="chevron-back" size={24} color="white" onPress={() => GoToAccount()} />
     
-                <Ionicons name="chevron-back" size={24} color="white" onPress={() => GoToAccount()} />
-    <View style={styles.icon2}>
-                <Ionicons name="menu-outline" size={24} color= 'white' 
+     <Ionicons  name="menu-outline" size={24} color= 'white' 
   onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
+  <View style={styles.ht}>
       <Text style={styles.title}>تعديل بيانات الحساب</Text>
-      </View>
+      </View></View>
 
-      <ScrollView>
 
+      <ScrollView >
+        <View style={styles.contant}>
+      <View style={styles.action}>
+          <FontAwesome name="user-o" color="#333333" size={20} />
       <TextInput
             placeholder=" الاسم الاول"
             placeholderTextColor="#666666"
             autoCorrect={false}
             style={styles.textInput}
-          />
+          /></View>
           
-  
-        <View style={styles.action}>
-          <FontAwesome name="user-o" color="#333333" size={20} />
-          <TextInput
-            placeholder=" الاسم الاخير"
-            placeholderTextColor="#666666"
-          //  value={userData ? userData.lname : ''}
-           // onChangeText={(txt) => setUserData({...userData, lname: txt})}
-            autoCorrect={false}
-            style={styles.textInput}
-          />
-        </View>
-        
         <View style={styles.action}>
           <Ionicons name="ios-clipboard-outline" color="#333333" size={20} />
           <TextInput
             multiline
             numberOfLines={3}
-            placeholder="About Me"
+            placeholder="Email"
             placeholderTextColor="#666666"
-           // value={userData ? userData.about : ''}
-            //onChangeText={(txt) => setUserData({...userData, about: txt})}
             autoCorrect={true}
             style={[styles.textInput, {height: 40}]}
           />
+          
         </View>
         <View style={styles.action}>
           <Feather name="phone" color="#333333" size={20} />
@@ -71,41 +141,14 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
             placeholderTextColor="#666666"
             keyboardType="number-pad"
             autoCorrect={false}
-            //value={userData ? userData.phone : ''}
-           // onChangeText={(txt) => setUserData({...userData, phone: txt})}
             style={styles.textInput}
           />
         </View>
 
-        <View style={styles.action}>
-          <FontAwesome name="globe" color="#333333" size={20} />
-          <TextInput
-            placeholder="Country"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-           // value={userData ? userData.country : ''}
-           // onChangeText={(txt) => setUserData({...userData, country: txt})}
-            style={styles.textInput}
-          />
-        </View>
-        <View style={styles.action}>
-          <MaterialCommunityIcons
-            name="map-marker-outline"
-            color="#333333"
-            size={20}
-          />
-          <TextInput
-            placeholder="City"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-           // value={userData ? userData.city : ''}
-           // onChangeText={(txt) => setUserData({...userData, city: txt})}
-            style={styles.textInput}
-          />
-        </View>
-    
-                <Text style={styles.userBtnTxt}>تحديث</Text>
-
+      <TouchableOpacity style={styles.button}> 
+ <Text style={styles.userBtnTxt} onPress={() =>updateInfo()}>تحديث  </Text>
+ </TouchableOpacity> 
+ </View>
              </ScrollView> 
 
               </SafeAreaView>
@@ -118,6 +161,23 @@ const styles = StyleSheet.create({
    backgroundColor:'#fff',
    padding:10
   },
+  header: {
+    width: '100%',
+    height:'20%',
+    padding:"2%",
+    backgroundColor:'#49c3c6',
+    flexDirection: "column",
+    justifyContent:"center",
+    alignContent:"center"
+    //opacity: 0.5
+    
+  },
+icon:{
+  backgroundColor:'#49c3c6',
+  flexDirection: "row",
+  paddingTop:"6%",
+  justifyContent:"space-between"
+},
   textInput: {
     flex: 1,
     paddingLeft: 65,
@@ -133,26 +193,18 @@ const styles = StyleSheet.create({
     borderBottomColor: '#f2f2f2',
     paddingBottom: 1,
   },
+  ht:{
+    backgroundColor:'#49c3c6',
+    justifyContent:"center",
+    alignItems:'center'
+  },
   title: {
-    color:"red",
     fontSize: 20,
     fontWeight: 'bold',
+    color: 'white',
+   
   },
 
-  icon2: {
-    marginLeft: "90%",
-    paddingRight: 25,
-    marginTop: 24,
-    backgroundColor:'#49c3c6',
-  },
-
-  userImg:{
-    height:150,
-    width:150,
-    borderRadius:75,
-    marginTop:"25%",
-    marginLeft:"20%"
-  },
  
   input: {
     width: 350,
@@ -164,29 +216,30 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     fontSize: 15,},
  
-  userBtn: {
-    borderWidth: 2,
-    borderRadius: 3,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    marginHorizontal: 5,
-    flexDirection: 'row',
 
-  },
   userBtnTxt: {
-    color: '#2e64e5',
-    flexDirection: 'row',
-    alignItems:'center',
-    justifyContent:'center',
-   marginLeft:"40%",
-    marginTop: 15,
+   
+    fontSize:20,
+    color:"#A93226",
+    
   },
-  userBtnWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: '100%',
-    marginBottom: "10%",
-    marginTop:"10%"
+
+ contant:{
+   padding:"3%",
+  alignItems: 'center',
+  alignContent: 'center',
+ },
+
+  button: {
+    alignItems: 'center',
+    alignContent: 'center',
+    textAlign: 'center',
+    borderColor: '#49c3c6',
+    borderWidth: 1,
+    marginTop: 15,
+    borderRadius:30,
+    width: 150,
+    backgroundColor: '#49c3c6'
   },
  
 });

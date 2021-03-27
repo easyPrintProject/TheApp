@@ -20,28 +20,18 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
 
   const CheckUser = () => {
     if ( state.Email==null) {
-      return(  <View
-        style={{
-          flexDirection: "row",
-          marginTop: 10,
-          paddingHorizontal: "30%",
-          borderWidth:1,
-          padding:"2%",
-          borderColor:'black',
-          
+      return( 
+         <View style={styles.cont}>
+        <TouchableOpacity style={styles.button}> 
+        <Text style={styles.butText} onPress={() => GoToLogin()} >تسجيل الدخول</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} > 
+        <Text style={styles.butText} onPress={() => GoToSignUp()} >أنشاء حساب </Text> 
+       </TouchableOpacity>
+ </View>); 
 
-       
-        }}
-      >
-        <View style={{borderRadius:15,backgroundColor:"#5facdb",alignItems:'center', marginHorizontal:4}}> 
-        <Button onPress={() => GoToLogin()} title="تسجيل الدخول" color="white" />
-        </View>
- <View style={{borderRadius:15,backgroundColor:"#5facdb",alignItems:'center'}}> 
-        <Button onPress={() => GoToSignUp()} title=" أنشاء حساب" color="white"/>
-   </View>
-      </View>);                    
     } else {
-      return(<View  style={{flexDirection:"row",backgroundColor:"#ED4BAC", alignItems:"flex-end"  }}>
+      return(<View  style={{flexDirection:"row",backgroundColor:"#F5F5F5", alignItems:"flex-end"  }}>
        <TouchableOpacity  style={{borderRadius:20,height:20,width:"auto", alignItems:"flex-end"}}>
         <Text style={{color:"#FFFFFF"}}>{state.UserName} مرحبا </Text>
        </TouchableOpacity></View>); 
@@ -67,7 +57,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
   };
   
   return (
-    <SafeAreaView style={{   backgroundColor:"white",height:"100%"}}> 
+    <SafeAreaView style={{height:"100%"}}> 
   
       {CheckUser()}
         <View
@@ -75,23 +65,22 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
             flexDirection: "row",
             marginTop: 4,
             alignItems: "center",
-      
-       
           }}
         >
-
         </View>
-           <ImageBackground source={require("../assets/images/back.jpeg")}
- style={styles.image}>
+
+    <ImageBackground source={require("../assets/images/back.jpeg")} style={styles.image}>
       
     </ImageBackground>
+
         <View style={{ paddingHorizontal: 20, marginTop: 25 ,width:"125%"}}>
-          
           <Text
             style={{
               fontSize: 40,
               color: "black",
-      marginHorizontal:146,
+              padding:"1%",
+              borderTopColor:"black",
+      marginHorizontal:"25%",
       marginLeft:"40%",
             }}
           >
@@ -102,9 +91,8 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
             style={{
               fontSize: 15,
               paddingVertical: 10,
-             marginLeft:"30%",
+              marginHorizontal:"25%",
               lineHeight: 22,
-              fontFamily:'blod',
               color: "#5facdb",
             
             }}
@@ -118,7 +106,6 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
               flexDirection: "row",
               backgroundColor: "#5facdb",
               borderRadius: 2,
-            
               alignItems: "center",
               paddingVertical: 1,
               marginTop: 30,
@@ -128,22 +115,8 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
       
           </View>
 
-        
-      
-
-
-
-
-
-
-
-
-
-
-
           <ScrollView
-            horizontal
-         
+            horizontal 
             style={{ marginLeft:1,marginRight:100, marginTop: 100 }}
           >
             <View>
@@ -177,7 +150,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
                 >
                   <Text
                     style={{
-                      fontFamily: "RobotoRegular",
+                     
                       fontSize: 20,
                       color: "black",
                     }}
@@ -188,12 +161,6 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
         
               </View></View>
             </TouchableOpacity></View>
-
-
-
-
-
-
 
 
 
@@ -226,7 +193,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
                 >
                <Text
                     style={{
-                      fontFamily: "RobotoRegular",
+                    
                       fontSize: 21,
                       color: "black",
                     }}
@@ -237,17 +204,6 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
               
               </View>
             </TouchableOpacity>
-
-
-
-
-
-
-
-
-
-
-
 
             <TouchableOpacity
               style={{
@@ -278,7 +234,6 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
                 >
                <Text
                     style={{
-                      fontFamily: "RobotoRegular",
                       fontSize: 20,
                       color: "black",
                     }}
@@ -293,10 +248,40 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
      </SafeAreaView>
     );
   }
+  
   const styles = StyleSheet.create({
     image: {
       flex: 1,
       resizeMode: "cover",
-      justifyContent: "center"
+      justifyContent: "center",
+      height:"100%",
     },
+    cont:{
+        flexDirection: "row",
+        marginTop: 10,
+        borderWidth:1,
+        padding:"3%",
+        borderColor:'#707B7C',
+    },
+
+    butText:{
+     
+      fontSize:17, 
+      fontStyle:"normal",
+      color:"#FFFFFF"
+
+    },
+    button: {
+      alignItems:'center',
+      marginVertical:"1%",
+      marginHorizontal:"4%",
+      borderRadius:5,
+      padding:"2%",
+      color:"#455A64",
+      backgroundColor:"#707B7C",
+     
+
+    
+    
+  },
   });
