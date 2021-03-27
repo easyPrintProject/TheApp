@@ -5,10 +5,10 @@ import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-ha
 import { View } from '../components/Themed';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {AccountParamList} from '../types'
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import { DrawerActions } from '@react-navigation/native';
 //ثابت في كل الصفحات 
 import { StackScreenProps } from '@react-navigation/stack';
+import { Feather, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 
 export default function EditAccountScreen( {navigation}: StackScreenProps<AccountParamList> ) {
@@ -18,210 +18,175 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
   return (
     
     <SafeAreaView>
-      <View style= {styles.pageStyle}></View>
-    <View style={styles.container}>
-    <View style={styles.icon}>
+
+  
+    <View>
+    
                 <Ionicons name="chevron-back" size={24} color="white" onPress={() => GoToAccount()} />
-            </View>
     <View style={styles.icon2}>
                 <Ionicons name="menu-outline" size={24} color= 'white' 
   onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
       <Text style={styles.title}>تعديل بيانات الحساب</Text>
       </View>
 
-      <View style={[styles.userInfoSection ,styles.cont ]}>
-      <Image source={require('../assets/images/av1.png')} style={styles.avatar}/>
+      <ScrollView>
 
-      <View>
-
-      <Text style={styles.tt}>User Name</Text>
-
-      <Text style={styles.caption}>Email</Text>
-      
-      </View> 
-     </View>
-
-    <View style={styles.userInfoSection}>
-        <View style={styles.row}>
-          <Icon name="map-marker-radius" color="#80CBC4 " size={20}/>
-
-          <TextInput style={styles.tt2} placeholder='اسم المدينة'/>
-    </View>
-
-        <View style={styles.row}>
-          <Icon name="phone" color="#80CBC4 " size={20}/>
-          <TextInput style={styles.tt2} placeholder='رقم الجوال' /> 
+      <TextInput
+            placeholder=" الاسم الاول"
+            placeholderTextColor="#666666"
+            autoCorrect={false}
+            style={styles.textInput}
+          />
+          
+  
+        <View style={styles.action}>
+          <FontAwesome name="user-o" color="#333333" size={20} />
+          <TextInput
+            placeholder=" الاسم الاخير"
+            placeholderTextColor="#666666"
+          //  value={userData ? userData.lname : ''}
+           // onChangeText={(txt) => setUserData({...userData, lname: txt})}
+            autoCorrect={false}
+            style={styles.textInput}
+          />
+        </View>
+        
+        <View style={styles.action}>
+          <Ionicons name="ios-clipboard-outline" color="#333333" size={20} />
+          <TextInput
+            multiline
+            numberOfLines={3}
+            placeholder="About Me"
+            placeholderTextColor="#666666"
+           // value={userData ? userData.about : ''}
+            //onChangeText={(txt) => setUserData({...userData, about: txt})}
+            autoCorrect={true}
+            style={[styles.textInput, {height: 40}]}
+          />
+        </View>
+        <View style={styles.action}>
+          <Feather name="phone" color="#333333" size={20} />
+          <TextInput
+            placeholder="Phone"
+            placeholderTextColor="#666666"
+            keyboardType="number-pad"
+            autoCorrect={false}
+            //value={userData ? userData.phone : ''}
+           // onChangeText={(txt) => setUserData({...userData, phone: txt})}
+            style={styles.textInput}
+          />
         </View>
 
-    </View>
+        <View style={styles.action}>
+          <FontAwesome name="globe" color="#333333" size={20} />
+          <TextInput
+            placeholder="Country"
+            placeholderTextColor="#666666"
+            autoCorrect={false}
+           // value={userData ? userData.country : ''}
+           // onChangeText={(txt) => setUserData({...userData, country: txt})}
+            style={styles.textInput}
+          />
+        </View>
+        <View style={styles.action}>
+          <MaterialCommunityIcons
+            name="map-marker-outline"
+            color="#333333"
+            size={20}
+          />
+          <TextInput
+            placeholder="City"
+            placeholderTextColor="#666666"
+            autoCorrect={false}
+           // value={userData ? userData.city : ''}
+           // onChangeText={(txt) => setUserData({...userData, city: txt})}
+            style={styles.textInput}
+          />
+        </View>
+    
+                <Text style={styles.userBtnTxt}>تحديث</Text>
 
-     {/* <View style={styles.infoBoxWrapper}>
-          <View style={[styles.infoBox,styles.cont3]}>
-            <Text>140.50</Text>
-            <Text>Wallet</Text>
-          </View>
-          
-      </View>  */}
+             </ScrollView> 
 
-      <View style={styles.menuWrapper}>
-        <TouchableOpacity style={styles.menuItem}>
-            <Icon name="heart-outline" color="#FF6347" size={25}/>
-            <Text style={styles.menuItemText}>Your Favorites</Text>
-          </TouchableOpacity>
-     </View>
-
-         
-          
-</SafeAreaView>
-
-
+              </SafeAreaView>
   );
-    }
+}
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height:'22%',
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-    backgroundColor:'#49c3c6',
-    //opacity: 0.5
-    
+   flex:1,
+   backgroundColor:'#fff',
+   padding:10
   },
-
-  pageStyle:{
-backgroundColor: 'white'
-
+  textInput: {
+    flex: 1,
+    paddingLeft: 65,
+    color: '#333333',
+    justifyContent:"center",
+    alignItems:'center'
   },
-
+  action: {
+    flexDirection: 'row',
+    marginTop: 30,
+    marginBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f2f2f2',
+    paddingBottom: 1,
+  },
   title: {
-  
-    marginTop: -10,
-    marginRight:'27%',
+    color:"red",
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'white'
-
   },
 
-  // button: {
-  //   padding: 20,
-  //   margin:20,
-  //   borderRadius: 30,
-  //  width:150,  
-  //  flexDirection: 'column',
-  //  paddingHorizontal:20}, 
-
-  userInfoSection: {
-    
-    alignItems: 'flex-end',
-    
-    paddingHorizontal: '5%',
-    marginBottom: '3%',
-    padding:'1%',
-    
-  },
-  
-  caption: {
-   
-    fontSize: 14,
-    lineHeight: 14,
-    fontWeight: '500',
+  icon2: {
+    marginLeft: "90%",
+    paddingRight: 25,
+    marginTop: 24,
+    backgroundColor:'#49c3c6',
   },
 
-  row: {
-    flexDirection: 'row-reverse',
-    marginBottom: '2%',
+  userImg:{
+    height:150,
+    width:150,
+    borderRadius:75,
+    marginTop:"25%",
+    marginLeft:"20%"
   },
-
-  infoBoxWrapper: {
-
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-    borderBottomColor: '#dddddd',
-    borderBottomWidth: 1,
-    borderTopColor: '#dddddd',
-    borderTopWidth: 1,
-    flexDirection: 'row',
-    height: 100,
-  },
-
-  infoBox: {
-    width: '50%',
-    
-  },
-  menuWrapper: {
-    alignContent:'space-around'
-  },
-
-  menuItem: {
-    flexDirection: 'row-reverse',
-    paddingVertical: '5%',
-    paddingHorizontal: '3%',
-    padding:'1%'
-
-  },
-
-  menuItemText: {
-
-    alignItems:'flex-end',
-    color: '#80CBC4',
-    marginLeft: 20,
-    fontWeight: '600',
-    fontSize: 16,
-    lineHeight: 26,
-  },
-
-  avatar: {
-    
-    width: 80,
-    height: 80,
-    borderRadius: 40, 
+ 
+  input: {
+    width: 350,
+    height: 55,
+    backgroundColor: '#B9B9B9',
     margin: 10,
-  },
-
-  cont:{
-    flexDirection: 'row-reverse',
-     marginTop: 15
-  },
-  cont3:{
-    
-    borderRightColor: '#dddddd',
-    borderRightWidth: 1
-  },
-  tt:{
-    
-    marginTop:'5%',
-    alignContent:'flex-end',
-    marginBottom: '15%',
-    fontSize:24,
-  },
-  cont2:{
-    
-    marginRight: 20,
-    alignItems: 'flex-end',
+    padding: 8,
+    color: 'black',
+    borderRadius: 10,
+    fontSize: 15,},
+ 
+  userBtn: {
+    borderWidth: 2,
+    borderRadius: 3,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    marginHorizontal: 5,
+    flexDirection: 'row',
 
   },
-  tt2:{
-    color:"#777777", 
-    marginRight: '5%',
-    fontSize:14,
-    
+  userBtnTxt: {
+    color: '#2e64e5',
+    flexDirection: 'row',
+    alignItems:'center',
+    justifyContent:'center',
+   marginLeft:"40%",
+    marginTop: 15,
   },
-
-icon: {
-  marginRight: "90%",
-  paddingLeft: 25,
-  marginTop: 20,
-  backgroundColor:'#49c3c6'
-
-},
-icon2: {
-  marginLeft: "90%",
-  paddingRight: 25,
-  marginTop: -25,
-  backgroundColor:'#49c3c6'
-
-}
-   
+  userBtnWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '100%',
+    marginBottom: "10%",
+    marginTop:"10%"
+  },
+ 
 });
