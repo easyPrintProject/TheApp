@@ -165,6 +165,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     margin:"3%",
     borderRadius:17,
+    
 },
 buttonOpen2: {
   padding: 10,

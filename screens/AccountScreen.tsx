@@ -18,6 +18,10 @@ const   GoToEditAccountScreen  = () => {
 
   navigation.navigate('EditAccountScreen');
 }
+const   GoToBasketScreen  = () => {
+
+  //navigation.navigate('BasketScreen');
+}
 
   const {state ,setState } = useGlobalState();
  
@@ -79,7 +83,7 @@ const   GoToEditAccountScreen  = () => {
           </TouchableOpacity>
      </View>
      <View style={styles.menuWrapper}>
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity style={styles.menuItem}onPress={() => GoToBasketScreen()}>
             <Icon name="basket-outline" color="#FFF176" size={25}/>
             <Text style={styles.menuItemText}>سلة مشترياتي</Text>
           </TouchableOpacity>
