@@ -5,8 +5,16 @@ import { StyleSheet, SafeAreaView, Image,Text,View, Animated, ImageBackground, K
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import  { useContext, useState, useEffect } from 'react';
 import { useGlobalState } from '../../components/StateProvider';
+import { StackScreenProps } from '@react-navigation/stack';
+import {DriverProfileParamList} from "../../types"
 
-export default function editScreen() {
+export default function editScreen ({navigation}: StackScreenProps<DriverProfileParamList> ) {
+
+  const  GoToProfileScreen  = () => {
+
+    navigation.navigate("ProfileScreen");
+  }
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -15,6 +23,8 @@ export default function editScreen() {
   const {state ,setState } = useGlobalState();
   const [errorMassage, setErrorMassage] = useState("");
 
+
+ 
 
   useEffect(() => {
         
@@ -32,16 +42,16 @@ export default function editScreen() {
         PhoneNumber:user.PhoneNumber,
         Id:user.Id,
       })
-        goHome()
+      Update()
     }
 }, [user]);
 
 
-const goHome = ()=>{
+const Update = ()=>{
 }
 
 
-  const signUp = async () => {
+  const UpdateInfo = async () => {
     try {
       fetch('https://apieasyprint20210215153907.azurewebsites.net/api/signin', {
        method: 'POST',
@@ -75,32 +85,33 @@ const goHome = ()=>{
     }
   }
   return (
-      <SafeAreaView style={{   flex:1,backgroundColor:'#fff'}}>
-    <ScrollView style={(styles.container)} contentContainerStyle={{justifyContent:'center',alignItems:'center'}}
-    showsVerticalScrollIndicator={false} >
-      
-  
-<KeyboardAvoidingView behavior='position'>
-<Image style={styles.userImg} 
-      source={require('../../assets/images/userimge.jpg')}/> 
-             <View style={styles.action}>
-          <FontAwesome name="user-o" color="#333333" size={20} />
 
+    <SafeAreaView>
+
+    <View style={styles.header}> 
+    <Ionicons  name="chevron-back" size={24} color="white" onPress={() => GoToProfileScreen()} />
+    <View style={styles.ht}>
+      <Text style={styles.title}> تعديل بيانات</Text>
+      </View></View>
+     
+   
+      <View style={styles.container}>
+
+      <View style={styles.action}>
+          <FontAwesome name="user-o" color="#333333" size={20} />
           <TextInput
             placeholder=" الاسم الاول"
             placeholderTextColor="#666666"
             autoCorrect={false}
             style={styles.textInput}
           />
-          
           </View>
+
         <View style={styles.action}>
           <FontAwesome name="user-o" color="#333333" size={20} />
           <TextInput
             placeholder=" الاسم الاخير"
             placeholderTextColor="#666666"
-          //  value={userData ? userData.lname : ''}
-           // onChangeText={(txt) => setUserData({...userData, lname: txt})}
             autoCorrect={false}
             style={styles.textInput}
           />
@@ -111,23 +122,20 @@ const goHome = ()=>{
           <TextInput
             multiline
             numberOfLines={3}
-            placeholder="About Me"
+            placeholder="نبذه عني"
             placeholderTextColor="#666666"
-           // value={userData ? userData.about : ''}
-            //onChangeText={(txt) => setUserData({...userData, about: txt})}
             autoCorrect={true}
             style={[styles.textInput, {height: 40}]}
           />
         </View>
+
         <View style={styles.action}>
           <Feather name="phone" color="#333333" size={20} />
           <TextInput
-            placeholder="Phone"
+            placeholder="رقم الجوال"
             placeholderTextColor="#666666"
             keyboardType="number-pad"
             autoCorrect={false}
-            //value={userData ? userData.phone : ''}
-           // onChangeText={(txt) => setUserData({...userData, phone: txt})}
             style={styles.textInput}
           />
         </View>
@@ -135,14 +143,14 @@ const goHome = ()=>{
         <View style={styles.action}>
           <FontAwesome name="globe" color="#333333" size={20} />
           <TextInput
-            placeholder="Country"
+            placeholder="الدولة"
             placeholderTextColor="#666666"
             autoCorrect={false}
-           // value={userData ? userData.country : ''}
-           // onChangeText={(txt) => setUserData({...userData, country: txt})}
+          
             style={styles.textInput}
           />
         </View>
+
         <View style={styles.action}>
           <MaterialCommunityIcons
             name="map-marker-outline"
@@ -150,27 +158,38 @@ const goHome = ()=>{
             size={20}
           />
           <TextInput
-            placeholder="City"
+            placeholder="المدينة"
             placeholderTextColor="#666666"
             autoCorrect={false}
-           // value={userData ? userData.city : ''}
-           // onChangeText={(txt) => setUserData({...userData, city: txt})}
             style={styles.textInput}
           />
         </View>
-    
+        <View style={styles.contant}>
+
+        <TouchableOpacity style={styles.button}  onPress={()=>UpdateInfo()}>
+               
                 <Text style={styles.userBtnTxt}>تحديث</Text>
-           </KeyboardAvoidingView>
-             </ScrollView>    
-              </SafeAreaView>
+           </TouchableOpacity></View>
+
+ </View> 
+
+  </SafeAreaView>
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-   flex:1,
-   backgroundColor:'#fff',
-   padding:10
+  
+    backgroundColor:'#fff',
+    padding:"5%",
+    
+   },
+
+   contant:{
+    
+   alignItems: 'center',
+   alignContent: 'center',
   },
   textInput: {
     flex: 1,
@@ -187,18 +206,43 @@ const styles = StyleSheet.create({
     borderBottomColor: '#f2f2f2',
     paddingBottom: 1,
   },
-  title: {
-    color:"red",
-    fontSize: 20,
-    fontWeight: 'bold',
+
+  userInfoSection: {
+    backgroundColor:'#fff',
+    alignItems: 'flex-end',
+    paddingHorizontal: '5%',
+    marginBottom: '3%',
+    padding:'1%',
+    
+    
   },
-  userImg:{
-    height:150,
-    width:150,
-    borderRadius:75,
-    marginTop:"25%",
-    marginLeft:"20%"
+  avatar: {
+    
+    width: 80,
+    height: 80,
+    borderRadius: 40, 
+    margin: 10,
   },
+
+  tt:{
+    
+    marginTop:'5%',
+    alignContent:'flex-end',
+    marginBottom: '15%',
+    fontSize:24,
+  },
+  cont:{
+    flexDirection: 'row-reverse',
+     marginTop: 15
+  },
+  
+  caption: {
+   
+    fontSize: 14,
+    lineHeight: 14,
+    fontWeight: '500',
+  },
+
  
   input: {
     width: 350,
@@ -219,14 +263,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
 
   },
-  userBtnTxt: {
-    color: '#2e64e5',
-    flexDirection: 'row',
-    alignItems:'center',
-    justifyContent:'center',
-   marginLeft:"40%",
-    marginTop: 15,
-  },
+  
   userBtnWrapper: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -234,5 +271,43 @@ const styles = StyleSheet.create({
     marginBottom: "10%",
     marginTop:"10%"
   },
- 
+  userBtnTxt: {
+    padding:'2%',
+   fontSize:15,
+   color:"#fff",
+   
+ },
+ header: {
+   width: '100%',
+   height:'20%',
+   padding:"2%",
+   backgroundColor:'#009387',
+   flexDirection: "column",
+   justifyContent:"center",
+   alignContent:"center"
+   //opacity: 0.5
+   
+ },
+ ht:{
+  
+   justifyContent:"center",
+   alignItems:'center'
+ },
+ title: {
+   fontSize: 20,
+   fontWeight: 'bold',
+   color: 'white',
+  
+ },
+ button: {
+  alignItems: 'center',
+  alignContent: 'center',
+  textAlign: 'center',
+  borderColor: '#49c3c6',
+  borderWidth: 1,
+  marginTop: 15,
+  borderRadius:30,
+  width: 130,
+  backgroundColor:'#009387'
+},
 });

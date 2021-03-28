@@ -73,7 +73,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
       
     </ImageBackground>
 
-        <View style={{ paddingHorizontal: 20, marginTop: 25 ,width:"125%"}}>
+        <View style={{ paddingHorizontal: 20 ,width:"125%"}}>
           <Text
             style={{
               fontSize: 40,

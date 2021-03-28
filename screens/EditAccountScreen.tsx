@@ -90,6 +90,7 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
       Alert.alert(
         "تم التحديث"
       )
+      GoToAccount()
 
     }
   }
@@ -101,9 +102,9 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
 
   
     <View style={styles.header}> 
-<View style={styles.icon}>
+    <View style={styles.icon}>
     <Ionicons  name="chevron-back" size={24} color="white" onPress={() => GoToAccount()} />
-    
+ 
      <Ionicons  name="menu-outline" size={24} color= 'white' 
   onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
   <View style={styles.ht}>
@@ -127,7 +128,7 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
           <TextInput
             multiline
             numberOfLines={3}
-            placeholder="Email"
+            placeholder="الايميل"
             placeholderTextColor="#666666"
             autoCorrect={true}
             style={[styles.textInput, {height: 40}]}
@@ -137,7 +138,7 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
         <View style={styles.action}>
           <Feather name="phone" color="#333333" size={20} />
           <TextInput
-            placeholder="Phone"
+            placeholder="رقم الجوال"
             placeholderTextColor="#666666"
             keyboardType="number-pad"
             autoCorrect={false}
@@ -220,7 +221,7 @@ icon:{
   userBtnTxt: {
    
     fontSize:20,
-    color:"#A93226",
+    color:"#fff",
     
   },
 

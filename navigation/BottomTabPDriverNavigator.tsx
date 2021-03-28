@@ -24,14 +24,14 @@ export default function BottomTabPDriverNavigator() {
         name="ViewOrderScreen"
         component={ViewOrderNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="home-outline" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="basket-outline" color={color} />,
         }}
       />
        <BottomTab.Screen
         name="profileScreen"
         component={ProfileNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="basket-outline" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon  name="person-outline" color={color} />,
         }}
       />
        

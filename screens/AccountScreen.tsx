@@ -20,7 +20,11 @@ const   GoToEditAccountScreen  = () => {
 }
 const   GoToBasketScreen  = () => {
 
-  //navigation.navigate('BasketScreen');
+  navigation.navigate('BasketScreen');
+}
+const   GoToEditAdress  = () => {
+
+  navigation.navigate('Address');
 }
 
   const {state ,setState } = useGlobalState();
@@ -88,12 +92,15 @@ const   GoToBasketScreen  = () => {
             <Text style={styles.menuItemText}>سلة مشترياتي</Text>
           </TouchableOpacity>
      </View>
-
+<View>
 <View style={styles.contant}>
-<TouchableOpacity  onPress={() => GoToEditAccountScreen()}>
-<Text style={styles.button}> تعديل البيانات</Text>
+<TouchableOpacity style={styles.button} onPress={() => GoToEditAccountScreen()}>
+<Text style={styles.userBtnTxt} > تعديل البيانات</Text>
 </TouchableOpacity>
-</View>
+<TouchableOpacity style={styles.button} onPress={() => GoToEditAdress()}>
+<Text style={styles.userBtnTxt}> تعديل العنوان</Text>
+</TouchableOpacity>
+</View></View>
           
 </SafeAreaView>
 
@@ -122,9 +129,9 @@ const styles = StyleSheet.create({
   },
 
   contant:{
-   
-   alignItems: 'center',
-   alignContent: 'center',
+    flexDirection: 'row-reverse',
+    justifyContent:"space-between",
+padding:"3%"
   },
   userInfoSection: {
     
@@ -148,22 +155,7 @@ const styles = StyleSheet.create({
     marginBottom: '2%',
   },
 
-  infoBoxWrapper: {
-
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-    borderBottomColor: '#dddddd',
-    borderBottomWidth: 1,
-    borderTopColor: '#dddddd',
-    borderTopWidth: 1,
-    flexDirection: 'row',
-    height: 100,
-  },
-
-  infoBox: {
-    width: '50%',
-    
-  },
+ 
   menuWrapper: {
     alignContent:'space-around'
   },
@@ -237,8 +229,14 @@ button: {
   borderWidth: 1,
   marginTop: 15,
   borderRadius:30,
-  width: 150,
+  width: 130,
   backgroundColor: '#49c3c6'
+},
+userBtnTxt: {
+   padding:'2%',
+  fontSize:15,
+  color:"#fff",
+  
 },
    
 });
