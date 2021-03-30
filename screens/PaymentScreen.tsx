@@ -132,10 +132,19 @@ return (<View style={styles.container}>
 const styles = StyleSheet.create({
 container: { flex: 1, 
   backgroundColor:'white',
-  paddingTop: 100},
-navigation: { flex: 2, backgroundColor: 'red' },
-body: { flex: 10, justifyContent: 'center', alignItems: 'center', backgroundColor: 'yellow' },
-footer: { flex: 1, backgroundColor: 'cyan' }
+  paddingTop: 100
+},
+navigation: { 
+  flex: 2,
+   backgroundColor: 'red' },
+  body: { 
+  flex: 10,
+   justifyContent: 'center', 
+   alignItems: 'center', 
+   backgroundColor: 'yellow' },
+footer: { 
+  flex: 1, 
+  backgroundColor: 'cyan' }
 })
 
 export { PaymentScreen }
