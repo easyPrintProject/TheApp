@@ -8,9 +8,9 @@ import editScreen from "../screens/Driver/editScreen";
 import profileScreen from "../screens/Driver/profileScreen";
 import viewOrderScreen from "../screens/Driver/viewOrderScreen";
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { BottomTabPDriverList, DriverProfileParamList, ViewOrderDriverParamList} from '../types';
+import { BottomTabPDriverList, DriverProfileParamList, ViewOrderDriverParamList,UpdateOrderParamList} from '../types';
 import { Title } from 'react-native-paper';
-
+import UpdateOrder from '../screens/Driver/UpdateOrder'
 const BottomTab = createBottomTabNavigator<BottomTabPDriverList>();
 
 export default function BottomTabPDriverNavigator() {
@@ -32,6 +32,13 @@ export default function BottomTabPDriverNavigator() {
         component={ProfileNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="basket-outline" color={color} />,
+        }}
+      />
+             <BottomTab.Screen
+        name="UpdateOrder"
+        component={UpdateOrderNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="map" color={color} />,
         }}
       />
        
@@ -66,7 +73,23 @@ function ViewOrderNavigator() {
   );
 }
 
+const UpdateOrderStack = createStackNavigator<UpdateOrderParamList>();
 
+function UpdateOrderNavigator() {
+  return (
+    <UpdateOrderStack.Navigator
+    screenOptions={
+      {
+        headerShown: false
+      }
+    } >
+        <UpdateOrderStack.Screen
+          name="UpdateOrder"
+          component={UpdateOrderNavigator}
+      />
+    </UpdateOrderStack.Navigator>
+  );
+}
 const ProfileStack = createStackNavigator<DriverProfileParamList>();
 
 function ProfileNavigator() {
@@ -86,8 +109,8 @@ function ProfileNavigator() {
         name="EditScreen"
         component={editScreen}
       />
-       {/* اضيفي سكرين هنا  */}
-    </ProfileStack.Navigator>
+ 
+       </ProfileStack.Navigator>
 
   );
 }
