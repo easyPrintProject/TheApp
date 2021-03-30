@@ -7,6 +7,7 @@ import {HomeParamList} from '../types';
 import { StatusBar } from 'expo-status-bar';
 import { Text, View } from '../components/Themed';
  import { useGlobalState, GlobalStateInterface } from '../components/StateProvider';
+ 
 export default function HomeScreen({navigation }: StackScreenProps<HomeParamList>) {
 
   // const myContext = useContext(NewContext);
