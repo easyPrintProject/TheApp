@@ -4,6 +4,7 @@ import { StyleSheet , SafeAreaView,Button,Image, ImageBackgroundBase, ImageBackg
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { StackScreenProps } from '@react-navigation/stack';
 import {HomeParamList} from '../types';
+import { StatusBar } from 'expo-status-bar';
 import { Text, View } from '../components/Themed';
  import { useGlobalState, GlobalStateInterface } from '../components/StateProvider';
 export default function HomeScreen({navigation }: StackScreenProps<HomeParamList>) {
@@ -33,17 +34,17 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
        
         }}
       >
-        <View style={{borderRadius:15,backgroundColor:"#5facdb",alignItems:'center', marginHorizontal:4}}> 
+        <View style={{borderRadius:15,backgroundColor:"#009387",alignItems:'center', marginHorizontal:4}}> 
         <Button onPress={() => GoToLogin()} title="تسجيل الدخول" color="white" />
         </View>
- <View style={{borderRadius:15,backgroundColor:"#5facdb",alignItems:'center'}}> 
-        <Button onPress={() => GoToSignUp()} title=" أنشاء حساب" color="white"/>
+ <View style={{borderRadius:15,backgroundColor:"#009387",alignItems:'center'}}> 
+        <Button onPress={() => GoToSignUp()} title=" إنشاء حساب" color="white"/>
    </View>
       </View>);                    
     } else {
-      return(<View  style={{flexDirection:"row",backgroundColor:"#ED4BAC", alignItems:"flex-end"  }}>
+      return(<View>
        <TouchableOpacity  style={{borderRadius:20,height:20,width:"auto", alignItems:"flex-end"}}>
-        <Text style={{color:"#FFFFFF"}}>{state.UserName} مرحبا </Text>
+        <Text style={{color:"#009387"}}>{state.UserName} مرحبا </Text>
        </TouchableOpacity></View>); 
     }  
   }
@@ -68,7 +69,8 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
   
   return (
     <SafeAreaView style={{   backgroundColor:"white",height:"100%"}}> 
-  
+      <View><StatusBar style="dark" /></View>
+
       {CheckUser()}
         <View
           style={{
@@ -102,22 +104,21 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
             style={{
               fontSize: 15,
               paddingVertical: 10,
-             marginLeft:"30%",
+             marginLeft:"21%",
               lineHeight: 22,
-              fontFamily:'blod',
-              color: "#5facdb",
+              color: "#009387",
             
             }}
           >
          
-           اصبحت الطباعة سهلة مع تطبيقنا
+           أصبحت الطباعة سهلة مع تطبيقنا
           </Text>
 
           <View
             style={{
               flexDirection: "row",
-              backgroundColor: "#5facdb",
-              borderRadius: 2,
+              backgroundColor: "black",
+              borderRadius: 1,
             
               alignItems: "center",
               paddingVertical: 1,
@@ -177,7 +178,6 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
                 >
                   <Text
                     style={{
-                      fontFamily: "RobotoRegular",
                       fontSize: 20,
                       color: "black",
                     }}
@@ -226,12 +226,11 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
                 >
                <Text
                     style={{
-                      fontFamily: "RobotoRegular",
                       fontSize: 21,
                       color: "black",
                     }}
                   >
-                   ملزماتي
+                   الملزمات 
                   </Text>
                 </View>
               
@@ -278,12 +277,11 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
                 >
                <Text
                     style={{
-                      fontFamily: "RobotoRegular",
                       fontSize: 20,
                       color: "black",
                     }}
                   >
-                  تبرع
+                  التبرع
                   </Text>
                 </View>
               </View>

@@ -5,155 +5,137 @@ import axios from 'axios';
 import { StackScreenProps } from '@react-navigation/stack';
 import { OrderParamList} from '../types';
 import { StatusBar } from 'expo-status-bar';
+import { PaymentView } from '../PaymentView'
 
 
 
 export default function PaymentScreen({ navigation }: StackScreenProps<OrderParamList>,) {
-  const [response, setResponse] = useState();
-  const [makePayment, setMakePayment] = useState(false);
-  const [paymentStatus, setPaymentStatus] = useState('');
+  const [response, setResponse ] = useState()
+    
+  const [ makePayment, setMakePayment ] = useState(false)
+  const [paymentStatus, setPaymentStatus] = useState('')
 
-  const basketInfo = { //from the basketScreen
-    description: 'Lab5 sheet.doc', //for example
-    amount: 1,
-  };
+  const cartInfo = {
+      id: '5eruyt35eggr76476236523t3',
+      description: 'lab-sheet5',
+      amount: 1
+  }
 
-  const onCheckStatus = async (paymentResponse: any) => {
-   // setPaymentStatus('waiting for payment confrmation');
-    setResponse(paymentResponse);
+  const onCheckStatus = async (paymentResponse: any | React.SetStateAction<undefined>) => {
+      setPaymentStatus('Please wait while confirming your payment!')
+      setResponse(paymentResponse)
 
-   // let jsonResponse = JSON.parse(paymentResponse);
+      let jsonResponse = JSON.parse(paymentResponse);
+      // perform operation to check payment status
 
-    try {
-      const stripeResponse = await axios.post('http://localhost:8000/payment', {
-        email: 'test@gmail.com',
-        product: basketInfo,
-        //authToken: jsonResponse,
-      });
+      try {
+  
+          const stripeResponse = await axios.post('http://localhost:8000/payment', {
+              email: 'codergogoi@gmail.com',
+              product: cartInfo,
+              authToken: jsonResponse
+          })
 
-      if (stripeResponse) {
-        const { paid } = stripeResponse.data;
-        if (paid === true) {
-          setPaymentStatus('تم الشراء بنجاح');
-        } else {
-          setPaymentStatus('فشلت عملية الشراء');
-        }
-      }      
-    } catch (error) {
-      console.log(error);
-      setPaymentStatus(' فشلت عملية الشراء');
-    }
-  };
+          if(stripeResponse){
 
-  const payment = () => {
-    if (!makePayment) {
-      return (
-        <ScrollView>
-              <View><StatusBar style="dark"/></View>
+              const { paid } = stripeResponse.data;
+              if(paid === true){
+                  setPaymentStatus('نجحت عملية الشراء')
+              }else{
+                  setPaymentStatus('فشلت عملية الشراء')
+              }
 
-        <View
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: 300,
-            marginTop: 50,
-          }}>
-          <Text style={{ fontSize: 25, margin: 10 }}>  اكمال الشراء </Text>
-          <Text style={{ fontSize: 16, margin: 10 }}>
-            {' '}
-            اسم الملف: {basketInfo.description}
-          </Text>
+          }else{
+              setPaymentStatus(' فشلت عملية الشراء')
+          }
 
-          <TouchableOpacity
-            style={{
-              height: 60,
-              width: 300,
-              backgroundColor: '#5b93c8',//
-              borderRadius: 30,
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginBottom: 10,
-            }}
-            onPress={() => {
-              setMakePayment(true);
-            }}>
-            <Text style={{ color: '#FFF', fontSize: 20 }}> Pay Pal</Text>
-          </TouchableOpacity>
           
+      } catch (error) {
+          
+          console.log(error)
+          setPaymentStatus(' فشلت عملية الشراء')
+
+      }
+
+  }
 
 
-          <TouchableOpacity
-            style={{
-              height: 60,
-              width: 300,
-              backgroundColor: '#FF5733',//
-              borderRadius: 30,
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginBottom: 10,
-            }}
-            onPress={() => {
-              setMakePayment(true);
-            }}>
-            <Text style={{ color: '#FFF', fontSize: 20 }}> الدفع عن الاستلام</Text>
-          </TouchableOpacity>
+  const paymentUI = () => {
+
+      if(!makePayment){
+
+          return <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: 300, marginTop: 50}}>
+                  <Text style={{ fontSize: 25, margin: 10}}> اكمال الشراء </Text>
+                  <Text style={{ fontSize: 16, margin: 10}}> وصف المنتج: {cartInfo.description} </Text>
+                  <Text style={{ fontSize: 16, margin: 10}}> الكمية: {cartInfo.amount} </Text>
+
+                  <TouchableOpacity style={{ height: 60, width: 300, backgroundColor: '#3D097F', borderRadius: 30, justifyContent: 'center', alignItems: 'center'
+                      }}
+                      onPress={() => {
+                          setMakePayment(true)
+                      }}
+                      >
+                      <Text style={{ color: '#FFF', fontSize: 20}}>
+                          استخدام البطاقة الائتمانية
+                      </Text>
+
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{ height: 60, width: 300, backgroundColor: 'black', borderRadius: 30, justifyContent: 'center', alignItems: 'center', marginTop: 20,
+                      }}
+                      onPress={() => {
+                      }}
+                      >
+                      <Text style={{ color: '#FFF', fontSize: 20}}>
+                          Apple Pay
+                      </Text>
+
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{ height: 60, width: 300, backgroundColor: '#FF5733', borderRadius: 30, justifyContent: 'center', alignItems: 'center', marginTop: 20,
+                      }}
+                      onPress={() => {
+                      }}
+                      >
+                      <Text style={{ color: '#FFF', fontSize: 20}}>
+                          Google Pay
+                      </Text>
+
+                  </TouchableOpacity>
+
+              </View>
 
 
+           
+          // show to make payment
+      }else{
+
+          if(response !== undefined){
+              return <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: 300, marginTop: 50}}>
+                  <Text style={{ fontSize: 25, margin: 10}}> { paymentStatus} </Text>
+                  <Text style={{ fontSize: 16, margin: 10}}> { response} </Text>
+              </View>
+
+          }else{
+              return <PaymentView onCheckStatus={onCheckStatus} product={cartInfo.description} amount={cartInfo.amount} />
+
+          }
+          
+      }
+
+  }
 
 
-          <TouchableOpacity
-            style={{
-              height: 60,
-              width: 300,
-              backgroundColor: 'black',
-              borderRadius: 30,
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginBottom: 10,
+return (<View style={styles.container}>
+          {paymentUI()}
+      </View>)}
 
-            }}
-            onPress={() => {
-              setMakePayment(true);
-            }}>
-            <Text style={{ color: '#FFF', fontSize: 20 }}>Apple Pay</Text>
-          </TouchableOpacity>
-
-         
-        </View></ScrollView>
-
-      );
-
-      // show to make payment
-    } else {
-      if (response !== undefined) {
-        return (
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: 300,
-              marginTop: 50,
-            }}>
-            <Text style={{ fontSize: 25, margin: 10 }}> {paymentStatus} </Text>
-            <Text style={{ fontSize: 16, margin: 10 }}> {response} </Text>
-          </View>
-        );
-      }}
-  };
-
-  return <View style={styles.container}>{payment()}</View>;
-};
 
 const styles = StyleSheet.create({
-  container: { 
-    flex: 1,
-    backgroundColor: 'white',
-    paddingTop: 200,
-  
-  },
-  
-});
+container: { flex: 1, 
+  backgroundColor:'white',
+  paddingTop: 100},
+navigation: { flex: 2, backgroundColor: 'red' },
+body: { flex: 10, justifyContent: 'center', alignItems: 'center', backgroundColor: 'yellow' },
+footer: { flex: 1, backgroundColor: 'cyan' }
+})
+
+export { PaymentScreen }
