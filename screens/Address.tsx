@@ -80,9 +80,9 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
     
 
       
-         <View style={{ backgroundColor:'#fff'}}>
+ <View style={{ backgroundColor:'#fff'}}>
   
-<KeyboardAvoidingView behavior='position'>
+
 <ImageBackground source={require("../assets/images/q1.png")}
  style={styles.image}>
              <View style={styles.action}>
@@ -144,10 +144,11 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
             placeholderTextColor="black"
        
             autoCorrect={true}
-            style={[styles.textInput, {height: 40}]}
+            style={[styles.textInput]}
           />
           
         </View>
+
         <View style={styles.action}>
           <MaterialCommunityIcons
             name="map-marker-outline"
@@ -163,6 +164,7 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
             style={styles.textInput}
           />
         </View>
+
         <Text style={styles.userBtnTxt}>أضافة العنوان</Text>
    
 
@@ -170,13 +172,13 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
 
 
 
-                </ImageBackground>
-           </KeyboardAvoidingView>
+     </ImageBackground>
+          
          
-              </View>
-              </ScrollView> 
+</View>
+ </ScrollView> 
         
-              </SafeAreaView>
+   </SafeAreaView>
   );
 }
 

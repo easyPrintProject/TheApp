@@ -27,6 +27,17 @@ const   GoToEditAdress  = () => {
   navigation.navigate('Address');
 }
 
+const   GoToSuggestionsScreen = () => {
+
+  navigation.navigate('SuggestionsScreen');
+}
+
+const   GoToFeedbackScreen = () => {
+
+  navigation.navigate('FeedbackScreen');
+}
+
+
   const {state ,setState } = useGlobalState();
  
 
@@ -92,6 +103,22 @@ const   GoToEditAdress  = () => {
             <Text style={styles.menuItemText}>سلة مشترياتي</Text>
           </TouchableOpacity>
      </View>
+
+     <View style={styles.menuWrapper}>
+        <TouchableOpacity style={styles.menuItem}onPress={() => GoToSuggestionsScreen()}>
+            <Icon name="pencil-outline" color="#FFF176" size={25}/>
+            <Text style={styles.menuItemText}>ارسل اقتراحك</Text>
+          </TouchableOpacity>
+     </View>
+
+     <View style={styles.menuWrapper}>
+        <TouchableOpacity style={styles.menuItem}onPress={() => GoToFeedbackScreen()}>
+            <Icon name="star-outline" color="#FFF176" size={25}/>
+            <Text style={styles.menuItemText}>قيم الطلبات</Text>
+          </TouchableOpacity>
+     </View>
+
+
 <View>
 <View style={styles.contant}>
 <TouchableOpacity style={styles.button} onPress={() => GoToEditAccountScreen()}>
