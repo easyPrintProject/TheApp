@@ -23,7 +23,10 @@ export type ViewOrderDriverParamList = {
 
 };
 
+export type UpdateOrderParamList = {
+  UpdateOrder:undefined;
 
+};
 //لزيادة انواع صفحة البروفايل للدرايفر
 export type DriverProfileParamList = {
 
@@ -38,7 +41,7 @@ export type DriverProfileParamList = {
 export type BottomTabPDriverList = {
   profileScreen: undefined;
   ViewOrderScreen: undefined;
-
+  UpdateOrder: undefined;
 };
 
 
