@@ -7,6 +7,7 @@ import { Feather } from '@expo/vector-icons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import  {  useState, useEffect } from 'react';
 import { useGlobalState } from '../../components/StateProvider';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function LoginDriver({navigation }: StackScreenProps<driverStack>) {
     const GoToHome = () => {
@@ -132,7 +133,15 @@ const Login = async () => {
               onPress={() => GoToHome()}
       />
 
-            
+<TouchableOpacity  onPress={() =>navigation.goBack()}
+        style={[styles.signIn,{
+            borderColor:'#009387',
+            borderWidth: 1,
+            marginTop:15
+        }]}>
+            <Text> خروج</Text>
+
+        </TouchableOpacity>
 
          
             </View>

@@ -83,6 +83,7 @@ export default function profileScreen({navigation}: StackScreenProps<DriverProfi
               <TouchableOpacity  style={styles.button}>
                 <Text style={styles.userBtnTxt}>تسجيل الخروج</Text>
               </TouchableOpacity>
+              
        </View>
  
     </SafeAreaView>
