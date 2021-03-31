@@ -127,6 +127,15 @@ const   GoToFeedbackScreen = () => {
 <TouchableOpacity style={styles.button} onPress={() => GoToEditAdress()}>
 <Text style={styles.userBtnTxt}> تعديل العنوان</Text>
 </TouchableOpacity>
+<TouchableOpacity  onPress={() =>navigation.goBack()}
+        style={[styles.button,{
+            borderColor:'#009387',
+            borderWidth: 1,
+            marginTop:15
+        }]}>
+            <Text style={styles.userBtnTxt}> خروج</Text>
+
+        </TouchableOpacity>
 </View></View>
           
 </SafeAreaView>
@@ -264,6 +273,14 @@ userBtnTxt: {
   fontSize:15,
   color:"#fff",
   
+},
+signIn: {
+  width: '100%',
+  height: 50,
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: 10
+
 },
    
 });

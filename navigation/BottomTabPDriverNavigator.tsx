@@ -7,6 +7,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import editScreen from "../screens/Driver/editScreen";
 import profileScreen from "../screens/Driver/profileScreen";
 import viewOrderScreen from "../screens/Driver/viewOrderScreen";
+
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { BottomTabPDriverList, DriverProfileParamList, ViewOrderDriverParamList,UpdateOrderParamList} from '../types';
 import { Title } from 'react-native-paper';
@@ -36,7 +37,7 @@ export default function BottomTabPDriverNavigator() {
       />
              <BottomTab.Screen
         name="UpdateOrder"
-        component={UpdateOrderNavigator}
+        component={UpdateOrder}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="map" color={color} />,
         }}
@@ -73,7 +74,7 @@ function ViewOrderNavigator() {
   );
 }
 
-const UpdateOrderStack = createStackNavigator<UpdateOrderParamList>();
+{/*const UpdateOrderStack = createStackNavigator<UpdateOrderParamList>();
 
 function UpdateOrderNavigator() {
   return (
@@ -89,7 +90,8 @@ function UpdateOrderNavigator() {
       />
     </UpdateOrderStack.Navigator>
   );
-}
+}*/}
+
 const ProfileStack = createStackNavigator<DriverProfileParamList>();
 
 function ProfileNavigator() {
