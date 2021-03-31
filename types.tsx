@@ -76,6 +76,9 @@ export type AccountParamList = {
   CouponsScreen:undefined;
   Address:undefined;
   UpdateAdress:undefined;
+  BasketScreen:undefined;
+  SuggestionsScreen:undefined;
+  FeedbackScreen:undefined;
 };
 
 

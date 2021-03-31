@@ -7,6 +7,7 @@ import { Feather } from '@expo/vector-icons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import  {  useState, useEffect } from 'react';
 import { useGlobalState } from '../../components/StateProvider';
+
 export default function LoginDriver({navigation }: StackScreenProps<driverStack>) {
     const GoToHome = () => {
         navigation.navigate("HomeDriver");
@@ -80,7 +81,7 @@ const Login = async () => {
     <View style={styles.header}>
         <Text style={styles.text_header}> تسجيل الدخول</Text>
     </View>
-    <KeyboardAvoidingView behavior="position">
+   
     <Animatable.View 
         animation="fadeInUpBig"
         style={styles.footer}
@@ -137,7 +138,7 @@ const Login = async () => {
             </View>
             </ScrollView>
         </Animatable.View>
-        </KeyboardAvoidingView>
+        
       </View>
     );
 };

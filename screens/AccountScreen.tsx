@@ -18,13 +18,31 @@ const   GoToEditAccountScreen  = () => {
 
   navigation.navigate('EditAccountScreen');
 }
+const   GoToBasketScreen  = () => {
 
+  navigation.navigate('BasketScreen');
+}
+const   GoToEditAdress  = () => {
+
+  navigation.navigate('Address');
+}
+
+const   GoToSuggestionsScreen = () => {
+
+  navigation.navigate('SuggestionsScreen');
+}
+
+const   GoToFeedbackScreen = () => {
+
+  navigation.navigate('FeedbackScreen');
+}
 
 
   const {state ,setState } = useGlobalState();
-  // const { state, dispatch } = useContext(AppContext);
+ 
 
   React.useEffect(() => {
+    
      }, [])
 
 
@@ -33,10 +51,11 @@ const   GoToEditAccountScreen  = () => {
     <View style={styles.container}>
     <View><StatusBar style="dark" backgroundColor="#49c3c6"/></View>
     <View style={styles.icon2}>
-                <Ionicons name="menu-outline" size={24} color= 'white' 
+    <Ionicons name="menu-outline" size={24} color= 'white' 
   onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
       <Text style={styles.title}> الحساب الشخصي</Text>
       </View>
+
 
       <View style={[styles.userInfoSection ,styles.cont ]}>
       <Image source={require('../assets/images/av2.png')} style={styles.avatar}/>
@@ -78,9 +97,37 @@ const   GoToEditAccountScreen  = () => {
             <Text style={styles.menuItemText}>Your Favorites</Text>
           </TouchableOpacity>
      </View>
-<View style={styles.button}><Button title=' تعديل البيانات' onPress={() => GoToEditAccountScreen()} color= 'white' /></View>
-    
-         
+     <View style={styles.menuWrapper}>
+        <TouchableOpacity style={styles.menuItem}onPress={() => GoToBasketScreen()}>
+            <Icon name="basket-outline" color="#FFF176" size={25}/>
+            <Text style={styles.menuItemText}>سلة مشترياتي</Text>
+          </TouchableOpacity>
+     </View>
+
+     <View style={styles.menuWrapper}>
+        <TouchableOpacity style={styles.menuItem}onPress={() => GoToSuggestionsScreen()}>
+            <Icon name="pencil-outline" color="#FFF176" size={25}/>
+            <Text style={styles.menuItemText}>ارسل اقتراحك</Text>
+          </TouchableOpacity>
+     </View>
+
+     <View style={styles.menuWrapper}>
+        <TouchableOpacity style={styles.menuItem}onPress={() => GoToFeedbackScreen()}>
+            <Icon name="star-outline" color="#FFF176" size={25}/>
+            <Text style={styles.menuItemText}>قيم الطلبات</Text>
+          </TouchableOpacity>
+     </View>
+
+
+<View>
+<View style={styles.contant}>
+<TouchableOpacity style={styles.button} onPress={() => GoToEditAccountScreen()}>
+<Text style={styles.userBtnTxt} > تعديل البيانات</Text>
+</TouchableOpacity>
+<TouchableOpacity style={styles.button} onPress={() => GoToEditAdress()}>
+<Text style={styles.userBtnTxt}> تعديل العنوان</Text>
+</TouchableOpacity>
+</View></View>
           
 </SafeAreaView>
 
@@ -108,14 +155,11 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 
-  // button: {
-  //   padding: 20,
-  //   margin:20,
-  //   borderRadius: 30,
-  //  width:150,  
-  //  flexDirection: 'column',
-  //  paddingHorizontal:20}, 
-
+  contant:{
+    flexDirection: 'row-reverse',
+    justifyContent:"space-between",
+padding:"3%"
+  },
   userInfoSection: {
     
     alignItems: 'flex-end',
@@ -138,22 +182,7 @@ const styles = StyleSheet.create({
     marginBottom: '2%',
   },
 
-  infoBoxWrapper: {
-
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-    borderBottomColor: '#dddddd',
-    borderBottomWidth: 1,
-    borderTopColor: '#dddddd',
-    borderTopWidth: 1,
-    flexDirection: 'row',
-    height: 100,
-  },
-
-  infoBox: {
-    width: '50%',
-    
-  },
+ 
   menuWrapper: {
     alignContent:'space-around'
   },
@@ -227,8 +256,14 @@ button: {
   borderWidth: 1,
   marginTop: 15,
   borderRadius:30,
-  width: 150,
+  width: 130,
   backgroundColor: '#49c3c6'
+},
+userBtnTxt: {
+   padding:'2%',
+  fontSize:15,
+  color:"#fff",
+  
 },
    
 });

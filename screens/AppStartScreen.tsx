@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 100,
-    margin: 20,
+    margin: "3%",
     borderRadius: 10,
     width: 150,
     flexDirection: 'column',
@@ -163,8 +163,9 @@ const styles = StyleSheet.create({
     //alignItems: 'center',
     borderColor: '#49c3c6',
     borderWidth: 1,
-    marginTop: 15,
+    margin:"3%",
     borderRadius:17,
+    
 },
 buttonOpen2: {
   padding: 10,

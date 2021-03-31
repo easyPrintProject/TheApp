@@ -25,7 +25,9 @@ import { BottomTabParamList, HomeParamList, BasketParamList, PrintersListParamLi
 import { Title } from 'react-native-paper';
 import EditAccountScreen from '../screens/EditAccountScreen';
 import Addresso from '../screens/Address';
-import UpdateAdress from '../screens/UpdateAdress'
+import UpdateAdress from '../screens/UpdateAdress';
+import FeedbackScreen from '../screens/FeedbackScreen';
+import SuggestionsScreen from '../screens/SuggestionsScreen'
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -160,6 +162,16 @@ function AccountNavigator() {
         name='Address'
         component={Addresso}
         options={{ drawerLabel:  'سجل العناوين' }}
+      />
+      <AccountDrawer.Screen
+        name='SuggestionsScreen'
+        component={SuggestionsScreen}
+        options={{ drawerLabel:  'الاقتراحات' }}
+      />
+      <AccountDrawer.Screen
+        name='FeedbackScreen'
+        component={FeedbackScreen}
+        options={{ drawerLabel:  'تقييم الطلبات' }}
       />
       
   

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import  { useContext, useState, useEffect } from 'react';
-import { StyleSheet, SafeAreaView, Image, Text ,Alert, Modal, Pressable, ImageBackground} from 'react-native';
+import { StyleSheet, SafeAreaView, Image, Text ,Alert, Modal, Pressable, ImageBackground,} from 'react-native';
 import FontAwesome from '@expo/vector-icons/build/FontAwesome';
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { View } from '../components/Themed';
@@ -13,89 +13,11 @@ import { useGlobalState, GlobalStateInterface } from '../components/StateProvide
 
 
 
-export default function EditAccountScreen( {navigation}: StackScreenProps<AccountParamList> ) {
+export default function SuggestionsScreen( {navigation}: StackScreenProps<AccountParamList> ) {
   const GoToAccount = () => {
     navigation.navigate("AccountScreen");
   }
-  const {state ,setState } = useGlobalState();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [userName, setUserName] = useState("");
-  const [user, setUser] = useState({ Id:"",EmailConf:true, Email:"",  PhoneNumber:"",  UserName:"", errorMassage:"",});
-  const [errorMassage, setErrorMassage] = useState("");
-
   
-    useEffect(() => {
-          
-      if (user == null || user.Id == "" || user.Id==null) {
-        setErrorMassage(user.errorMassage);
-        if(user.errorMassage==null || user.errorMassage==""){
-          setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
-        }
-      } else {
-       
-        setErrorMassage("");
-        setState({
-          Id:user.Id,
-          Email:user.Email,
-          PhoneNumber:user.PhoneNumber,
-          UserName:user.UserName,
-         
-          
-        })
-          updateInfo()
-      }
-
-  }, [user]);
-  
-  
-  const updateInfo = ()=>{
-  
-  
-    const update = async () => {
-      try {
-        fetch('https://apieasyprint20210215153907.azurewebsites.net/api/UpdateCustomer', {
-         method: 'POST',
-         headers: {
-         Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-         body: JSON.stringify({
-          Email:email,
-          UserName: userName,
-          PhoneNumber: phoneNumber
-        })
-
-       })
-       .then((response) => response.json())
-       /*.then((response) => {
-       setUser({
-         Email: response.data.email,
-        PhoneNumber: response.data.phoneNumber,
-        UserName:response.data.userName, 
-        EmailConf:response.data.emailConfiremd,
-        errorMassage:response.data.errorMessage,
-        Id:response.data.id,
-      });*/
-
-      // })
-
-       .catch((error) => {
-        console.error(error);
-      });
-      } catch (error) {
-        console.log('حدث خطأ! ', error)
-      }
-      Alert.alert(
-        "تم التحديث"
-      )
-      GoToAccount()
-
-    }
-  }
-
-
   return (
     
     <SafeAreaView>
@@ -108,7 +30,7 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
      <Ionicons  name="menu-outline" size={24} color= 'white' 
   onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
   <View style={styles.ht}>
-      <Text style={styles.title}>تعديل بيانات الحساب</Text>
+      <Text style={styles.title}>الاقتراحات</Text>
       </View></View>
 
 
@@ -117,14 +39,14 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
       <View style={styles.action}>
           <FontAwesome name="user-o" color="#333333" size={20} />
       <TextInput
-            placeholder=" الاسم الاول"
+            placeholder=" الاسم"
             placeholderTextColor="#666666"
             autoCorrect={false}
             style={styles.textInput}
           /></View>
           
         <View style={styles.action}>
-          <Ionicons name="ios-clipboard-outline" color="#333333" size={20} />
+          <Ionicons name="mail" color="#333333" size={20} />
           <TextInput
             multiline
             numberOfLines={3}
@@ -136,18 +58,18 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
           
         </View>
         <View style={styles.action}>
-          <Feather name="phone" color="#333333" size={20} />
+          <Feather name="clipboard" color="#333333" size={20} />
           <TextInput
-            placeholder="رقم الجوال"
+            placeholder="ضع اقتراحك"
             placeholderTextColor="#666666"
-            keyboardType="number-pad"
             autoCorrect={false}
-            style={styles.textInput}
+            style={[styles.textInput,{height:50},{width:100},{borderColor:'#49c3c6'}]}
+           
           />
         </View>
 
       <TouchableOpacity style={styles.button}> 
- <Text style={styles.userBtnTxt} onPress={() =>updateInfo()}>تحديث  </Text>
+ <Text style={styles.userBtnTxt}> ارسال </Text>
  </TouchableOpacity> 
  </View>
              </ScrollView> 

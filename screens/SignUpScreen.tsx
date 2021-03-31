@@ -80,11 +80,11 @@ const goHome = ()=>{
     return (
       
       <View style={styles.container}>
-      <StatusBar backgroundColor='#009387' barStyle="light-content"/>
+      <StatusBar backgroundColor="#49c3c6" barStyle="light-content"/>
     <View style={styles.header}>
         <Text style={styles.text_header}> الانضمام إلى ايزي برنت</Text>
     </View>
-    <KeyboardAvoidingView behavior="position">
+   
     <Animatable.View 
         animation="fadeInUpBig"
         style={styles.footer}
@@ -184,7 +184,7 @@ const goHome = ()=>{
             </View>
             </ScrollView>
         </Animatable.View>
-        </KeyboardAvoidingView>
+       
       </View>
     );
 };
