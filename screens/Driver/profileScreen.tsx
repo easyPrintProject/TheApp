@@ -51,14 +51,14 @@ export default function profileScreen({navigation}: StackScreenProps<DriverProfi
 
     <View style={styles.userInfoSection}>
         <View style={styles.row}>
-          <Icon name="map-marker-radius" color="#80CBC4 " size={20}/>
+          <Icon name="map-marker-radius" color="#80CBC4" size={20}/>
 
           <Text style={styles.tt2} >SA</Text>
     </View>
 
 
         <View style={styles.row}>
-          <Icon name="phone" color="#80CBC4 " size={20}/>
+          <Icon name="phone" color="#80CBC4" size={20}/>
           <Text style={styles.tt2}>{state.PhoneNumber}</Text>
         </View></View>
 

@@ -1,10 +1,17 @@
-import React from 'react'
-import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import {UpdateOrderParamList} from "../../types"
-
-//ثابت في كل الصفحات 
+import { Feather, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import FontAwesome from '@expo/vector-icons/build/FontAwesome';
+import * as React from 'react';
+import { StyleSheet, SafeAreaView, Image,Text,View, Animated, ImageBackground, KeyboardAvoidingView} from 'react-native';
+import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import  { useContext, useState, useEffect } from 'react';
+import { useGlobalState } from '../../components/StateProvider';
 import { StackScreenProps } from '@react-navigation/stack';
-export default function UpdateOrder({navigation}: StackScreenProps<UpdateOrderParamList> ) {
+import {DriverProfileParamList} from "../../types"
+
+
+
+export default function UpdateOrder ({navigation}: StackScreenProps<DriverProfileParamList> ) {
+
 
 
   
