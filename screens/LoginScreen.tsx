@@ -78,12 +78,14 @@ const Login = async () => {
 }
 
   return (
+      
       <View style={styles.container}>
       <StatusBar backgroundColor="#49c3c6" barStyle="light-content"/>
     <View style={styles.header}>
         <Text style={styles.text_header}> تسجيل الدخول</Text>
     </View>
-    
+    <KeyboardAvoidingView behavior="position">
+
     <Animatable.View 
         animation="fadeInUpBig"
         style={styles.footer}
@@ -140,6 +142,7 @@ const Login = async () => {
             </View>
             </ScrollView>
         </Animatable.View>
+        </KeyboardAvoidingView>
       
       </View>
     );

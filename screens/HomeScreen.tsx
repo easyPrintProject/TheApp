@@ -1,11 +1,15 @@
 import * as React from 'react';
 import  { useContext, useState, useEffect } from 'react';
-import { StyleSheet , SafeAreaView,Button,Image, ImageBackgroundBase, ImageBackground} from 'react-native';
+import { StyleSheet , SafeAreaView,Button,Image, ImageBackgroundBase, ImageBackground, StatusBar} from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { StackScreenProps } from '@react-navigation/stack';
 import {HomeParamList} from '../types';
 import { Text, View } from '../components/Themed';
  import { useGlobalState, GlobalStateInterface } from '../components/StateProvider';
+
+
+
+ 
 export default function HomeScreen({navigation }: StackScreenProps<HomeParamList>) {
 
   // const myContext = useContext(NewContext);
@@ -22,18 +26,18 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
     if ( state.Email==null) {
       return( 
          <View style={styles.cont}>
-        <TouchableOpacity style={styles.button}> 
-        <Text style={styles.butText} onPress={() => GoToLogin()} >تسجيل الدخول</Text>
+        <TouchableOpacity style={styles.button} onPress={() => GoToLogin()}> 
+        <Text style={styles.butText}  >تسجيل الدخول</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} > 
-        <Text style={styles.butText} onPress={() => GoToSignUp()} >أنشاء حساب </Text> 
+        <TouchableOpacity style={styles.button} onPress={() => GoToSignUp()} > 
+        <Text style={styles.butText}  >إنشاء حساب </Text> 
        </TouchableOpacity>
  </View>); 
 
     } else {
-      return(<View  style={{flexDirection:"row",backgroundColor:"#F5F5F5", alignItems:"flex-end"  }}>
+      return(<View  style={{flexDirection:"row-reverse",backgroundColor:"#F5F5F5", alignItems:"flex-end"  }}>
        <TouchableOpacity  style={{borderRadius:20,height:20,width:"auto", alignItems:"flex-end"}}>
-        <Text style={{color:"#FFFFFF"}}>{state.UserName} مرحبا </Text>
+        <Text style={{color:"black",}}>{state.UserName} مرحبا </Text>
        </TouchableOpacity></View>); 
     }  
   }
@@ -58,7 +62,8 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
   
   return (
     <SafeAreaView style={{height:"100%"}}> 
-  
+        <StatusBar backgroundColor="#49c3c6" barStyle="dark-content"/>
+
       {CheckUser()}
         <View
           style={{
@@ -93,23 +98,24 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
               paddingVertical: 10,
               marginHorizontal:"25%",
               lineHeight: 22,
-              color: "#5facdb",
+              color: "#009387",
             
             }}
           >
          
-           اصبحت الطباعة سهلة مع تطبيقنا
+           أصبحت الطباعة سهلة مع تطبيقنا
           </Text>
 
           <View
             style={{
               flexDirection: "row",
-              backgroundColor: "#5facdb",
+              backgroundColor: "#009387",
               borderRadius: 2,
               alignItems: "center",
               paddingVertical: 1,
               marginTop: 30,
-              marginRight:"3%"
+              marginLeft:"-5%"
+
             }}
           >
       
@@ -257,11 +263,12 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
       height:"100%",
     },
     cont:{
-        flexDirection: "row",
+        flexDirection: 'row-reverse',
         marginTop: 10,
         borderWidth:1,
         padding:"3%",
         borderColor:'#707B7C',
+         
     },
 
     butText:{
@@ -278,7 +285,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
       borderRadius:5,
       padding:"2%",
       color:"#455A64",
-      backgroundColor:"#707B7C",
+      backgroundColor:"#009387",
      
 
     

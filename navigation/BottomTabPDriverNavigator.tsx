@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
@@ -25,21 +25,23 @@ export default function BottomTabPDriverNavigator() {
         name="ViewOrderScreen"
         component={ViewOrderNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="basket-outline" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
       />
-       <BottomTab.Screen
-        name="profileScreen"
-        component={ProfileNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon  name="person-outline" color={color} />,
-        }}
-      />
+      
              <BottomTab.Screen
         name="UpdateOrder"
         component={UpdateOrder}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="map" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="package" color={color} />,
+        }}
+      />
+
+<BottomTab.Screen
+        name="profileScreen"
+        component={ProfileNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon  name="user" color={color} />,
         }}
       />
        
@@ -50,8 +52,8 @@ export default function BottomTabPDriverNavigator() {
 
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
-function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+function TabBarIcon(props: { name: React.ComponentProps<typeof Feather>['name']; color: string }) {
+  return <Feather size={25} style={{ marginBottom: -3 }} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:

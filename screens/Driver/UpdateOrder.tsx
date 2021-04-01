@@ -1,7 +1,7 @@
 import { Feather, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import FontAwesome from '@expo/vector-icons/build/FontAwesome';
 import * as React from 'react';
-import { StyleSheet, SafeAreaView, Image,Text,View, Animated, ImageBackground, KeyboardAvoidingView} from 'react-native';
+import { StyleSheet, SafeAreaView, Image,Text,View, Animated, ImageBackground, KeyboardAvoidingView, StatusBar} from 'react-native';
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import  { useContext, useState, useEffect } from 'react';
 import { useGlobalState } from '../../components/StateProvider';
@@ -16,7 +16,10 @@ export default function UpdateOrder ({navigation}: StackScreenProps<DriverProfil
 
   
   return (
+    
       <SafeAreaView style={{   flex:1,backgroundColor:'#fff'}}>
+              <StatusBar backgroundColor='#009387' barStyle="dark-content"/>
+
     <ScrollView style={(styles.container)} contentContainerStyle={{justifyContent:'center',alignItems:'center'}}
     showsVerticalScrollIndicator={false} >
  
