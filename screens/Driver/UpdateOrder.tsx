@@ -22,28 +22,17 @@ export default function UpdateOrder ({navigation}: StackScreenProps<DriverProfil
 
     <ScrollView style={(styles.container)} contentContainerStyle={{justifyContent:'center',alignItems:'center'}}
     showsVerticalScrollIndicator={false} >
- 
-    <Text style={styles.username}>محمد</Text> 
-    <Text style={styles.username}>150R</Text>
+     <Text style={styles.username}>الاي دي  </Text> 
+
+    <Text style={styles.username}>معلومات الطلب</Text> 
+    <Text style={styles.username}> الادريس</Text>
     <Text style={styles.Textin}>
-      محمد علي
+    رقم الجوال
     </Text>
-    <Text  style={styles.Textin}>
-mohomed@gmail.com    </Text>
-    <Text  style={styles.Textin}>
-0590439022    </Text>
-    <Text  style={styles.Textin}>
-**********    </Text>
-      <View style={styles.userBtnWrapper}>
-        <TouchableOpacity
-                style={styles.userBtn}
-               >
-                <Text style={styles.userBtnTxt}>تعديل</Text>
-              </TouchableOpacity>
+  
               <TouchableOpacity style={styles.userBtn} >
-                <Text style={styles.userBtnTxt}>تسجيل الخروج</Text>
+                <Text style={styles.userBtnTxt}>حالة الطلب </Text>
               </TouchableOpacity>
-              </View>
       </ScrollView>
     </SafeAreaView>
   );
