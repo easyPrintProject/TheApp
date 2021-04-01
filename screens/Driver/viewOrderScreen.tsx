@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Pressable, StyleSheet, Text, View ,Image} from 'react-native'
+import { Button, Pressable, StyleSheet, Text, View ,Image, StatusBar} from 'react-native'
 import {AntDesign, FontAwesome5, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
 import { ScrollView } from 'react-native-gesture-handler';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -12,7 +12,8 @@ export default function OrderScreen({navigation}: StackScreenProps<ViewOrderDriv
   }; 
   return (
     <View>
-      
+            <StatusBar backgroundColor='#009387' barStyle="dark-content"/>
+
     <Text style={(styles.headertext)}> طلبات التوصيل</Text>
     <ScrollView>
       <View style={(styles.box)}> 

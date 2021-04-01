@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, SafeAreaView, Image,Text, Button,View} from 'react-native';
+import { StyleSheet, SafeAreaView, Image,Text, Button,View, StatusBar} from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import  {  useState, useEffect } from 'react';
@@ -32,10 +32,11 @@ export default function profileScreen({navigation}: StackScreenProps<DriverProfi
   return (
 
     <SafeAreaView >
+      <StatusBar backgroundColor='#009387' barStyle="dark-content"/>
 
     <View style={styles.header}> 
      <View style={styles.ht}>
-      <Text style={styles.title}> بيانات حسابي</Text>
+      <Text style={styles.title}> الحساب الشخصي </Text>
       </View></View> 
 
 
@@ -203,7 +204,7 @@ button: {
   alignItems: 'center',
   alignContent: 'center',
   textAlign: 'center',
-  borderColor: '#49c3c6',
+  borderColor: '#009387',
   borderWidth: 1,
   marginTop: 15,
   borderRadius:30,
