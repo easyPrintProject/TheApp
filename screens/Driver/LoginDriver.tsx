@@ -13,67 +13,69 @@ export default function LoginDriver({navigation }: StackScreenProps<driverStack>
     const GoToHome = () => {
         navigation.navigate("HomeDriver");
       };
-      
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
-  const [errorMassage, setErrorMassage] = useState("");
-  const {state ,setState } = useGlobalState();
+    //   const [email, setEmail] = useState("");
+    //   const [password, setPassword] = useState("");
+    //   const [phoneNumber, setPhoneNumber] = useState("");
+    //   const [userName, setUserName] = useState("");
+    //   const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
+    //   const {state ,setState } = useGlobalState();
+    //   const [errorMassage, setErrorMassage] = useState("");
+    
 
-  useEffect(() => {
-        
-    if (user == null || user.Id == "" || user.Id==null) {
-      setErrorMassage(user.errorMassage);
-      if(user.errorMassage==null || user.errorMassage==""){
-        setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
-      }
-    } else {
-      //empty the error message
-      setErrorMassage("");
-      setState({
-        Email:user.Email,
-        UserName:user.UserName,
-        PhoneNumber:user.PhoneNumber})
-        GoToHome()
-    }
-}, [user]);
-
-
-
-
-const Login = async () => {
-  try {
-    fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Login', {
-     method: 'POST',
-     headers: {
-     Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-     body: JSON.stringify({
-      Email:email,
-      PasswordHash: password
-      })
-   }).then((response) => response.json())
-   .then((response) => {
-   setUser({
-            Email: response.data.email,
-            PhoneNumber: response.data.phoneNumber,
-            UserName:response.data.userName, 
-            EmailConf:response.data.emailConfiremd,
-            errorMassage:response.data.errorMessage,
-            Id:response.data.id,
-            Token:response.data.token,
-            });
-   })
-   .catch((error) => {
-    console.error(error);
-  });
-   
-  } catch (error) {
-    console.log('حدث خطأ! ', error)
-  }
-}
-
+    //   useEffect(() => {
+            
+    //     if (user == null || user.Id == "" || user.Id==null) {
+    //       setErrorMassage(user.errorMassage);
+    //       if(user.errorMassage==null || user.errorMassage==""){
+    //         setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
+    //       }
+    //     } else {
+    //       //empty the error message
+    //       setErrorMassage("");
+    //       setState({
+    //         Email:user.Email,
+    //         UserName:user.UserName,
+    //         PhoneNumber:user.PhoneNumber,
+    //         Id:user.Id,
+    //       })
+    //       GoToHome()
+    //     }
+    //  }, [user]);
+    
+  
+    //   const Login = async () => {
+    //     try {
+    //       fetch('https://apieasyprint20210215153907.azurewebsites.net/api/driver          ', {
+    //        method: 'POST',
+    //        headers: {
+    //        Accept: 'application/json',
+    //         'Content-Type': 'application/json'
+    //       },
+    //        body: JSON.stringify({
+       
+    //         UserName: userName,
+    //         PasswordHash: password,
+       
+    //       })
+    //      }).then((response) => response.json())
+    //      .then((response) => {
+    //      setUser({
+    //        Email: response.data.email,
+    //       PhoneNumber: response.data.phoneNumber,
+    //       UserName:response.data.userName, 
+    //       EmailConf:response.data.emailConfiremd,
+    //       errorMassage:response.data.errorMessage,
+    //       Id:response.data.id,
+    //       Token:response.data.token,
+    //     });
+    //      })
+    //      .catch((error) => {
+    //       console.error(error);
+    //     });
+    //     } catch (error) {
+    //       console.log('حدث خطأ! ', error)
+    //     }
+     
    
  
     return (
@@ -99,6 +101,7 @@ const Login = async () => {
             <TextInput 
                 style={styles.textInput}
                 autoCapitalize="none"
+                // onChangeText={(e) => setUser(e.toString())}
             />
             <Animatable.View
                 animation="bounceIn"
@@ -117,9 +120,8 @@ const Login = async () => {
                 size={20}
             />
             <TextInput 
-                secureTextEntry={true}
                 style={styles.textInput}
-                autoCapitalize="none"
+          
             />
     
                    
@@ -134,15 +136,6 @@ const Login = async () => {
               onPress={() => GoToHome()}
       />
 
-<TouchableOpacity  onPress={() =>navigation.goBack()}
-        style={[styles.signIn,{
-            borderColor:'#009387',
-            borderWidth: 1,
-            marginTop:15
-        }]}>
-            <Text> خروج</Text>
-
-        </TouchableOpacity>
 
          
             </View>
