@@ -23,7 +23,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
 
 
   const CheckUser = () => {
-    if ( state.Email==null) {
+    if ( state.UserName==null) {
       return( 
          <View style={styles.cont}>
         <TouchableOpacity style={styles.button} onPress={() => GoToLogin()}> 

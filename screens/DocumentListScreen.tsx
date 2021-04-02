@@ -111,7 +111,7 @@ export default function DocumentListScreen({navigation}: StackScreenProps<Printe
    <View  style={{backgroundColor:"#FFF" ,height:"100%"}}>
     <View style={{ flexDirection:"row",justifyContent:"space-between",backgroundColor:"#96C493",height:"10%"}}>
       <Pressable  onPress={()=>GoToPrintersList() }>  
-      <Text > {state.printerName}  </Text> 
+      <Text  style={{textAlign:'center',alignItems:'center',justifyContent:'center'}}> {state.printerName}  </Text> 
 
             <AntDesign name="leftcircleo" size={30} style={{ marginTop:15, marginLeft:5, color:"white" }}  />
          </Pressable>
