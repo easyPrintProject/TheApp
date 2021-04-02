@@ -36,11 +36,13 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
       } else {
        
         setErrorMassage("");
+
         setState({
           Id:user.Id,
           Email:user.Email,
           PhoneNumber:user.PhoneNumber,
           UserName:user.UserName,  
+          EmailConfeirmd:user.EmailConf,
           
         })
         
@@ -58,9 +60,13 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
           'Content-Type': 'application/json'
         },
          body: JSON.stringify({
+          
           Email:email,
           UserName: userName,
-          PhoneNumber: phoneNumber
+          PhoneNumber: phoneNumber,
+          Id:state.Id,
+          EmailConfeirmd:state.EmailConfeirmd
+        
         })
 
        }).then((response) => response.json())
