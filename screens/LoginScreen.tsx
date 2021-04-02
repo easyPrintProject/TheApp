@@ -43,6 +43,9 @@ export default function LoginScreen({navigation}: StackScreenProps<StartParamLis
 const goHome = ()=>{
     navigation.push("Home");
 }
+
+
+
 const Login = async () => {
   try {
     fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Login', {

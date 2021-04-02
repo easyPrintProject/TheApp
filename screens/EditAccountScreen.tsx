@@ -64,17 +64,8 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
         })
 
        }).then((response) => response.json())
-       .then((response) => {
-        setUser({
-          Email: response.data.email,
-         PhoneNumber: response.data.phoneNumber,
-         UserName:response.data.userName, 
-         EmailConf:response.data.emailConfiremd,
-         errorMassage:response.data.errorMessage,
-         Id:response.data.id,
-         
-       });
-      })
+    
+       
        .catch((error) => {
         console.error(error);
       });
