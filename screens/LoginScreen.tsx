@@ -94,7 +94,7 @@ const Login = async () => {
         style={styles.footer}
     >
         <ScrollView>
-        <Text style={styles.text_footer}>اسم المستخدم</Text>
+        <Text style={styles.text_footer}> الايميل</Text>
         <View style={styles.action}>
             <FontAwesome 
                 name="user-o"
