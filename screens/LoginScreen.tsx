@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, TextInput, Text,  ScrollView, StatusBar, Button, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, TextInput, Text,  ScrollView, StatusBar, Button, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import {  StackScreenProps } from '@react-navigation/stack';
 import { StartParamList} from '../types';
 import * as Animatable from 'react-native-animatable';
@@ -43,6 +43,9 @@ export default function LoginScreen({navigation}: StackScreenProps<StartParamLis
 const goHome = ()=>{
     navigation.push("Home");
 }
+
+
+
 const Login = async () => {
   try {
     fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Login', {
@@ -131,18 +134,15 @@ const Login = async () => {
         </View>
 
         
-       
-        <View style={styles.button}>
-            <Button 
-        title='تسجيل الدخول'
-        color='#01ab9d' 
-              onPress={() => Login()}
-      />
+        <TouchableOpacity style={styles.button}> 
+          <Text  style={styles.userBtnTxt} onPress={() =>Login()}>تسجيل الدخول </Text>
+          </TouchableOpacity> 
+
 
             
 
          
-            </View>
+            
             </ScrollView>
         </Animatable.View>
         </KeyboardAvoidingView>
@@ -156,7 +156,7 @@ const Login = async () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    backgroundColor: '#009387'
+    backgroundColor: '#49c3c6'
   },
   header: {
       flex: 1,
@@ -198,10 +198,17 @@ alignItems: 'flex-end'
   },
   button: {
       alignItems: 'center',
-      borderColor: '#009387',
+      borderColor: '#85C1E9',
+      backgroundColor:'#49c3c6',
       borderWidth: 1,
       marginTop: 15,
       borderRadius:17,
+  },
+  userBtnTxt: {
+   
+    fontSize:20,
+    color:"#fff",
+    
   },
   signIn: {
       width: '100%',
