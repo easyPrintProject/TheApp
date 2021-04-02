@@ -19,52 +19,54 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
     navigation.navigate("AccountScreen");
   }
   
-  // const {state ,setState } = useGlobalState();
-  // const [email, setEmail] = useState(state.Email);
-  // const [phoneNumber, setPhoneNumber] = useState(state.PhoneNumber);
-  // const [userName, setUserName] = useState(state.UserName);
+  const {state ,setState } = useGlobalState();
+ const [email, setEmail] = useState(state.Email);
+   const [phoneNumber, setPhoneNumber] = useState(state.PhoneNumber);
+   const [userName, setUserName] = useState(state.UserName);
 
   
-  //   const update = async () => {
-  //     try {
-  //       fetch('https://apieasyprint20210215153907.azurewebsites.net/api/UpdateCustomer', {
-  //        method: 'POST',
-  //        headers: {
-  //        Accept: 'application/json',
-  //         'Content-Type': 'application/json'
-  //       },
-  //        body:  JSON.stringify({
-  //         Id:state.Id,
-  //         EmailConfiremd:state.EmailConfeirmd,
-  //         Email: email,
-  //         PhoneNumber:phoneNumber,
-  //          UserName: userName
-  //       })
+    const update = async () => {
+       try {
+         fetch('https://apieasyprint20210215153907.azurewebsites.net/api/UpdateCustomer', {
+          method: 'POST',
+          headers: {
+          Accept: 'application/json',
+           'Content-Type': 'application/json'
+         },
+          body:  JSON.stringify({
+           Id:state.Id,
+           EmailConfiremd:state.EmailConfeirmd,
+           Email: email,
+           PhoneNumber:phoneNumber,
+          UserName: userName
+         })
 
-  //      })
-  //      .then((response) => response.json())
-  //      .then(() => {
-  //       setState({
-  //       ...state,
-  //       PhoneNumber: phoneNumber,
-  //       UserName:userName, 
-  //       Email: email,
+        })
+        .then((response) => response.json())
+        .then(() => {
+         setState({
+         ...state,
+         PhoneNumber: phoneNumber,
+         UserName:userName, 
+         Email: email,
 
-  //     });
+       });
 
-  //      })
+        })
 
-  //      .catch((error) => {
-  //       console.error(error);
-  //     });
-  //     } catch (error) {
-  //       console.log('حدث خطأ! ', error)
-  //     }
-  //     Alert.alert(
-  //       "تم التحديث"
-  //     )
-  //     GoToAccount()
-  //     }}
+        .catch((error) => {
+         console.error(error);
+       });
+       } catch (error) {
+         console.log('حدث خطأ! ', error)
+       }
+
+       Alert.alert(
+         "تم التحديث"
+       )
+
+       GoToAccount()
+       }
     
   
       
@@ -127,7 +129,7 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
 
       <TouchableOpacity style={styles.button}> 
  <Text style={styles.userBtnTxt} 
-//  onPress={() =>updateInfo()}
+ onPress={() =>update()}
  >تحديث 
   </Text>
  </TouchableOpacity> 
