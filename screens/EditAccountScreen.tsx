@@ -17,83 +17,56 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
   const GoToAccount = () => {
     navigation.navigate("AccountScreen");
   }
-  const {state ,setState } = useGlobalState();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [userName, setUserName] = useState("");
-  const [user, setUser] = useState({ Id:"",EmailConf:true, Email:"",  PhoneNumber:"",  UserName:"", errorMassage:"",});
-  const [errorMassage, setErrorMassage] = useState("");
+  
+  // const {state ,setState } = useGlobalState();
+  // const [email, setEmail] = useState(state.Email);
+  // const [phoneNumber, setPhoneNumber] = useState(state.PhoneNumber);
+  // const [userName, setUserName] = useState(state.UserName);
 
   
-    useEffect(() => {
-          
-      if (user == null || user.Id == "" || user.Id==null) {
-        setErrorMassage(user.errorMassage);
-        if(user.errorMassage==null || user.errorMassage==""){
-          setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
-        }
-      } else {
-       
-        setErrorMassage("");
-        setState({
-          Id:user.Id,
-          Email:user.Email,
-          PhoneNumber:user.PhoneNumber,
-          UserName:user.UserName,
-         
-          
-        })
-          updateInfo()
-      }
+  //   const update = async () => {
+  //     try {
+  //       fetch('https://apieasyprint20210215153907.azurewebsites.net/api/UpdateCustomer', {
+  //        method: 'POST',
+  //        headers: {
+  //        Accept: 'application/json',
+  //         'Content-Type': 'application/json'
+  //       },
+  //        body:  JSON.stringify({
+  //         Id:state.Id,
+  //         EmailConfiremd:state.EmailConfeirmd,
+  //         Email: email,
+  //         PhoneNumber:phoneNumber,
+  //          UserName: userName
+  //       })
 
-  }, [user]);
+  //      })
+  //      .then((response) => response.json())
+  //      .then(() => {
+  //       setState({
+  //       ...state,
+  //       PhoneNumber: phoneNumber,
+  //       UserName:userName, 
+  //       Email: email,
+
+  //     });
+
+  //      })
+
+  //      .catch((error) => {
+  //       console.error(error);
+  //     });
+  //     } catch (error) {
+  //       console.log('حدث خطأ! ', error)
+  //     }
+  //     Alert.alert(
+  //       "تم التحديث"
+  //     )
+  //     GoToAccount()
+  //     }}
+    
   
-  
-  const updateInfo = ()=>{
-  
-  
-    const update = async () => {
-      try {
-        fetch('https://apieasyprint20210215153907.azurewebsites.net/api/UpdateCustomer', {
-         method: 'POST',
-         headers: {
-         Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-         body: JSON.stringify({
-          Email:email,
-          UserName: userName,
-          PhoneNumber: phoneNumber
-        })
-
-       })
-       .then((response) => response.json())
-       /*.then((response) => {
-       setUser({
-         Email: response.data.email,
-        PhoneNumber: response.data.phoneNumber,
-        UserName:response.data.userName, 
-        EmailConf:response.data.emailConfiremd,
-        errorMassage:response.data.errorMessage,
-        Id:response.data.id,
-      });*/
-
-      // })
-
-       .catch((error) => {
-        console.error(error);
-      });
-      } catch (error) {
-        console.log('حدث خطأ! ', error)
-      }
-      Alert.alert(
-        "تم التحديث"
-      )
-      GoToAccount()
-
-    }
-  }
+      
 
 
   return (
@@ -147,7 +120,10 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
         </View>
 
       <TouchableOpacity style={styles.button}> 
- <Text style={styles.userBtnTxt} onPress={() =>updateInfo()}>تحديث  </Text>
+ <Text style={styles.userBtnTxt} 
+//  onPress={() =>updateInfo()}
+ >تحديث 
+  </Text>
  </TouchableOpacity> 
  </View>
              </ScrollView> 
