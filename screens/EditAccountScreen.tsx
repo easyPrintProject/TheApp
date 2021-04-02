@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import  { useContext, useState, useEffect } from 'react';
 import { StyleSheet, SafeAreaView, Image, Text ,Alert, Modal, Pressable, ImageBackground} from 'react-native';
 import FontAwesome from '@expo/vector-icons/build/FontAwesome';
@@ -93,7 +94,10 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
             placeholder=" الاسم الاول"
             placeholderTextColor="#666666"
             autoCorrect={false}
+            // onChangeText={(e) => setUserName(e.toString())}
             style={styles.textInput}
+            
+            
           /></View>
           
         <View style={styles.action}>
@@ -104,6 +108,7 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
             placeholder="الايميل"
             placeholderTextColor="#666666"
             autoCorrect={true}
+            // onChangeText={(e) => setEmail(e.toString())}
             style={[styles.textInput, {height: 40}]}
           />
           
@@ -115,6 +120,7 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
             placeholderTextColor="#666666"
             keyboardType="number-pad"
             autoCorrect={false}
+            // onChangeText={(e) => setPhoneNumber(e.toString())}
             style={styles.textInput}
           />
         </View>
