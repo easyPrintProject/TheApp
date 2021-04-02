@@ -73,8 +73,7 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
   return (
     
     <SafeAreaView>
-
-  
+ 
     <View style={styles.header}> 
     <View style={styles.icon}>
     <Ionicons  name="chevron-back" size={24} color="white" onPress={() => GoToAccount()} />
