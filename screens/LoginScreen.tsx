@@ -101,6 +101,7 @@ const Login = async () => {
             <TextInput 
                 style={styles.textInput}
                 autoCapitalize="none"
+                onChangeText={(e) => setEmail(e.toString())}
             />
             <Animatable.View
                 animation="bounceIn"
@@ -122,6 +123,8 @@ const Login = async () => {
                 secureTextEntry={true}
                 style={styles.textInput}
                 autoCapitalize="none"
+                
+                onChangeText={(e) => setPassword(e.toString())}
             />
     
                    
