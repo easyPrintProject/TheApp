@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import  { useContext, useState, useEffect } from 'react';
 import { StyleSheet, SafeAreaView, Image, Text ,Alert, Modal, Pressable, ImageBackground} from 'react-native';
 import FontAwesome from '@expo/vector-icons/build/FontAwesome';
@@ -14,9 +15,8 @@ import { useGlobalState, GlobalStateInterface } from '../components/StateProvide
 
 
 export default function EditAccountScreen( {navigation}: StackScreenProps<AccountParamList> ) {
-  const GoToAccount = () => {
-    navigation.navigate("AccountScreen");
-  }
+  
+  
   const {state ,setState } = useGlobalState();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,17 +40,13 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
           Id:user.Id,
           Email:user.Email,
           PhoneNumber:user.PhoneNumber,
-          UserName:user.UserName,
-         
+          UserName:user.UserName,  
           
         })
-          updateInfo()
+        
       }
 
   }, [user]);
-  
-  
-  const updateInfo = ()=>{
   
   
     const update = async () => {
@@ -67,23 +63,22 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
           PhoneNumber: phoneNumber
         })
 
-       })
-       .then((response) => response.json())
-       /*.then((response) => {
-       setUser({
-         Email: response.data.email,
-        PhoneNumber: response.data.phoneNumber,
-        UserName:response.data.userName, 
-        EmailConf:response.data.emailConfiremd,
-        errorMassage:response.data.errorMessage,
-        Id:response.data.id,
-      });*/
-
-      // })
-
+       }).then((response) => response.json())
+       .then((response) => {
+        setUser({
+          Email: response.data.email,
+         PhoneNumber: response.data.phoneNumber,
+         UserName:response.data.userName, 
+         EmailConf:response.data.emailConfiremd,
+         errorMassage:response.data.errorMessage,
+         Id:response.data.id,
+         
+       });
+      })
        .catch((error) => {
         console.error(error);
       });
+
       } catch (error) {
         console.log('حدث خطأ! ', error)
       }
@@ -93,8 +88,10 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
       GoToAccount()
 
     }
-  }
-
+  
+    const GoToAccount = () => {
+      navigation.navigate("AccountScreen");
+    }
 
   return (
     
@@ -120,7 +117,10 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
             placeholder=" الاسم الاول"
             placeholderTextColor="#666666"
             autoCorrect={false}
+            onChangeText={(e) => setUserName(e.toString())}
             style={styles.textInput}
+            
+            
           /></View>
           
         <View style={styles.action}>
@@ -131,6 +131,7 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
             placeholder="الايميل"
             placeholderTextColor="#666666"
             autoCorrect={true}
+            onChangeText={(e) => setEmail(e.toString())}
             style={[styles.textInput, {height: 40}]}
           />
           
@@ -142,12 +143,13 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
             placeholderTextColor="#666666"
             keyboardType="number-pad"
             autoCorrect={false}
+            onChangeText={(e) => setPhoneNumber(e.toString())}
             style={styles.textInput}
           />
         </View>
 
       <TouchableOpacity style={styles.button}> 
- <Text style={styles.userBtnTxt} onPress={() =>updateInfo()}>تحديث  </Text>
+ <Text style={styles.userBtnTxt} onPress={() =>update()}>تحديث  </Text>
  </TouchableOpacity> 
  </View>
              </ScrollView> 
