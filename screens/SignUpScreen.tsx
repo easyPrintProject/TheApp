@@ -18,6 +18,9 @@ export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
   const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
   const {state ,setState } = useGlobalState();
   const [errorMassage, setErrorMassage] = useState("");
+  const [errorMassage2, setErrorMassage2] = useState("");
+  const [errorMassage3, setErrorMassage3] = useState("");
+
 
   useEffect(() => {
         
@@ -42,6 +45,27 @@ export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
 const goHome = ()=>{
   navigation.push("Home");
 }
+
+
+const emailValidator = (email: any) => {
+  let reg =  /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  if (reg.test(email) === false) {
+    setErrorMassage2(  "الرجاء كتابة بريد إلكتروني صحيح " );
+    return false;
+  } else {
+    setErrorMassage2(  "" );
+  }
+};
+
+const PhoneValidator = (phoneNumber: any) => {
+  let reg =  /^((?:[+?0?0?966]+)(?:\s?\d{2})(?:\s?\d{7}))$/;
+  if (reg.test(phoneNumber) === false) {
+    setErrorMassage3(  "الرجاء كتابة الرقم بشكل صحيح " );
+    return false;
+  } else {
+    setErrorMassage3(  "" );
+  }
+};
 
   const signUp = async () => {
     try {
@@ -142,11 +166,15 @@ const goHome = ()=>{
                 textAlign= 'right'
                 style={styles.textInput}
                 autoCapitalize="none"
-                onChangeText={(e) => setEmail(e.toString())}
+                onTextInput={(e) => setEmail(e.toString())}
+                onChangeText={(email) => emailValidator(email)}
 
             />  
         
 </View>
+<View>
+            <Text style={styles.message}>{errorMassage2}</Text></View>
+
 <Text style={[styles.text_footer, {
             marginTop: 35
         }]}>رقم الجوال </Text>
@@ -160,12 +188,13 @@ const goHome = ()=>{
                 textAlign= 'right'
                 style={styles.textInput}
                 autoCapitalize="none"
-                onChangeText={(e) => setPhoneNumber(e.toString())}
+                onTextInput={(e) => setPhoneNumber(e.toString())}
+                onChangeText={(phoneNumber) => PhoneValidator(phoneNumber)}
 
             />  
         
 </View>
-
+<View><Text style={styles.message}>{errorMassage3}</Text></View>
 
 
 
@@ -257,6 +286,13 @@ textAlign:'right' },
   },
   color_textPrivate: {
       color: 'grey'
-  }
+  },
+  message: {
+    marginTop: 10,
+    fontSize: 14,
+    color: 'tomato',
+    textAlign: 'right'
+
+  },
 })
 
