@@ -15,11 +15,10 @@ export default function UpdateAdress( {navigation}: StackScreenProps<AccountPara
    
    
     // export default function UpdateAdress() {
-    //     const [userId, setuserId] = useState("");
-    //     const [country, setcountry] = useState("");
-    //     const [city, setcity] = useState("");
-    //     const [neighborhood, setneighborhood] = useState("");
-    //     const [street, setstreet] = useState();
+    //     const [country, setcountry] = useState(state.country);
+    //     const [city, setcity] = useState(state.city);
+    //     const [neighborhood, setneighborhood] = useState(state.neighborhood);
+    //     const [street, setstreet] = useState(state.street);
     //     const {adressLine ,setadressLine } = useGlobalState();
    
       
@@ -34,7 +33,7 @@ export default function UpdateAdress( {navigation}: StackScreenProps<AccountPara
     //           'Content-Type': 'application/json'
     //         },
     //          body: JSON.stringify({
-    //             userId:userId,
+    //             userId:state.userId,
     //             country: country,
     //             city: city,
     //             neighborhood: neighborhood,
@@ -42,14 +41,14 @@ export default function UpdateAdress( {navigation}: StackScreenProps<AccountPara
     //             adressLine:adressLine
     //         })
     //        }).then((response) => response.json())
-    //        .then((response) => {
-    //        setUser({
-    //         userId: response.data.userId,
-    //         country: response.data.country,
-    //         city:response.data.city, 
-    //         neighborhood:response.data.neighborhood,
-    //         street:response.data.street,
-    //         adressLine:response.data.adressLine,
+    //        .then(() => {
+    //         setState({
+  //       ...state,
+    //         country:country,
+    //         city:city, 
+    //         neighborhood:neighborhood,
+    //         street:street,
+    //         adressLine:adressLine,
             
     //       });
     //        })
@@ -59,7 +58,7 @@ export default function UpdateAdress( {navigation}: StackScreenProps<AccountPara
     //       } catch (error) {
     //         console.log('حدث خطأ! ', error)
     //       }
-    //     }
+    //}
     return (
 <SafeAreaView style={{height:'100%'}}>
 <ScrollView>
@@ -95,6 +94,8 @@ export default function UpdateAdress( {navigation}: StackScreenProps<AccountPara
             placeholderTextColor="black"
             autoCorrect={false}
             style={styles.textInput}
+            // onChangeText={(e) => setUserName(e.toString())}
+
           />
           
           </View>
@@ -107,7 +108,8 @@ export default function UpdateAdress( {navigation}: StackScreenProps<AccountPara
             placeholderTextColor="black"
             keyboardType="number-pad"
             autoCorrect={false}
-         
+            // onChangeText={(e) => setPhoneNumber(e.toString())}
+
             style={styles.textInput}
           />
         </View>
@@ -115,10 +117,11 @@ export default function UpdateAdress( {navigation}: StackScreenProps<AccountPara
         <View style={styles.action}>
           <FontAwesome name="globe" color="#333333" size={20} />
           <TextInput
-            placeholder="العنوان"
+            placeholder="الحي"
             placeholderTextColor="black"
             autoCorrect={false}
-        
+            // onChangeText={(e) => setneighborhood(e.toString())}
+
             style={styles.textInput}
           />
         </View>
@@ -129,10 +132,11 @@ export default function UpdateAdress( {navigation}: StackScreenProps<AccountPara
             size={20}
           />
           <TextInput
-            placeholder="معلم"
+            placeholder="الشارع"
             placeholderTextColor="black"
             autoCorrect={false}
-        
+            // onChangeText={(e) => setstreet(e.toString())}
+
             style={styles.textInput}
           />
         </View>
@@ -144,12 +148,43 @@ export default function UpdateAdress( {navigation}: StackScreenProps<AccountPara
             numberOfLines={3}
             placeholder="وصف"
             placeholderTextColor="black"
-       
+            // onChangeText={(e) => setadressLine(e.toString())}
+
             autoCorrect={true}
-            style={[styles.textInput, {height: 40}]}
+            style={[styles.textInput]}
+          />
+          
+        </View>
+
+        <View style={styles.action}>
+          <MaterialCommunityIcons
+            name="map-marker-outline"
+            color="#333333"
+            size={20}
+          />
+          <TextInput
+            placeholder="المدينة"
+            placeholderTextColor="#666666"
+            autoCorrect={false}
+           // value={userData ? userData.city : ''}
+           // onChangeText={(txt) => setUserData({...userData, city: txt})}
+            style={styles.textInput}
           />
         </View>
-              
+        <View style={styles.action}>
+          <MaterialCommunityIcons
+            name="map-marker-outline"
+            color="#333333"
+            size={20}
+          />
+          <TextInput
+            placeholder="الرمز البريدي"
+            placeholderTextColor="#666666"
+            autoCorrect={false}
+          //  onChangeText={(txt) => setpostcode()}
+            style={styles.textInput}
+          />
+        </View>
        
         {/* <Text style={styles.userBtnTxt}  onPress={alertPick}>تحديث</Text> */}
    

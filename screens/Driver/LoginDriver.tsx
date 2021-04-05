@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, TextInput, Text,  ScrollView, StatusBar, Button, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, TextInput, Text,  ScrollView, StatusBar, Button, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import {  StackScreenProps } from '@react-navigation/stack';
 import { driverStack} from '../../types';
 import * as Animatable from 'react-native-animatable';
@@ -7,76 +7,88 @@ import { Feather } from '@expo/vector-icons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import  {  useState, useEffect } from 'react';
 import { useGlobalState } from '../../components/StateProvider';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function LoginDriver({navigation }: StackScreenProps<driverStack>) {
-    const GoToHome = () => {
-        navigation.navigate("HomeDriver");
-      };
-    //   const [email, setEmail] = useState("");
-    //   const [password, setPassword] = useState("");
-    //   const [phoneNumber, setPhoneNumber] = useState("");
-    //   const [userName, setUserName] = useState("");
-    //   const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
-    //   const {state ,setState } = useGlobalState();
-    //   const [errorMassage, setErrorMassage] = useState("");
-    
-
-    //   useEffect(() => {
-            
-    //     if (user == null || user.Id == "" || user.Id==null) {
-    //       setErrorMassage(user.errorMassage);
-    //       if(user.errorMassage==null || user.errorMassage==""){
-    //         setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
-    //       }
-    //     } else {
-    //       //empty the error message
-    //       setErrorMassage("");
-    //       setState({
-    //         Email:user.Email,
-    //         UserName:user.UserName,
-    //         PhoneNumber:user.PhoneNumber,
-    //         Id:user.Id,
-    //       })
-    //       GoToHome()
-    //     }
-    //  }, [user]);
-    
-  
-    //   const Login = async () => {
-    //     try {
-    //       fetch('https://apieasyprint20210215153907.azurewebsites.net/api/driver          ', {
-    //        method: 'POST',
-    //        headers: {
-    //        Accept: 'application/json',
-    //         'Content-Type': 'application/json'
-    //       },
-    //        body: JSON.stringify({
-       
-    //         UserName: userName,
-    //         PasswordHash: password,
-       
-    //       })
-    //      }).then((response) => response.json())
-    //      .then((response) => {
-    //      setUser({
-    //        Email: response.data.email,
-    //       PhoneNumber: response.data.phoneNumber,
-    //       UserName:response.data.userName, 
-    //       EmailConf:response.data.emailConfiremd,
-    //       errorMassage:response.data.errorMessage,
-    //       Id:response.data.id,
-    //       Token:response.data.token,
-    //     });
-    //      })
-    //      .catch((error) => {
-    //       console.error(error);
-    //     });
-    //     } catch (error) {
-    //       console.log('حدث خطأ! ', error)
-    //     }
-     
    
+     const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
+//   const [errorMassage, setErrorMassage] = useState("");
+//   const {state ,setState } = useGlobalState();
+const [errorMassage2, setErrorMassage2] = useState("");
+
+
+const emailValidator = (email: any) => {
+    let reg =  /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    if (reg.test(email) === false) {
+      setErrorMassage2(  "الرجاء كتابة بريد إلكتروني صحيح " );
+      return false;
+    } else {
+      setErrorMassage2(  "" );
+    }
+  };
+
+//   useEffect(() => {
+        
+//     if (user == null || user.Id == "" || user.Id==null) {
+//       setErrorMassage(user.errorMassage);
+//       if(user.errorMassage==null || user.errorMassage==""){
+//         setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
+//       }
+//     } else {
+//       //empty the error message
+//       setErrorMassage("");
+//       setState({
+//                 Token: user.Token,
+//                 Id: user.Id,
+//                 Email: user.Email,
+//                 UserName: user.UserName,
+//                 PhoneNumber: user.PhoneNumber,
+//                 ErrorMessage: user.errorMassage,
+//                 EmailConfeirmd:  user.EmailConf,
+//                })
+//                GoToHome()
+//     }
+// }, [user]);
+
+
+
+  
+//       const Login = async () => {
+//         try {
+//           fetch('https://apieasyprint20210215153907.azurewebsites.net/api/driver          ', {
+//            method: 'POST',
+//            headers: {
+//            Accept: 'application/json',
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({
+//          Email:email,
+//          PasswordHash: password
+//          })
+//       }).then((response) => response.json())
+//       .then((response) => {
+//       setUser({
+//                Email: response.data.email,
+//                PhoneNumber: response.data.phoneNumber,
+//                UserName:response.data.userName, 
+//                EmailConf:response.data.emailConfiremd,
+//                errorMassage:response.data.errorMessage,
+//                Id:response.data.id,
+//                Token:response.data.token,
+               
+//                });
+               
+
+//       })
+//       .catch((error) => {
+//        console.error(error);
+//      });
+      
+//      } catch (error) {
+//        console.log('حدث خطأ! ', error)
+//      }
+//    }
  
     return (
       <View style={styles.container}>
@@ -91,17 +103,19 @@ export default function LoginDriver({navigation }: StackScreenProps<driverStack>
         style={styles.footer}
     >
         <ScrollView>
-        <Text style={styles.text_footer}>اسم المستخدم</Text>
+        <Text style={styles.text_footer}>البريد الإلكتروني </Text>
         <View style={styles.action}>
-            <FontAwesome 
-                name="user-o"
+            <Feather 
+                name="mail"
                 color="#05375a"
                 size={20}
             />
             <TextInput 
                 style={styles.textInput}
                 autoCapitalize="none"
-                // onChangeText={(e) => setUser(e.toString())}
+                onTextInput={(e) => setEmail(e.toString())}
+                onChangeText={(email) => emailValidator(email)}
+                
             />
             <Animatable.View
                 animation="bounceIn"
@@ -109,6 +123,10 @@ export default function LoginDriver({navigation }: StackScreenProps<driverStack>
 
             </Animatable.View>
         </View>
+
+
+        <View>
+            <Text style={styles.message}>{errorMassage2}</Text></View>
 
         <Text style={[styles.text_footer, {
             marginTop: 35
@@ -121,7 +139,8 @@ export default function LoginDriver({navigation }: StackScreenProps<driverStack>
             />
             <TextInput 
                 style={styles.textInput}
-          
+                // onChangeText={(e) => setPassword(e.toString())}
+
             />
     
                    
@@ -129,16 +148,12 @@ export default function LoginDriver({navigation }: StackScreenProps<driverStack>
 
         
        
-        <View style={styles.button}>
-            <Button 
-        title='تسجيل الدخول'
-        color='#01ab9d' 
-              onPress={() => GoToHome()}
-      />
+        {/* <TouchableOpacity style={styles.button}> 
+          <Text  style={styles.userBtnTxt} onPress={() =>Login()}>تسجيل الدخول </Text>
+          </TouchableOpacity>  */}
 
 
          
-            </View>
             </ScrollView>
         </Animatable.View>
         </KeyboardAvoidingView>
@@ -152,6 +167,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1, 
     backgroundColor: '#009387'
+  },
+  userBtnTxt: {
+   
+    fontSize:20,
+    color:"#fff",
+    
   },
   header: {
       flex: 1,
@@ -217,5 +238,16 @@ alignItems: 'flex-end'
   },
   color_textPrivate: {
       color: 'grey'
-  }
+  },
+
+  message: {
+    marginTop: 10,
+    fontSize: 14,
+    color: 'tomato',
+    textAlign: 'right'
+
+  },
+
 })
+
+

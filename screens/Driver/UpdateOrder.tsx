@@ -12,6 +12,10 @@ import {DriverProfileParamList} from "../../types"
 
 export default function UpdateOrder ({navigation}: StackScreenProps<DriverProfileParamList> ) {
 
+  const {state ,setState } = useGlobalState();
+  const [email, setEmail] = useState(state.Email);
+  const [phoneNumber, setPhoneNumber] = useState(state.PhoneNumber);
+  const [userName, setUserName] = useState(state.UserName);
 
 
   

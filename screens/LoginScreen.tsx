@@ -16,6 +16,8 @@ export default function LoginScreen({navigation}: StackScreenProps<StartParamLis
   const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
   const [errorMassage, setErrorMassage] = useState("");
   const {state ,setState } = useGlobalState();
+  const [errorMassage2, setErrorMassage2] = useState("");
+
 
   useEffect(() => {
         
@@ -43,6 +45,17 @@ export default function LoginScreen({navigation}: StackScreenProps<StartParamLis
 const goHome = ()=>{
     navigation.push("Home");
 }
+
+
+const emailValidator = (email: any) => {
+  let reg =  /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  if (reg.test(email) === false) {
+    setErrorMassage2(  "الرجاء كتابة بريد إلكتروني صحيح " );
+    return false;
+  } else {
+    setErrorMassage2(  "" );
+  }
+};
 
 
 
@@ -94,7 +107,7 @@ const Login = async () => {
         style={styles.footer}
     >
         <ScrollView>
-        <Text style={styles.text_footer}>اسم المستخدم</Text>
+        <Text style={styles.text_footer}> البريد الإلكتروني</Text>
         <View style={styles.action}>
             <FontAwesome 
                 name="user-o"
@@ -104,14 +117,22 @@ const Login = async () => {
             <TextInput 
                 style={styles.textInput}
                 autoCapitalize="none"
-                onChangeText={(e) => setEmail(e.toString())}
+                onTextInput={(e) => setEmail(e.toString())}
+                onChangeText={(email) => emailValidator(email)}
+                
             />
+          
+
             <Animatable.View
                 animation="bounceIn"
             >
                
             </Animatable.View>
+           
         </View>
+        <View>
+            <Text style={styles.message}>{errorMassage2}</Text></View>
+
 
         <Text style={[styles.text_footer, {
             marginTop: 35
@@ -229,5 +250,14 @@ alignItems: 'flex-end'
   },
   color_textPrivate: {
       color: 'grey'
-  }
+  },
+  message: {
+    marginTop: 10,
+    fontSize: 14,
+    color: 'tomato',
+    textAlign: 'right'
+
+  },
+ 
+
 })

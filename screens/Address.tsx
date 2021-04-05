@@ -10,28 +10,28 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 export default function Address( {navigation}: StackScreenProps<AccountParamList> ) {
   
-  // const {state ,setState } = useGlobalState();
+   const {state ,setState } = useGlobalState();
 
 
-  // const [Address,setAddress ] = React.useState(
+   const [Address,setAddress ] = React.useState(
 
-  //   [{
+   [{
 
-  //     userId:String,
-  //     country: String,
-  //     city: String,
-  //     neighborhood: String,
-  //     street:String,
-  //     adressLine: String,
-  //     postcode: Number
-  //   }]
-  // );
+      userId:String,
+      country: String,
+      city: String,
+      neighborhood: String,
+      street:String,
+      adressLine: String,
+      postcode: Number
+    }]
+  );
 
 
 
   //   try {
-  //     fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/', {
-  //      method: 'POST',
+  //     fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/'+ state.userId,  {
+  //      method: 'Get',
   //      headers: {
   //      Accept: 'application/json',
   //       'Content-Type': 'application/json'
@@ -93,6 +93,8 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
             placeholderTextColor="black"
             autoCorrect={false}
             style={styles.textInput}
+            // onChangeText={(e) => setUserName(e.toString())}
+
           />
           
           </View>
@@ -105,7 +107,8 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
             placeholderTextColor="black"
             keyboardType="number-pad"
             autoCorrect={false}
-         
+            // onChangeText={(e) => setPhoneNumber(e.toString())}
+
             style={styles.textInput}
           />
         </View>
@@ -113,10 +116,11 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
         <View style={styles.action}>
           <FontAwesome name="globe" color="#333333" size={20} />
           <TextInput
-            placeholder="العنوان"
+            placeholder="الحي"
             placeholderTextColor="black"
             autoCorrect={false}
-        
+            // onChangeText={(e) => setneighborhood(e.toString())}
+
             style={styles.textInput}
           />
         </View>
@@ -127,10 +131,11 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
             size={20}
           />
           <TextInput
-            placeholder="معلم"
+            placeholder="الشارع"
             placeholderTextColor="black"
             autoCorrect={false}
-        
+            // onChangeText={(e) => setstreet(e.toString())}
+
             style={styles.textInput}
           />
         </View>
@@ -142,7 +147,8 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
             numberOfLines={3}
             placeholder="وصف"
             placeholderTextColor="black"
-       
+            // onChangeText={(e) => setadressLine(e.toString())}
+
             autoCorrect={true}
             style={[styles.textInput]}
           />
@@ -164,7 +170,21 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
             style={styles.textInput}
           />
         </View>
-
+        <View style={styles.action}>
+          <MaterialCommunityIcons
+            name="map-marker-outline"
+            color="#333333"
+            size={20}
+          />
+          <TextInput
+            placeholder="الرمز البريدي"
+            placeholderTextColor="#666666"
+            autoCorrect={false}
+          //  onChangeText={(txt) => setpostcode()}
+            style={styles.textInput}
+          />
+        </View>
+        
         <Text style={styles.userBtnTxt}>أضافة العنوان</Text>
    
 
