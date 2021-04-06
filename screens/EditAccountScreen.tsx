@@ -95,7 +95,7 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
             placeholder=" الاسم الاول"
             placeholderTextColor="#666666"
             autoCorrect={false}
-            // onChangeText={(e) => setUserName(e.toString())}
+             onChangeText={(e) => setUserName(e.toString())}
             style={styles.textInput}
             
             
@@ -109,7 +109,7 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
             placeholder="الايميل"
             placeholderTextColor="#666666"
             autoCorrect={true}
-            // onChangeText={(e) => setEmail(e.toString())}
+            onChangeText={(e) => setEmail(e.toString())}
             style={[styles.textInput, {height: 40}]}
           />
           
@@ -121,7 +121,7 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
             placeholderTextColor="#666666"
             keyboardType="number-pad"
             autoCorrect={false}
-            // onChangeText={(e) => setPhoneNumber(e.toString())}
+            onChangeText={(e) => setPhoneNumber(e.toString())}
             style={styles.textInput}
           />
         </View>

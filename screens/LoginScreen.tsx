@@ -54,6 +54,7 @@ const emailValidator = (email: any) => {
     return false;
   } else {
     setErrorMassage2(  "" );
+    
   }
 };
 
@@ -100,7 +101,7 @@ const Login = async () => {
     <View style={styles.header}>
         <Text style={styles.text_header}> تسجيل الدخول</Text>
     </View>
-    <KeyboardAvoidingView behavior="position">
+    <KeyboardAvoidingView behavior="padding">
 
     <Animatable.View 
         animation="fadeInUpBig"
@@ -155,8 +156,8 @@ const Login = async () => {
         </View>
 
         
-        <TouchableOpacity style={styles.button}> 
-          <Text  style={styles.userBtnTxt} onPress={() =>Login()}>تسجيل الدخول </Text>
+        <TouchableOpacity style={styles.button} onPress={() =>Login()}> 
+          <Text  style={styles.userBtnTxt} >تسجيل الدخول </Text>
           </TouchableOpacity> 
 
 

@@ -10,52 +10,44 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 export default function Address( {navigation}: StackScreenProps<AccountParamList> ) {
   
-   const {state ,setState } = useGlobalState();
-
-
-   const [Address,setAddress ] = React.useState(
-
-   [{
-
-      userId:String,
-      country: String,
-      city: String,
-      neighborhood: String,
-      street:String,
-      adressLine: String,
-      postcode: Number
-    }]
-  );
+   
+  const {state ,setState } = useGlobalState();
+  const [StateAddress, setAddress] = useState({Userid:state.Id, country:"",  city:"", neighborhood:"", street:"",  adressLine:"", postcode:""});
+   
+  
 
 
 
-  //   try {
-  //     fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/'+ state.userId,  {
-  //      method: 'Get',
-  //      headers: {
-  //      Accept: 'application/json',
-  //       'Content-Type': 'application/json'
-  //     },
-  //    }).then((response) => response.json())
-  //    .then((response) => {
-  //     setAddress({
-  //     userId:response.data.userId,
-  //     country: response.data.country,
-  //     city:response.data.city, 
-  //     neighborhood:response.data.neighborhood,
-  //     street:response.data.street,
-  //     adressLine:response.data.adressLine,
-  //     postcode:response.data.postcode,
-  //   });
-  //    })
-  //    .catch((error) => {
-  //     console.error(error);
-  //   });
-  //   } catch (error) {
-  //     console.log('حدث خطأ! ', error)
-  //   }
 
-  // }
+    try {
+       fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/'+ state.Id,  {
+        method: 'Get',
+        headers: {
+        Accept: 'application/json',
+         'Content-Type': 'application/json'
+       },
+      
+
+      }).then((response) => response.json())
+      .then((response) => {
+       setAddress({
+       Userid:state.Id,
+       country: response.data.country,
+       city:response.data.city, 
+       neighborhood:response.data.neighborhood,
+       street:response.data.street,
+       adressLine:response.data.adressLine,
+       postcode:response.data.postcode,
+     });
+      })
+      .catch((error) => {
+       console.error(error);
+     });
+     } catch (error) {
+       console.log('حدث خطأ! ', error)
+    }
+
+  
   
     return (
 <SafeAreaView style={{height:'100%'}}>
@@ -88,102 +80,21 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
              <View style={styles.action}>
           <FontAwesome name="user-o" color="#333333" size={20} />
 
-          <TextInput
-            placeholder="  اسم المستلم"
-            placeholderTextColor="black"
-            autoCorrect={false}
-            style={styles.textInput}
-            // onChangeText={(e) => setUserName(e.toString())}
+         <Text>{state.Id} </Text>
 
-          />
+         <Text>{StateAddress.country} </Text>
+
+         <Text>{StateAddress.city} </Text>
           
           </View>
           
     
-        <View style={styles.action}>
-          <Feather name="phone" color="#333333" size={20} />
-          <TextInput
-            placeholder="رقم الجوال"
-            placeholderTextColor="black"
-            keyboardType="number-pad"
-            autoCorrect={false}
-            // onChangeText={(e) => setPhoneNumber(e.toString())}
 
-            style={styles.textInput}
-          />
-        </View>
-
-        <View style={styles.action}>
-          <FontAwesome name="globe" color="#333333" size={20} />
-          <TextInput
-            placeholder="الحي"
-            placeholderTextColor="black"
-            autoCorrect={false}
-            // onChangeText={(e) => setneighborhood(e.toString())}
-
-            style={styles.textInput}
-          />
-        </View>
-        <View style={styles.action}>
-          <MaterialCommunityIcons
-            name="map-marker-outline"
-            color="#333333"
-            size={20}
-          />
-          <TextInput
-            placeholder="الشارع"
-            placeholderTextColor="black"
-            autoCorrect={false}
-            // onChangeText={(e) => setstreet(e.toString())}
-
-            style={styles.textInput}
-          />
-        </View>
+       
     
-        <View style={styles.action}>
-          <Ionicons name="ios-clipboard-outline" color="#333333" size={20} />
-          <TextInput
-            multiline
-            numberOfLines={3}
-            placeholder="وصف"
-            placeholderTextColor="black"
-            // onChangeText={(e) => setadressLine(e.toString())}
 
-            autoCorrect={true}
-            style={[styles.textInput]}
-          />
-          
-        </View>
-
-        <View style={styles.action}>
-          <MaterialCommunityIcons
-            name="map-marker-outline"
-            color="#333333"
-            size={20}
-          />
-          <TextInput
-            placeholder="المدينة"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-           // value={userData ? userData.city : ''}
-           // onChangeText={(txt) => setUserData({...userData, city: txt})}
-            style={styles.textInput}
-          />
-        </View>
-        <View style={styles.action}>
-          <MaterialCommunityIcons
-            name="map-marker-outline"
-            color="#333333"
-            size={20}
-          />
-          <TextInput
-            placeholder="الرمز البريدي"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-          //  onChangeText={(txt) => setpostcode()}
-            style={styles.textInput}
-          />
-        </View>
+      
+       
         
         <Text style={styles.userBtnTxt}>أضافة العنوان</Text>
    
@@ -199,8 +110,9 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
  </ScrollView> 
         
    </SafeAreaView>
-  );
-}
+  );}
+  
+  
 
 const styles = StyleSheet.create({
   userBtnTxt: {

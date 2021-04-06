@@ -30,6 +30,15 @@ export interface GlobalStateInterface {
   orderTotal: number;
   numberOfItems : number;
 
+  //adress 
+
+ /* country: String;
+  city: String;
+  neighborhood: String;
+  street:String;
+  adressLine: String;
+  postcode: Number;*/
+
 }
 
 //creating the glbal State context

@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, TextInput, Text,  ScrollView, StatusBar, Button, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, TextInput, Text,  ScrollView, StatusBar, Button, KeyboardAvoidingView,TouchableOpacity } from 'react-native';
 import {  StackScreenProps } from '@react-navigation/stack';
 import { StartParamList} from '../types';
 import * as Animatable from 'react-native-animatable';
@@ -108,7 +108,7 @@ const PhoneValidator = (phoneNumber: any) => {
     <View style={styles.header}>
         <Text style={styles.text_header}> الانضمام إلى ايزي برنت</Text>
     </View>
-    <KeyboardAvoidingView behavior="position">
+    <KeyboardAvoidingView behavior="padding">
     <Animatable.View 
         animation="fadeInUpBig"
         style={styles.footer}
@@ -167,7 +167,7 @@ const PhoneValidator = (phoneNumber: any) => {
                 style={styles.textInput}
                 autoCapitalize="none"
                 onTextInput={(e) => setEmail(e.toString())}
-                onChangeText={(email) => emailValidator(email)}
+                //onChangeText={(email) => emailValidator(email)}
 
             />  
         
@@ -200,17 +200,10 @@ const PhoneValidator = (phoneNumber: any) => {
 
 
        
-        <View style={styles.button}>
-            <Button 
-        title='انشاء حساب '
-        color='#009387' 
-              onPress={() => signUp()}
-      />
+<TouchableOpacity style={styles.button} onPress={() =>signUp()}> 
+          <Text  style={styles.userBtnTxt} >تسجيل الدخول </Text>
+          </TouchableOpacity> 
 
-            
-
-         
-            </View>
             </ScrollView>
         </Animatable.View>
         </KeyboardAvoidingView>
@@ -223,7 +216,7 @@ const PhoneValidator = (phoneNumber: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    backgroundColor: '#009387'
+    backgroundColor: '#49c3c6'
   },
   header: {
       flex: 1,
@@ -252,7 +245,7 @@ textAlign:'right' },
       flexDirection: 'row',
       marginTop: 10,
       borderBottomWidth: 1,
-      borderBottomColor: '#f2f2f2',
+      borderBottomColor: '#49c3c6',
       paddingBottom: 5
   },
   textInput: {
@@ -260,13 +253,7 @@ textAlign:'right' },
       paddingLeft: 10,
       color: '#05375a',
   },
-  button: {
-      alignItems: 'center',
-      borderColor: '#009387',
-      borderWidth: 1,
-      marginTop: 15,
-      borderRadius:17,
-  },
+
   signIn: {
       width: '100%',
       height: 50,
@@ -294,5 +281,19 @@ textAlign:'right' },
     textAlign: 'right'
 
   },
+  button: {
+    alignItems: 'center',
+    borderColor: '#85C1E9',
+    backgroundColor:'#49c3c6',
+    borderWidth: 1,
+    marginTop: 15,
+    borderRadius:17,
+},
+userBtnTxt: {
+ 
+  fontSize:20,
+  color:"#fff",
+  
+},
 })
 
