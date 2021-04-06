@@ -42,19 +42,20 @@ export default function SuggestionsScreen( {navigation}: StackScreenProps<Accoun
             placeholder=" الاسم"
             placeholderTextColor="#666666"
             autoCorrect={false}
-            style={styles.textInput}
+            style={[styles.textInput, {height: 40}, {textAlign:'right'}]}
           /></View>
           
         <View style={styles.action}>
-          <Ionicons name="mail" color="#333333" size={20} />
+          <Feather name="mail" color="#333333" size={20} />
           <TextInput
             multiline
             numberOfLines={3}
-            placeholder="الايميل"
+            placeholder="البريد الإلكتروني"
             placeholderTextColor="#666666"
             autoCorrect={true}
-            style={[styles.textInput, {height: 40}]}
+            style={[styles.textInput, {height: 40}, {textAlign:'right'}]}
           />
+
           
         </View>
         <View style={styles.action}>
@@ -63,7 +64,7 @@ export default function SuggestionsScreen( {navigation}: StackScreenProps<Accoun
             placeholder="ضع اقتراحك"
             placeholderTextColor="#666666"
             autoCorrect={false}
-            style={[styles.textInput,{height:50},{width:100},{borderColor:'#49c3c6'}]}
+            style={[styles.textInput,{height:50},{width:100},{borderColor:'#49c3c6'},{textAlign:'right'}]}
            
           />
         </View>

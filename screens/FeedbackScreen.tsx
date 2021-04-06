@@ -47,10 +47,10 @@ export default function FeedbackScreen( {navigation}: StackScreenProps<AccountPa
         <View style={styles.action}>
           <Feather name="clipboard" color="#333333" size={20} />
           <TextInput
-            placeholder="اضف تعليقا"
+            placeholder="اضف تعليقاً"
             placeholderTextColor="#666666"
             autoCorrect={false}
-            style={[styles.textInput,{height:50},{width:100},{borderColor:'#49c3c6'}]}
+            style={[styles.textInput,{height:50},{width:100},{borderColor:'#49c3c6'},{textAlign: 'right'}]}
            
           />
         </View>
