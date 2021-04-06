@@ -4,9 +4,11 @@ import React from 'react'
 import {  ImageBackground, KeyboardAvoidingView, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler';
 import { AccountParamList } from '../types';
+import  {  useState, useEffect } from 'react';
 
 export default function UpdateAdress( {navigation}: StackScreenProps<AccountParamList> ) {
-   
+  const [errorMassage3, setErrorMassage3] = useState("");
+
     // const alertPick = async () => {
     //     let alertPick = await DocumentPicker.getDocumentAsync({});
     //     alert("تم التحديث  ");
@@ -59,6 +61,26 @@ export default function UpdateAdress( {navigation}: StackScreenProps<AccountPara
     //         console.log('حدث خطأ! ', error)
     //       }
     //}
+    
+const PhoneValidator = (phoneNumber: any) => {
+  let reg =  /^((?:[+?0?0?966]+)(?:\s?\d{2})(?:\s?\d{7}))$/;
+  if (reg.test(phoneNumber) === false) {
+    setErrorMassage3(  "الرجاء كتابة الرقم بشكل صحيح " );
+    return false;
+  } else {
+    setErrorMassage3(  "" );
+  }
+};
+const usernameValidator = (username: any) => {
+  let reg =  /^[a-zA-Z]+$/;
+  if (reg.test(username) === false) {
+    setErrorMassage3(  "الرجاء كتابة الاسم بشكل صحيح " );
+    return false;
+  } else {
+    setErrorMassage3(  "" );
+  }
+};
+
     return (
 <SafeAreaView style={{height:'100%'}}>
 <ScrollView>
@@ -95,6 +117,7 @@ export default function UpdateAdress( {navigation}: StackScreenProps<AccountPara
             autoCorrect={false}
             style={styles.textInput}
             // onChangeText={(e) => setUserName(e.toString())}
+            onChangeText={(username) => usernameValidator(username)}
 
           />
           
@@ -108,7 +131,8 @@ export default function UpdateAdress( {navigation}: StackScreenProps<AccountPara
             placeholderTextColor="black"
             keyboardType="number-pad"
             autoCorrect={false}
-            // onChangeText={(e) => setPhoneNumber(e.toString())}
+            // onTextInput={(e) => setPhoneNumber(e.toString())}
+            onChangeText={(phoneNumber) => PhoneValidator(phoneNumber)}
 
             style={styles.textInput}
           />
