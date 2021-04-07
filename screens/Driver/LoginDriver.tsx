@@ -27,15 +27,7 @@ const emailValidator = (email: any) => {
       setErrorMassage2(  "" );
     }
   };
-  const passwordValidator = (password: any) => {
-    let reg =  /(?=.*[0-9])/;
-    if (reg.test(password) === false) {
-      setErrorMassage2(  " الرجاء كتابة كلمة المرور بشكل صحيح  " );
-      return false;
-    } else {
-      setErrorMassage2(  "" );
-    }
-  };
+  
 
   useEffect(() => {
         
@@ -147,23 +139,27 @@ const emailValidator = (email: any) => {
             />
             <TextInput 
                 style={styles.textInput}
-                onTextInput={(e) => setPassword(e.toString())}
-                
-                onChangeText={(password) => passwordValidator(password)}            />
+                onChangeText={(e) => setPassword(e.toString())}
+                     />
     
          
     
                    
         </View>
+       
 
         
        
      
-        <TouchableOpacity style={styles.button}> 
-          <Text  style={styles.userBtnTxt} onPress={() =>Login()}>تسجيل الدخول </Text>
-          </TouchableOpacity> 
 
+          <View style={styles.button}>
+            <Button 
+        title='تسجيل الدخول '
+        color='#49c3c6' 
+              onPress={() => Login()}
+      />
 
+        </View>
 
          
             </ScrollView>
@@ -178,7 +174,7 @@ const emailValidator = (email: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    backgroundColor: '#009387'
+    backgroundColor: '#49c3c6'
   },
 
   header: {
@@ -250,8 +246,7 @@ alignItems: 'flex-end'
   },
   button: {
     alignItems: 'center',
-    borderColor: '#85C1E9',
-    backgroundColor:'#49c3c6',
+    borderColor: '#49c3c6',
     borderWidth: 1,
     marginTop: 15,
     borderRadius:17,

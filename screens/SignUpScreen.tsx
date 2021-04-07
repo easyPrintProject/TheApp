@@ -20,6 +20,8 @@ export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
   const [errorMassage, setErrorMassage] = useState("");
   const [errorMassage2, setErrorMassage2] = useState("");
   const [errorMassage3, setErrorMassage3] = useState("");
+  //const [errorMassage4, setErrorMassage4] = useState("");
+  //const [errorMassage5, setErrorMassage5] = useState("");
 
 
   useEffect(() => {
@@ -66,25 +68,25 @@ const PhoneValidator = (phoneNumber: any) => {
     setErrorMassage3(  "" );
   }
 };
-const usernameValidator = (username: any) => {
+ {/*const usernameValidator = (username: any) => {
   let reg =  /^[a-zA-Z]+$/;
   if (reg.test(username) === false) {
-    setErrorMassage3(  "الرجاء كتابة الاسم بشكل صحيح " );
+    setErrorMassage4(  "الرجاء كتابة الاسم بشكل صحيح " );
     return false;
   } else {
-    setErrorMassage3(  "" );
+    setErrorMassage4(  "" );
   }
 };
 
 const passwordValidator = (password: any) => {
   let reg =  /(?=.*[0-9])/;
   if (reg.test(password) === false) {
-    setErrorMassage3(  " الرجاء كتابة كلمة المرور بشكل صحيح  " );
+    setErrorMassage5(  " الرجاء كتابة كلمة المرور بشكل صحيح  " );
     return false;
   } else {
-    setErrorMassage3(  "" );
+    setErrorMassage5(  "" );
   }
-};
+}; */}
 
   const signUp = async () => {
     try {
@@ -144,8 +146,7 @@ const passwordValidator = (password: any) => {
                 style={styles.textInput}
                 autoCapitalize="none"
                 textAlign= 'right'
-                onTextInput={(e) => setUserName(e.toString())}
-                onChangeText={(username) => usernameValidator(username)}
+                onChangeText={(e) => setUserName(e.toString())}
 
             />
             <Animatable.View
@@ -153,6 +154,7 @@ const passwordValidator = (password: any) => {
             >
             </Animatable.View>
         </View>
+
 
         <Text style={[styles.text_footer, {
             marginTop: 35
@@ -167,14 +169,13 @@ const passwordValidator = (password: any) => {
                 textAlign= 'right'
                 secureTextEntry={true}
                 style={styles.textInput}
-                onTextInput={(e) => setPassword(e.toString())}
+                onChangeText={(e) => setPassword(e.toString())}
                 
-                onChangeText={(password) => passwordValidator(password)}
 
             />     
              
         </View>
-        
+
         <Text style={[styles.text_footer, {
             marginTop: 35
         }]}>الإيميل الإلكتروني</Text>
@@ -225,7 +226,7 @@ const passwordValidator = (password: any) => {
         <View style={styles.button}>
             <Button 
         title='انشاء حساب '
-        color='#009387' 
+        color='#49c3c6' 
               onPress={() => signUp()}
       />
 
@@ -245,7 +246,7 @@ const passwordValidator = (password: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    backgroundColor: '#009387'
+    backgroundColor: '#49c3c6'
   },
   header: {
       flex: 1,
@@ -284,7 +285,7 @@ textAlign:'right' },
   },
   button: {
       alignItems: 'center',
-      borderColor: '#009387',
+      borderColor: '#49c3c6',
       borderWidth: 1,
       marginTop: 15,
       borderRadius:17,
