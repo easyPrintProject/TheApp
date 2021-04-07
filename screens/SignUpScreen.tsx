@@ -50,7 +50,7 @@ const goHome = ()=>{
 const emailValidator = (email: any) => {
   let reg =  /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   if (reg.test(email) === false) {
-    setErrorMassage2(  "الرجاء كتابة بريد إلكتروني صحيح " );
+    setErrorMassage2(  "الرجاء كتابة البريد إلكتروني صحيح " );
     return false;
   } else {
     setErrorMassage2(  "" );
@@ -61,6 +61,25 @@ const PhoneValidator = (phoneNumber: any) => {
   let reg =  /^((?:[+?0?0?966]+)(?:\s?\d{2})(?:\s?\d{7}))$/;
   if (reg.test(phoneNumber) === false) {
     setErrorMassage3(  "الرجاء كتابة الرقم بشكل صحيح " );
+    return false;
+  } else {
+    setErrorMassage3(  "" );
+  }
+};
+const usernameValidator = (username: any) => {
+  let reg =  /^[a-zA-Z]+$/;
+  if (reg.test(username) === false) {
+    setErrorMassage3(  "الرجاء كتابة الاسم بشكل صحيح " );
+    return false;
+  } else {
+    setErrorMassage3(  "" );
+  }
+};
+
+const passwordValidator = (password: any) => {
+  let reg =  /(?=.*[0-9])/;
+  if (reg.test(password) === false) {
+    setErrorMassage3(  " الرجاء كتابة كلمة المرور بشكل صحيح  " );
     return false;
   } else {
     setErrorMassage3(  "" );
@@ -125,7 +144,8 @@ const PhoneValidator = (phoneNumber: any) => {
                 style={styles.textInput}
                 autoCapitalize="none"
                 textAlign= 'right'
-                onChangeText={(e) => setUserName(e.toString())}
+                onTextInput={(e) => setUserName(e.toString())}
+                onChangeText={(username) => usernameValidator(username)}
 
             />
             <Animatable.View
@@ -147,7 +167,9 @@ const PhoneValidator = (phoneNumber: any) => {
                 textAlign= 'right'
                 secureTextEntry={true}
                 style={styles.textInput}
-                onChangeText={(e) => setPassword(e.toString())}
+                onTextInput={(e) => setPassword(e.toString())}
+                
+                onChangeText={(password) => passwordValidator(password)}
 
             />     
              

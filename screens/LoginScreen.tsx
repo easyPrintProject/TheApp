@@ -50,14 +50,22 @@ const goHome = ()=>{
 const emailValidator = (email: any) => {
   let reg =  /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   if (reg.test(email) === false) {
-    setErrorMassage2(  "الرجاء كتابة بريد إلكتروني صحيح " );
+    setErrorMassage2(  "الرجاء كتابة البريد إلكتروني صحيح " );
+    return false;
+  } else {
+    setErrorMassage2(  "" );
+  }
+};
+const passwordValidator = (password: any) => {
+  let reg =  /(?=.*[0-9])/;
+  if (reg.test(password) === false) {
+    setErrorMassage2(  " الرجاء كتابة كلمة المرور بشكل صحيح  " );
     return false;
   } else {
     setErrorMassage2(  "" );
     
   }
 };
-
 
 
 const Login = async () => {
@@ -149,8 +157,9 @@ const Login = async () => {
                 style={styles.textInput}
                 autoCapitalize="none"
                 
-                onChangeText={(e) => setPassword(e.toString())}
-            />
+                onTextInput={(e) => setPassword(e.toString())}
+                
+                onChangeText={(password) => passwordValidator(password)}            />
     
                    
         </View>

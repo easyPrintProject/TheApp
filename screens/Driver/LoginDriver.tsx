@@ -11,84 +11,92 @@ import { useGlobalState } from '../../components/StateProvider';
 export default function LoginDriver({navigation }: StackScreenProps<driverStack>) {
    
      const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
-//   const [errorMassage, setErrorMassage] = useState("");
-//   const {state ,setState } = useGlobalState();
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
+  const [errorMassage, setErrorMassage] = useState("");
+  const {state ,setState } = useGlobalState();
 const [errorMassage2, setErrorMassage2] = useState("");
 
 
 const emailValidator = (email: any) => {
     let reg =  /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (reg.test(email) === false) {
-      setErrorMassage2(  "الرجاء كتابة بريد إلكتروني صحيح " );
+      setErrorMassage2(  "الرجاء كتابة البريد إلكتروني صحيح " );
+      return false;
+    } else {
+      setErrorMassage2(  "" );
+    }
+  };
+  const passwordValidator = (password: any) => {
+    let reg =  /(?=.*[0-9])/;
+    if (reg.test(password) === false) {
+      setErrorMassage2(  " الرجاء كتابة كلمة المرور بشكل صحيح  " );
       return false;
     } else {
       setErrorMassage2(  "" );
     }
   };
 
-//   useEffect(() => {
+  useEffect(() => {
         
-//     if (user == null || user.Id == "" || user.Id==null) {
-//       setErrorMassage(user.errorMassage);
-//       if(user.errorMassage==null || user.errorMassage==""){
-//         setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
-//       }
-//     } else {
-//       //empty the error message
-//       setErrorMassage("");
-//       setState({
-//                 Token: user.Token,
-//                 Id: user.Id,
-//                 Email: user.Email,
-//                 UserName: user.UserName,
-//                 PhoneNumber: user.PhoneNumber,
-//                 ErrorMessage: user.errorMassage,
-//                 EmailConfeirmd:  user.EmailConf,
-//                })
-//                GoToHome()
-//     }
-// }, [user]);
+   if (user == null || user.Id == "" || user.Id==null) {
+      setErrorMassage(user.errorMassage);
+      if(user.errorMassage==null || user.errorMassage==""){
+        setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
+      }
+    } else {
+      //empty the error message
+      setErrorMassage("");
+      setState({
+                Token: user.Token,
+                Id: user.Id,
+                Email: user.Email,
+                UserName: user.UserName,
+                PhoneNumber: user.PhoneNumber,
+                ErrorMessage: user.errorMassage,
+                EmailConfeirmd:  user.EmailConf,
+               })
+    }
+}, [user]);
 
 
 
   
-//       const Login = async () => {
-//         try {
-//           fetch('https://apieasyprint20210215153907.azurewebsites.net/api/driver          ', {
-//            method: 'POST',
-//            headers: {
-//            Accept: 'application/json',
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({
-//          Email:email,
-//          PasswordHash: password
-//          })
-//       }).then((response) => response.json())
-//       .then((response) => {
-//       setUser({
-//                Email: response.data.email,
-//                PhoneNumber: response.data.phoneNumber,
-//                UserName:response.data.userName, 
-//                EmailConf:response.data.emailConfiremd,
-//                errorMassage:response.data.errorMessage,
-//                Id:response.data.id,
-//                Token:response.data.token,
+      const Login = async () => {
+        try {
+          fetch('https://apieasyprint20210215153907.azurewebsites.net/api/driver          ', {
+           method: 'POST',
+           headers: {
+           Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+         Email:email,
+         PasswordHash: password
+         })
+      }).then((response) => response.json())
+      .then((response) => {
+      setUser({
+               Email: response.data.email,
+               PhoneNumber: response.data.phoneNumber,
+               UserName:response.data.userName, 
+               EmailConf:response.data.emailConfiremd,
+               errorMassage:response.data.errorMessage,
+               Id:response.data.id,
+               Token:response.data.token,
                
-//                });
+               });
                
 
-//       })
-//       .catch((error) => {
-//        console.error(error);
-//      });
+      })
+      .catch((error) => {
+       console.error(error);
+     });
       
-//      } catch (error) {
-//        console.log('حدث خطأ! ', error)
-//      }
-//    }
+     } catch (error) {
+       console.log('حدث خطأ! ', error)
+     }
+   }
  
     return (
       <View style={styles.container}>
@@ -139,18 +147,22 @@ const emailValidator = (email: any) => {
             />
             <TextInput 
                 style={styles.textInput}
-                // onChangeText={(e) => setPassword(e.toString())}
-
-            />
+                onTextInput={(e) => setPassword(e.toString())}
+                
+                onChangeText={(password) => passwordValidator(password)}            />
+    
+         
     
                    
         </View>
 
         
        
-        {/* <TouchableOpacity style={styles.button}> 
+     
+        <TouchableOpacity style={styles.button}> 
           <Text  style={styles.userBtnTxt} onPress={() =>Login()}>تسجيل الدخول </Text>
-          </TouchableOpacity>  */}
+          </TouchableOpacity> 
+
 
 
          
@@ -168,12 +180,7 @@ const styles = StyleSheet.create({
     flex: 1, 
     backgroundColor: '#009387'
   },
-  userBtnTxt: {
-   
-    fontSize:20,
-    color:"#fff",
-    
-  },
+
   header: {
       flex: 1,
       justifyContent: 'flex-end',
@@ -212,13 +219,7 @@ alignItems: 'flex-end'
       color: '#05375a',
       textAlign: 'right', 
   },
-  button: {
-      alignItems: 'center',
-      borderColor: '#009387',
-      borderWidth: 1,
-      marginTop: 15,
-      borderRadius:17,
-  },
+ 
   signIn: {
       width: '100%',
       height: 50,
@@ -247,6 +248,20 @@ alignItems: 'flex-end'
     textAlign: 'right'
 
   },
+  button: {
+    alignItems: 'center',
+    borderColor: '#85C1E9',
+    backgroundColor:'#49c3c6',
+    borderWidth: 1,
+    marginTop: 15,
+    borderRadius:17,
+},
+userBtnTxt: {
+ 
+  fontSize:20,
+  color:"#fff",
+  
+},
 
 })
 

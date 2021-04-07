@@ -184,6 +184,7 @@ padding:"3%"
     fontSize: 14,
     lineHeight: 14,
     fontWeight: '500',
+    marginLeft:"30%"
   },
 
   row: {
@@ -236,7 +237,8 @@ padding:"3%"
     marginTop:'5%',
     alignContent:'flex-end',
     marginBottom: '15%',
-    fontSize:24,
+    fontSize:20,
+    marginLeft:"25%"
   },
   cont2:{
     
@@ -248,6 +250,7 @@ padding:"3%"
     color:"#777777", 
     marginRight: '5%',
     fontSize:14,
+    
     
   },
   icon2: {
