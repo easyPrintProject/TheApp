@@ -58,38 +58,37 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
   // }
   
     return (
+      <KeyboardAvoidingView>
 <SafeAreaView style={{height:'100%'}}>
-<ScrollView>
+<ScrollView  >
         
-          <View    style={{
+          <View style={{
          height:"10%",
          width:'100%',
-     backgroundColor:"#b4d8ee",
+     backgroundColor:"#49c3c6",
      alignItems:'center', }}>  
-       <Text   style={{
-      
+       <Text style={{
+    
        
       marginTop: 13,
       marginLeft:"5%",
       fontSize: 20,
       fontWeight: 'bold',
-      color: 'black',
+      color: 'white',
      alignItems:'center', }}>  عنوان التوصيل</Text> 
          </View> 
     
     
 
       
- <View style={{ backgroundColor:'#fff'}}>
+ <View style={{ backgroundColor:'#fff', paddingRight: 10}}>
   
 
-<ImageBackground source={require("../assets/images/q1.png")}
- style={styles.image}>
+ 
              <View style={styles.action}>
-          <FontAwesome name="user-o" color="#333333" size={20} />
 
           <TextInput
-            placeholder="  اسم المستلم"
+            placeholder="اسم المستلم"
             placeholderTextColor="black"
             autoCorrect={false}
             style={styles.textInput}
@@ -101,7 +100,6 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
           
     
         <View style={styles.action}>
-          <Feather name="phone" color="#333333" size={20} />
           <TextInput
             placeholder="رقم الجوال"
             placeholderTextColor="black"
@@ -114,7 +112,6 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
         </View>
 
         <View style={styles.action}>
-          <FontAwesome name="globe" color="#333333" size={20} />
           <TextInput
             placeholder="الحي"
             placeholderTextColor="black"
@@ -125,11 +122,7 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
           />
         </View>
         <View style={styles.action}>
-          <MaterialCommunityIcons
-            name="map-marker-outline"
-            color="#333333"
-            size={20}
-          />
+         
           <TextInput
             placeholder="الشارع"
             placeholderTextColor="black"
@@ -141,7 +134,6 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
         </View>
     
         <View style={styles.action}>
-          <Ionicons name="ios-clipboard-outline" color="#333333" size={20} />
           <TextInput
             multiline
             numberOfLines={3}
@@ -156,14 +148,10 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
         </View>
 
         <View style={styles.action}>
-          <MaterialCommunityIcons
-            name="map-marker-outline"
-            color="#333333"
-            size={20}
-          />
+        
           <TextInput
             placeholder="المدينة"
-            placeholderTextColor="#666666"
+            placeholderTextColor="black"
             autoCorrect={false}
            // value={userData ? userData.city : ''}
            // onChangeText={(txt) => setUserData({...userData, city: txt})}
@@ -171,46 +159,35 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
           />
         </View>
         <View style={styles.action}>
-          <MaterialCommunityIcons
-            name="map-marker-outline"
-            color="#333333"
-            size={20}
-          />
+          
           <TextInput
             placeholder="الرمز البريدي"
-            placeholderTextColor="#666666"
+            placeholderTextColor="black"
             autoCorrect={false}
           //  onChangeText={(txt) => setpostcode()}
             style={styles.textInput}
           />
         </View>
         
-        <Text style={styles.userBtnTxt}>أضافة العنوان</Text>
+        <Text style={styles.userBtnTxt}>اضافة العنوان</Text>
    
 
-
-
-
-
-     </ImageBackground>
           
          
 </View>
  </ScrollView> 
         
    </SafeAreaView>
+   </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   userBtnTxt: {
-    backgroundColor:"#b4d8ee",
- 
-    
- 
+    backgroundColor:"#49c3c6", 
     borderWidth:1,
+    borderColor: "#49c3c6",
     height:25,width:120  ,
-     
     justifyContent:'center',
     alignContent:'center',
     marginTop: 6,
@@ -218,7 +195,7 @@ const styles = StyleSheet.create({
     marginLeft:"36%",
     fontSize: 14,
     fontWeight: 'bold',
-    color: 'black',
+    color: 'white',
    alignItems:'center',
     }, 
     
