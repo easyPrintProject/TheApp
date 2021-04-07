@@ -17,6 +17,7 @@ export default function LoginScreen({navigation}: StackScreenProps<StartParamLis
   const [errorMassage, setErrorMassage] = useState("");
   const {state ,setState } = useGlobalState();
   const [errorMassage2, setErrorMassage2] = useState("");
+  //const [errorMassage3, setErrorMassage3] = useState("");
 
 
   useEffect(() => {
@@ -56,16 +57,15 @@ const emailValidator = (email: any) => {
     setErrorMassage2(  "" );
   }
 };
-const passwordValidator = (password: any) => {
+{/*const passwordValidator = (password: any) => {
   let reg =  /(?=.*[0-9])/;
   if (reg.test(password) === false) {
-    setErrorMassage2(  " الرجاء كتابة كلمة المرور بشكل صحيح  " );
+    setErrorMassage3(  " الرجاء كتابة كلمة المرور بشكل صحيح  " );
     return false;
   } else {
-    setErrorMassage2(  "" );
-    
+    setErrorMassage3(  "" );
   }
-};
+}; */}
 
 
 const Login = async () => {
@@ -109,7 +109,7 @@ const Login = async () => {
     <View style={styles.header}>
         <Text style={styles.text_header}> تسجيل الدخول</Text>
     </View>
-    <KeyboardAvoidingView behavior="padding">
+    <KeyboardAvoidingView behavior="position">
 
     <Animatable.View 
         animation="fadeInUpBig"
@@ -156,18 +156,19 @@ const Login = async () => {
                 secureTextEntry={true}
                 style={styles.textInput}
                 autoCapitalize="none"
-                
-                onTextInput={(e) => setPassword(e.toString())}
-                
-                onChangeText={(password) => passwordValidator(password)}            />
-    
-                   
+                onChangeText={(e) => setPassword(e.toString())}/>     
         </View>
-
+      
         
-        <TouchableOpacity style={styles.button} onPress={() =>Login()}> 
-          <Text  style={styles.userBtnTxt} >تسجيل الدخول </Text>
-          </TouchableOpacity> 
+
+            <View style={styles.button}>
+            <Button 
+        title='تسجيل الدخول '
+        color='#49c3c6' 
+              onPress={() => Login()}
+      />
+
+        </View>
 
 
             
@@ -228,13 +229,12 @@ alignItems: 'flex-end'
       textAlign: 'right', 
   },
   button: {
-      alignItems: 'center',
-      borderColor: '#85C1E9',
-      backgroundColor:'#49c3c6',
-      borderWidth: 1,
-      marginTop: 15,
-      borderRadius:17,
-  },
+    alignItems: 'center',
+    borderColor: '#49c3c6',
+    borderWidth: 1,
+    marginTop: 15,
+    borderRadius:17,
+},
   userBtnTxt: {
    
     fontSize:20,

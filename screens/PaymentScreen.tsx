@@ -22,7 +22,7 @@ export default function PaymentScreen({ navigation }: StackScreenProps<OrderPara
   }
 
   const onCheckStatus = async (paymentResponse: any | React.SetStateAction<undefined>) => {
-      setPaymentStatus('Please wait while confirming your payment!')
+      setPaymentStatus('الرجاء الإنتظار')
       setResponse(paymentResponse)
 
       let jsonResponse = JSON.parse(paymentResponse);
@@ -31,7 +31,7 @@ export default function PaymentScreen({ navigation }: StackScreenProps<OrderPara
       try {
   
           const stripeResponse = await axios.post('http://localhost:8000/payment', {
-              email: 'codergogoi@gmail.com',
+              email: 'test@gmail.com',
               product: cartInfo,
               authToken: jsonResponse
           })
@@ -100,7 +100,16 @@ export default function PaymentScreen({ navigation }: StackScreenProps<OrderPara
                       </Text>
 
                   </TouchableOpacity>
+                  <TouchableOpacity style={{ height: 60, width: 300, backgroundColor: 'white', borderRadius: 30, justifyContent: 'center', alignItems: 'center', marginTop: 5,
+                      }}
+                      onPress={() => {
+                      }}
+                      >
+                      <Text style={{ color: 'black', fontSize: 20}}>
+                         أو الدفع عند الاستلام
+                      </Text>
 
+                  </TouchableOpacity>
               </View>
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, TextInput, Text,  ScrollView, StatusBar, Button, KeyboardAvoidingView,TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TextInput, Text,  ScrollView, StatusBar, Button, KeyboardAvoidingView } from 'react-native';
 import {  StackScreenProps } from '@react-navigation/stack';
 import { StartParamList} from '../types';
 import * as Animatable from 'react-native-animatable';
@@ -20,6 +20,8 @@ export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
   const [errorMassage, setErrorMassage] = useState("");
   const [errorMassage2, setErrorMassage2] = useState("");
   const [errorMassage3, setErrorMassage3] = useState("");
+  //const [errorMassage4, setErrorMassage4] = useState("");
+  //const [errorMassage5, setErrorMassage5] = useState("");
 
 
   useEffect(() => {
@@ -66,25 +68,25 @@ const PhoneValidator = (phoneNumber: any) => {
     setErrorMassage3(  "" );
   }
 };
-const usernameValidator = (username: any) => {
+ {/*const usernameValidator = (username: any) => {
   let reg =  /^[a-zA-Z]+$/;
   if (reg.test(username) === false) {
-    setErrorMassage3(  "الرجاء كتابة الاسم بشكل صحيح " );
+    setErrorMassage4(  "الرجاء كتابة الاسم بشكل صحيح " );
     return false;
   } else {
-    setErrorMassage3(  "" );
+    setErrorMassage4(  "" );
   }
 };
 
 const passwordValidator = (password: any) => {
   let reg =  /(?=.*[0-9])/;
   if (reg.test(password) === false) {
-    setErrorMassage3(  " الرجاء كتابة كلمة المرور بشكل صحيح  " );
+    setErrorMassage5(  " الرجاء كتابة كلمة المرور بشكل صحيح  " );
     return false;
   } else {
-    setErrorMassage3(  "" );
+    setErrorMassage5(  "" );
   }
-};
+}; */}
 
   const signUp = async () => {
     try {
@@ -127,7 +129,7 @@ const passwordValidator = (password: any) => {
     <View style={styles.header}>
         <Text style={styles.text_header}> الانضمام إلى ايزي برنت</Text>
     </View>
-    <KeyboardAvoidingView behavior="padding">
+    <KeyboardAvoidingView behavior="position">
     <Animatable.View 
         animation="fadeInUpBig"
         style={styles.footer}
@@ -144,8 +146,7 @@ const passwordValidator = (password: any) => {
                 style={styles.textInput}
                 autoCapitalize="none"
                 textAlign= 'right'
-                onTextInput={(e) => setUserName(e.toString())}
-                onChangeText={(username) => usernameValidator(username)}
+                onChangeText={(e) => setUserName(e.toString())}
 
             />
             <Animatable.View
@@ -153,6 +154,7 @@ const passwordValidator = (password: any) => {
             >
             </Animatable.View>
         </View>
+
 
         <Text style={[styles.text_footer, {
             marginTop: 35
@@ -167,14 +169,13 @@ const passwordValidator = (password: any) => {
                 textAlign= 'right'
                 secureTextEntry={true}
                 style={styles.textInput}
-                onTextInput={(e) => setPassword(e.toString())}
+                onChangeText={(e) => setPassword(e.toString())}
                 
-                onChangeText={(password) => passwordValidator(password)}
 
             />     
              
         </View>
-        
+
         <Text style={[styles.text_footer, {
             marginTop: 35
         }]}>الإيميل الإلكتروني</Text>
@@ -189,7 +190,7 @@ const passwordValidator = (password: any) => {
                 style={styles.textInput}
                 autoCapitalize="none"
                 onTextInput={(e) => setEmail(e.toString())}
-                //onChangeText={(email) => emailValidator(email)}
+                onChangeText={(email) => emailValidator(email)}
 
             />  
         
@@ -222,10 +223,17 @@ const passwordValidator = (password: any) => {
 
 
        
-<TouchableOpacity style={styles.button} onPress={() =>signUp()}> 
-          <Text  style={styles.userBtnTxt} >تسجيل الدخول </Text>
-          </TouchableOpacity> 
+        <View style={styles.button}>
+            <Button 
+        title='انشاء حساب '
+        color='#49c3c6' 
+              onPress={() => signUp()}
+      />
 
+            
+
+         
+            </View>
             </ScrollView>
         </Animatable.View>
         </KeyboardAvoidingView>
@@ -267,7 +275,7 @@ textAlign:'right' },
       flexDirection: 'row',
       marginTop: 10,
       borderBottomWidth: 1,
-      borderBottomColor: '#49c3c6',
+      borderBottomColor: '#f2f2f2',
       paddingBottom: 5
   },
   textInput: {
@@ -275,7 +283,13 @@ textAlign:'right' },
       paddingLeft: 10,
       color: '#05375a',
   },
-
+  button: {
+      alignItems: 'center',
+      borderColor: '#49c3c6',
+      borderWidth: 1,
+      marginTop: 15,
+      borderRadius:17,
+  },
   signIn: {
       width: '100%',
       height: 50,
@@ -303,19 +317,5 @@ textAlign:'right' },
     textAlign: 'right'
 
   },
-  button: {
-    alignItems: 'center',
-    borderColor: '#85C1E9',
-    backgroundColor:'#49c3c6',
-    borderWidth: 1,
-    marginTop: 15,
-    borderRadius:17,
-},
-userBtnTxt: {
- 
-  fontSize:20,
-  color:"#fff",
-  
-},
 })
 

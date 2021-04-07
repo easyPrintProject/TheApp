@@ -126,7 +126,7 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
           />
         </View>
 
-      <TouchableOpacity style={styles.button}> 
+      <TouchableOpacity style={styles.button} > 
  <Text style={styles.userBtnTxt} 
  onPress={() =>update()}
  >تحديث 
@@ -167,7 +167,8 @@ icon:{
     paddingLeft: 65,
     color: '#333333',
     justifyContent:"center",
-    alignItems:'center'
+    alignItems:'center',
+    textAlign: 'right',
   },
   action: {
     flexDirection: 'row',

@@ -10,119 +10,184 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 export default function Address( {navigation}: StackScreenProps<AccountParamList> ) {
   
-   
-  const {state ,setState } = useGlobalState();
-  const [StateAddress, setAddress] = useState({Userid:state.Id, country:"",  city:"", neighborhood:"", street:"",  adressLine:"", postcode:""});
-   
-  
+   const {state ,setState } = useGlobalState();
+
+
+   const [Address,setAddress ] = React.useState(
+
+   [{
+
+      userId:String,
+      country: String,
+      city: String,
+      neighborhood: String,
+      street:String,
+      adressLine: String,
+      postcode: Number
+    }]
+  );
 
 
 
+  //   try {
+  //     fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/'+ state.userId,  {
+  //      method: 'Get',
+  //      headers: {
+  //      Accept: 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //    }).then((response) => response.json())
+  //    .then((response) => {
+  //     setAddress({
+  //     userId:response.data.userId,
+  //     country: response.data.country,
+  //     city:response.data.city, 
+  //     neighborhood:response.data.neighborhood,
+  //     street:response.data.street,
+  //     adressLine:response.data.adressLine,
+  //     postcode:response.data.postcode,
+  //   });
+  //    })
+  //    .catch((error) => {
+  //     console.error(error);
+  //   });
+  //   } catch (error) {
+  //     console.log('حدث خطأ! ', error)
+  //   }
 
-    try {
-       fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/'+ state.Id,  {
-        method: 'Get',
-        headers: {
-        Accept: 'application/json',
-         'Content-Type': 'application/json'
-       },
-      
-
-      }).then((response) => response.json())
-      .then((response) => {
-       setAddress({
-       Userid:state.Id,
-       country: response.data.country,
-       city:response.data.city, 
-       neighborhood:response.data.neighborhood,
-       street:response.data.street,
-       adressLine:response.data.adressLine,
-       postcode:response.data.postcode,
-     });
-      })
-      .catch((error) => {
-       console.error(error);
-     });
-     } catch (error) {
-       console.log('حدث خطأ! ', error)
-    }
-
-  
+  // }
   
     return (
+      <KeyboardAvoidingView>
 <SafeAreaView style={{height:'100%'}}>
-<ScrollView>
+<ScrollView  >
         
-          <View    style={{
+          <View style={{
          height:"10%",
          width:'100%',
-     backgroundColor:"#b4d8ee",
+     backgroundColor:"#49c3c6",
      alignItems:'center', }}>  
-       <Text   style={{
-      
+       <Text style={{
+    
        
       marginTop: 13,
       marginLeft:"5%",
       fontSize: 20,
       fontWeight: 'bold',
-      color: 'black',
+      color: 'white',
      alignItems:'center', }}>  عنوان التوصيل</Text> 
          </View> 
     
     
 
       
- <View style={{ backgroundColor:'#fff'}}>
+ <View style={{ backgroundColor:'#fff', paddingRight: 10}}>
   
 
-<ImageBackground source={require("../assets/images/q1.png")}
- style={styles.image}>
+ 
              <View style={styles.action}>
-          <FontAwesome name="user-o" color="#333333" size={20} />
 
-         <Text>{state.Id} </Text>
+          <TextInput
+            placeholder="اسم المستلم"
+            placeholderTextColor="black"
+            autoCorrect={false}
+            style={styles.textInput}
+            // onChangeText={(e) => setUserName(e.toString())}
 
-         <Text>{StateAddress.country} </Text>
-
-         <Text>{StateAddress.city} </Text>
+          />
           
           </View>
           
     
+        <View style={styles.action}>
+          <TextInput
+            placeholder="رقم الجوال"
+            placeholderTextColor="black"
+            keyboardType="number-pad"
+            autoCorrect={false}
+            // onChangeText={(e) => setPhoneNumber(e.toString())}
 
-       
+            style={styles.textInput}
+          />
+        </View>
+
+        <View style={styles.action}>
+          <TextInput
+            placeholder="الحي"
+            placeholderTextColor="black"
+            autoCorrect={false}
+            // onChangeText={(e) => setneighborhood(e.toString())}
+
+            style={styles.textInput}
+          />
+        </View>
+        <View style={styles.action}>
+         
+          <TextInput
+            placeholder="الشارع"
+            placeholderTextColor="black"
+            autoCorrect={false}
+            // onChangeText={(e) => setstreet(e.toString())}
+
+            style={styles.textInput}
+          />
+        </View>
     
+        <View style={styles.action}>
+          <TextInput
+            multiline
+            numberOfLines={3}
+            placeholder="وصف"
+            placeholderTextColor="black"
+            // onChangeText={(e) => setadressLine(e.toString())}
 
-      
-       
+            autoCorrect={true}
+            style={[styles.textInput]}
+          />
+          
+        </View>
+
+        <View style={styles.action}>
         
-        <Text style={styles.userBtnTxt}>أضافة العنوان</Text>
+          <TextInput
+            placeholder="المدينة"
+            placeholderTextColor="black"
+            autoCorrect={false}
+           // value={userData ? userData.city : ''}
+           // onChangeText={(txt) => setUserData({...userData, city: txt})}
+            style={styles.textInput}
+          />
+        </View>
+        <View style={styles.action}>
+          
+          <TextInput
+            placeholder="الرمز البريدي"
+            placeholderTextColor="black"
+            autoCorrect={false}
+          //  onChangeText={(txt) => setpostcode()}
+            style={styles.textInput}
+          />
+        </View>
+        
+        <Text style={styles.userBtnTxt}>اضافة العنوان</Text>
    
 
-
-
-
-
-     </ImageBackground>
           
          
 </View>
  </ScrollView> 
         
    </SafeAreaView>
-  );}
-  
-  
+   </KeyboardAvoidingView>
+  );
+}
 
 const styles = StyleSheet.create({
   userBtnTxt: {
-    backgroundColor:"#b4d8ee",
- 
-    
- 
+    backgroundColor:"#49c3c6", 
     borderWidth:1,
+    borderColor: "#49c3c6",
     height:25,width:120  ,
-     
     justifyContent:'center',
     alignContent:'center',
     marginTop: 6,
@@ -130,7 +195,7 @@ const styles = StyleSheet.create({
     marginLeft:"36%",
     fontSize: 14,
     fontWeight: 'bold',
-    color: 'black',
+    color: 'white',
    alignItems:'center',
     }, 
     

@@ -129,7 +129,6 @@ const   GoToFeedbackScreen = () => {
 </TouchableOpacity>
 <TouchableOpacity  onPress={() =>navigation.goBack()}
         style={[styles.button,{
-            borderColor:'#009387',
             borderWidth: 1,
             marginTop:15
         }]}>
@@ -275,6 +274,7 @@ userBtnTxt: {
    padding:'2%',
   fontSize:15,
   color:"#fff",
+  borderColor:"#49c3c6",
   
 },
 signIn: {
