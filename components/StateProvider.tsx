@@ -32,12 +32,12 @@ export interface GlobalStateInterface {
 
   //adress 
 
- /* country: String;
+ country: String;
   city: String;
   neighborhood: String;
   street:String;
   adressLine: String;
-  postcode: Number;*/
+  postcode: Number;
 
 }
 

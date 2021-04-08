@@ -24,10 +24,12 @@ import CouponsScreen from '../screens/CouponsScreen';
 import { BottomTabParamList, HomeParamList, BasketParamList, PrintersListParamList, OrderParamList, AccountParamList , DocProp } from '../types';
 import { Title } from 'react-native-paper';
 import EditAccountScreen from '../screens/EditAccountScreen';
-import Addresso from '../screens/Address';
+import AddressEdit from '../screens/AddressEdit';
 import UpdateAdress from '../screens/UpdateAdress';
 import FeedbackScreen from '../screens/FeedbackScreen';
-import SuggestionsScreen from '../screens/SuggestionsScreen'
+import SuggestionsScreen from '../screens/SuggestionsScreen';
+import Address from '../screens/Address'
+
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -160,7 +162,7 @@ function AccountNavigator() {
       />
      <AccountDrawer.Screen
         name='Address'
-        component={Addresso}
+        component={Address}
         options={{ drawerLabel:  'سجل العناوين' }}
       />
       <AccountDrawer.Screen
@@ -172,6 +174,12 @@ function AccountNavigator() {
         name='FeedbackScreen'
         component={FeedbackScreen}
         options={{ drawerLabel:  'تقييم الطلبات' }}
+      />
+
+<AccountDrawer.Screen
+        name='AddressEdit'
+        component={AddressEdit}
+        options={{ drawerLabel:  'تعديل العنوان' }}
       />
       
   
