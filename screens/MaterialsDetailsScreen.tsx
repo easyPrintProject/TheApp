@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
 import { PrintersListParamList} from '../types';
 import { useGlobalState } from '../components/StateProvider';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Ionicons } from '@expo/vector-icons';
 
 
 export default function MaterialsDetailsScreen({navigation}: StackScreenProps<PrintersListParamList> ) {
@@ -142,7 +142,7 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
         const CheckUser = () => {
           if ( state.Email==null) {
             return(<View>
-              <Text style = {{ color:"red"}}> لايمكنك الاضافة للسلة بدون تسجيل الدخول </Text>
+              <Text style = {{ color:"tomato", textAlign:"center"}}> لايمكنك الاضافة للسلة بدون تسجيل الدخول </Text>
              </View>);           
           } else {
             return(<View style={styles.buttonStyle}> 
@@ -153,11 +153,11 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
 
   <SafeAreaView>
     <View>
-      <View style = {{flexDirection:"row",backgroundColor:"#96C493", justifyContent:"space-between", paddingBottom: 10}} >
+      <View style = {{flexDirection:"row",backgroundColor:"#49c3c6", paddingBottom: 10}} >
          <Pressable onPress={()=>GoToDocumentList() }>  
-            <AntDesign name="leftcircleo" size={30} style={{ marginTop:15, marginLeft:5, color:"white" }}  />
+         <Ionicons name="chevron-back" size={24} color="white" style={{marginTop:30}}  />         
          </Pressable>
-         <Text style={{ marginTop:15, marginRight:5, color:"white", fontSize:20 }}>{state.courceMaterialTitle}</Text>
+         <Text  style={{textAlign:'center',alignItems:'center',color:"white", fontSize: 22,fontWeight:"bold", marginTop:40, marginLeft:110 }}>{state.courceMaterialTitle}</Text>
 
       </View>
        <Modal animationType="slide"  transparent={true}   visible={modalVisible} onRequestClose={() => { setModalVisible(!modalVisible); }}>
@@ -177,11 +177,11 @@ export default function MaterialsDetailsScreen({navigation}: StackScreenProps<Pr
       <View >
          <Card>
             <View style={(styles.text)}>
-               <Text style={{ margin:5}}>اسم الملزمة: {state.courceMaterialTitle}</Text>
-               <Text style={{ margin:5}}>عدد الصفحات:200</Text>
-               <Text style={{ margin:5}}>نوع الطباعة: ابيض و اسود</Text>
-               <Text style={{ margin:5}}>الوصف : {state.courceMaterialDescreption}</Text>
-               <Text style={{ margin:5}}>السعر:{state.courceMaterialPrice} ريال</Text>
+               <Text style={{ margin:5, textAlign:'right' , fontWeight:"bold"}}>اسم الملزمة: {state.courceMaterialTitle}</Text>
+               <Text style={{ margin:5, textAlign:'right', fontWeight:"bold"}}>عدد الصفحات:200</Text>
+               <Text style={{ margin:5, textAlign:'right', fontWeight:"bold"}}>نوع الطباعة: ابيض و اسود</Text>
+               <Text style={{ margin:5, textAlign:'right', fontWeight:"bold"}}>الوصف : {state.courceMaterialDescreption}</Text>
+               <Text style={{ margin:5, textAlign:'right', fontWeight:"bold", marginBottom: 15}}>السعر:{state.courceMaterialPrice} ريال</Text>
             </View>
             {CheckUser()}
          </Card>
@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#4BBFF4",
     },
     buttonClose: {
-      backgroundColor: "#5799E3",
+      backgroundColor: "#49c3c6",
       
     },
     textStyle: {
@@ -255,12 +255,14 @@ const styles = StyleSheet.create({
       fontWeight: "bold",
       textAlign: "center",
       fontSize: 16,
+      backgroundColor:"#49c3c6"
       
     },
     modalText: {
       marginBottom: 15,
       textAlign: "center", 
       paddingTop: 20,
+      
     },
     text:{
       textAlign:'right',
