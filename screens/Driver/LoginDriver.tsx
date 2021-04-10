@@ -139,6 +139,7 @@ const emailValidator = (email: any) => {
             />
             <TextInput 
                 style={styles.textInput}
+                secureTextEntry={true}
                 onChangeText={(e) => setPassword(e.toString())}
                      />
     
