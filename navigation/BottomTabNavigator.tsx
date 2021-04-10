@@ -103,6 +103,12 @@ function HomeNavigator() {
         <HomeStack.Screen name="OrderScreen" component={Order} />
         <HomeStack.Screen name="DonationScreen" component={Donation} />
         <HomeStack.Screen name="PrinterListScreen" component={Printers} />
+        <HomeStack.Screen name="DocumentListScreen" component={DocumentListScreen} />
+        <HomeStack.Screen name="MaterialsDetailsScreen" component={MaterialsDetailsScreen} />
+        <HomeStack.Screen name="BasketScreen" component={Basket} />
+        <HomeStack.Screen name="PrintingOptionsScreen" component={PrintingOptions} />
+        <HomeStack.Screen name="DeliveryTimeScreen" component={DeliveryTimeScreen} />
+        <HomeStack.Screen name="PaymentScreen" component={PaymentScreen} />
     </HomeStack.Navigator>
   );
 }

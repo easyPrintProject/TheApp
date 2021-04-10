@@ -61,6 +61,12 @@ export type HomeParamList = {
   PrinterListScreen: undefined;
   SigninScreen:undefined;
   LoginScreen:undefined;
+  DocumentListScreen: undefined;
+  MaterialsDetailsScreen:undefined;
+  BasketScreen: undefined;
+  PrintingOptionsScreen: undefined;
+  DeliveryTimeScreen: undefined;
+  PaymentScreen: undefined;
 };
 export type AccountScreenParamList ={
   UpdateAdress:undefined;

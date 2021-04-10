@@ -7,7 +7,7 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { StackScreenProps } from '@react-navigation/stack';
 import { PrintersListParamList, DocProp} from '../types';
 import { useGlobalState } from '../components/StateProvider';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Feather, Ionicons } from '@expo/vector-icons';
 type PrenterInfo  = {
   id: string,
 }
@@ -109,19 +109,16 @@ export default function DocumentListScreen({navigation}: StackScreenProps<Printe
   return (
  <SafeAreaView>
    <View  style={{backgroundColor:"#FFF" ,height:"100%"}}>
-    <View style={{ flexDirection:"row",justifyContent:"space-between",backgroundColor:"#96C493",height:"10%"}}>
+    <View style={{ flexDirection:"row",justifyContent:"space-between",backgroundColor:"#49c3c6",height:"13%"}}>
       <Pressable  onPress={()=>GoToPrintersList() }>  
-      <Text  style={{textAlign:'center',alignItems:'center',justifyContent:'center'}}> {state.printerName}  </Text> 
 
-            <AntDesign name="leftcircleo" size={30} style={{ marginTop:15, marginLeft:5, color:"white" }}  />
-         </Pressable>
+      <Ionicons name="chevron-back" size={24} color="white" style={{marginTop:30}}  />
+      <Text  style={{textAlign:'center',alignItems:'center',color:"white", fontSize: 22,fontWeight:"bold", marginBottom:10, paddingLeft:145}}> مكتبة {state.printerName}  </Text> 
+
+               </Pressable>
+
    </View>
-    <View style={{flexDirection:"row" ,width:"220%", justifyContent:"space-evenly",alignItems:"flex-start",backgroundColor:"#96C493",height:40,marginTop:5}}>
-      <Animatable.View animation="slideInRight" duration={500} style={{ height: 50, backgroundColor: 'white', flexDirection: 'row', padding: 5, alignItems: 'center' }}>
-         <TextInput placeholder="Search" style={{fontSize:24,marginLeft:-320}}/>
-        <Icon name="ios-search" style={{fontSize:24,marginLeft:-199,paddingStart:22}}/>
-     </Animatable.View>
-    </View>
+
     <View style={{paddingTop:3}}>
       <Text style={{fontSize:15,textAlign:'center',alignItems:'center',justifyContent:'center'}}> سيتم توفير جميع الملخصات و الملازم جاهزه للطباعة</Text>
    </View>
@@ -139,11 +136,11 @@ export default function DocumentListScreen({navigation}: StackScreenProps<Printe
                <Image  source={require('../assets/images/5.jpg')}style={{height:200, width:200 ,borderWidth:2,marginTop:"5%",marginHorizontal:90}}/>
                <Text style={{flex:1,backgroundColor:'white',paddingTop:9,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:5,fontSize:20,}}> {e.courceMaterialTitle} </Text>
                 <View>
-                  <Text style={{fontSize:15,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:5,color:"red"}}>{e.courceMaterialPrice} ريال</Text>
+                  <Text style={{fontSize:15,textAlign:'center',alignItems:'center',justifyContent:'center',marginLeft:5,color:"tomato"}}>{e.courceMaterialPrice} ريال</Text>
                </View>      
                <View  style={{paddingTop:6}}>
-                 <TouchableOpacity onPress={() => GoToMaterialsDetailes(e)} style={{borderWidth:1,height:42,width:"100%",marginLeft:1,justifyContent:"center",alignItems:"center",backgroundColor:"#8C8787"}}>
-                   <Text style={{color:"#FFFFFF"}}>المزيد</Text>
+                 <TouchableOpacity onPress={() => GoToMaterialsDetailes(e)} style={{borderWidth:1,height:42,width:"100%",marginLeft:1,justifyContent:"center",alignItems:"center",backgroundColor:"#e0dede"}}>
+                   <Text style={{color:"black",fontWeight:"bold"}}>المزيد</Text>
                  </TouchableOpacity>
                </View>
              </View>

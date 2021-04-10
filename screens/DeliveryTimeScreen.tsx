@@ -48,7 +48,7 @@ class Option extends Component<any, any>  {
                 textAlign: 'center',
                 width: 150,
                 height: 50,
-                color: 'black',
+                color: '#05375a',
               }}>
               {option}
             </Text>
@@ -83,7 +83,7 @@ export default function DeliveryTimeScreen({ navigation }: StackScreenProps<Orde
           }}
         />
       </View>
-      <Pressable style={{ alignItems: 'center', marginTop: 130 }}
+      <Pressable style={{ alignItems: 'center', marginTop: 110 }}
         onPress={() => GoToPayment()}>
         <Text>المتابعة للدفع</Text>
       </Pressable>
