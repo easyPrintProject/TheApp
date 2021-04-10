@@ -74,13 +74,7 @@ export default function PrinterListScreen({navigation}: StackScreenProps<Printer
           <View style={{flexDirection:"row" , justifyContent:"space-evenly",alignItems:"flex-start", backgroundColor:"#eee",height:60}}>
             <Text style={styles.title}>قائمة المكتبات </Text>
          </View>
-         <View style={{flexDirection:"row" ,width:"220%", justifyContent:"space-evenly",alignItems:"flex-start",backgroundColor:"#eee",height:40,marginTop:5}}>
-           <Animatable.View animation="slideInRight" duration={500} style={{ height: 40, backgroundColor: 'white', flexDirection: 'row', padding: 5, alignItems: 'center' }}>
-             <TextInput placeholder="Search" style={{fontSize:24,marginLeft:-320}}/>
-             <Icon name="ios-search" style={{fontSize:24,marginLeft:-199,paddingStart:22}}/>
-           </Animatable.View>
-         </View>
-         <ScrollView scrollEventThrottle={16}>
+                  <ScrollView scrollEventThrottle={16}>
            <View >
               {printers.slice(1).map(e => 
                <TouchableOpacity onPress={() => GoToDocumentList(e.prentingShopId, e.prenterName)}>

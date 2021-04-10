@@ -86,10 +86,10 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
               padding:"1%",
               borderTopColor:"black",
       marginHorizontal:"25%",
-      marginLeft:"40%",
+      marginLeft:"43%",
             }}
           >
-            أهلا بك
+            أهلاً بك
           </Text>
       
           <Text
@@ -98,7 +98,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
               paddingVertical: 10,
               marginHorizontal:"25%",
               lineHeight: 22,
-              color: "#009387",
+              color: "#49c3c6",
             
             }}
           >
@@ -109,7 +109,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
           <View
             style={{
               flexDirection: "row",
-              backgroundColor: "#009387",
+              backgroundColor: "#49c3c6",
               borderRadius: 2,
               alignItems: "center",
               paddingVertical: 1,
@@ -150,7 +150,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
               >
                 <View
                   style={{
-                    paddingHorizontal: 60,
+                    paddingHorizontal: 50,
                     paddingVertical: 1,
                   }}
                 >
@@ -193,7 +193,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
               >
                 <View
                   style={{
-                    paddingHorizontal: 60,
+                    paddingHorizontal: 62,
                     paddingVertical: 5,
                   }}
                 >
@@ -204,7 +204,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
                       color: "black",
                     }}
                   >
-                   ملزماتي
+                   الملازم 
                   </Text>
                 </View>
               
@@ -234,7 +234,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
               >
                     <View
                   style={{
-                    paddingHorizontal: 60,
+                    paddingHorizontal: 66,
                     paddingVertical: 5,
                   }}
                 >
@@ -244,7 +244,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
                       color: "black",
                     }}
                   >
-                  تبرع
+                  التبرع
                   </Text>
                 </View>
               </View>
@@ -285,7 +285,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
       borderRadius:5,
       padding:"2%",
       color:"#455A64",
-      backgroundColor:"#009387",
+      backgroundColor:"#49c3c6",
      
 
     
