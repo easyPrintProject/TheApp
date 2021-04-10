@@ -57,15 +57,6 @@ const emailValidator = (email: any) => {
     setErrorMassage2(  "" );
   }
 };
-{/*const passwordValidator = (password: any) => {
-  let reg =  /(?=.*[0-9])/;
-  if (reg.test(password) === false) {
-    setErrorMassage3(  " الرجاء كتابة كلمة المرور بشكل صحيح  " );
-    return false;
-  } else {
-    setErrorMassage3(  "" );
-  }
-}; */}
 
 
 const Login = async () => {
@@ -126,8 +117,8 @@ const Login = async () => {
             <TextInput 
                 style={styles.textInput}
                 autoCapitalize="none"
-                onTextInput={(e) => setEmail(e.toString())}
-                onChangeText={(email) => emailValidator(email)}
+                onChangeText={(e) => setEmail(e.toString())}
+                onBlur={() => emailValidator(email)}
                 
             />
           

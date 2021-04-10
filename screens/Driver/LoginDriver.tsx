@@ -113,8 +113,8 @@ const emailValidator = (email: any) => {
             <TextInput 
                 style={styles.textInput}
                 autoCapitalize="none"
-                onTextInput={(e) => setEmail(e.toString())}
-                onChangeText={(email) => emailValidator(email)}
+                onChangeText={(e) => setEmail(e.toString())}
+                onBlur={() => emailValidator(email)}
                 
             />
             <Animatable.View
