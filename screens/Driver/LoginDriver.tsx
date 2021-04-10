@@ -56,7 +56,7 @@ const emailValidator = (email: any) => {
   
       const Login = async () => {
         try {
-          fetch('https://apieasyprint20210215153907.azurewebsites.net/api/driver          ', {
+          fetch('https://apieasyprint20210215153907.azurewebsites.net/api/driver', {
            method: 'POST',
            headers: {
            Accept: 'application/json',
@@ -113,8 +113,9 @@ const emailValidator = (email: any) => {
             <TextInput 
                 style={styles.textInput}
                 autoCapitalize="none"
-                onTextInput={(e) => setEmail(e.toString())}
-                onChangeText={(email) => emailValidator(email)}
+                //onTextInput={(e) => setEmail(e.toString())}
+                //onChangeText={(email) => emailValidator(email)}
+                onChangeText={(e) => setEmail(e.toString())}
                 
             />
             <Animatable.View
@@ -140,6 +141,7 @@ const emailValidator = (email: any) => {
             <TextInput 
                 style={styles.textInput}
                 secureTextEntry={true}
+                //onChangeText={(e) => setPassword(e.toString())}
                 onChangeText={(e) => setPassword(e.toString())}
                      />
     

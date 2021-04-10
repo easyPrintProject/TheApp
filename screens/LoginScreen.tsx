@@ -13,9 +13,10 @@ export default function LoginScreen({navigation}: StackScreenProps<StartParamLis
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const {state ,setState } = useGlobalState();
   const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
   const [errorMassage, setErrorMassage] = useState("");
-  const {state ,setState } = useGlobalState();
+  
   const [errorMassage2, setErrorMassage2] = useState("");
   //const [errorMassage3, setErrorMassage3] = useState("");
 
@@ -81,6 +82,7 @@ const Login = async () => {
       PasswordHash: password
       })
    }).then((response) => response.json())
+
    .then((response) => {
    setUser({
             Email: response.data.email,
@@ -100,6 +102,7 @@ const Login = async () => {
   } catch (error) {
     console.log('حدث خطأ! ', error)
   }
+  
 }
 
   return (
@@ -109,7 +112,7 @@ const Login = async () => {
     <View style={styles.header}>
         <Text style={styles.text_header}> تسجيل الدخول</Text>
     </View>
-    <KeyboardAvoidingView behavior="position">
+    <KeyboardAvoidingView behavior="padding">
 
     <Animatable.View 
         animation="fadeInUpBig"
@@ -126,8 +129,10 @@ const Login = async () => {
             <TextInput 
                 style={styles.textInput}
                 autoCapitalize="none"
-                onTextInput={(e) => setEmail(e.toString())}
-                onChangeText={(email) => emailValidator(email)}
+                //onTextInput={(e) => setEmail(e.toString())}
+                //onChangeText={(email) => emailValidator(email)}
+                onChangeText={(e) => setEmail(e.toString())}
+
                 
             />
           
@@ -160,16 +165,13 @@ const Login = async () => {
         </View>
       
         
-
-            <View style={styles.button}>
-            <Button 
-        title='تسجيل الدخول '
-        color='#49c3c6' 
-              onPress={() => Login()}
-      />
-
-        </View>
-
+        <TouchableOpacity style={styles.button} > 
+            <Text style={styles.userBtnTxt} 
+             onPress={() => Login()}
+                 >تسجيل الدخول
+             </Text>
+        </TouchableOpacity> 
+            
 
             
 
@@ -231,6 +233,7 @@ alignItems: 'flex-end'
   button: {
     alignItems: 'center',
     borderColor: '#49c3c6',
+    backgroundColor:'#49c3c6',
     borderWidth: 1,
     marginTop: 15,
     borderRadius:17,

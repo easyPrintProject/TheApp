@@ -33,7 +33,7 @@ export default function EditAccountScreen( {navigation}: StackScreenProps<Accoun
           Accept: 'application/json',
            'Content-Type': 'application/json'
          },
-          body:  JSON.stringify({
+          body:JSON.stringify({
            Id:state.Id,
            EmailConfiremd:state.EmailConfeirmd,
            Email: email,

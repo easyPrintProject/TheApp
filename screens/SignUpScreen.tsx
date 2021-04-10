@@ -129,7 +129,7 @@ const passwordValidator = (password: any) => {
     <View style={styles.header}>
         <Text style={styles.text_header}> الانضمام إلى ايزي برنت</Text>
     </View>
-    <KeyboardAvoidingView behavior="position">
+    <KeyboardAvoidingView behavior="padding">
     <Animatable.View 
         animation="fadeInUpBig"
         style={styles.footer}
@@ -189,9 +189,9 @@ const passwordValidator = (password: any) => {
                 textAlign= 'right'
                 style={styles.textInput}
                 autoCapitalize="none"
-                onTextInput={(e) => setEmail(e.toString())}
-                onChangeText={(email) => emailValidator(email)}
-
+                //onTextInput={(e) => setEmail(e.toString())}
+                //onChangeText={(email) => emailValidator(email)}
+                onChangeText={(e) => setEmail(e.toString())}
             />  
         
 </View>

@@ -27,9 +27,46 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
   
   
   const {state ,setState } = useGlobalState();
-
+  
+ const [address, setAddress] = useState({userId:state.Id,country:"",city:"",neighborhood:"",street:"",adressLine:"",postcode:""})
     
-   
+ useEffect(() => {
+        
+      AddressInfo()
+  });
+
+
+  const AddressInfo = async () => {
+    try {
+      fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/' + state.Id, {
+       method: 'Get',
+       headers: {
+       Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+    
+     }).then((response) => response.json())
+     .then((response) => {
+     setAddress({
+      userId:state.Id,
+      country: response.data.country,
+      city:response.data.city, 
+      neighborhood:response.data.neighborhood,
+       street:response.data.street,
+       adressLine:response.data.adressLine,
+       postcode:response.data.postcode,
+              
+              });
+     })
+     .catch((error) => {
+      console.error(error);
+    });
+     
+    } catch (error) {
+      console.log('حدث خطأ! ', error)
+    }
+  }
+  
   
     return (
     
@@ -53,7 +90,7 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
 
 <View style={styles.row}>
 <Text style={styles.tt2} >المدينة :</Text>
-  <Text style={styles.tt2} >{state.city}</Text>
+  <Text style={styles.tt2} >{address.city}</Text>
 </View>
 
 
@@ -61,22 +98,22 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
 
 <View style={styles.row}>
 <Text style={styles.tt2} > الحي :</Text>
-  <Text style={styles.tt2} >{state.neighborhood}</Text>
+  <Text style={styles.tt2} >{address.neighborhood}</Text>
 </View>
 
 <View style={styles.row}>
 <Text style={styles.tt2} >الشارع :</Text>
-  <Text style={styles.tt2} >{state.street}</Text>
+  <Text style={styles.tt2} >{address.street}</Text>
 </View>
 
 <View style={styles.row}>
 <Text style={styles.tt2} >الوصف :</Text>
-  <Text style={styles.tt2} >{state.adressLine}</Text>
+  <Text style={styles.tt2} >{address.adressLine}</Text>
 </View>
 
 <View style={styles.row}>
 <Text style={styles.tt2} >الرمز البريدي :</Text>
-  <Text style={styles.tt2} >{state.postcode}</Text>
+  <Text style={styles.tt2} >{address.postcode}</Text>
 </View>
 
 
