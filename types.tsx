@@ -67,6 +67,8 @@ export type HomeParamList = {
   PrintingOptionsScreen: undefined;
   DeliveryTimeScreen: undefined;
   PaymentScreen: undefined;
+  isPrintingOrder: undefined;
+
 };
 export type AccountScreenParamList ={
   UpdateAdress:undefined;

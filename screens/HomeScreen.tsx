@@ -37,7 +37,7 @@ export default function HomeScreen({navigation }: StackScreenProps<HomeParamList
     } else {
       return(<View  style={{flexDirection:"row-reverse",backgroundColor:"#F5F5F5", alignItems:"flex-end"  }}>
        <TouchableOpacity  style={{borderRadius:20,height:20,width:"auto", alignItems:"flex-end"}}>
-        <Text style={{color:"black",}}>{state.UserName} مرحبا </Text>
+        <Text style={{color:"black",}}>{state.UserName} مرحباً  </Text>
        </TouchableOpacity></View>); 
     }  
   }
