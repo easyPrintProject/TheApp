@@ -11,6 +11,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { DrawerActions } from '@react-navigation/native';
 import { Button } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { color } from 'react-native-reanimated';
 
 export default function AccountScreen({navigation}: StackScreenProps<AccountParamList> ) {
 // ميثود للذهاب الى صفحة التعديل 
@@ -56,64 +57,54 @@ const   GoToFeedbackScreen = () => {
       <Text style={styles.title}> الحساب الشخصي</Text>
       </View>
 
-
-      <View style={[styles.userInfoSection ,styles.cont ]}>
+<View style={styles.userInfoSection}>
+      <View style={styles.cont }>
       <Image source={require('../assets/images/av2.png')} style={styles.avatar}/>
-
-      <View>
-
-      <Text style={styles.tt}>{state.UserName}</Text>
-
       <Text style={styles.caption}>{state.Email}</Text>
-      
-      </View> 
-     </View>
+      </View>
+      <TouchableOpacity style={styles.button} onPress={() => GoToEditAccountScreen()}>
+<Text style={styles.userBtnTxt} > تعديل البيانات</Text>
+</TouchableOpacity></View>
+    
+     
 
     <View style={styles.userInfoSection}>
-        <View style={styles.row}>
-          <Icon name="map-marker-radius" color="#80CBC4 " size={20}/>
 
-          <Text style={styles.tt2} >SA</Text>
+        <View style={styles.row}>
+          <Icon name="map-marker-radius-outline" color="#43A047" size={23}/>
+
+          <Text style={styles.tt2} >{state.city}</Text>
     </View>
 
         <View style={styles.row}>
-          <Icon name="phone" color="#80CBC4 " size={20}/>
+          <Icon name="phone-outline" color="#E74C3C" size={23}/>
           <Text style={styles.tt2}>{state.PhoneNumber}</Text>
         </View>
-
+        <TouchableOpacity style={styles.button} onPress={() => GoToEditAdress()}>
+<Text style={styles.userBtnTxt}> العنوان</Text>
+</TouchableOpacity>
     </View>
 
-     {/* <View style={styles.infoBoxWrapper}>
-          <View style={[styles.infoBox,styles.cont3]}>
-            <Text>140.50</Text>
-            <Text>Wallet</Text>
-          </View>
-          
-      </View>  */}
+       
 
-      <View style={styles.menuWrapper}>
-        <TouchableOpacity style={styles.menuItem}>
-            <Icon name="heart-outline" color="#FF6347" size={25}/>
-            <Text style={styles.menuItemText}>Your Favorites</Text>
-          </TouchableOpacity>
-     </View>
+      
      <View style={styles.menuWrapper}>
         <TouchableOpacity style={styles.menuItem}onPress={() => GoToBasketScreen()}>
-            <Icon name="basket-outline" color="#FFF176" size={25}/>
+            <Icon name="basket-outline" color="#85929E" size={25}/>
             <Text style={styles.menuItemText}>سلة مشترياتي</Text>
           </TouchableOpacity>
      </View>
 
      <View style={styles.menuWrapper}>
         <TouchableOpacity style={styles.menuItem}onPress={() => GoToSuggestionsScreen()}>
-            <Icon name="pencil-outline" color="#FFF176" size={25}/>
+            <Icon name="pencil-outline" color="#2E86C1" size={25}/>
             <Text style={styles.menuItemText}>ارسل اقتراحك</Text>
           </TouchableOpacity>
      </View>
 
      <View style={styles.menuWrapper}>
         <TouchableOpacity style={styles.menuItem}onPress={() => GoToFeedbackScreen()}>
-            <Icon name="star-outline" color="#FFF176" size={25}/>
+            <Icon name="star-outline" color="#F4D03F" size={25}/>
             <Text style={styles.menuItemText}>قيم الطلبات</Text>
           </TouchableOpacity>
      </View>
@@ -121,20 +112,17 @@ const   GoToFeedbackScreen = () => {
 
 <View>
 <View style={styles.contant}>
-<TouchableOpacity style={styles.button} onPress={() => GoToEditAccountScreen()}>
-<Text style={styles.userBtnTxt} > تعديل البيانات</Text>
-</TouchableOpacity>
-<TouchableOpacity style={styles.button} onPress={() => GoToEditAdress()}>
-<Text style={styles.userBtnTxt}> تعديل العنوان</Text>
-</TouchableOpacity>
+
+
 <TouchableOpacity  onPress={() =>navigation.goBack()}
-        style={[styles.button,{
+        style={[styles.button2,{
             borderWidth: 1,
-            marginTop:15
+            marginTop:15,
         }]}>
             <Text style={styles.userBtnTxt}> خروج</Text>
 
         </TouchableOpacity>
+
 </View></View>
           
 </SafeAreaView>
@@ -146,7 +134,7 @@ const   GoToFeedbackScreen = () => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height:'20%',
+    height:'15%',
     alignItems: 'flex-end',
     justifyContent: 'center',
     backgroundColor:'#49c3c6',
@@ -164,13 +152,14 @@ const styles = StyleSheet.create({
   },
 
   contant:{
-    flexDirection: 'row-reverse',
-    justifyContent:"space-between",
+    marginLeft:"2%",
+    justifyContent:'flex-end',
 padding:"3%"
+
   },
   userInfoSection: {
     
-    alignItems: 'flex-end',
+   
     paddingHorizontal: '5%',
     marginBottom: '3%',
     padding:'1%',
@@ -188,7 +177,7 @@ padding:"3%"
 
   row: {
     flexDirection: 'row-reverse',
-    marginBottom: '2%',
+    margin: '2%',
   },
 
  
@@ -207,8 +196,8 @@ padding:"3%"
   menuItemText: {
 
     alignItems:'flex-end',
-    color: '#80CBC4',
-    marginLeft: 20,
+    color: '#00838F',
+    marginRight: "10%",
     fontWeight: '600',
     fontSize: 16,
     lineHeight: 26,
@@ -265,10 +254,25 @@ button: {
   textAlign: 'center',
   borderColor: '#49c3c6',
   borderWidth: 1,
-  marginTop: 15,
+  
   borderRadius:30,
   width: 130,
+  height:30,
   backgroundColor: '#49c3c6'
+},
+
+button2: {
+  alignItems: 'center',
+  alignContent: 'center',
+  textAlign: 'center',
+  borderColor: '#EC7063',
+  borderWidth: 1,
+  
+  borderRadius:30,
+  width: 130,
+  height:30,
+  backgroundColor: '#EC7063'
+  
 },
 userBtnTxt: {
    padding:'2%',

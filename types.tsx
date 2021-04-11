@@ -14,6 +14,7 @@ export type StartParamList = {
 export type driverStack = {
   Login : undefined;
   HomeDriver:undefined;
+  ProfileScreen:undefined;
 }
 
 
@@ -87,6 +88,8 @@ export type AccountParamList = {
   BasketScreen:undefined;
   SuggestionsScreen:undefined;
   FeedbackScreen:undefined;
+  AddressEdit:undefined;
+  AddressNewScreen:undefined;
 };
 
 

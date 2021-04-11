@@ -1,245 +1,251 @@
 import { Feather, FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react'
-import { Button, ImageBackground, KeyboardAvoidingView, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler';
 import { useGlobalState } from '../components/StateProvider';
 import { AccountParamList } from '../types';
 import  {  useState, useEffect } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { StyleSheet, SafeAreaView, Image, Text ,Alert, Modal, Pressable, ImageBackground, } from 'react-native';
+import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import { View } from '../components/Themed';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { DrawerActions } from '@react-navigation/native';
+import { Button } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { color } from 'react-native-reanimated';
 
 export default function Address( {navigation}: StackScreenProps<AccountParamList> ) {
   
-   const {state ,setState } = useGlobalState();
+  const GoToAccount = () => {
+    navigation.navigate("AccountScreen");
+  }
 
+  const GoToEditAddress = () => {
+    navigation.navigate("AddressEdit");
+  }
+  const   GoToAddressNew = () => {
 
-   const [Address,setAddress ] = React.useState(
-
-   [{
-
-      userId:String,
-      country: String,
-      city: String,
-      neighborhood: String,
-      street:String,
-      adressLine: String,
-      postcode: Number
-    }]
-  );
-
-
-
-  //   try {
-  //     fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/'+ state.userId,  {
-  //      method: 'Get',
-  //      headers: {
-  //      Accept: 'application/json',
-  //       'Content-Type': 'application/json'
-  //     },
-  //    }).then((response) => response.json())
-  //    .then((response) => {
-  //     setAddress({
-  //     userId:response.data.userId,
-  //     country: response.data.country,
-  //     city:response.data.city, 
-  //     neighborhood:response.data.neighborhood,
-  //     street:response.data.street,
-  //     adressLine:response.data.adressLine,
-  //     postcode:response.data.postcode,
-  //   });
-  //    })
-  //    .catch((error) => {
-  //     console.error(error);
-  //   });
-  //   } catch (error) {
-  //     console.log('حدث خطأ! ', error)
-  //   }
-
-  // }
+    navigation.navigate('AddressNewScreen');
+  }
   
-    return (
-      <KeyboardAvoidingView>
-<SafeAreaView style={{height:'100%'}}>
-<ScrollView  >
-        
-          <View style={{
-         height:"10%",
-         width:'100%',
-     backgroundColor:"#49c3c6",
-     alignItems:'center', }}>  
-       <Text style={{
+  
+  
+  const {state ,setState } = useGlobalState();
+  
+ const [address, setAddress] = useState({userId:"",country:"",city:"",neighborhood:"",street:"",adressLine:"",postcode:""})
     
-       
-      marginTop: 13,
-      marginLeft:"5%",
-      fontSize: 20,
-      fontWeight: 'bold',
-      color: 'white',
-     alignItems:'center', }}>  عنوان التوصيل</Text> 
-         </View> 
+ useEffect(() => {
+    try {
+      fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/' + state.Id, {
+       method: 'GET',
+       headers: {
+       Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
     
-    
+     }).then((response) => response.json())
+     .then((response) => {
+     setAddress({
+      userId:response.data.userId,
+      country: response.data.country,
+      city:response.data.city, 
+      neighborhood:response.data.neighborhood,
+       street:response.data.street,
+       adressLine:response.data.adressLine,
+       postcode:response.data.postcode,
+              
+              });
+     })
+     .catch((error) => {
+      console.error(error);
+    });
+     
+    }
+     catch (error) {
+      console.log('حدث خطأ! ', error)
+    }
+  
+})
 
+  
+const checkAddress = () => {
+  if (state.city==""||state.city==null){
+  return( 
+    GoToAddressNew()
+     );}
+
+  else{
+    return( 
+
+     <View>
       
- <View style={{ backgroundColor:'#fff', paddingRight: 10}}>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >المدينة :</Text>
+        <Text style={styles.tt2} >{address.city}</Text>
+      </View>
+      <Text>
+{address.userId}
+      </Text>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} > الحي :</Text>
+        <Text style={styles.tt2} >{address.neighborhood}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >الشارع :</Text>
+        <Text style={styles.tt2} >{address.street}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >الوصف :</Text>
+        <Text style={styles.tt2} >{address.adressLine}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >الرمز البريدي :</Text>
+        <Text style={styles.tt2} >{address.postcode}</Text>
+      </View>
+
+    
+     
+      </View>
+      
+      );
+  }
+}
+
+    return (
+    
+
+
+<SafeAreaView >
+
+<View style={styles.header}> 
+          <View style={styles.icon}>
+          <Ionicons  name="chevron-back" size={24} color="white" onPress={() => GoToAccount()} />
+           <Ionicons  name="menu-outline" size={24} color= 'white' 
+        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
+      
+        <View style={styles.ht}>
+            <Text style={styles.title}>العنوان</Text>
+            </View>
+            </View>
+
+            <ScrollView>
+      <View style={styles.userInfoSection}>
+
+     {checkAddress()} 
+
+
+     
   
 
- 
-             <View style={styles.action}>
+     <TouchableOpacity style={styles.button} onPress={() => GoToEditAddress()}>
+      <Text style={styles.userBtnTxt}> تعديل العنوان</Text>
+      </TouchableOpacity>
 
-          <TextInput
-            placeholder="اسم المستلم"
-            placeholderTextColor="black"
-            autoCorrect={false}
-            style={styles.textInput}
-            // onChangeText={(e) => setUserName(e.toString())}
-
-          />
-          
-          </View>
-          
-    
-        <View style={styles.action}>
-          <TextInput
-            placeholder="رقم الجوال"
-            placeholderTextColor="black"
-            keyboardType="number-pad"
-            autoCorrect={false}
-            // onChangeText={(e) => setPhoneNumber(e.toString())}
-
-            style={styles.textInput}
-          />
-        </View>
-
-        <View style={styles.action}>
-          <TextInput
-            placeholder="الحي"
-            placeholderTextColor="black"
-            autoCorrect={false}
-            // onChangeText={(e) => setneighborhood(e.toString())}
-
-            style={styles.textInput}
-          />
-        </View>
-        <View style={styles.action}>
-         
-          <TextInput
-            placeholder="الشارع"
-            placeholderTextColor="black"
-            autoCorrect={false}
-            // onChangeText={(e) => setstreet(e.toString())}
-
-            style={styles.textInput}
-          />
-        </View>
-    
-        <View style={styles.action}>
-          <TextInput
-            multiline
-            numberOfLines={3}
-            placeholder="وصف"
-            placeholderTextColor="black"
-            // onChangeText={(e) => setadressLine(e.toString())}
-
-            autoCorrect={true}
-            style={[styles.textInput]}
-          />
-          
-        </View>
-
-        <View style={styles.action}>
-        
-          <TextInput
-            placeholder="المدينة"
-            placeholderTextColor="black"
-            autoCorrect={false}
-           // value={userData ? userData.city : ''}
-           // onChangeText={(txt) => setUserData({...userData, city: txt})}
-            style={styles.textInput}
-          />
-        </View>
-        <View style={styles.action}>
-          
-          <TextInput
-            placeholder="الرمز البريدي"
-            placeholderTextColor="black"
-            autoCorrect={false}
-          //  onChangeText={(txt) => setpostcode()}
-            style={styles.textInput}
-          />
-        </View>
-        
-        <Text style={styles.userBtnTxt}>اضافة العنوان</Text>
-   
-
-          
-         
-</View>
- </ScrollView> 
-        
+      </View>
+      </ScrollView>    
    </SafeAreaView>
-   </KeyboardAvoidingView>
+   
   );
 }
 
 const styles = StyleSheet.create({
-  userBtnTxt: {
-    backgroundColor:"#49c3c6", 
-    borderWidth:1,
-    borderColor: "#49c3c6",
-    height:25,width:120  ,
-    justifyContent:'center',
-    alignContent:'center',
-    marginTop: 6,
-    paddingLeft:15,
-    marginLeft:"36%",
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: 'white',
-   alignItems:'center',
-    }, 
+  
+  con: {
+    flex:1,
+    backgroundColor:'#fff',
+    padding:10
+   },
+ header: {
+    width: '100%',
+    height:'20%',
+    padding:"4%",
+    backgroundColor:'#49c3c6',
+    flexDirection: "column",
+    justifyContent:"center",
+    alignContent:"center",
+    //opacity: 0.5
     
-  container: {
-  
-   backgroundColor:'#fff',
-  
   },
-  textInput: {
-    marginTop:1,
-     paddingVertical:1,
-    alignItems: "flex-end",
-
-    flexDirection:"row-reverse",
-    alignContent:"flex-end",
-    justifyContent:"space-between",
-
-    color: '#333333',
- },
-  button: {
-    borderRadius:10,
-    backgroundColor:"#b4d8ee",
-    alignItems:'center', marginHorizontal:"35%",
-    width:140,
-    height:50
+icon:{
+  backgroundColor:'#49c3c6',
+  flexDirection: "row",
+  justifyContent:"space-between",
+},
+ht:{
+  backgroundColor:'#49c3c6',
+  
+  alignItems:'center'
 },
 
- action: {
-    alignItems: 'flex-start',
-    
-     flexDirection:"row-reverse",
+title: {
+  fontSize: 20,
+  fontWeight: 'bold',
+  color: 'white',
  
-      marginTop:"19%"
+},
+
+  contant:{
+    marginLeft:"2%",
+    justifyContent:'flex-end',
+padding:"3%"
+
   },
-  title: {
-    color:"red",
-    fontSize: 20,
-    fontWeight: 'bold',
+  userInfoSection: {
+    
+   
+    marginBottom: '1%',
+    padding:'2%',
+
+    
+    
   },
   
-      image: {
-      height:"100%",
-      
-        resizeMode: "cover",
-        justifyContent: "center"},
+  
+
+  row: {
+   
+    margin: '2%',
+  },
+
+
+ 
+  tt2:{
+    color:"#5F6A6A", 
+    margin: '2%',
+    fontSize:16,
+    
+    
+  },
+  icon2: {
+    marginLeft: "90%",
+    backgroundColor:'#49c3c6',
+    
+},
+button: {
+  alignItems: 'center',
+  alignContent: 'center',
+  textAlign: 'center',
+  borderColor: '#49c3c6',
+  borderWidth: 1,
+  
+  borderRadius:30,
+  width: 130,
+  height:30,
+  backgroundColor: '#49c3c6'
+},
+
+userBtnTxt: {
+   padding:'2%',
+  fontSize:15,
+  color:"#fff",
+  borderColor:"#49c3c6",
+  
+},
+
 });
 
