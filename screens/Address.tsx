@@ -32,8 +32,9 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
   
   const {state ,setState } = useGlobalState();
   
- const [address, setAddress] = useState({userId:"",country:"",city:"",neighborhood:"",street:"",adressLine:"",postcode:""})
+ const [address, setAddress] = useState({country:"",city:"",neighborhood:"",street:"",adressLine:"",postcode:""})
     
+
  useEffect(() => {
     try {
       fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/' + state.Id, {
@@ -46,7 +47,7 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
      }).then((response) => response.json())
      .then((response) => {
      setAddress({
-      userId:response.data.userId,
+      
       country: response.data.country,
       city:response.data.city, 
       neighborhood:response.data.neighborhood,
@@ -64,57 +65,62 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
      catch (error) {
       console.log('حدث خطأ! ', error)
     }
-  
+  setState({
+city:address.city,
+neighborhood:address.neighborhood
+
+
+  })
 })
 
   
-const checkAddress = () => {
-  if (state.city==""||state.city==null){
-  return( 
-    GoToAddressNew()
-     );}
+// // const checkAddress = () => {
+// //   if (state.city==""||state.city==null){
+// //   return( 
+// //     GoToAddressNew()
+// //      );}
 
-  else{
-    return( 
+// //   else{
+//     return( 
 
-     <View>
+//      <View>
       
       
-      <View style={styles.row}>
-      <Text style={styles.tt2} >المدينة :</Text>
-        <Text style={styles.tt2} >{address.city}</Text>
-      </View>
-      <Text>
-{address.userId}
-      </Text>
+//       <View style={styles.row}>
+//       <Text style={styles.tt2} >المدينة :</Text>
+//         <Text style={styles.tt2} >{address.city}</Text>
+//       </View>
+//       <Text>
+// {address.userId}
+//       </Text>
       
-      <View style={styles.row}>
-      <Text style={styles.tt2} > الحي :</Text>
-        <Text style={styles.tt2} >{address.neighborhood}</Text>
-      </View>
+//       <View style={styles.row}>
+//       <Text style={styles.tt2} > الحي :</Text>
+//         <Text style={styles.tt2} >{address.neighborhood}</Text>
+//       </View>
       
-      <View style={styles.row}>
-      <Text style={styles.tt2} >الشارع :</Text>
-        <Text style={styles.tt2} >{address.street}</Text>
-      </View>
+//       <View style={styles.row}>
+//       <Text style={styles.tt2} >الشارع :</Text>
+//         <Text style={styles.tt2} >{address.street}</Text>
+//       </View>
       
-      <View style={styles.row}>
-      <Text style={styles.tt2} >الوصف :</Text>
-        <Text style={styles.tt2} >{address.adressLine}</Text>
-      </View>
+//       <View style={styles.row}>
+//       <Text style={styles.tt2} >الوصف :</Text>
+//         <Text style={styles.tt2} >{address.adressLine}</Text>
+//       </View>
       
-      <View style={styles.row}>
-      <Text style={styles.tt2} >الرمز البريدي :</Text>
-        <Text style={styles.tt2} >{address.postcode}</Text>
-      </View>
+//       <View style={styles.row}>
+//       <Text style={styles.tt2} >الرمز البريدي :</Text>
+//         <Text style={styles.tt2} >{address.postcode}</Text>
+//       </View>
 
     
      
-      </View>
+//       </View>
       
-      );
-  }
-}
+//       );
+//   }
+// }
 
     return (
     
@@ -136,9 +142,43 @@ const checkAddress = () => {
             <ScrollView>
       <View style={styles.userInfoSection}>
 
-     {checkAddress()} 
+     {/*{checkAddress()} */}
 
+     <View>
+      
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >المدينة :</Text>
+        <Text style={styles.tt2} >{address.city}</Text>
+      </View>
+      <Text>
+{state.Id}
+      </Text>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} > الحي :</Text>
+        <Text style={styles.tt2} >{state.neighborhood}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >الشارع :</Text>
+        <Text style={styles.tt2} >{address.street}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >الوصف :</Text>
+        <Text style={styles.tt2} >{address.adressLine}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >الرمز البريدي :</Text>
+        <Text style={styles.tt2} >{address.postcode}</Text>
+      </View>
 
+    
+     
+      </View>
+      
      
   
 
