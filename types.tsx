@@ -87,6 +87,7 @@ export type AccountParamList = {
   SuggestionsScreen:undefined;
   FeedbackScreen:undefined;
   AddressEdit:undefined;
+  AddressNewScreen:undefined;
 };
 
 

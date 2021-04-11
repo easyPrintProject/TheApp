@@ -13,10 +13,9 @@ export default function LoginScreen({navigation}: StackScreenProps<StartParamLis
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {state ,setState } = useGlobalState();
   const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
   const [errorMassage, setErrorMassage] = useState("");
-  
+  const {state ,setState } = useGlobalState();
   const [errorMassage2, setErrorMassage2] = useState("");
   //const [errorMassage3, setErrorMassage3] = useState("");
 
@@ -25,9 +24,7 @@ export default function LoginScreen({navigation}: StackScreenProps<StartParamLis
         
     if (user == null || user.Id == "" || user.Id==null) {
       setErrorMassage(user.errorMassage);
-      if(user.errorMassage==null || user.errorMassage==""){
-        setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
-      }
+     
     } else {
       //empty the error message
       setErrorMassage("");
@@ -82,7 +79,6 @@ const Login = async () => {
       PasswordHash: password
       })
    }).then((response) => response.json())
-
    .then((response) => {
    setUser({
             Email: response.data.email,
@@ -102,7 +98,6 @@ const Login = async () => {
   } catch (error) {
     console.log('حدث خطأ! ', error)
   }
-  
 }
 
   return (
@@ -169,13 +164,14 @@ const Login = async () => {
             <Text style={styles.userBtnTxt} 
              onPress={() => Login()}
                  >تسجيل الدخول
-             </Text>
-        </TouchableOpacity> 
+              </Text>
+ </TouchableOpacity> 
             
 
             
-
-         
+<Text>
+         {errorMassage}
+         </Text>
             
             </ScrollView>
         </Animatable.View>

@@ -37,7 +37,7 @@ export interface GlobalStateInterface {
   neighborhood: String;
   street:String;
   adressLine: String;
-  postcode: Number;
+  postcode: String;
 
 }
 

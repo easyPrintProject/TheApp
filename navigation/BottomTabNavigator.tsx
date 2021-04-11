@@ -28,7 +28,8 @@ import AddressEdit from '../screens/AddressEdit';
 import UpdateAdress from '../screens/UpdateAdress';
 import FeedbackScreen from '../screens/FeedbackScreen';
 import SuggestionsScreen from '../screens/SuggestionsScreen';
-import Address from '../screens/Address'
+import Address from '../screens/Address';
+import AddressNewScreen from '../screens/AddressNewScreen'
 
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -187,7 +188,12 @@ function AccountNavigator() {
         component={AddressEdit}
         options={{ drawerLabel:  'تعديل العنوان' }}
       />
-      
+       <AccountDrawer.Screen
+        name='AddressNewScreen'
+        component={AddressNewScreen}
+        options={{ drawerLabel:  'تقييم الطلبات' }}
+      />
+
   
     </AccountDrawer.Navigator>
   );

@@ -16,27 +16,25 @@ import { Button } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { color } from 'react-native-reanimated';
 
-export default function AddressEdit( {navigation}: StackScreenProps<AccountParamList> ) {
+export default function AddressNewScreen( {navigation}: StackScreenProps<AccountParamList> ) {
   
   const GoToAccount = () => {
     navigation.navigate("AccountScreen");
   }
 
     const {state ,setState } = useGlobalState();
-    const [address, setAddress] = useState({userId:state.Id,country:"",city:"",neighborhood:"",street:"",adressLine:"",postcode:""})
-    const [phoneNumber, setPhoneNumber] = useState(state.PhoneNumber);
-    const [city, setCity] = useState(state.city);
-    const [neighborhood, setNeighborhood] = useState(state.neighborhood);
-    const [adressLine, setAdressLine] = useState(state.adressLine);
-    const [postcode, setPostcode] = useState(state.postcode);
-    const [street, setStreet] = useState(state.street);
- 
+    const [address, setAddress] = useState({userId:"",country:"",city:"",neighborhood:"",street:"",adressLine:"",postcode:""})
+    
+    const [city, setCity] = useState("");
+    const [neighborhood, setNeighborhood] = useState("");
+    const [adressLine, setAdressLine] = useState("");
+    const [postcode, setPostcode] = useState("");
+    const [street, setStreet] = useState("");
  
 
-
-    const update = async () => {
+    const addAdress = async () => {
      try {
-       fetch('https://apieasyprint20210215153907.azurewebsites.net/api/UpdateAddress/', {
+       fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/', {
         method: 'POST',
         headers: {
         Accept: 'application/json',
@@ -55,7 +53,7 @@ export default function AddressEdit( {navigation}: StackScreenProps<AccountParam
       }).then((response) => response.json())
        .then((response) => {
        setAddress({
-       userId:state.Id,
+       userId:response.data.userId,
       country: response.data.country,
       city:response.data.city, 
       neighborhood:response.data.neighborhood,
@@ -74,7 +72,7 @@ export default function AddressEdit( {navigation}: StackScreenProps<AccountParam
     }
   
     Alert.alert(
-      "تم التحديث"
+      " تم التحديث"
     )
   
   }
@@ -93,7 +91,7 @@ export default function AddressEdit( {navigation}: StackScreenProps<AccountParam
      <Ionicons  name="menu-outline" size={24} color= 'white' 
   onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
   <View style={styles.ht}>
-      <Text style={styles.title}>تعديل بيانات الحساب</Text>
+      <Text style={styles.title}>اضافة عنوان</Text>
       </View></View>
 
       <ScrollView> 
@@ -102,19 +100,7 @@ export default function AddressEdit( {navigation}: StackScreenProps<AccountParam
          
 
          
-          
-    
-        <View style={styles.action}>
-          <TextInput
-            placeholder="رقم الجوال"
-            placeholderTextColor="#666666"
-            keyboardType="number-pad"
-            autoCorrect={false}
-            onChangeText={(e) => setPhoneNumber(e.toString())}
-
-            style={styles.textInput}
-          />
-        </View>
+        
         <View style={styles.action}>
         
         <TextInput
@@ -170,15 +156,18 @@ export default function AddressEdit( {navigation}: StackScreenProps<AccountParam
             placeholder="الرمز البريدي"
             placeholderTextColor="#666666"
             autoCorrect={false}
-           onChangeText={(e) =>  setCity(e.toString())}
+            onChangeText={(e) => setPostcode(e.toString())}
             style={styles.textInput}
           />
         </View>
+        <Text>
+            {city}
+        </Text>
         
         <TouchableOpacity style={styles.button} > 
  <Text style={styles.userBtnTxt} 
- onPress={() =>update()}
- >تحديث 
+ onPress={() =>addAdress()}
+ >اضافة 
   </Text>
  </TouchableOpacity> 
    

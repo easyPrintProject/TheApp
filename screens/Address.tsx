@@ -23,6 +23,10 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
   const GoToEditAddress = () => {
     navigation.navigate("AddressEdit");
   }
+  const   GoToAddressNew = () => {
+
+    navigation.navigate('AddressNewScreen');
+  }
   
   
   
@@ -31,15 +35,9 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
  const [address, setAddress] = useState({userId:state.Id,country:"",city:"",neighborhood:"",street:"",adressLine:"",postcode:""})
     
  useEffect(() => {
-        
-      AddressInfo()
-  });
-
-
-  const AddressInfo = async () => {
     try {
       fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/' + state.Id, {
-       method: 'Get',
+       method: 'GET',
        headers: {
        Accept: 'application/json',
         'Content-Type': 'application/json'
@@ -62,68 +60,123 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
       console.error(error);
     });
      
-    } catch (error) {
+    }
+     catch (error) {
       console.log('حدث خطأ! ', error)
     }
+  
+})
+
+  
+const checkAddress = () => {
+  if (address.city==""||address.city==null){
+  return( 
+    GoToAddressNew()
+     );}
+
+  else{
+    return( 
+     <View>
+      <ScrollView>
+      <View style={styles.userInfoSection}>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >المدينة :</Text>
+        <Text style={styles.tt2} >{address.city}</Text>
+      </View>
+      
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} > الحي :</Text>
+        <Text style={styles.tt2} >{address.neighborhood}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >الشارع :</Text>
+        <Text style={styles.tt2} >{address.street}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >الوصف :</Text>
+        <Text style={styles.tt2} >{address.adressLine}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >الرمز البريدي :</Text>
+        <Text style={styles.tt2} >{address.postcode}</Text>
+      </View>
+
+      <TouchableOpacity style={styles.button} onPress={() => GoToEditAddress()}>
+      <Text style={styles.userBtnTxt}> تعديل العنوان</Text>
+      </TouchableOpacity>
+
+     
+      </View>
+      </ScrollView>
+      </View>
+      
+      );
   }
-  
-  
+}
+
     return (
     
 
 
 <SafeAreaView >
- 
+
 <View style={styles.header}> 
-    <View style={styles.icon}>
-    <Ionicons  name="chevron-back" size={24} color="white" onPress={() => GoToAccount()} />
-     <Ionicons  name="menu-outline" size={24} color= 'white' 
-  onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
-
-  <View style={styles.ht}>
-      <Text style={styles.title}>العنوان</Text>
-      </View>
-      </View>
-    
+          <View style={styles.icon}>
+          <Ionicons  name="chevron-back" size={24} color="white" onPress={() => GoToAccount()} />
+           <Ionicons  name="menu-outline" size={24} color= 'white' 
+        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
+      
+        <View style={styles.ht}>
+            <Text style={styles.title}>العنوان</Text>
+            </View>
+            </View>
+          
+     {checkAddress()} 
+     <View>
       <ScrollView>
-<View style={styles.userInfoSection}>
+      <View style={styles.userInfoSection}>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >المدينة :</Text>
+        <Text style={styles.tt2} >{state.city}</Text>
+      </View>
+      
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} > الحي :</Text>
+        <Text style={styles.tt2} >{address.neighborhood}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >الشارع :</Text>
+        <Text style={styles.tt2} >{address.street}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >الوصف :</Text>
+        <Text style={styles.tt2} >{address.adressLine}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >الرمز البريدي :</Text>
+        <Text style={styles.tt2} >{address.postcode}</Text>
+      </View>
 
-<View style={styles.row}>
-<Text style={styles.tt2} >المدينة :</Text>
-  <Text style={styles.tt2} >{address.city}</Text>
-</View>
+      <TouchableOpacity style={styles.button} onPress={() => GoToEditAddress()}>
+      <Text style={styles.userBtnTxt}> تعديل العنوان</Text>
+      </TouchableOpacity>
 
+     
+      </View>
+      </ScrollView>
+      </View>
 
-
-
-<View style={styles.row}>
-<Text style={styles.tt2} > الحي :</Text>
-  <Text style={styles.tt2} >{address.neighborhood}</Text>
-</View>
-
-<View style={styles.row}>
-<Text style={styles.tt2} >الشارع :</Text>
-  <Text style={styles.tt2} >{address.street}</Text>
-</View>
-
-<View style={styles.row}>
-<Text style={styles.tt2} >الوصف :</Text>
-  <Text style={styles.tt2} >{address.adressLine}</Text>
-</View>
-
-<View style={styles.row}>
-<Text style={styles.tt2} >الرمز البريدي :</Text>
-  <Text style={styles.tt2} >{address.postcode}</Text>
-</View>
-
-
-<TouchableOpacity style={styles.button} onPress={() => GoToEditAddress()}>
-<Text style={styles.userBtnTxt}> تعديل العنوان</Text>
-</TouchableOpacity>
-</View> 
-
-
-</ScrollView>  
+     
    </SafeAreaView>
    
   );
