@@ -24,11 +24,14 @@ import CouponsScreen from '../screens/CouponsScreen';
 import { BottomTabParamList, HomeParamList, BasketParamList, PrintersListParamList, OrderParamList, AccountParamList , DocProp } from '../types';
 import { Title } from 'react-native-paper';
 import EditAccountScreen from '../screens/EditAccountScreen';
-import Addresso from '../screens/Address';
+
 import UpdateAdress from '../screens/UpdateAdress';
 import FeedbackScreen from '../screens/FeedbackScreen';
 import SuggestionsScreen from '../screens/SuggestionsScreen'
 import isPrintingOrder from '../screens/isPrintingOrder';
+import Address from '../screens/Address'
+import AddressEdit from '../screens/AddressEdit';
+import AddressNewScreen from '../screens/AddressNewScreen'
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -170,8 +173,18 @@ function AccountNavigator() {
       />
      <AccountDrawer.Screen
         name='Address'
-        component={Addresso}
-        options={{ drawerLabel:  'سجل العناوين' }}
+        component={Address}
+        options={{ drawerLabel:  ' العناوين' }}
+      />
+      <AccountDrawer.Screen
+        name='AddressEdit'
+        component={AddressEdit}
+        options={{ drawerLabel:  'تحديث العناوين' }}
+      />
+      <AccountDrawer.Screen
+        name='AddressNewScreen'
+        component={AddressNewScreen}
+        options={{ drawerLabel:  'اضافه العناوين' }}
       />
       <AccountDrawer.Screen
         name='SuggestionsScreen'
