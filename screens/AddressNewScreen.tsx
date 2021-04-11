@@ -40,7 +40,7 @@ export default function AddressNewScreen( {navigation}: StackScreenProps<Account
         Accept: 'application/json',
          'Content-Type': 'application/json'
        },
-       body:  JSON.stringify({
+       body:JSON.stringify({
         userId:state.Id,
        city:city, 
        neighborhood:neighborhood,

@@ -170,8 +170,8 @@ const passwordValidator = (password: any) => {
                 secureTextEntry={true}
                 style={styles.textInput}
                 onChangeText={(e) => setPassword(e.toString())}
-                
 
+    
             />     
              
         </View>

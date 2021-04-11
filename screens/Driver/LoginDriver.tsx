@@ -12,7 +12,7 @@ export default function LoginDriver({navigation }: StackScreenProps<driverStack>
    
      const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
+  const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:true, errorMassage:"", Id:"", Token:""});
   const [errorMassage, setErrorMassage] = useState("");
   const {state ,setState } = useGlobalState();
 const [errorMassage2, setErrorMassage2] = useState("");
