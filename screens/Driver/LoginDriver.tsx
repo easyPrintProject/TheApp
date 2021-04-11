@@ -12,7 +12,7 @@ export default function LoginDriver({navigation }: StackScreenProps<driverStack>
    
      const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  EmailConf:false, errorMassage:"", Id:"", Token:""});
+  const [user, setUser] = useState({Email:"", UserName:"", PhoneNumber:"",  errorMassage:"", Id:"", Token:"", PrinterId:""});
   const [errorMassage, setErrorMassage] = useState("");
   const {state ,setState } = useGlobalState();
 const [errorMassage2, setErrorMassage2] = useState("");
@@ -33,9 +33,7 @@ const emailValidator = (email: any) => {
         
    if (user == null || user.Id == "" || user.Id==null) {
       setErrorMassage(user.errorMassage);
-      if(user.errorMassage==null || user.errorMassage==""){
-        setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
-      }
+      
     } else {
       //empty the error message
       setErrorMassage("");
@@ -46,8 +44,9 @@ const emailValidator = (email: any) => {
                 UserName: user.UserName,
                 PhoneNumber: user.PhoneNumber,
                 ErrorMessage: user.errorMassage,
-                EmailConfeirmd:  user.EmailConf,
+                printerId:user.PrinterId
                })
+               navigation.push("HomeDriver");
     }
 }, [user]);
 
@@ -56,7 +55,7 @@ const emailValidator = (email: any) => {
   
       const Login = async () => {
         try {
-          fetch('https://apieasyprint20210215153907.azurewebsites.net/api/driver          ', {
+          fetch('https://apieasyprint20210215153907.azurewebsites.net/api/driver', {
            method: 'POST',
            headers: {
            Accept: 'application/json',
@@ -64,7 +63,7 @@ const emailValidator = (email: any) => {
         },
         body: JSON.stringify({
          Email:email,
-         PasswordHash: password
+         PasswordHash:password
          })
       }).then((response) => response.json())
       .then((response) => {
@@ -72,14 +71,11 @@ const emailValidator = (email: any) => {
                Email: response.data.email,
                PhoneNumber: response.data.phoneNumber,
                UserName:response.data.userName, 
-               EmailConf:response.data.emailConfiremd,
                errorMassage:response.data.errorMessage,
                Id:response.data.id,
                Token:response.data.token,
-               
+               PrinterId:response.data.printerId
                });
-               
-
       })
       .catch((error) => {
        console.error(error);
