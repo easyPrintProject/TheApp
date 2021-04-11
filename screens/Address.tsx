@@ -32,95 +32,81 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
   
   const {state ,setState } = useGlobalState();
   
- const [address, setAddress] = useState({country:"",city:"",neighborhood:"",street:"",adressLine:"",postcode:""})
-    
+ const [address, setAddress] = useState({userId:"",country:"",city:"",neighborhood:"",street:"",adressLine:"",postcode:""})
+
 
  useEffect(() => {
-    try {
-      fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/' + state.Id, {
-       method: 'GET',
-       headers: {
-       Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-    
-     }).then((response) => response.json())
-     .then((response) => {
-     setAddress({
-      
-      country: response.data.country,
-      city:response.data.city, 
-      neighborhood:response.data.neighborhood,
-       street:response.data.street,
-       adressLine:response.data.adressLine,
-       postcode:response.data.postcode,
-              
-              });
-     })
-     .catch((error) => {
-      console.error(error);
-    });
-     
-    }
-     catch (error) {
-      console.log('حدث خطأ! ', error)
-    }
-  setState({
-city:address.city,
-neighborhood:address.neighborhood
-
-
-  })
-})
-
+  try {
+    fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/' + state.Id, {
+     method: 'GET',
+     headers: {
+     Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
   
-// // const checkAddress = () => {
-// //   if (state.city==""||state.city==null){
-// //   return( 
-// //     GoToAddressNew()
-// //      );}
+   }).then((response) => response.json())
+   .then((response) => {
+   setAddress({
+    userId:response.data.userId,
+    country: response.data.country,
+    city:response.data.city, 
+    neighborhood:response.data.neighborhood,
+     street:response.data.street,
+     adressLine:response.data.adressLine,
+     postcode:response.data.postcode,
+  });
+   })
+   .catch((error) => {
+    console.error(error);
+  });
+   
+  }catch (error) {
+    console.log('حدث خطأ! ', error)
+  }
+ }, [state])
 
-// //   else{
-//     return( 
+const checkAddress = () => {
+  if (state.city==""||state.city==null){
+  return( 
+    GoToAddressNew()
+     );}
 
-//      <View>
-      
-      
-//       <View style={styles.row}>
-//       <Text style={styles.tt2} >المدينة :</Text>
-//         <Text style={styles.tt2} >{address.city}</Text>
-//       </View>
-//       <Text>
-// {address.userId}
-//       </Text>
-      
-//       <View style={styles.row}>
-//       <Text style={styles.tt2} > الحي :</Text>
-//         <Text style={styles.tt2} >{address.neighborhood}</Text>
-//       </View>
-      
-//       <View style={styles.row}>
-//       <Text style={styles.tt2} >الشارع :</Text>
-//         <Text style={styles.tt2} >{address.street}</Text>
-//       </View>
-      
-//       <View style={styles.row}>
-//       <Text style={styles.tt2} >الوصف :</Text>
-//         <Text style={styles.tt2} >{address.adressLine}</Text>
-//       </View>
-      
-//       <View style={styles.row}>
-//       <Text style={styles.tt2} >الرمز البريدي :</Text>
-//         <Text style={styles.tt2} >{address.postcode}</Text>
-//       </View>
-
+  else{
+    return( 
+     <View>
     
-     
-//       </View>
+      <View style={styles.row}>
+      <Text style={styles.tt2} >المدينة :</Text>
+        <Text style={styles.tt2} >{address.city}</Text>
+      </View>
+      <Text>
+            {address.userId}
+      </Text>
       
-//       );
-//   }
-// }
+      <View style={styles.row}>
+      <Text style={styles.tt2} > الحي :</Text>
+        <Text style={styles.tt2} >{address.neighborhood}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >الشارع :</Text>
+        <Text style={styles.tt2} >{address.street}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >الوصف :</Text>
+        <Text style={styles.tt2} >{address.adressLine}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >الرمز البريدي :</Text>
+        <Text style={styles.tt2} >{address.postcode}</Text>
+      </View>
+      </View>
+      
+      );
+  }
+}
 
     return (
     
@@ -142,43 +128,9 @@ neighborhood:address.neighborhood
             <ScrollView>
       <View style={styles.userInfoSection}>
 
-     {/*{checkAddress()} */}
+     {checkAddress()} 
 
-     <View>
-      
-      
-      <View style={styles.row}>
-      <Text style={styles.tt2} >المدينة :</Text>
-        <Text style={styles.tt2} >{address.city}</Text>
-      </View>
-      <Text>
-{state.Id}
-      </Text>
-      
-      <View style={styles.row}>
-      <Text style={styles.tt2} > الحي :</Text>
-        <Text style={styles.tt2} >{state.neighborhood}</Text>
-      </View>
-      
-      <View style={styles.row}>
-      <Text style={styles.tt2} >الشارع :</Text>
-        <Text style={styles.tt2} >{address.street}</Text>
-      </View>
-      
-      <View style={styles.row}>
-      <Text style={styles.tt2} >الوصف :</Text>
-        <Text style={styles.tt2} >{address.adressLine}</Text>
-      </View>
-      
-      <View style={styles.row}>
-      <Text style={styles.tt2} >الرمز البريدي :</Text>
-        <Text style={styles.tt2} >{address.postcode}</Text>
-      </View>
 
-    
-     
-      </View>
-      
      
   
 
