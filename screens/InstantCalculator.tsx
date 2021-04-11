@@ -23,80 +23,80 @@ import { red } from '@material-ui/core/colors';
 
 const data = [
     {
-        id: '1',
+        id: 'A0، ',
         name: 'A0',
-        price: '1,5',
+        price: '1',
     },
     {
-        id: '2',
+        id: 'A1، ',
         name: 'A1',
-        price: '2,5',
+        price: '1',
     },
     {
-        id: '3',
+        id: 'A2، ',
         name: 'A2',
-        price: '3',
+        price: '2',
     },
     {
-        id: '4',
+        id: 'A3، ',
         name: 'A3',
-        price: '4',
+        price: '0,75',
     },
     {
-        id: '5',
+        id: 'A4، ',
         name: 'A4',
         price: '4',
     },
     {
-        id: '6',
+        id: 'A5، ',
         name: 'A5',
-        price: '2',
+        price: '0,50',
     },
 ];
-var data2 = [
+const data2 = [
     {
-        id: '7',
+        id: 'عادي، ',
         name: 'عادي',
-        price: '2',
+        price: '0,50',
     },
     {
-        id: '8',
+        id: 'لماع، ',
         name: 'لماع',
-        price: '2,5',
+        price: '1,5',
     },
     {
-        id: '9',
+        id: 'مقوى، ',
         name: 'مقوى',
-        price: '3',
-    },
-    {
-        id: '10',
-        name: 'مُستخدم ',
-        price: '1',
-    },
-];
-var data3 = [
-    {
-        id: '11',
-        name: 'أبيض & أسود',
-        price: '1',
-    },
-    {
-        id: '12',
-        name: 'ملون',
-        price: '2,5',
-    },
-];
-var data4 = [
-    {
-        id: '13',
-        name: 'وجه',
         price: '2',
     },
     {
-        id: '14',
-        name: 'وجهين',
+        id: 'مُستخدم، ',
+        name: 'مُستخدم ',
+        price: '0,5',
+    },
+];
+const data3 = [
+    {
+        id: 'أبيض & أسود، ',
+        name: 'أبيض & أسود',
+        price: '0,5',
+    },
+    {
+        id: 'ملون، ',
+        name: 'ملون',
+        price: '1,50',
+    },
+];
+const data4 = [
+    {
+        id: 'وجه، ',
+        name: 'وجه',
         price: '1',
+    },
+    {
+        id: 'وجهين، ',
+        name: 'وجهين',
+        price: '0,5',
     },
 ];
 

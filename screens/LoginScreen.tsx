@@ -24,7 +24,9 @@ export default function LoginScreen({navigation}: StackScreenProps<StartParamLis
         
     if (user == null || user.Id == "" || user.Id==null) {
       setErrorMassage(user.errorMassage);
-     
+      if(user.errorMassage==null || user.errorMassage==""){
+        setErrorMassage("حدث خطأ ما, الرجاء المحاولة مجدداً");
+      }
     } else {
       //empty the error message
       setErrorMassage("");
@@ -55,15 +57,6 @@ const emailValidator = (email: any) => {
     setErrorMassage2(  "" );
   }
 };
-{/*const passwordValidator = (password: any) => {
-  let reg =  /(?=.*[0-9])/;
-  if (reg.test(password) === false) {
-    setErrorMassage3(  " الرجاء كتابة كلمة المرور بشكل صحيح  " );
-    return false;
-  } else {
-    setErrorMassage3(  "" );
-  }
-}; */}
 
 
 const Login = async () => {
@@ -107,7 +100,7 @@ const Login = async () => {
     <View style={styles.header}>
         <Text style={styles.text_header}> تسجيل الدخول</Text>
     </View>
-    <KeyboardAvoidingView behavior="padding">
+    <KeyboardAvoidingView behavior="position">
 
     <Animatable.View 
         animation="fadeInUpBig"
@@ -116,18 +109,16 @@ const Login = async () => {
         <ScrollView>
         <Text style={styles.text_footer}> البريد الإلكتروني</Text>
         <View style={styles.action}>
-            <FontAwesome 
-                name="user-o"
+            <Feather 
+                name="mail"
                 color="#05375a"
                 size={20}
             />
             <TextInput 
                 style={styles.textInput}
                 autoCapitalize="none"
-                //onTextInput={(e) => setEmail(e.toString())}
-                //onChangeText={(email) => emailValidator(email)}
                 onChangeText={(e) => setEmail(e.toString())}
-
+                onBlur={() => emailValidator(email)}
                 
             />
           
@@ -160,18 +151,20 @@ const Login = async () => {
         </View>
       
         
-        <TouchableOpacity style={styles.button} > 
-            <Text style={styles.userBtnTxt} 
-             onPress={() => Login()}
-                 >تسجيل الدخول
-              </Text>
- </TouchableOpacity> 
-            
+
+            <View style={styles.button}>
+            <Button 
+        title='تسجيل الدخول '
+        color='#49c3c6' 
+              onPress={() => Login()}
+      />
+
+        </View>
+
 
             
-<Text>
-         {errorMassage}
-         </Text>
+
+         
             
             </ScrollView>
         </Animatable.View>
@@ -229,7 +222,6 @@ alignItems: 'flex-end'
   button: {
     alignItems: 'center',
     borderColor: '#49c3c6',
-    backgroundColor:'#49c3c6',
     borderWidth: 1,
     marginTop: 15,
     borderRadius:17,

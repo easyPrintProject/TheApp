@@ -6,8 +6,8 @@ import { StatusBar } from 'expo-status-bar';
 
 export default function DonationScreen({navigation}: StackScreenProps<StartParamList>) {
   const goHome = ()=>{
-    navigation.push("Home");
-}
+    navigation.goBack();
+  }
   return (
 
     <View style={styles.container}>

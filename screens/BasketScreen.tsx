@@ -1,10 +1,12 @@
 import { AntDesign } from '@expo/vector-icons';
 import React, { useEffect, useState } from 'react'
-import { Button, StyleSheet, Text, View,Image, RefreshControl, Pressable } from 'react-native'
+import { Button, StyleSheet, Text, View,Image, RefreshControl, Pressable, StatusBar } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useGlobalState } from '../components/StateProvider';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { BasketParamList } from '../types';
+import { StackScreenProps } from '@react-navigation/stack';
 
 
 const wait = (timeout: number) => {
@@ -12,7 +14,7 @@ const wait = (timeout: number) => {
         setTimeout(resolve, timeout));
 }
 
-export default function BasketScreen() {
+export default function BasketScreen({ navigation }: StackScreenProps<BasketParamList>,) {
     //calling the global state
     const {state ,setState } = useGlobalState();
     const [refreshing, setRefreshing]=  useState(false);
@@ -93,8 +95,8 @@ export default function BasketScreen() {
 
       }
       const goToPayment = () => {
-
-      }
+        navigation.navigate("PaymentScreen");
+      };
 
     const CheckBasket = () =>{
         if(items.length<=1)
@@ -124,6 +126,8 @@ export default function BasketScreen() {
     return (
         
      <SafeAreaView style={{backgroundColor:" #E3E3E3", borderWidth:20, marginTop: 50, borderColor:"white", flex:1, flexDirection:"column",justifyContent:"center",alignContent:"center"}}>
+             <StatusBar backgroundColor="#009387" barStyle="dark-content" />
+
             <ScrollView contentContainerStyle={{flex:1, backgroundColor:"#E3E3E3", alignItems:"stretch", justifyContent:"flex-start",width:"100%"}} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRef} />}>
              {CheckBasket()}
              <View style ={{borderTopColor:"gray",borderTopWidth:3, width:"100%"}}>

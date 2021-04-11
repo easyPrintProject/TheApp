@@ -68,25 +68,7 @@ const PhoneValidator = (phoneNumber: any) => {
     setErrorMassage3(  "" );
   }
 };
- {/*const usernameValidator = (username: any) => {
-  let reg =  /^[a-zA-Z]+$/;
-  if (reg.test(username) === false) {
-    setErrorMassage4(  "الرجاء كتابة الاسم بشكل صحيح " );
-    return false;
-  } else {
-    setErrorMassage4(  "" );
-  }
-};
-
-const passwordValidator = (password: any) => {
-  let reg =  /(?=.*[0-9])/;
-  if (reg.test(password) === false) {
-    setErrorMassage5(  " الرجاء كتابة كلمة المرور بشكل صحيح  " );
-    return false;
-  } else {
-    setErrorMassage5(  "" );
-  }
-}; */}
+ 
 
   const signUp = async () => {
     try {
@@ -129,7 +111,7 @@ const passwordValidator = (password: any) => {
     <View style={styles.header}>
         <Text style={styles.text_header}> الانضمام إلى ايزي برنت</Text>
     </View>
-    <KeyboardAvoidingView behavior="padding">
+    <KeyboardAvoidingView behavior="position">
     <Animatable.View 
         animation="fadeInUpBig"
         style={styles.footer}
@@ -170,8 +152,8 @@ const passwordValidator = (password: any) => {
                 secureTextEntry={true}
                 style={styles.textInput}
                 onChangeText={(e) => setPassword(e.toString())}
+                
 
-    
             />     
              
         </View>
@@ -189,9 +171,9 @@ const passwordValidator = (password: any) => {
                 textAlign= 'right'
                 style={styles.textInput}
                 autoCapitalize="none"
-                //onTextInput={(e) => setEmail(e.toString())}
-                //onChangeText={(email) => emailValidator(email)}
                 onChangeText={(e) => setEmail(e.toString())}
+                onBlur={() => emailValidator(email)}
+
             />  
         
 </View>
@@ -211,8 +193,8 @@ const passwordValidator = (password: any) => {
                 textAlign= 'right'
                 style={styles.textInput}
                 autoCapitalize="none"
-                onTextInput={(e) => setPhoneNumber(e.toString())}
-                onChangeText={(phoneNumber) => PhoneValidator(phoneNumber)}
+                onChangeText={(e) => setPhoneNumber(e.toString())}
+                onBlur={() => PhoneValidator(phoneNumber)}
 
             />  
         

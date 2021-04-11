@@ -24,13 +24,11 @@ import CouponsScreen from '../screens/CouponsScreen';
 import { BottomTabParamList, HomeParamList, BasketParamList, PrintersListParamList, OrderParamList, AccountParamList , DocProp } from '../types';
 import { Title } from 'react-native-paper';
 import EditAccountScreen from '../screens/EditAccountScreen';
-import AddressEdit from '../screens/AddressEdit';
+import Addresso from '../screens/Address';
 import UpdateAdress from '../screens/UpdateAdress';
 import FeedbackScreen from '../screens/FeedbackScreen';
-import SuggestionsScreen from '../screens/SuggestionsScreen';
-import Address from '../screens/Address';
-import AddressNewScreen from '../screens/AddressNewScreen'
-
+import SuggestionsScreen from '../screens/SuggestionsScreen'
+import isPrintingOrder from '../screens/isPrintingOrder';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -112,6 +110,9 @@ function HomeNavigator() {
         <HomeStack.Screen name="PrintingOptionsScreen" component={PrintingOptions} />
         <HomeStack.Screen name="DeliveryTimeScreen" component={DeliveryTimeScreen} />
         <HomeStack.Screen name="PaymentScreen" component={PaymentScreen} />
+        <HomeStack.Screen name="isPrintingOrder" component={isPrintingOrder} />
+
+
     </HomeStack.Navigator>
   );
 }
@@ -169,7 +170,7 @@ function AccountNavigator() {
       />
      <AccountDrawer.Screen
         name='Address'
-        component={Address}
+        component={Addresso}
         options={{ drawerLabel:  'سجل العناوين' }}
       />
       <AccountDrawer.Screen
@@ -182,18 +183,7 @@ function AccountNavigator() {
         component={FeedbackScreen}
         options={{ drawerLabel:  'تقييم الطلبات' }}
       />
-
-<AccountDrawer.Screen
-        name='AddressEdit'
-        component={AddressEdit}
-        options={{ drawerLabel:  'تعديل العنوان' }}
-      />
-       <AccountDrawer.Screen
-        name='AddressNewScreen'
-        component={AddressNewScreen}
-        options={{ drawerLabel:  'تقييم الطلبات' }}
-      />
-
+      
   
     </AccountDrawer.Navigator>
   );
@@ -235,7 +225,16 @@ function OrderNavigator() {
         
       />
       
-
+ <OrderStack.Screen
+        name="BasketScreen"
+        component={Basket}
+        
+      />
+<OrderStack.Screen
+ name="isPrintingOrder"
+ component={isPrintingOrder}
+ 
+/>
     </OrderStack.Navigator>
   );
 }
@@ -255,7 +254,14 @@ function BasketNavigator() {
         component={Basket}
         
       />
+
+<BasketStack.Screen
+        name="PaymentScreen"
+        component={PaymentScreen}
+        
+      />
     </BasketStack.Navigator>
+    
   );
 }
 
@@ -288,6 +294,7 @@ function PrintersListNavigator() {
         name="BasketScreen"
         component={BasketNavigator}
       />
+      
     </PrintersListStack.Navigator>
   );
 }
