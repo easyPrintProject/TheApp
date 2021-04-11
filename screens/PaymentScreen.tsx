@@ -3,22 +3,24 @@ import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-nati
 //import { PaymentView } from '../components/PaymentView';
 import axios from 'axios';
 import { StackScreenProps } from '@react-navigation/stack';
-import { OrderParamList} from '../types';
+import { BasketParamList} from '../types';
 import { StatusBar } from 'expo-status-bar';
 import { PaymentView } from '../PaymentView'
 
 
 
-export default function PaymentScreen({ navigation }: StackScreenProps<OrderParamList>,) {
+export default function PaymentScreen({ navigation }: StackScreenProps<BasketParamList>,) {
   const [response, setResponse ] = useState()
     
   const [ makePayment, setMakePayment ] = useState(false)
   const [paymentStatus, setPaymentStatus] = useState('')
 
   const cartInfo = {
-      id: '5eruyt35eggr76476236523t3',
-      description: 'lab-sheet5',
-      amount: 1
+    itemId: "",
+    itemPrice: 0,
+    printingShopID: "",
+    courseID: "",
+    courseName: ""
   }
 
   const onCheckStatus = async (paymentResponse: any | React.SetStateAction<undefined>) => {
@@ -66,46 +68,44 @@ export default function PaymentScreen({ navigation }: StackScreenProps<OrderPara
 
           return <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: 300, marginTop: 50}}>
                   <Text style={{ fontSize: 25, margin: 10}}> اكمال الشراء </Text>
-                  <Text style={{ fontSize: 16, margin: 10}}> وصف المنتج: {cartInfo.description} </Text>
-                  <Text style={{ fontSize: 16, margin: 10}}> الكمية: {cartInfo.amount} </Text>
 
-                  <TouchableOpacity style={{ height: 60, width: 300, backgroundColor: '#3D097F', borderRadius: 30, justifyContent: 'center', alignItems: 'center'
+                  <TouchableOpacity style={{ height: 50, width: 250, backgroundColor: '#3D097F', borderRadius: 30, justifyContent: 'center', alignItems: 'center'
                       }}
                       onPress={() => {
                           setMakePayment(true)
                       }}
                       >
-                      <Text style={{ color: '#FFF', fontSize: 20}}>
+                      <Text style={{ color: '#FFF', fontSize: 15}}>
                           استخدام البطاقة الائتمانية
                       </Text>
 
                   </TouchableOpacity>
-                  <TouchableOpacity style={{ height: 60, width: 300, backgroundColor: 'black', borderRadius: 30, justifyContent: 'center', alignItems: 'center', marginTop: 20,
+                  <TouchableOpacity style={{ height: 50, width: 250, backgroundColor: 'black', borderRadius: 30, justifyContent: 'center', alignItems: 'center', marginTop: 10,
                       }}
                       onPress={() => {
                       }}
                       >
-                      <Text style={{ color: '#FFF', fontSize: 20}}>
+                      <Text style={{ color: '#FFF', fontSize: 15}}>
                           Apple Pay
                       </Text>
 
                   </TouchableOpacity>
-                  <TouchableOpacity style={{ height: 60, width: 300, backgroundColor: '#FF5733', borderRadius: 30, justifyContent: 'center', alignItems: 'center', marginTop: 20,
+                  <TouchableOpacity style={{ height: 50, width: 250, backgroundColor: '#FF5733', borderRadius: 30, justifyContent: 'center', alignItems: 'center', marginTop: 10,
                       }}
                       onPress={() => {
                       }}
                       >
-                      <Text style={{ color: '#FFF', fontSize: 20}}>
+                      <Text style={{ color: '#FFF', fontSize: 15}}>
                           Google Pay
                       </Text>
 
                   </TouchableOpacity>
-                  <TouchableOpacity style={{ height: 60, width: 300, backgroundColor: 'white', borderRadius: 30, justifyContent: 'center', alignItems: 'center', marginTop: 5,
+                  <TouchableOpacity style={{ height: 30, width: 300, backgroundColor: 'white', borderRadius: 30, justifyContent: 'center', alignItems: 'center', marginTop: 5,
                       }}
                       onPress={() => {
                       }}
                       >
-                      <Text style={{ color: 'black', fontSize: 20}}>
+                      <Text style={{ color: 'black', fontSize: 17}}>
                          أو الدفع عند الاستلام
                       </Text>
 
@@ -124,7 +124,7 @@ export default function PaymentScreen({ navigation }: StackScreenProps<OrderPara
               </View>
 
           }else{
-              return <PaymentView onCheckStatus={onCheckStatus} product={cartInfo.description} amount={cartInfo.amount} />
+              return <PaymentView onCheckStatus={onCheckStatus} product={cartInfo.courseName} amount={cartInfo.itemPrice} />
 
           }
           

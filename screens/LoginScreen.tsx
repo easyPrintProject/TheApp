@@ -109,8 +109,8 @@ const Login = async () => {
         <ScrollView>
         <Text style={styles.text_footer}> البريد الإلكتروني</Text>
         <View style={styles.action}>
-            <FontAwesome 
-                name="user-o"
+            <Feather 
+                name="mail"
                 color="#05375a"
                 size={20}
             />
