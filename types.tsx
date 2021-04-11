@@ -15,6 +15,8 @@ export type driverStack = {
   Login : undefined;
   HomeDriver:undefined;
   ProfileScreen:undefined;
+  viewOrderScreen: undefined;
+  MoreInfo: undefined;
 }
 
 

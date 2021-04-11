@@ -17,10 +17,7 @@ export default function profileScreen({navigation}: StackScreenProps<DriverProfi
 
 
   // ميثود للذهاب الى صفحة التعديل 
-  const  GoToEditScreen  = () => {
-
-    navigation.navigate("EditScreen");
-  }
+ 
   const {state ,setState } = useGlobalState();
  
 
@@ -46,7 +43,6 @@ export default function profileScreen({navigation}: StackScreenProps<DriverProfi
       <Image style={styles.avatar}
       source={require('../../assets/images/userimge.jpg')}/> 
       <Text style={styles.tt}>{state.UserName}</Text>
-      <Text style={styles.caption}>{state.Email}</Text>
       </View> 
 
 
@@ -64,22 +60,13 @@ export default function profileScreen({navigation}: StackScreenProps<DriverProfi
         </View></View>
 
 
-      <View style={styles.menuWrapper}>
-        <TouchableOpacity style={styles.menuItem}>
-            <Icon name="wallet-outline" color="#FFEB3B" size={25}/>
-            <Text style={styles.menuItemText}>الرصيد </Text>
-          </TouchableOpacity>
-     </View>
+      
 
 
 
 
       <View style={styles.contant}>
-        <TouchableOpacity style={styles.button}
-               
-                onPress={() => GoToEditScreen()}>
-                <Text style={styles.userBtnTxt}>تعديل</Text>
-              </TouchableOpacity>
+        
 
               <TouchableOpacity  style={styles.button}>
                 <Text style={styles.userBtnTxt}>تسجيل الخروج</Text>
@@ -120,12 +107,7 @@ const styles = StyleSheet.create({
     
   },
   
-  caption: {
-   
-    fontSize: 14,
-    lineHeight: 14,
-    fontWeight: '500',
-  },
+
 
   row: {
     flexDirection: 'row-reverse',
