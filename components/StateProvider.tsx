@@ -31,7 +31,7 @@ export interface GlobalStateInterface {
   numberOfItems : number;
 
   //adress 
-
+userId:String;
  country: String;
   city: String;
   neighborhood: String;

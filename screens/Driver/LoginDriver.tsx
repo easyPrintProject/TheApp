@@ -88,6 +88,7 @@ const emailValidator = (email: any) => {
      } catch (error) {
        console.log('حدث خطأ! ', error)
      }
+     
    }
  
     return (

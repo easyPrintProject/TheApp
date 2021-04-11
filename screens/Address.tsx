@@ -32,7 +32,7 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
   
   const {state ,setState } = useGlobalState();
   
- const [address, setAddress] = useState({userId:state.Id,country:"",city:"",neighborhood:"",street:"",adressLine:"",postcode:""})
+ const [address, setAddress] = useState({userId:"",country:"",city:"",neighborhood:"",street:"",adressLine:"",postcode:""})
     
  useEffect(() => {
     try {
@@ -46,7 +46,7 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
      }).then((response) => response.json())
      .then((response) => {
      setAddress({
-      userId:state.Id,
+      userId:response.data.userId,
       country: response.data.country,
       city:response.data.city, 
       neighborhood:response.data.neighborhood,
@@ -69,22 +69,24 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
 
   
 const checkAddress = () => {
-  if (address.city==""||address.city==null){
+  if (state.city==""||state.city==null){
   return( 
     GoToAddressNew()
      );}
 
   else{
     return( 
+
      <View>
-      <ScrollView>
-      <View style={styles.userInfoSection}>
+      
       
       <View style={styles.row}>
       <Text style={styles.tt2} >المدينة :</Text>
         <Text style={styles.tt2} >{address.city}</Text>
       </View>
-      
+      <Text>
+{address.userId}
+      </Text>
       
       <View style={styles.row}>
       <Text style={styles.tt2} > الحي :</Text>
@@ -106,13 +108,8 @@ const checkAddress = () => {
         <Text style={styles.tt2} >{address.postcode}</Text>
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={() => GoToEditAddress()}>
-      <Text style={styles.userBtnTxt}> تعديل العنوان</Text>
-      </TouchableOpacity>
-
+    
      
-      </View>
-      </ScrollView>
       </View>
       
       );
@@ -135,48 +132,22 @@ const checkAddress = () => {
             <Text style={styles.title}>العنوان</Text>
             </View>
             </View>
-          
-     {checkAddress()} 
-     <View>
-      <ScrollView>
-      <View style={styles.userInfoSection}>
-      
-      <View style={styles.row}>
-      <Text style={styles.tt2} >المدينة :</Text>
-        <Text style={styles.tt2} >{state.city}</Text>
-      </View>
-      
-      
-      <View style={styles.row}>
-      <Text style={styles.tt2} > الحي :</Text>
-        <Text style={styles.tt2} >{address.neighborhood}</Text>
-      </View>
-      
-      <View style={styles.row}>
-      <Text style={styles.tt2} >الشارع :</Text>
-        <Text style={styles.tt2} >{address.street}</Text>
-      </View>
-      
-      <View style={styles.row}>
-      <Text style={styles.tt2} >الوصف :</Text>
-        <Text style={styles.tt2} >{address.adressLine}</Text>
-      </View>
-      
-      <View style={styles.row}>
-      <Text style={styles.tt2} >الرمز البريدي :</Text>
-        <Text style={styles.tt2} >{address.postcode}</Text>
-      </View>
 
-      <TouchableOpacity style={styles.button} onPress={() => GoToEditAddress()}>
+            <ScrollView>
+      <View style={styles.userInfoSection}>
+
+     {checkAddress()} 
+
+
+     
+  
+
+     <TouchableOpacity style={styles.button} onPress={() => GoToEditAddress()}>
       <Text style={styles.userBtnTxt}> تعديل العنوان</Text>
       </TouchableOpacity>
 
-     
       </View>
-      </ScrollView>
-      </View>
-
-     
+      </ScrollView>    
    </SafeAreaView>
    
   );

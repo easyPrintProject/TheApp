@@ -30,7 +30,10 @@ export default function AddressNewScreen( {navigation}: StackScreenProps<Account
     const [adressLine, setAdressLine] = useState("");
     const [postcode, setPostcode] = useState("");
     const [street, setStreet] = useState("");
- 
+    const [errorMassage, setErrorMassage] = useState("");
+
+
+    
 
     const addAdress = async () => {
      try {
@@ -41,7 +44,7 @@ export default function AddressNewScreen( {navigation}: StackScreenProps<Account
          'Content-Type': 'application/json'
        },
        body:JSON.stringify({
-        userId:state.Id,
+      userId:state.Id,
        city:city, 
        neighborhood:neighborhood,
        street:street,
@@ -53,7 +56,7 @@ export default function AddressNewScreen( {navigation}: StackScreenProps<Account
       }).then((response) => response.json())
        .then((response) => {
        setAddress({
-       userId:response.data.userId,
+        userId:response.data.state.Id,
       country: response.data.country,
       city:response.data.city, 
       neighborhood:response.data.neighborhood,
@@ -161,7 +164,7 @@ export default function AddressNewScreen( {navigation}: StackScreenProps<Account
           />
         </View>
         <Text>
-            {city}
+          {errorMassage}
         </Text>
         
         <TouchableOpacity style={styles.button} > 
@@ -171,9 +174,6 @@ export default function AddressNewScreen( {navigation}: StackScreenProps<Account
   </Text>
  </TouchableOpacity> 
    
-
-
-
  </View>
  </ScrollView> 
    </SafeAreaView>

@@ -23,13 +23,13 @@ export default function AddressEdit( {navigation}: StackScreenProps<AccountParam
   }
 
     const {state ,setState } = useGlobalState();
-    const [address, setAddress] = useState({userId:state.Id,country:"",city:"",neighborhood:"",street:"",adressLine:"",postcode:""})
-    const [phoneNumber, setPhoneNumber] = useState(state.PhoneNumber);
+    const [address, setAddress] = useState({userId:"",country:"",city:"",neighborhood:"",street:"",adressLine:"",postcode:""})
+    
     const [city, setCity] = useState(state.city);
-    const [neighborhood, setNeighborhood] = useState(state.neighborhood);
-    const [adressLine, setAdressLine] = useState(state.adressLine);
-    const [postcode, setPostcode] = useState(state.postcode);
-    const [street, setStreet] = useState(state.street);
+    const [neighborhood, setNeighborhood] = useState("");
+    const [adressLine, setAdressLine] = useState("");
+    const [postcode, setPostcode] = useState("");
+    const [street, setStreet] = useState("");
  
  
 
@@ -55,7 +55,7 @@ export default function AddressEdit( {navigation}: StackScreenProps<AccountParam
       }).then((response) => response.json())
        .then((response) => {
        setAddress({
-       userId:state.Id,
+       userId:response.data.userId,
       country: response.data.country,
       city:response.data.city, 
       neighborhood:response.data.neighborhood,
@@ -104,17 +104,7 @@ export default function AddressEdit( {navigation}: StackScreenProps<AccountParam
          
           
     
-        <View style={styles.action}>
-          <TextInput
-            placeholder="رقم الجوال"
-            placeholderTextColor="#666666"
-            keyboardType="number-pad"
-            autoCorrect={false}
-            onChangeText={(e) => setPhoneNumber(e.toString())}
-
-            style={styles.textInput}
-          />
-        </View>
+        
         <View style={styles.action}>
         
         <TextInput
