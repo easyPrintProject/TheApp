@@ -110,6 +110,9 @@ function HomeNavigator() {
         <HomeStack.Screen name="PrintingOptionsScreen" component={PrintingOptions} />
         <HomeStack.Screen name="DeliveryTimeScreen" component={DeliveryTimeScreen} />
         <HomeStack.Screen name="PaymentScreen" component={PaymentScreen} />
+        <HomeStack.Screen name="isPrintingOrder" component={isPrintingOrder} />
+
+
     </HomeStack.Navigator>
   );
 }
