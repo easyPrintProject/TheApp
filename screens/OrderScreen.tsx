@@ -9,7 +9,7 @@ import {
   Pressable,
   TouchableOpacity
 } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { Entypo, Feather } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 // Import Document Picker
 import * as DocumentPicker from 'expo-document-picker';
@@ -25,6 +25,13 @@ export default function OrderScreen({ navigation }: StackScreenProps<OrderParamL
   const GoToPrintOption = () => {
     navigation.navigate("PrintingOptionsScreen");
   };
+
+  const GoToPrintShop = () => {
+    navigation.navigate("isPrintingOrder");
+  };
+
+
+
   const [file, setFile] = useState('');
   const [fileNeme, setFileNeme] = useState('');
 
@@ -68,6 +75,19 @@ export default function OrderScreen({ navigation }: StackScreenProps<OrderParamL
 <View style={styles.buttonStyle}><Feather.Button name="file" backgroundColor="#49c3c6" onPress={docPick}>
   حدد الملف </Feather.Button></View>
 
+
+
+<View style={styles.buttonStyle2}><Feather.Button name="upload" backgroundColor="#49c3c6" onPress={upload}>
+  رفع الملف </Feather.Button></View>
+
+{/* <Pressable style={{ marginTop: 10, }}
+  onPress={() => GoToPrintOption()}>
+  <Text>خيارات الطباعة</Text>
+</Pressable> */}
+<View style={styles.buttonStyle3}><Entypo.Button name="shop" backgroundColor="white" color= '#49c3c6'
+ onPress={GoToPrintShop}>
+اختيار مكتبة </Entypo.Button></View>
+
 {file != null ? (
   <Text style={styles.textStyle}>
     اسم الملف: {file.name ? file.name : ''}
@@ -79,15 +99,6 @@ export default function OrderScreen({ navigation }: StackScreenProps<OrderParamL
     
   </Text>
 ) : null}
-
-<View style={styles.buttonStyle2}><Feather.Button name="upload" backgroundColor="#49c3c6" onPress={upload}>
-  رفع الملف </Feather.Button></View>
-
-<Pressable style={{ marginTop: 10, }}
-  onPress={() => GoToPrintOption()}>
-  <Text>خيارات الطباعة</Text>
-</Pressable>
-
 
     </View>
   );
@@ -126,6 +137,18 @@ const styles = StyleSheet.create({
   textStyle: {
     marginTop: 15,
     textAlign: 'center',
-  }
+  },
+  buttonStyle3: {
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderRadius: 25,
+    borderColor: '#49c3c6',
+    width: 200,
+    justifyContent: "center",
+    alignItems: 'center',
+    height: 50,
+    marginTop: 20,
+
+  },
 });
 

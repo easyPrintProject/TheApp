@@ -28,6 +28,7 @@ import Addresso from '../screens/Address';
 import UpdateAdress from '../screens/UpdateAdress';
 import FeedbackScreen from '../screens/FeedbackScreen';
 import SuggestionsScreen from '../screens/SuggestionsScreen'
+import isPrintingOrder from '../screens/isPrintingOrder';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -221,7 +222,16 @@ function OrderNavigator() {
         
       />
       
-
+ <OrderStack.Screen
+        name="BasketScreen"
+        component={Basket}
+        
+      />
+<OrderStack.Screen
+ name="isPrintingOrder"
+ component={isPrintingOrder}
+ 
+/>
     </OrderStack.Navigator>
   );
 }
@@ -241,7 +251,14 @@ function BasketNavigator() {
         component={Basket}
         
       />
+
+<BasketStack.Screen
+        name="PaymentScreen"
+        component={PaymentScreen}
+        
+      />
     </BasketStack.Navigator>
+    
   );
 }
 
@@ -274,6 +291,7 @@ function PrintersListNavigator() {
         name="BasketScreen"
         component={BasketNavigator}
       />
+      
     </PrintersListStack.Navigator>
   );
 }

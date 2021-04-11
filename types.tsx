@@ -93,6 +93,9 @@ export type OrderParamList = {
   PrintingOptionsScreen: undefined;
   DeliveryTimeScreen: undefined;
   PaymentScreen: undefined;
+  BasketScreen: undefined;
+  isPrintingOrder: undefined;
+
 };
 
 
@@ -106,8 +109,11 @@ export type PrintersListParamList = {
   DocumentListScreen: undefined;
   MaterialsDetailsScreen:undefined;
   BasketScreen: undefined;
+
 };
 
 export type BasketParamList = {
   BasketScreen: undefined;
+  PaymentScreen: undefined;
+
 };
