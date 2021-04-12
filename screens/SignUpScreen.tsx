@@ -158,6 +158,8 @@ const PhoneValidator = (phoneNumber: any) => {
             />  
         
 </View>
+<View>
+            <Text style={styles.message}>{errorMassage2}</Text></View>
 
         <Text style={[styles.text_footer, {
             marginTop: 35
@@ -180,8 +182,7 @@ const PhoneValidator = (phoneNumber: any) => {
         </View>
 
         
-<View>
-            <Text style={styles.message}>{errorMassage2}</Text></View>
+
 
 <Text style={[styles.text_footer, {
             marginTop: 35
