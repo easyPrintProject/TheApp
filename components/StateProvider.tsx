@@ -15,14 +15,16 @@ export interface GlobalStateInterface {
   EmailConfeirmd: boolean;
 
   //navigation between pages data
+  courceMaterialId:string;
   printerId: string;
   printerName: string;
   MaterialId: string;
-  courceMaterialTitle: string,
-  courceMaterialDescreption: string
-  courceMaterialPrice: number,
-  isAvailable: boolean,
-  subjectId: string,
+  courceMaterialTitle: string;
+  courceMaterialDescreption: string;
+  courceMaterialPrice: string;
+  isAvailable: boolean;
+  subjectId: string;
+  printingShopId:string;
 
   //order and basket items data
   orderId :string;

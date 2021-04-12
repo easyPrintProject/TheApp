@@ -12,6 +12,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { BottomTabPDriverList, DriverProfileParamList, ViewOrderDriverParamList,UpdateOrderParamList} from '../types';
 import { Title } from 'react-native-paper';
 import UpdateOrder from '../screens/Driver/UpdateOrder'
+import OrderListsScreen from '../screens/Driver/OrderListsScreen'
+import OrderDetails from '../screens/Driver/OrderDetails'
+
 const BottomTab = createBottomTabNavigator<BottomTabPDriverList>();
 
 export default function BottomTabPDriverNavigator() {
@@ -19,11 +22,11 @@ export default function BottomTabPDriverNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="ViewOrderScreen"
+      initialRouteName="OrderListsScreen"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint , showLabel:false}}>
       <BottomTab.Screen
-        name="ViewOrderScreen"
-        component={ViewOrderNavigator}
+        name="OrderListsScreen"
+        component={ OrderListsNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
@@ -58,21 +61,25 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Feather>['name'];
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const ViewOrderStack = createStackNavigator<ViewOrderDriverParamList>();
+const OrderListsStack = createStackNavigator<ViewOrderDriverParamList>();
 
-function ViewOrderNavigator() {
+function OrderListsNavigator() {
   return (
-    <ViewOrderStack.Navigator
+    <OrderListsStack.Navigator
     screenOptions={
       {
         headerShown: false
       }
     } >
-        <ViewOrderStack.Screen
-        name="ViewOrderScreen"
-        component={viewOrderScreen}
+        <OrderListsStack.Screen
+        name="OrderListsScreen"
+        component={OrderListsScreen}
       />
-    </ViewOrderStack.Navigator>
+        <OrderListsStack.Screen
+        name="OrderDetails"
+        component={OrderDetails}
+      />
+    </OrderListsStack.Navigator>
   );
 }
 

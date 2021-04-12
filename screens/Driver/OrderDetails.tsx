@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DataTable } from 'react-native-paper';
-import {Button, View, StyleSheet,Text, TouchableOpacity, SafeAreaView} from 'react-native';
+import {Button, View, StyleSheet,Text, TouchableOpacity, SafeAreaView,ScrollView} from 'react-native';
 import {  StackScreenProps } from '@react-navigation/stack';
 import { driverStack} from '../../types';
 import  {  useState, useEffect } from 'react';
@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ViewOrderDriverParamList} from '../../types'
 
 
-export default function OrderListsScreen({navigation }: StackScreenProps<ViewOrderDriverParamList>) {
+export default function OrderDetails({navigation }: StackScreenProps<ViewOrderDriverParamList>)  {
 
   const {state ,setState } = useGlobalState(); 
   const [orderLists, setOrderList] = useState({ courceMaterialId:"",
@@ -21,13 +21,14 @@ export default function OrderListsScreen({navigation }: StackScreenProps<ViewOrd
     subjectId:"" ,
     printingShopId:"", });
  
-    const   GoToDatailes  = () => {
-
-      navigation.navigate('OrderDetails');
-    }
-    
+ 
  
   const [errorMassage, setErrorMassage] = useState("");
+
+  const   GoToOrderList = () => {
+
+    navigation.navigate('OrderListsScreen');
+  }
 
 
   useEffect(() => {
@@ -90,32 +91,43 @@ const OederList = async () => {
     return (
       <SafeAreaView  style={{ backgroundColor: 'white' , flex:1}}>
         {OederList()}
+
       <View style={{ backgroundColor: '#efefef', marginTop: 150, marginLeft:10 , marginRight:10, alignItems: 'center', alignContent: 'center'}}>
+      <ScrollView>
 
-  <DataTable>
-    <DataTable.Header>
-       <DataTable.Title style={{ alignItems: 'center', alignContent: 'center'}}>
-          عمليات اضافية</DataTable.Title>
-          <DataTable.Title style={{ alignItems: 'center', alignContent: 'center'}}>
-          حالة التوصيل</DataTable.Title>
-          <DataTable.Title style={{ alignItems: 'center', alignContent: 'center'}}>
-          Order Id</DataTable.Title>
-    </DataTable.Header>
-
-    <DataTable.Row>
-         <DataTable.Cell style={{ alignItems: 'center', alignContent: 'center'}}>
-            <View>
-               <View style={styles.button}>
-            <TouchableOpacity onPress={() => alert("test")}>
-             <Text style={styles.text}>المزيد</Text> 
-            </TouchableOpacity>
+      <View style={styles.row}>
+      <Text style={styles.tt2} >رقم الملزمة :</Text>
+        <Text style={styles.tt2} >{state.courceMaterialId}</Text>
       </View>
-            </View>
-          </DataTable.Cell>
-          <DataTable.Cell style={{ alignItems: 'center', alignContent: 'center'}}>Test</DataTable.Cell>
-          <DataTable.Cell style={{ alignItems: 'center', alignContent: 'center'}}>{state.orderId}</DataTable.Cell>
-    </DataTable.Row>   
-  </DataTable>
+    
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} > العنوان :</Text>
+        <Text style={styles.tt2} >{state.courceMaterialTitle}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >الوصف :</Text>
+        <Text style={styles.tt2} >{state.courceMaterialDescreption}</Text>
+      </View>
+      
+      <View style={styles.row}>
+      <Text style={styles.tt2} >السعر :</Text>
+        <Text style={styles.tt2} >{state.courceMaterialPrice}</Text>
+      </View>
+      
+     
+
+    
+    
+
+     <TouchableOpacity style={styles.button} onPress={() => GoToOrderList()}>
+      <Text style={styles.userBtnTxt}> عودة للخلف</Text>
+      </TouchableOpacity>
+
+
+      </ScrollView>    
+   
   </View>
   </SafeAreaView>
 );
@@ -139,5 +151,34 @@ const OederList = async () => {
     textAlign: 'center',
     alignItems: 'center',
     alignContent: 'center',
-  }
+  },
+  
+  row: {
+   
+    margin: '2%',
+  },
+
+
+ 
+  tt2:{
+    color:"#5F6A6A", 
+    margin: '2%',
+    fontSize:16,
+    
+    
+  },
+  icon2: {
+    marginLeft: "90%",
+    backgroundColor:'#49c3c6',
+    
+},
+
+
+userBtnTxt: {
+   padding:'2%',
+  fontSize:15,
+  color:"#fff",
+  borderColor:"#49c3c6",
+  
+},
   })
