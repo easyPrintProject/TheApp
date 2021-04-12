@@ -59,7 +59,6 @@ const   GoToFeedbackScreen = () => {
 
 <View style={styles.userInfoSection}>
       <View style={styles.cont }>
-      <Image source={require('../assets/images/av2.png')} style={styles.avatar}/>
       <Text style={styles.caption}>{state.Email}</Text>
       </View>
       <TouchableOpacity style={styles.button} onPress={() => GoToEditAccountScreen()}>
@@ -71,13 +70,13 @@ const   GoToFeedbackScreen = () => {
     <View style={styles.userInfoSection}>
 
         <View style={styles.row}>
-          <Icon name="map-marker-radius-outline" color="#43A047" size={23}/>
+          <Icon name="map-marker-radius-outline" color="#80CBC4" size={23}/>
 
           <Text style={styles.tt2} >{state.city}</Text>
     </View>
 
         <View style={styles.row}>
-          <Icon name="phone-outline" color="#E74C3C" size={23}/>
+          <Icon name="phone-outline" color="#80CBC4" size={23}/>
           <Text style={styles.tt2}>{state.PhoneNumber}</Text>
         </View>
         <TouchableOpacity style={styles.button} onPress={() => GoToEditAdress()}>
@@ -90,14 +89,14 @@ const   GoToFeedbackScreen = () => {
       
      <View style={styles.menuWrapper}>
         <TouchableOpacity style={styles.menuItem}onPress={() => GoToBasketScreen()}>
-            <Icon name="basket-outline" color="#85929E" size={25}/>
+            <Ionicons name="cart" color="#85929E" size={25}/>
             <Text style={styles.menuItemText}>سلة مشترياتي</Text>
           </TouchableOpacity>
      </View>
 
      <View style={styles.menuWrapper}>
         <TouchableOpacity style={styles.menuItem}onPress={() => GoToSuggestionsScreen()}>
-            <Icon name="pencil-outline" color="#2E86C1" size={25}/>
+            <Icon name="pencil-outline" color="#80CBC4" size={25}/>
             <Text style={styles.menuItemText}>ارسل اقتراحك</Text>
           </TouchableOpacity>
      </View>
@@ -162,7 +161,7 @@ padding:"3%"
    
     paddingHorizontal: '5%',
     marginBottom: '3%',
-    padding:'1%',
+    padding:'7%',
     
     
   },

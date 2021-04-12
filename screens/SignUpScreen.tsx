@@ -138,6 +138,27 @@ const PhoneValidator = (phoneNumber: any) => {
         </View>
 
 
+
+        <Text style={[styles.text_footer, {
+            marginTop: 35
+        }]}>البريد الإلكتروني</Text>
+        <View style={styles.action}>
+            <Feather 
+                name="mail"
+                color="#05375a"
+                size={20}
+            />
+            <TextInput 
+                textAlign= 'right'
+                style={styles.textInput}
+                autoCapitalize="none"
+                onChangeText={(e) => setEmail(e.toString())}
+                onBlur={() => emailValidator(email)}
+
+            />  
+        
+</View>
+
         <Text style={[styles.text_footer, {
             marginTop: 35
         }]}>كلمة المرور</Text>
@@ -158,25 +179,7 @@ const PhoneValidator = (phoneNumber: any) => {
              
         </View>
 
-        <Text style={[styles.text_footer, {
-            marginTop: 35
-        }]}>الإيميل الإلكتروني</Text>
-        <View style={styles.action}>
-            <Feather 
-                name="mail"
-                color="#05375a"
-                size={20}
-            />
-            <TextInput 
-                textAlign= 'right'
-                style={styles.textInput}
-                autoCapitalize="none"
-                onChangeText={(e) => setEmail(e.toString())}
-                onBlur={() => emailValidator(email)}
-
-            />  
         
-</View>
 <View>
             <Text style={styles.message}>{errorMassage2}</Text></View>
 
