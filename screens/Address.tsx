@@ -33,34 +33,33 @@ export default function Address( {navigation}: StackScreenProps<AccountParamList
   const {state ,setState } = useGlobalState();
   
  const [address, setAddress] = useState({userId:"",country:"",city:"",neighborhood:"",street:"",adressLine:"",postcode:""})
-
+  
 
  useEffect(() => {
   try {
-    fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/' + state.Id, {
+    fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/'+state.Id, {
      method: 'GET',
      headers: {
      Accept: 'application/json',
       'Content-Type': 'application/json'
-    },
-  
+    }
    }).then((response) => response.json())
    .then((response) => {
-   setAddress({
-    userId:response.data.userId,
-    country: response.data.country,
-    city:response.data.city, 
-    neighborhood:response.data.neighborhood,
-     street:response.data.street,
-     adressLine:response.data.adressLine,
-     postcode:response.data.postcode,
-  });
+     
+    setAddress({
+      userId:response.userId,
+      country: response.country,
+      city:response.city, 
+      neighborhood:response.neighborhood,
+      street:response.street,
+      adressLine:response.adressLine,
+      postcode:response.postcode}
+     )
    })
    .catch((error) => {
     console.error(error);
   });
-   
-  }catch (error) {
+  } catch (error) {
     console.log('حدث خطأ! ', error)
   }
  }, [state])
@@ -73,7 +72,7 @@ const checkAddress = () => {
 
   else{
     return( 
-     <View>
+     <View >
     
       <View style={styles.row}>
       <Text style={styles.tt2} >المدينة :</Text>
@@ -109,9 +108,6 @@ const checkAddress = () => {
 }
 
     return (
-    
-
-
 <SafeAreaView >
 
 <View style={styles.header}> 
@@ -128,11 +124,35 @@ const checkAddress = () => {
             <ScrollView>
       <View style={styles.userInfoSection}>
 
-     {checkAddress()} 
+     {/* {checkAddress()}  */}
 
 
-     
-  
+    <View >
+    <View style={styles.row}>
+    <Text style={styles.tt2} >المدينة :</Text>
+      <Text style={styles.tt2} >{address.city}</Text>
+    </View>
+
+    <View style={styles.row}>
+    <Text style={styles.tt2} > الحي :</Text>
+      <Text style={styles.tt2} >{address.neighborhood}</Text>
+    </View>
+    
+    <View style={styles.row}>
+    <Text style={styles.tt2} >الشارع :</Text>
+      <Text style={styles.tt2} >{address.street}</Text>
+    </View>
+    
+    <View style={styles.row}>
+    <Text style={styles.tt2} >الوصف :</Text>
+      <Text style={styles.tt2} >{address.adressLine}</Text>
+    </View>
+    
+    <View style={styles.row}>
+    <Text style={styles.tt2} >الرمز البريدي :</Text>
+      <Text style={styles.tt2} >{address.postcode}</Text>
+    </View>
+    </View>
 
      <TouchableOpacity style={styles.button} onPress={() => GoToEditAddress()}>
       <Text style={styles.userBtnTxt}> تعديل العنوان</Text>
