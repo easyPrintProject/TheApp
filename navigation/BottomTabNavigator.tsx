@@ -151,11 +151,7 @@ function AccountNavigator() {
         options={{ drawerLabel: ' الحساب الشخصي '  }}
       />
 
-<AccountDrawer.Screen
-        name="EditAccountScreen"
-        component={EditAccountScreen}
-        options={{ drawerLabel: ' تعديل الملف الشخصي '  }}
-      />
+
 
       <AccountDrawer.Screen
         name="InstantCalculator"
@@ -176,12 +172,12 @@ function AccountNavigator() {
       <AccountDrawer.Screen
         name='AddressEdit'
         component={AddressEdit}
-        options={{ drawerLabel:  'تحديث العناوين' }}
+        options={{ drawerLabel:  'تحديث العنوان' }}
       />
       <AccountDrawer.Screen
         name='AddressNewScreen'
         component={AddressNewScreen}
-        options={{ drawerLabel:  'اضافه العناوين' }}
+        options={{ drawerLabel:  'اضافه عنوان' }}
       />
       <AccountDrawer.Screen
         name='FeedbackScreen'

@@ -52,7 +52,7 @@ const goAdress = ()=>{
 const emailValidator = (email: any) => {
   let reg =  /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   if (reg.test(email) === false) {
-    setErrorMassage2(  "الرجاء كتابة البريد إلكتروني صحيح " );
+    setErrorMassage2(  "الرجاء كتابة البريد الإلكتروني بشكل صحيح " );
     return false;
   } else {
     setErrorMassage2(  "" );
