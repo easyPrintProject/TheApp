@@ -21,11 +21,9 @@ export default function AddressNewScreen( {navigation}: StackScreenProps<StartPa
   const GoHome = () => {
     navigation.push("Home");
   }
-
     const {state ,setState } = useGlobalState();
     const [address, setAddress] = useState({userId:"",country:"",city:"",neighborhood:"",street:"",adressLine:"",postcode:""})
     const [cuntry, setCountry] = useState("المملكة العربية السعودية");
-
     const [city, setCity] = useState("");
     const [neighborhood, setNeighborhood] = useState("");
     const [adressLine, setAdressLine] = useState("");
