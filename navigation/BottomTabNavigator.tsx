@@ -32,6 +32,7 @@ import isPrintingOrder from '../screens/isPrintingOrder';
 import Address from '../screens/Address'
 import AddressEdit from '../screens/AddressEdit';
 import AddressNewScreen from '../screens/AddressNewScreen'
+import OrderStatus from '../screens/OrderStatus';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -161,11 +162,7 @@ function AccountNavigator() {
         component={InstantCalculator}
         options={{ drawerLabel:  'حاسبة الأسعار '  }}
       />
-      <AccountDrawer.Screen
-        name="OrderScreen"
-        component={Order}
-        options={{ drawerLabel:  'ملفاتي' }}
-      />
+    
        <AccountDrawer.Screen
         name='CouponsScreen'
         component={CouponsScreen}
@@ -187,17 +184,23 @@ function AccountNavigator() {
         options={{ drawerLabel:  'اضافه العناوين' }}
       />
       <AccountDrawer.Screen
-        name='SuggestionsScreen'
-        component={SuggestionsScreen}
-        options={{ drawerLabel:  'الاقتراحات' }}
-      />
-      <AccountDrawer.Screen
         name='FeedbackScreen'
         component={FeedbackScreen}
         options={{ drawerLabel:  'تقييم الطلبات' }}
       />
       
-  
+      <AccountDrawer.Screen
+        name='OrderStatus'
+        component={OrderStatus}
+        options={{ drawerLabel:  'تتبع الطلبات '}}
+      />
+      <AccountDrawer.Screen
+        name='SuggestionsScreen'
+        component={SuggestionsScreen}
+        options={{ drawerLabel:  'الاقتراحات' }}
+      />
+      
+      
     </AccountDrawer.Navigator>
   );
 }

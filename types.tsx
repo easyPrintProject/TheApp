@@ -18,6 +18,8 @@ export type driverStack = {
   ProfileScreen:undefined;
   viewOrderScreen: undefined;
   MoreInfo: undefined;
+  OrderListsScreen:undefined;
+  OrderDetails:undefined;
 }
 
 
@@ -26,7 +28,8 @@ export type ViewOrderDriverParamList = {
 
   OrderListsScreen:undefined;
   OrderDetails:undefined;
-
+  viewOrderScreen: undefined;
+  MoreInfo: undefined;
 
 };
 
@@ -99,6 +102,7 @@ export type AccountParamList = {
   FeedbackScreen:undefined;
   AddressEdit:undefined;
   AddressNewScreen:undefined;
+  OrderStatus: undefined;
 };
 
 
