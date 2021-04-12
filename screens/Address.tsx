@@ -227,10 +227,10 @@ padding:"3%"
 
  
   tt2:{
-    color:"#5F6A6A", 
+    color:"#5F6A9A", 
     margin: '2%',
     fontSize:16,
-    
+    marginLeft:"45%"
     
   },
   icon2: {
