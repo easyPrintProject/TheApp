@@ -89,7 +89,9 @@ export default function OrderScreen({ navigation }: StackScreenProps<AccountPara
 // bottom to top الترتيب
 
   return (
+    <ScrollView>
     <SafeAreaView  style={{ backgroundColor: 'white' , flex:1, }}>
+            <StatusBar backgroundColor="#009387" barStyle="dark-content" />
     <Text style={{ fontSize: 25, textAlign:'center', marginTop:30,justifyContent:'center', 
     backgroundColor: '#49c3c6', paddingTop:20 ,height: 80, color: 'white',
      alignContent: 'center', fontWeight: 'bold'}}> قائمة الطلبات</Text>
@@ -113,6 +115,8 @@ export default function OrderScreen({ navigation }: StackScreenProps<AccountPara
        </View>       
 
 </SafeAreaView>
+</ScrollView>
+
 );
 }
 const styles = StyleSheet.create({

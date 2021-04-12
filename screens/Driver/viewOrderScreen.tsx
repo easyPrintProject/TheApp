@@ -1,52 +1,53 @@
-import React from 'react'
-import { Button, Pressable, StyleSheet, Text, View ,Image, StatusBar,  TouchableOpacity, SafeAreaView} from 'react-native'
+import React, { useState } from 'react'
+import { Button, Pressable, StyleSheet, Text, View ,
+  Image, StatusBar,  TouchableOpacity, SafeAreaView} from 'react-native'
 import {AntDesign, FontAwesome5, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
 import { ScrollView } from 'react-native-gesture-handler';
 import { StackScreenProps } from '@react-navigation/stack';
 import { driverStack } from '../../types';
-
 import { DataTable } from 'react-native-paper';
+import { Card } from 'react-native-elements';
+import { useGlobalState } from '../../components/StateProvider';
 
 export default function OrderScreen({navigation}: StackScreenProps<driverStack>) {
-  const state ={searchBarFocused : false}
   const GoToMoreInfo = () => {
     navigation.navigate("MoreInfo");
   }; 
+  const [errorMassage, setErrorMassage] = useState("");
+  const {state ,setState } = useGlobalState();
 
 
+
+
+ 
 
   return (
-    <SafeAreaView  style={{ backgroundColor: 'white' , flex:1}}>
-    <View style={{ backgroundColor: '#efefef', marginTop: 150, marginLeft:10 , marginRight:10, alignItems: 'center', alignContent: 'center'}}>
+    <SafeAreaView  style={{ backgroundColor: 'white' , flex:1, }}>
+       <StatusBar backgroundColor="#009387" barStyle="dark-content" />
+    <Text style={{ fontSize: 25, textAlign:'center', marginTop:30,justifyContent:'center', 
+    backgroundColor: '#009387', paddingTop:23 ,height: 80, color: 'white',
+     alignContent: 'center', fontWeight: 'bold'}}> قائمة الطلبات</Text>
+      
 
-<DataTable>
-  <DataTable.Header>
-     <DataTable.Title style={{ alignItems: 'center', alignContent: 'center'}}>
-        عمليات اضافية</DataTable.Title>
-        <DataTable.Title style={{ alignItems: 'center', alignContent: 'center'}}>
-        حالة التوصيل</DataTable.Title>
-        <DataTable.Title style={{ alignItems: 'center', alignContent: 'center'}}>
-        Order Id</DataTable.Title>
-  </DataTable.Header>
-
-  <DataTable.Row>
-       <DataTable.Cell style={{ alignItems: 'center', alignContent: 'center'}}>
-          <View>
-             <View style={styles.button}>
+      <View style={{marginTop: 60}} >
+         <Card>
+            <View >
+               <Text style={{ margin:5, textAlign:'right' , fontWeight:"bold"}}>رمز الطلب: </Text>
+               <Text style={{ margin:5, textAlign:'right', fontWeight:"bold"}}>حالة التوصيل: </Text>
+               <Text style={{ margin:5, textAlign:'right', fontWeight:"bold"}}>حالة الطلب:</Text>
+               <Text style={{ margin:5, textAlign:'right', fontWeight:"bold"}}>السعر:</Text>
+               <View style={styles.button}>
           <TouchableOpacity onPress={() => GoToMoreInfo()}>
            <Text style={styles.text}>المزيد</Text> 
           </TouchableOpacity>
-    </View>
-          </View>
-        </DataTable.Cell>
-        <DataTable.Cell style={{ alignItems: 'center', alignContent: 'center'}}>Test</DataTable.Cell>
-        <DataTable.Cell style={{ alignItems: 'center', alignContent: 'center'}}>Test</DataTable.Cell>
-  </DataTable.Row>   
-</DataTable>
-</View>
+            </View>
+            </View>
+            </Card>
+       </View>       
 </SafeAreaView>
 );
 }
+
 const styles = StyleSheet.create({
   button:{
     alignItems: 'center',
