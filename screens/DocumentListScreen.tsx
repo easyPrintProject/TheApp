@@ -129,7 +129,7 @@ export default function DocumentListScreen({navigation}: StackScreenProps<Printe
    <ScrollView scrollEventThrottle={16}>
 
             <View  >
-              {courses.slice(1).map(e => 
+              {courses.slice(2).map(e => 
             <View >
               <View style={{paddingTop:6}}></View>
               <View style={{height:350,borderStyle:'solid',borderWidth:0.5,margin:9}}>
