@@ -129,7 +129,7 @@ function PrintingOptionsScreen({ navigation }: StackScreenProps<OrderParamList>)
         orderId:"",
         isCourceMaterial: false,
         isPrintingOrder: true,
-        totalPriceOfTheItem:price,
+        totalPriceOfTheItem:0,
         courseId:"00000000-0000-0000-0000-000000000000",
         docId:"00000000-0000-0000-0000-000000000000", //defulte for the matireals orders
         printingShopId:state.printerId,
@@ -140,7 +140,6 @@ function PrintingOptionsScreen({ navigation }: StackScreenProps<OrderParamList>)
      .then((response: resulte) => {
       setState({
         ...state,
-        //order and basket items data
         orderId :response.orderId,
         orderSatus:"حقيبة التسوق فارغة",
         orderTotal: 0
@@ -154,9 +153,6 @@ function PrintingOptionsScreen({ navigation }: StackScreenProps<OrderParamList>)
     }
   }
    }, [state])
-
-
-
     // for showing or hidding the popup
     const [modalVisible, setModalVisible] = useState(false);
      
@@ -172,7 +168,6 @@ function PrintingOptionsScreen({ navigation }: StackScreenProps<OrderParamList>)
     // fuction that reate new oreder item, and set the model visible.
     const AddToBasketHandeler = () => {
       //then call the API to create an Item 
-
       try {
         fetch('https://apieasyprint20210215153907.azurewebsites.net/api/items', {
          method: 'POST',
@@ -188,14 +183,13 @@ function PrintingOptionsScreen({ navigation }: StackScreenProps<OrderParamList>)
           courseId:"00000000-0000-0000-0000-000000000000",
           docId:"00000000-0000-0000-0000-000000000000", //defulte for the matireals orders
           printingShopId:state.printerId,
-          customerId:state.Id,
+          customerId: state.Id,
           description: checked.toString(),
           })
        }).then((response) => response.json())
-       .then((response:resulte) => {
+       .then((response) => {
         setState({
           ...state,
-         //order and basket items data
         orderSatus:" لم يتم تاكيد الطلب بعد",
         orderTotal: (state.orderTotal || 0 )+ response.itemPrice
         })
@@ -206,7 +200,6 @@ function PrintingOptionsScreen({ navigation }: StackScreenProps<OrderParamList>)
       } catch (error) {
         console.log('حدث خطأ! ', error)
       }
-
       //set the model visible 
       setModalVisible(true);
     }
@@ -215,15 +208,6 @@ function PrintingOptionsScreen({ navigation }: StackScreenProps<OrderParamList>)
     // delete doc Info from globale state and go back to doc list
     const GoToOrderScreen = () => {
       setModalVisible(!modalVisible);
-      setState({
-        ...state,
-        MaterialId:"",
-        courceMaterialTitle:"",
-        courceMaterialDescreption:"",
-        courceMaterialPrice:0,
-        isAvailable:false,
-        subjectId:""
-      });
       navigation.push("OrderScreen");
     };
 
@@ -231,15 +215,6 @@ function PrintingOptionsScreen({ navigation }: StackScreenProps<OrderParamList>)
         // delete doc Info from globale state and go to basket
         const GoToBAsketList = () => {
           setModalVisible(!modalVisible);
-          setState({
-            ...state,
-            MaterialId:"",
-            courceMaterialTitle:"",
-            courceMaterialDescreption:"",
-            courceMaterialPrice:0,
-            isAvailable:false,
-            subjectId:""
-          });
           navigation.push("BasketScreen");
         };
 
@@ -360,11 +335,6 @@ function PrintingOptionsScreen({ navigation }: StackScreenProps<OrderParamList>)
               )}
               extraData={checked} />
 
-
-
-
-
-
             <Text
               style={[
                 styles.text_footer,
@@ -404,13 +374,6 @@ function PrintingOptionsScreen({ navigation }: StackScreenProps<OrderParamList>)
                 </TouchableOpacity>
               )}
               extraData={checked} />
-
-
-
-
-
-
-
             <Text
               style={[
                 styles.text_footer,
@@ -462,10 +425,8 @@ function PrintingOptionsScreen({ navigation }: StackScreenProps<OrderParamList>)
             <Card>
               {CheckUser()}
             </Card>
-
-
-
-          </ScrollView>
+            <Text>{checked.toString()}</Text>
+          </ScrollView> 
         </Animatable.View>
       </KeyboardAvoidingView>
     </View>
