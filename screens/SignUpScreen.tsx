@@ -40,12 +40,12 @@ export default function SignUp ({navigation}: StackScreenProps<StartParamList>){
         PhoneNumber:user.PhoneNumber,
         Id:user.Id,
       })
-        goHome()
+      goAdress()
     }
 }, [user]);
 
-const goHome = ()=>{
-  navigation.push("Home");
+const goAdress = ()=>{
+  navigation.push("NewAdress");
 }
 
 

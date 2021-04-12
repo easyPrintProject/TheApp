@@ -9,12 +9,15 @@ export type StartParamList = {
   Signup: undefined;
   Login: undefined;
   DriverLogin :undefined;
+  NewAdress:undefined;
 };
 
 export type driverStack = {
   Login : undefined;
   HomeDriver:undefined;
   ProfileScreen:undefined;
+  viewOrderScreen: undefined;
+  MoreInfo: undefined;
 }
 
 
