@@ -23,12 +23,16 @@ export type driverStack = {
 
 //لزيادة انواع صفحة الأوردر للدرايفر
 export type ViewOrderDriverParamList = {
-  ViewOrderScreen:undefined;
+
+  OrderListsScreen:undefined;
+  OrderDetails:undefined;
+
 
 };
 
 export type UpdateOrderParamList = {
   UpdateOrder:undefined;
+
 
 };
 //لزيادة انواع صفحة البروفايل للدرايفر
@@ -46,6 +50,8 @@ export type BottomTabPDriverList = {
   profileScreen: undefined;
   ViewOrderScreen: undefined;
   UpdateOrder: undefined;
+  OrderListsScreen:undefined;
+  OrderDetails:undefined;
 };
 
 
