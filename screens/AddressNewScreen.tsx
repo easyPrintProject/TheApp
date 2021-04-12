@@ -3,7 +3,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react'
 
 import { useGlobalState } from '../components/StateProvider';
-import { AccountParamList } from '../types';
+import { AccountParamList, StartParamList } from '../types';
 import  {  useState, useEffect } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -16,94 +16,61 @@ import { Button } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { color } from 'react-native-reanimated';
 
-export default function AddressNewScreen( {navigation}: StackScreenProps<AccountParamList> ) {
+export default function AddressNewScreen( {navigation}: StackScreenProps<StartParamList> ) {
   
-  const GoToAccount = () => {
-    navigation.navigate("AccountScreen");
+  const GoHome = () => {
+    navigation.push("Home");
   }
-
     const {state ,setState } = useGlobalState();
     const [address, setAddress] = useState({userId:"",country:"",city:"",neighborhood:"",street:"",adressLine:"",postcode:""})
-    
+    const [cuntry, setCountry] = useState("المملكة العربية السعودية");
     const [city, setCity] = useState("");
     const [neighborhood, setNeighborhood] = useState("");
     const [adressLine, setAdressLine] = useState("");
     const [postcode, setPostcode] = useState("");
     const [street, setStreet] = useState("");
     const [errorMassage, setErrorMassage] = useState("");
-
-
-    
-
     const addAdress = async () => {
-     try {
-       fetch('https://apieasyprint20210215153907.azurewebsites.net/api/Address/', {
-        method: 'POST',
-        headers: {
-        Accept: 'application/json',
-         'Content-Type': 'application/json'
-       },
-       body:JSON.stringify({
-      userId:state.Id,
-       city:city, 
-       neighborhood:neighborhood,
-       street:street,
-       adressLine:adressLine,
-       postcode:postcode,
-        
-      })
-
-      }).then((response) => response.json())
-       .then((response) => {
-       setAddress({
-        userId:response.data.state.Id,
-      country: response.data.country,
-      city:response.data.city, 
-      neighborhood:response.data.neighborhood,
-       street:response.data.street,
-       adressLine:response.data.adressLine,
-       postcode:response.data.postcode,
-     });
+      try {
+        fetch('https://apieasyprint20210215153907.azurewebsites.net/api/address/', {
+         method: 'POST',
+         headers: {
+         Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+         body: JSON.stringify({
+            userId:state.Id,
+            country:cuntry,
+            city:city, 
+            neighborhood:neighborhood,
+            street:street,
+            adressLine:adressLine,
+            postcode:postcode
+          })
+       }).then((response) => response.json())
+       .then(() => {
+        GoHome()
        })
-      .catch((error) => {
-       console.error(error);
-     });
-
+       .catch((error) => {
+        console.error(error);
+      });
       } catch (error) {
-      console.log('حدث خطأ! ', error)
-    
-    }
-  
-    Alert.alert(
-      " تم التحديث"
-    )
-  
+        console.log('حدث خطأ! ', error)
+      }
   }
-
-  
     return (
     
-
 
 <SafeAreaView>
 
 <View style={styles.header}> 
-    <View style={styles.icon}>
-    <Ionicons  name="chevron-back" size={24} color="white" onPress={() => GoToAccount()} />
-
-     <Ionicons  name="menu-outline" size={24} color= 'white' 
-  onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
+   
   <View style={styles.ht}>
       <Text style={styles.title}>اضافة عنوان</Text>
       </View></View>
 
       <ScrollView> 
              <View style={styles.container} >
-
-         
-
-         
-        
         <View style={styles.action}>
         
         <TextInput
@@ -149,12 +116,8 @@ export default function AddressNewScreen( {navigation}: StackScreenProps<Account
             autoCorrect={true}
             style={[styles.textInput]}
           />
-          
         </View>
-
-   
         <View style={styles.action}>
-          
           <TextInput
             placeholder="الرمز البريدي"
             placeholderTextColor="#666666"
@@ -163,21 +126,12 @@ export default function AddressNewScreen( {navigation}: StackScreenProps<Account
             style={styles.textInput}
           />
         </View>
-        <Text>
-          {errorMassage}
-        </Text>
-        
-        <TouchableOpacity style={styles.button} > 
- <Text style={styles.userBtnTxt} 
- onPress={() =>addAdress()}
- >اضافة 
-  </Text>
- </TouchableOpacity> 
-   
+        <TouchableOpacity style={styles.button} onPress={() =>addAdress()} > 
+         <Text style={styles.userBtnTxt} >اضافة  </Text>
+       </TouchableOpacity>  
  </View>
  </ScrollView> 
    </SafeAreaView>
-   
   );
 }
 
@@ -252,6 +206,7 @@ const styles = StyleSheet.create({
     
      fontSize:20,
      color:"#fff",
+     height:44
      
    },
  
