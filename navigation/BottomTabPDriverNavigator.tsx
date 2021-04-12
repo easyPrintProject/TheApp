@@ -10,6 +10,8 @@ import viewOrderScreen from "../screens/Driver/viewOrderScreen";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { BottomTabPDriverList, DriverProfileParamList, ViewOrderDriverParamList,UpdateOrderParamList} from '../types';
 import { Title } from 'react-native-paper';
+import OrderDetails from '../screens/Driver/OrderDetails';
+import OrderListsScreen from '../screens/Driver/OrderListsScreen';
 const BottomTab = createBottomTabNavigator<BottomTabPDriverList>();
 
 export default function BottomTabPDriverNavigator() {
@@ -37,7 +39,23 @@ export default function BottomTabPDriverNavigator() {
         }}
       />
        
-      
+       <BottomTab.Screen
+        name="OrderListsScreen"
+        component={OrderListsScreen}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon  name="package" color={color} />,
+        }}
+      />
+
+       <BottomTab.Screen
+        name="OrderDetails"
+        component={OrderDetails}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon  name="package" color={color} />,
+        }}
+      />
+
+
     </BottomTab.Navigator>
   );
 }
