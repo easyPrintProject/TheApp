@@ -86,7 +86,7 @@ export default function MoreInfo({ navigation }: StackScreenProps<driverStack>) 
 
 
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: 'white' , flex:1, }}>
       <SafeAreaView style={{ backgroundColor: 'white', flex: 1, }}>
         <StatusBar backgroundColor="#009387" barStyle="dark-content" />
 

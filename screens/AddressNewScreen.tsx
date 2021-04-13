@@ -61,10 +61,12 @@ export default function AddressNewScreen( {navigation}: StackScreenProps<StartPa
     return (
     
 
-<SafeAreaView>
+<SafeAreaView style={styles.container}>
 
 <View style={styles.header}> 
-   
+      <View style={styles.icon}>
+           <Ionicons  name="menu-outline" size={24} color= 'white' 
+        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
   <View style={styles.ht}>
       <Text style={styles.title}>اضافة عنوان</Text>
       </View></View>
@@ -137,7 +139,7 @@ export default function AddressNewScreen( {navigation}: StackScreenProps<StartPa
 
 const styles = StyleSheet.create({
   container: {
-    
+    flex: 1,
     backgroundColor:'#fff',
     padding:"3%"
    },
@@ -154,7 +156,7 @@ const styles = StyleSheet.create({
 
    header: {
      width: '100%',
-     height:'20%',
+     height:'15%',
      padding:"2%",
      backgroundColor:'#49c3c6',
      flexDirection: "column",
@@ -167,7 +169,7 @@ const styles = StyleSheet.create({
    backgroundColor:'#49c3c6',
    flexDirection: "row",
    paddingTop:"6%",
-   justifyContent:"space-between"
+   justifyContent:"flex-end"
  },
  
    action: {
@@ -206,7 +208,8 @@ const styles = StyleSheet.create({
     
      fontSize:20,
      color:"#fff",
-     height:44
+     height:30,
+     justifyContent: 'center'
      
    },
  

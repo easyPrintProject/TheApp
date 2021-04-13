@@ -22,6 +22,7 @@ export default function OrderScreen({navigation}: StackScreenProps<driverStack>)
  
 
   return (
+    <ScrollView style={{ backgroundColor: 'white' , flex:1, }}>
     <SafeAreaView  style={{ backgroundColor: 'white' , flex:1, }}>
        <StatusBar backgroundColor="#009387" barStyle="dark-content" />
     <Text style={{ fontSize: 25, textAlign:'center', marginTop:30,justifyContent:'center', 
@@ -45,6 +46,7 @@ export default function OrderScreen({navigation}: StackScreenProps<driverStack>)
             </Card>
        </View>       
 </SafeAreaView>
+</ScrollView>
 );
 }
 

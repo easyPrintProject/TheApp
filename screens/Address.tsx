@@ -75,7 +75,7 @@ const checkAddress = () => {
      <View >
     
       <View style={styles.row}>
-      <Text style={styles.tt2} >المدينة :</Text>
+      <Text style={styles.tt2} >المدينة:</Text>
         <Text style={styles.tt2} >{address.city}</Text>
       </View>
       <Text>
@@ -83,22 +83,22 @@ const checkAddress = () => {
       </Text>
       
       <View style={styles.row}>
-      <Text style={styles.tt2} > الحي :</Text>
+      <Text style={styles.tt2} > الحي:</Text>
         <Text style={styles.tt2} >{address.neighborhood}</Text>
       </View>
       
       <View style={styles.row}>
-      <Text style={styles.tt2} >الشارع :</Text>
+      <Text style={styles.tt2} >الشارع:</Text>
         <Text style={styles.tt2} >{address.street}</Text>
       </View>
       
       <View style={styles.row}>
-      <Text style={styles.tt2} >الوصف :</Text>
+      <Text style={styles.tt2} >الوصف:</Text>
         <Text style={styles.tt2} >{address.adressLine}</Text>
       </View>
       
       <View style={styles.row}>
-      <Text style={styles.tt2} >الرمز البريدي :</Text>
+      <Text style={styles.tt2} >الرمز البريدي:</Text>
         <Text style={styles.tt2} >{address.postcode}</Text>
       </View>
       </View>
@@ -108,7 +108,7 @@ const checkAddress = () => {
 }
 
     return (
-<SafeAreaView >
+<SafeAreaView style={styles.con}>
 
 <View style={styles.header}> 
           <View style={styles.icon}>
@@ -129,27 +129,27 @@ const checkAddress = () => {
 
     <View >
     <View style={styles.row}>
-    <Text style={styles.tt2} >المدينة :</Text>
+    <Text style={styles.tt2} >المدينة:</Text>
       <Text style={styles.tt2} >{address.city}</Text>
     </View>
 
     <View style={styles.row}>
-    <Text style={styles.tt2} > الحي :</Text>
+    <Text style={styles.tt2} > الحي:</Text>
       <Text style={styles.tt2} >{address.neighborhood}</Text>
     </View>
     
     <View style={styles.row}>
-    <Text style={styles.tt2} >الشارع :</Text>
+    <Text style={styles.tt2} >الشارع:</Text>
       <Text style={styles.tt2} >{address.street}</Text>
     </View>
     
     <View style={styles.row}>
-    <Text style={styles.tt2} >الوصف :</Text>
+    <Text style={styles.tt2} >الوصف:</Text>
       <Text style={styles.tt2} >{address.adressLine}</Text>
     </View>
     
     <View style={styles.row}>
-    <Text style={styles.tt2} >الرمز البريدي :</Text>
+    <Text style={styles.tt2} >الرمز البريدي:</Text>
       <Text style={styles.tt2} >{address.postcode}</Text>
     </View>
     </View>
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
    },
  header: {
     width: '100%',
-    height:'20%',
+    height:'14%',
     padding:"4%",
     backgroundColor:'#49c3c6',
     flexDirection: "column",
@@ -187,6 +187,7 @@ icon:{
   backgroundColor:'#49c3c6',
   flexDirection: "row",
   justifyContent:"space-between",
+  marginTop:20
 },
 ht:{
   backgroundColor:'#49c3c6',
@@ -230,7 +231,8 @@ padding:"3%"
     color:"#5F6A9A", 
     margin: '2%',
     fontSize:16,
-    marginLeft:"45%"
+    marginLeft:"45%",
+    textAlign: 'right',
     
   },
   icon2: {
