@@ -39,21 +39,7 @@ export default function BottomTabPDriverNavigator() {
         }}
       />
        
-       <BottomTab.Screen
-        name="OrderListsScreen"
-        component={OrderListsScreen}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon  name="package" color={color} />,
-        }}
-      />
-
-       <BottomTab.Screen
-        name="OrderDetails"
-        component={OrderDetails}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon  name="package" color={color} />,
-        }}
-      />
+      
 
 
     </BottomTab.Navigator>

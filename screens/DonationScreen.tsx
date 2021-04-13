@@ -33,7 +33,7 @@ export default function DonationScreen({navigation}: StackScreenProps<StartParam
 <View style={styles.button}>
             <Button 
         title=' العودة للصفحة الرئيسية '
-        color='white' 
+        color='#009387' 
               onPress={() => goHome()}
       />
 
