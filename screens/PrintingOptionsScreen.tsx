@@ -19,85 +19,86 @@ import { SafeAreaView, FlatList, TouchableOpacity } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { OrderParamList } from '../types';
 
-
 const data = [
   {
-    id: 'A0، ',
-    name: 'A0',
-    price: '1',
+      id: 'A0، ',
+      name: 'A0',
+      price: '1.00',
   },
   {
-    id: 'A1، ',
-    name: 'A1',
-    price: '1',
+      id: 'A1، ',
+      name: 'A1',
+      price: '1.00',
   },
   {
-    id: 'A2، ',
-    name: 'A2',
-    price: '2',
+      id: 'A2، ',
+      name: 'A2',
+      price: '1.00',
   },
   {
-    id: 'A3، ',
-    name: 'A3',
-    price: '0,75',
+      id: 'A3، ',
+      name: 'A3',
+      price: '0.75',
   },
   {
-    id: 'A4، ',
-    name: 'A4',
-    price: '4',
+      id: 'A4، ',
+      name: 'A4',
+      price: '0.50',
   },
   {
-    id: 'A5، ',
-    name: 'A5',
-    price: '0,50',
+      id: 'A5، ',
+      name: 'A5',
+      price: '0.50',
   },
 ];
 const data2 = [
   {
-    id: 'عادي، ',
-    name: 'عادي',
-    price: '0,50',
+      id: 'عادي، ',
+      name: 'عادي',
+      price: '0.50',
   },
   {
-    id: 'لماع، ',
-    name: 'لماع',
-    price: '1,5',
+      id: 'لماع، ',
+      name: 'لماع',
+      price: '1.50',
   },
   {
-    id: 'مقوى، ',
-    name: 'مقوى',
-    price: '2',
+      id: 'مقوى، ',
+      name: 'مقوى',
+      price: '2.00',
   },
   {
-    id: 'مُستخدم، ',
-    name: 'مُستخدم ',
-    price: '0,5',
+      id: 'مُستخدم، ',
+      name: 'مُستخدم ',
+      price: '0.25',
   },
 ];
 const data3 = [
   {
-    id: 'أبيض & أسود، ',
-    name: 'أبيض & أسود',
-    price: '0,5',
+      id: 'أبيض & أسود، ',
+      name: 'أبيض & أسود',
+      price: '0.50',
   },
   {
-    id: 'ملون، ',
-    name: 'ملون',
-    price: '1,50',
+      id: 'ملون، ',
+      name: 'ملون',
+      price: '1.50',
   },
 ];
 const data4 = [
   {
-    id: 'وجه، ',
-    name: 'وجه',
-    price: '1',
+      id: 'وجه، ',
+      name: 'وجه',
+      price: '1.00',
   },
   {
-    id: 'وجهين، ',
-    name: 'وجهين',
-    price: '0,5',
+      id: 'وجهين، ',
+      name: 'وجهين',
+      price: '0.50',
   },
 ];
+
+
 
 function PrintingOptionsScreen({ navigation }: StackScreenProps<OrderParamList>) {
   const [state2, setState2] = useState({ price: 0, checked: [] });

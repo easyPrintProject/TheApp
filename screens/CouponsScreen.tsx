@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, ScrollView, StatusBar } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'; 
 
 import { StackScreenProps } from '@react-navigation/stack';
@@ -74,9 +74,24 @@ export default function CouponsScreen( {navigation}: StackScreenProps<AccountPar
         }, [state]);
     return (
      
-            <SafeAreaView style={{    backgroundColor: '#FFFFFF',flex:1}}>
-              <Text> الكوبونات الخاصة </Text>
-          <View style={{    backgroundColor: '#F2F2F2',  flexDirection: 'column', alignItems: 'center',  paddingRight: 10, paddingLeft: 10, borderBottomWidth: 2, borderBottomColor: '#FFF',}}> 
+      <ScrollView style={{ backgroundColor: 'white' , flex:1, }}>
+      <SafeAreaView >
+              <StatusBar backgroundColor="#009387" barStyle="dark-content" />
+      <Text style={{ fontSize: 25, textAlign:'center', marginTop:30,justifyContent:'center', 
+      backgroundColor: '#49c3c6', paddingTop:27 ,height: 80, color: 'white',
+       alignContent: 'center', fontWeight: 'bold'}}> الكوبونات الخاصة</Text>
+        <View style={styles.icon}>
+                  <Ionicons name="chevron-back" size={24} color="white" onPress={() => GoToAccount()} />
+              </View>
+              <View style={styles.icon2}>
+                  <Ionicons name="menu-outline" size={24} color= 'white'  
+                  onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View>
+  
+          <View style={{    backgroundColor: 'white',  
+          flexDirection: 'column', alignItems: 'center',
+            paddingRight: 10, paddingLeft: 10, 
+            marginTop: 50,
+           }}> 
           {Coupons.slice(1).map(c => 
             <View>
                    <Text>{c.privatePromotionCodeString}</Text>
@@ -84,54 +99,33 @@ export default function CouponsScreen( {navigation}: StackScreenProps<AccountPar
              )}
          </View>
         </SafeAreaView>
+        </ScrollView>
   );}
   const styles = StyleSheet.create({
-    title: {
-      color:"#484E50",
-      fontSize: 20,
+   
+    header: {
+      flex: 1,
+      justifyContent: 'flex-end',
+      paddingHorizontal: 20,
+      paddingBottom: 50,
+  },
+ 
+  text_header: {
+      color: '#49c3c6',
       fontWeight: 'bold',
-      marginVertical:"-5%",
-      padding:"3%"
-    
-    },
-    
-    
-      menuItem: {
-        paddingVertical: '5%',
-        padding:'10%',
-        flexDirection: 'row',
-
-    
-      },
-       menuItemText1: {
-        color: 'black',
-        fontWeight: '600',
-        fontSize: 12,
-        lineHeight: 26,
-        marginLeft:"4%",
-
-      },
-      menuItemText2: {
-        color: 'black',
-        fontWeight: '600',
-        fontSize: 12,
-        lineHeight: 26,
-        marginRight:"6%",
-
-      
-
-      
-      },
-      icon:{
-          marginRight:"90%",
-          marginTop:"5%"
+      fontSize: 25,
+      textAlign: 'center',
+      marginBottom: -20,
+  },
+      icon: {
+        marginRight: "90%",
+        paddingLeft: 25,
+        marginTop: -50,
       },
       icon2: {
         marginLeft: "90%",
         paddingRight: 25,
         marginTop: -25,
-       // backgroundColor:'#49c3c6'
-      
       }
     
     });
