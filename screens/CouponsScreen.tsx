@@ -42,7 +42,7 @@ export default function CouponsScreen( {navigation}: StackScreenProps<AccountPar
       React.useEffect(() => {
 
         try {
-          fetch('https://apieasyprint20210215153907.azurewebsites.net/api/courcematerial/'+state.printerId, {
+          fetch('https://apieasyprint20210215153907.azurewebsites.net/api/PromotionCode/FDA22AB5-0FFE-4F9A-99E3-09F5678FB3EA', {
            method: 'GET',
            headers: {
            Accept: 'application/json',
@@ -54,7 +54,6 @@ export default function CouponsScreen( {navigation}: StackScreenProps<AccountPar
             setCoupons( Coupons =>
                [...Coupons,
                  {
-                   
                   privatePromotionCodeId:c.privatePromotionCodeId,
                   privatePromotionCodeString:c.privatePromotionCodeString ,
                   startDate:c.startDate ,
@@ -76,33 +75,14 @@ export default function CouponsScreen( {navigation}: StackScreenProps<AccountPar
     return (
      
             <SafeAreaView style={{    backgroundColor: '#FFFFFF',flex:1}}>
-      
-          <View style={{    backgroundColor: '#F2F2F2',
-    flexDirection: 'column',
-    alignItems: 'center',
-    paddingRight: 10,
-    paddingLeft: 10,
-    borderBottomWidth: 2,
-    borderBottomColor: '#FFF',
-}}> {Coupons.slice(1).map(c => 
-    <><View style={styles.icon}>
-    <Ionicons name="chevron-back" size={24} color="black" onPress={() => GoToAccount()} />
-  </View><View style={styles.icon2}>
-      <Ionicons name="menu-outline" size={24} color='black'
-        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}></Ionicons></View><Text style={styles.title}>كوبوناتي  </Text>
-
-
-    <TouchableOpacity style={styles.menuItem}>
-      <Text style={styles.menuItemText2}> قسائم منتهية الصلاحية </Text>
-
-
-      <TouchableOpacity style={{ marginHorizontal: "3%" }}>
-        <Text style={styles.menuItemText1}> قسائم غير مستخدمة </Text>
-      </TouchableOpacity>
-    </TouchableOpacity></>
-           )}
+              <Text> الكوبونات الخاصة </Text>
+          <View style={{    backgroundColor: '#F2F2F2',  flexDirection: 'column', alignItems: 'center',  paddingRight: 10, paddingLeft: 10, borderBottomWidth: 2, borderBottomColor: '#FFF',}}> 
+          {Coupons.slice(1).map(c => 
+            <View>
+                   <Text>{c.privatePromotionCodeString}</Text>
+            </View>
+             )}
          </View>
-        
         </SafeAreaView>
   );}
   const styles = StyleSheet.create({
