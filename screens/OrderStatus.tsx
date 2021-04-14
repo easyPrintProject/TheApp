@@ -83,10 +83,6 @@ export default function OrderScreen({ navigation }: StackScreenProps<AccountPara
      console.log('حدث خطأ! ', error)
    }
    }, [state]);
-  
-// bottom to top الترتيب
-// bottom to top الترتيب
-// bottom to top الترتيب
 
   return (
     <ScrollView style={{ backgroundColor: 'white' , flex:1, }}>
