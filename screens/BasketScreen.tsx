@@ -95,6 +95,18 @@ export default function BasketScreen({ navigation }: StackScreenProps<BasketPara
 
       }
       const goToPayment = () => {
+        fetch('https://apieasyprint20210215153907.azurewebsites.net/api/UpdateStatusCustomer/'+state.orderId+'/'+total, {
+          method: 'GET',
+          headers: {
+          Accept: 'application/json',
+           'Content-Type': 'application/json'
+         }
+        }).then((response) => response.json())
+        .then((response) => {
+        })
+        .catch((error) => {
+         console.error(error);
+       });
         navigation.navigate("PaymentScreen");
       };
 
